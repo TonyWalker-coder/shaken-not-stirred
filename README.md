@@ -3,6 +3,7 @@
 Table of Contents
 - [Project Overview](#project-overview)
 - [User Stories](#user-stories)
+- [GitHub Projects](#github-projects)
 - [Database Schema (ERD)](#db)
 - [Tech Stack](#tech-stack)
 - [Folder Structure](#folder-structure)
@@ -168,6 +169,12 @@ Each cocktail displayed on the site should use its image as an interactive eleme
 - The modal includes ingredients, method, and optional history
 - Images have appropriate hover/focus states for accessibility
 - The interaction works consistently on mobile and desktop
+
+## GitHub Projects
+
+This project is managed using GitHub Projects to mirror real‑world development practices. Even as a solo developer, the Kanban board provides a clear workflow for organising tasks, tracking progress, and maintaining momentum. Issues, milestones, and a structured board layout keep the work transparent, predictable, and easy to extend as the project grows.
+
+![Kanban board](screenshoots/projects.png)
 
 <a id="db"></a>
 ## Database Schema (ERD)
