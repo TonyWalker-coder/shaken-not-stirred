@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from cocktails.views import cocktail_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cocktails/', cocktail_list, name='cocktail_list'),
 ]

@@ -1,0 +1,9 @@
+<h1>Cocktails</h1>
+
+<ul>
+    {% for cocktail in cocktails %}
+        <li>{{ cocktail.name }}</li>
+    {% empty %}
+        <li>No cocktails yet.</li>
+    {% endfor %}
+</ul>
