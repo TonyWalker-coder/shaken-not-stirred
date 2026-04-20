@@ -6,7 +6,7 @@ class Cocktail(models.Model):
     description = models.TextField(blank=True)
     ingredients = models.TextField(blank=True)
     method = models.TextField(blank=True)
-    image_url = models.URLField(blank=True)
+    image_url = models.CharField(max_length=255, blank=True)
     glass_type = models.CharField(max_length=50, blank=True)
 
     def __str__(self):

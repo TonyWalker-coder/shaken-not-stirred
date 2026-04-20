@@ -1,0 +1,62 @@
+
+.cocktail-grid {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1rem;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+@media (max-width: 1400px) {
+    .cocktail-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .cocktail-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cocktail-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.cocktail-card {
+    cursor: pointer;
+}
+
+.cocktail-image {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.modal-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
