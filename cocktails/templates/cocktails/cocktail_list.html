@@ -1,6 +1,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
-
+<body>
 <div class="cocktail-grid">
     {% for cocktail in cocktails %}
         <div class="cocktail-card"
@@ -8,8 +8,8 @@
              data-description="{{ cocktail.description }}"
              data-ingredients="{{ cocktail.ingredients }}"
              data-method="{{ cocktail.method }}"
-             data-image="{{ cocktail.image_url }}">
-             
+             data-image="{% static cocktail.image_url %}"
+        >            
             <img src="{% static cocktail.image_url %}" class="cocktail-image" alt="{{ cocktail.name }}">
         </div>
     {% endfor %}
@@ -18,6 +18,7 @@
 <div id="cocktail-modal" class="modal hidden">
     <div class="modal-content">
         <span class="close">&times;</span>
+
         <img id="modal-image" class="modal-image">
         <h2 id="modal-name"></h2>
         <p id="modal-description"></p>
@@ -25,7 +26,7 @@
         <p id="modal-method"></p>
     </div>
 </div>
-
+</body>
 <script>
 document.querySelectorAll('.cocktail-card').forEach(card => {
     card.addEventListener('click', () => {
@@ -33,6 +34,8 @@ document.querySelectorAll('.cocktail-card').forEach(card => {
         document.getElementById('modal-description').textContent = card.dataset.description;
         document.getElementById('modal-ingredients').textContent = card.dataset.ingredients;
         document.getElementById('modal-method').textContent = card.dataset.method;
+
+        // Important: use the static path for the modal image
         document.getElementById('modal-image').src = card.dataset.image;
 
         document.getElementById('cocktail-modal').classList.remove('hidden');
@@ -43,4 +46,5 @@ document.querySelector('.close').addEventListener('click', () => {
     document.getElementById('cocktail-modal').classList.add('hidden');
 });
 </script>
+
 
