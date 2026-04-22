@@ -1,50 +1,73 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
+
 <body>
-<div class="cocktail-grid">
-    {% for cocktail in cocktails %}
+    <div class="cocktail-grid">
+        {% for cocktail in cocktails %}
         <div class="cocktail-card"
              data-name="{{ cocktail.name }}"
-             data-description="{{ cocktail.description }}"
-             data-ingredients="{{ cocktail.ingredients }}"
-             data-method="{{ cocktail.method }}"
              data-image="{% static cocktail.image_url %}"
-        >            
+
+             data-ingredients="{% for ing in cocktail.ingredients.all %}{{ ing.name }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+
+             data-recipe="{{ cocktail.recipe.text|default:'' }}"
+             data-history="{{ cocktail.history.text|default:'' }}"
+        >
             <img src="{% static cocktail.image_url %}" class="cocktail-image" alt="{{ cocktail.name }}">
         </div>
-    {% endfor %}
-</div>
-
-<div id="cocktail-modal" class="modal hidden">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-
-        <img id="modal-image" class="modal-image">
-        <h2 id="modal-name"></h2>
-        <p id="modal-description"></p>
-        <p id="modal-ingredients"></p>
-        <p id="modal-method"></p>
+        {% endfor %}
     </div>
-</div>
+
+    <div id="cocktail-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <img id="modal-image" class="modal-image">
+            <h2 id="modal-name"></h2>
+
+            <h3>Ingredients</h3>
+            <ul id="modal-ingredients"></ul>
+
+            <h3>Recipe</h3>
+            <p id="modal-recipe"></p>
+
+            <h3>History</h3>
+            <p id="modal-history"></p>
+        </div>
+    </div>
 </body>
+
 <script>
-document.querySelectorAll('.cocktail-card').forEach(card => {
-    card.addEventListener('click', () => {
-        document.getElementById('modal-name').textContent = card.dataset.name;
-        document.getElementById('modal-description').textContent = card.dataset.description;
-        document.getElementById('modal-ingredients').textContent = card.dataset.ingredients;
-        document.getElementById('modal-method').textContent = card.dataset.method;
+    document.querySelectorAll('.cocktail-card').forEach(card => {
+        card.addEventListener('click', () => {
 
-        // Important: use the static path for the modal image
-        document.getElementById('modal-image').src = card.dataset.image;
+            // Name
+            document.getElementById('modal-name').textContent = card.dataset.name;
 
-        document.getElementById('cocktail-modal').classList.remove('hidden');
+            // Ingredients (split into list items)
+            const ingredients = card.dataset.ingredients.split(', ');
+            const ul = document.getElementById('modal-ingredients');
+            ul.innerHTML = '';
+            ingredients.forEach(ing => {
+                const li = document.createElement('li');
+                li.textContent = ing;
+                ul.appendChild(li);
+            });
+
+            // Recipe + History
+            document.getElementById('modal-recipe').textContent = card.dataset.recipe;
+            document.getElementById('modal-history').textContent = card.dataset.history;
+
+            // Image
+            document.getElementById('modal-image').src = card.dataset.image;
+
+            // Show modal
+            document.getElementById('cocktail-modal').classList.remove('hidden');
+        });
     });
-});
 
-document.querySelector('.close').addEventListener('click', () => {
-    document.getElementById('cocktail-modal').classList.add('hidden');
-});
+    // Close modal
+    document.querySelector('.close').addEventListener('click', () => {
+        document.getElementById('cocktail-modal').classList.add('hidden');
+    });
 </script>
-
-
