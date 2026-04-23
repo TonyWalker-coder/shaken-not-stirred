@@ -4,15 +4,9 @@
 <body>
     <div class="cocktail-grid">
         {% for cocktail in cocktails %}
-        <div class="cocktail-card"
-             data-name="{{ cocktail.name }}"
-             data-image="{% static cocktail.image_url %}"
-
-             data-ingredients="{% for ing in cocktail.ingredients.all %}{{ ing.name }}{% if not forloop.last %}, {% endif %}{% endfor %}"
-
-             data-recipe="{{ cocktail.recipe.text|default:'' }}"
-             data-history="{{ cocktail.history.text|default:'' }}"
-        >
+        <div class="cocktail-card" data-name="{{ cocktail.name }}" data-image="{% static cocktail.image_url %}"
+            data-ingredients="{% for ing in cocktail.ingredients.all %}{{ ing.name }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+            data-recipe="{{ cocktail.recipe.text|default:'' }}" data-history="{{ cocktail.history.text|default:'' }}">
             <img src="{% static cocktail.image_url %}" class="cocktail-image" alt="{{ cocktail.name }}">
         </div>
         {% endfor %}
@@ -70,4 +64,17 @@
     document.querySelector('.close').addEventListener('click', () => {
         document.getElementById('cocktail-modal').classList.add('hidden');
     });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.getElementById('cocktail-modal').classList.add('hidden');
+        }
+    });
+
+    document.getElementById('cocktail-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'cocktail-modal') {
+            e.target.classList.add('hidden');
+        }
+    });
+
 </script>
