@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shaken!Stirred</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Playwrite+GB&display=swap" rel="stylesheet">
+
+
+    <style>
+        h1 {
+            font-family: 'Henny Penny', cursive;
+        }
+
+        p,
+        body,
+        .tagline {
+            font-family: 'Playwrite GB', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero {
+            background-image: url("{% static 'images/background/pineapple-bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            /* full screen height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h1>Welcome to Shaken!Stirred</h1>
+        <p>Your cocktail adventure begins here.</p>
+    </div>
+</body>
+
+</html>
