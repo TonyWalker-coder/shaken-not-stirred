@@ -1,9 +1,31 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f87123;
+    background-color: #f7b532;
     margin: 0;
     padding: 0;
 }
+
+h1, h2 {
+    font-family: 'Henny Penny', cursive;
+}
+
+.title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #f77c24;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+.title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.title:hover {
+    color: #e16222;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 1.0);
+}
+
 .cocktail-grid {
     display: grid;
     gap: 1.5rem;
@@ -46,7 +68,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0, 0, 0, 0.45);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -61,7 +83,8 @@ body {
 
 /* Modal box — tropical menu card */
 .modal-content {
-    background: #fff8e6; /* warm parchment */
+    background: #fff8e6;
+    /* warm parchment */
     background-image: radial-gradient(circle at top left, #fff3d4, #ffe9b8);
     border-radius: 18px;
     width: 92%;
@@ -72,9 +95,10 @@ body {
     position: relative;
 
     /* soft tropical shadow */
-    box-shadow: 0 12px 35px rgba(0,0,0,0.25),
-                0 0 0 6px rgba(255, 200, 120, 0.4);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25),
+        0 0 0 6px rgba(255, 200, 120, 0.4);
 }
+
 /* Close button — chunky, friendly, beachy */
 .close {
     position: absolute;
@@ -83,9 +107,10 @@ body {
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
-    color: #d46b00; /* tropical orange */
+    color: #d46b00;
+    /* tropical orange */
     transition: 0.2s ease;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .close:hover {
@@ -99,18 +124,18 @@ body {
     border-radius: 14px;
     margin-bottom: 1.2rem;
     margin-top: 1.5rem;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 /* Headings — tiki style */
 .modal-content h2 {
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Henny Penny', cursive;
     color: #c45a00;
     margin-bottom: 0.5rem;
 }
 
 .modal-content h3 {
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Henny Penny', cursive;
     color: #d46b00;
     margin-top: 1.2rem;
     margin-bottom: 0.4rem;
@@ -128,6 +153,13 @@ body {
 }
 
 @keyframes tikiFade {
-    from { opacity: 0; transform: translateY(-12px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

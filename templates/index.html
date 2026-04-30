@@ -7,8 +7,8 @@
     <title>Shaken!Stirred</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Playwrite+GB&display=swap" rel="stylesheet">
-
+    <!--link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Playwrite+GB&display=swap" rel="stylesheet"-->
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
 
     <style>
         h1 {
@@ -18,12 +18,24 @@
         p,
         body,
         .tagline {
-            font-family: 'Playwrite GB', sans-serif;
+            font-family: 'Englebert', sans-serif;
         }
 
         body {
             margin: 0;
             padding: 0;
+        }
+
+        .title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: #f77c24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
+            margin-left: 1rem;
+        }
+
+        .title:hover {
+            color: #e16222;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 1.0);
         }
 
         .hero {
@@ -35,15 +47,15 @@
             /* full screen height */
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            justify-content: left;
+            align-items: left;
         }
     </style>
 </head>
 
 <body>
     <div class="hero">
-        <h1>Welcome to Shaken!Stirred</h1>
+        <h1 class="title">Welcome to Shaken!Stirred</h1>
         <p>Your cocktail adventure begins here.</p>
     </div>
 </body>
