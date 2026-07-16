@@ -1,0 +1,954 @@
+[
+{
+  "model": "cocktails.ingredient",
+  "pk": 23,
+  "fields": {
+    "name": "Coconut Rum"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 24,
+  "fields": {
+    "name": "Dark Rum"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 25,
+  "fields": {
+    "name": "Orange Juice"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 26,
+  "fields": {
+    "name": "Pineapple Juice"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 27,
+  "fields": {
+    "name": "Grenadine"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 28,
+  "fields": {
+    "name": "Crushed Ice"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 29,
+  "fields": {
+    "name": "Vodka"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 30,
+  "fields": {
+    "name": "Tomato Juice"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 31,
+  "fields": {
+    "name": "Lemon Juice"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 32,
+  "fields": {
+    "name": "Worcestershire Sauce"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 33,
+  "fields": {
+    "name": "Tabasco"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 34,
+  "fields": {
+    "name": "White Rum"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 35,
+  "fields": {
+    "name": "Blue Curaçao"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 36,
+  "fields": {
+    "name": "Cream of Coconut"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 37,
+  "fields": {
+    "name": "Lemonade"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 38,
+  "fields": {
+    "name": "Ice"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 39,
+  "fields": {
+    "name": "Tahoe Blue Vodka"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 40,
+  "fields": {
+    "name": "Lime"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 41,
+  "fields": {
+    "name": "Sugar"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 42,
+  "fields": {
+    "name": "Cachaça"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 43,
+  "fields": {
+    "name": "Citrus Vodka"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 44,
+  "fields": {
+    "name": "Cointreau"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 45,
+  "fields": {
+    "name": "Orange Liqueur"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 46,
+  "fields": {
+    "name": "Lime Juice"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 47,
+  "fields": {
+    "name": "Cranberry Juice"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 48,
+  "fields": {
+    "name": "Gold Rum"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 49,
+  "fields": {
+    "name": "Cola"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 50,
+  "fields": {
+    "name": "Gin"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 51,
+  "fields": {
+    "name": "Dry Vermouth"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 52,
+  "fields": {
+    "name": "Olive Brine"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 53,
+  "fields": {
+    "name": "Sambuca"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 54,
+  "fields": {
+    "name": "Irish Cream Liqueur"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 55,
+  "fields": {
+    "name": "Absinthe"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 56,
+  "fields": {
+    "name": "Triple Sec"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 57,
+  "fields": {
+    "name": "Tequila"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 58,
+  "fields": {
+    "name": "Light Rum"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 59,
+  "fields": {
+    "name": "Simple Syrup"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 60,
+  "fields": {
+    "name": "Jamaican Rum"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 61,
+  "fields": {
+    "name": "Orange Curaçao"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 62,
+  "fields": {
+    "name": "Orgeat"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 63,
+  "fields": {
+    "name": "Agave Syrup"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 64,
+  "fields": {
+    "name": "Kosher salt"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 65,
+  "fields": {
+    "name": "Bourbon"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 66,
+  "fields": {
+    "name": "Fresh Mint Leaves"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 67,
+  "fields": {
+    "name": "Club soda"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 68,
+  "fields": {
+    "name": "Pisco"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 69,
+  "fields": {
+    "name": "Egg White"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 70,
+  "fields": {
+    "name": "Grapefruit Juice"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 71,
+  "fields": {
+    "name": "Frozen Strawberries"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 72,
+  "fields": {
+    "name": "Strawberries"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 73,
+  "fields": {
+    "name": "Sugar syrup"
+  }
+},
+{
+  "model": "cocktails.ingredient",
+  "pk": 74,
+  "fields": {
+    "name": "Rye whiskey"
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 5,
+  "fields": {
+    "text": "Classic Blended Bahama Mama Recipe \r\n1 oz Coconut Rum\r\n½ oz Dark Rum (or coffee liqueur for a twist)\r\n1 oz Orange Juice\r\n1 oz Pineapple Juice\r\n½ oz Grenadine\r\n1 cup Crushed Ice\r\nGarnish: Pineapple wedge, Maraschino cherry \r\n\r\nInstructions:\r\nBlend: Add the rum, juices, grenadine, and ice into a blender.\r\nCombine: Blend until the mixture reaches a smooth, slushy consistency.\r\nServe: Pour into a hurricane glass and garnish with a cherry and orange slice. \r\n\r\nVariations:\r\nOn the Rocks: Instead of blending, shake the ingredients (except grenadine) with ice, strain into a glass with fresh ice, and pour the grenadine in last to sink to the bottom.\r\nTropical Twist: Add \r\n½ oz of banana liqueur for more depth."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 6,
+  "fields": {
+    "text": "A classic Bloody Mary is made by \r\nstirring or shaking 50ml vodka, \r\n150ml tomato juice, \r\n10-15ml lemon juice, \r\n3-6 dashes of Worcestershire sauce, \r\n2-3 dashes of Tabasco, \r\ncelery salt, and black pepper with ice. \r\nStrain into a tall glass with fresh ice and garnish with a celery stick and lemon slice. \r\n\r\nIngredients (Single Serving)\r\nVodka:(2 oz)\r\nTomato Juice:(4-5 oz)\r\nLemon Juice: Freshly squeezed from half a lemon\r\nWorcestershire Sauce: 3-6 dashes\r\nTabasco/Hot Sauce: 2-3 dashes (to taste)\r\nSeasoning: Pinch of celery salt and black pepper\r\nGarnish: Celery stick, lemon wedge, optional olives or bacon \r\n\r\nInstructions\r\nPrepare the glass: Rub a lemon wedge around the rim of a tall glass and dip it in a mix of celery salt and smoked paprika, if desired.\r\nMix ingredients: Add the vodka, tomato juice, lemon juice, Worcestershire sauce, hot sauce, and seasonings into a shaker or pitcher with ice.\r\nCombine: Stir or shake well until the outside of the container feels cold.\r\nServe: Strain into the prepared glass filled with fresh ice.\r\nGarnish: Garnish with a celery stick, lemon wedge, or optional items like pickles or bacon. \r\n\r\nTips for the Best Bloody Mary\r\nSpiciness: Add more Tabasco, or try other hot sauces like Cholula, Frank's Red Hot, or horseradish for extra kick.\r\nConsistency: For a more savory, thicker drink, add 1 tsp of cream sherry or horseradish.\r\nQuality: Use good quality, chilled tomato juice.\r\nBatching: To make a pitcher, multiply the ingredients by the number of guests, but hold the ice until serving."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 7,
+  "fields": {
+    "text": "A classic Blue Hawaiian cocktail combines 1.5 oz light rum, 0.75 oz blue curaçao, 2 oz pineapple juice, and 0.75 oz cream of coconut. Shake or blend these ingredients with ice, then strain into a glass, garnishing with a pineapple wedge and maraschino cherry for a refreshing, tropical, and creamy coconut-pineapple drink. \r\n\r\nClassic Blended Blue Hawaiian\r\n1 ½ oz White Rum\r\n¾ oz Blue Curaçao\r\n2 oz Pineapple Juice\r\n¾ oz Cream of Coconut\r\n1 cup Crushed Ice\r\nGarnish: Pineapple wedge, maraschino cherry \r\n\r\nInstructions:\r\nAdd all ingredients into a blender.\r\nBlend on high until smooth and creamy.\r\nPour into a chilled Hurricane or highball glass.\r\nGarnish with a pineapple wedge and cherry. \r\n\r\nShaken (On the Rocks) Method\r\nIf preferred, shake the ingredients in a cocktail shaker with ice and strain into a glass filled with fresh crushed ice. \r\nLiquor.com\r\nLiquor.com\r\nKey Tips\r\nCream of Coconut: Use a product like Real Cream of Coconut for best results. If it is thick, gently warm it before mixing.\r\nVariation (Blue Hawaii): The \"Blue Hawaii\" usually uses vodka and sour mix, whereas the \"Blue Hawaiian\" is known for its creamy coconut flavor.\r\nGarnish: A cocktail umbrella is a classic addition."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 8,
+  "fields": {
+    "text": "Classic Blended Blue Hawaiian\r\n1 ½ oz White Rum\r\n¾ oz Blue Curaçao\r\n2 oz Pineapple Juice\r\n¾ oz Cream of Coconut\r\n1 cup Crushed Ice\r\nGarnish: Pineapple wedge, maraschino cherry\r\n\r\nInstructions:\r\nAdd all ingredients into a blender.\r\nBlend on high until smooth and creamy.\r\nPour into a chilled Hurricane or highball glass.\r\nGarnish with a pineapple wedge and cherry.\r\n\r\nShaken (On the Rocks) Method\r\nIf preferred, shake the ingredients in a cocktail shaker with ice and strain into a glass filled with fresh crushed ice.\r\n\r\nKey Tips\r\nCream of Coconut: Use a product like Real Cream of Coconut for best results. If it is thick, gently warm it before mixing.\r\nVariation (Blue Hawaii): The \"Blue Hawaii\" usually uses vodka and sour mix, whereas the \"Blue Hawaiian\" is known for its creamy coconut flavor.\r\nGarnish: A cocktail umbrella is a classic addition."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 9,
+  "fields": {
+    "text": "A Blue Tahoe is a vibrant blue, layered cocktail featuring Tahoe Blue Vodka, blue curaçao, and fruit juices. To make it, \r\ncombine 1¾ oz Tahoe Blue Vodka \r\n¾ oz grenadine\r\n4 oz pineapple or orange juice over ice\r\nthen slowly layer an additional 1 oz vodka \r\nmixed with ½ oz blue curaçao on top. \r\n\r\n\r\nOther Varieties:\r\nBlue Tahoe Cocktail (Bevvy): 1 oz each of blue curaçao, tequila, and lime juice, topped with champagne.\r\nHard Lemonade: 1 part vodka to 3 parts lemonade, with fresh ginger."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 10,
+  "fields": {
+    "text": "Key Ingredients & Steps:\r\nLime: 1 lime, cut into 6–8 wedges. Remove the white center pith to avoid bitterness.\r\nSugar: 1 to 2 tablespoons of white sugar or caster sugar.\r\nCachaça: 50–60ml (2 oz) of Brazilian sugarcane spirit.\r\nIce: Generous amount of crushed ice.\r\n\r\nMethod:\r\nMuddle: Place lime wedges and sugar into a sturdy rocks glass. Muddle (mash) well to release the juice and dissolve the sugar.\r\nAdd Cachaça: Pour in the cachaça.\r\nAdd Ice & Stir: Fill the glass with crushed ice and stir thoroughly, allowing the sugar and lime to mix with the alcohol.\r\nFinish: Top with more crushed ice and garnish with a lime wedge if desired.\r\n\r\nTips for the Perfect Caipirinha:\r\nAvoid Bitterness: Muddle gently, as crushing the lime peel too hard can make the drink bitter.\r\nSugar Choice: While white sugar is traditional, superfine sugar dissolves faster, ensuring no gritty texture.\r\nIce: Using crushed ice is key for the correct dilution and cooling in a caipirinha, notes and."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 11,
+  "fields": {
+    "text": "Classic Cosmopolitan Recipe\r\nPrep time: 5 minutes\r\nServes: 1\r\n\r\nIngredients:\r\n\r\n2oz Citrus Vodka (or standard Vodka)\r\n1oz Cointreau or Orange Liqueur\r\n1oz Fresh Lime Juice\r\n1oz Cranberry Juice\r\nIce\r\nGarnish: Orange twist or zest\r\n\r\nInstructions:\r\nPrepare: Chill a martini or coupe glass in the freezer.\r\nShake: Add the vodka, Cointreau, cranberry juice, and lime juice into a cocktail shaker. Fill with ice and shake vigorously for 10-15 seconds until well-chilled.\r\nStrain: Strain into the chilled glass.\r\nGarnish: Twist a piece of orange peel over the drink to release the oils and drop it in\r\n\r\nTips for the Best Cosmo\r\nFresh Lime is Essential: Use fresh lime juice, never bottled, for the best flavor.\r\nCitrus Vodka: While standard vodka works, using Citron vodka (like Absolut Citron) is generally preferred for a brighter taste.\r\nThe Flame Trick: For a classic experience, hold a 3cm round piece of orange zest over the drink, light a match underneath it, and bend the edge towards the flame to release the caramelized orange oils"
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 12,
+  "fields": {
+    "text": "A classic Cuba Libre is made by filling a highball glass with ice, adding 50-60ml (about 2 oz) of light or gold rum, the juice of half a lime, and topping with 100-150ml (about 4 oz) of cola. Garnish with the remaining lime wedge and stir gently.\r\n\r\nIngredients\r\nRum: 50-60ml (2 oz) White or Gold Rum (e.g., BACARDÍ Carta Oro or Havana Club).\r\nCola: 100-150ml (4 oz) Coca-Cola.\r\nLime: 1/2 fresh lime.\r\nIce: Cubed.\r\n\r\nInstructions\r\nPrepare the glass: Fill a highball glass with ice cubes.\r\nAdd Rum: Pour 50-60ml of rum over the ice.\r\nAdd Lime: Squeeze the juice of half a lime into the glass, then drop the spent wedges in.\r\nTop with Cola: Fill the rest of the glass with cola.\r\nStir & Garnish: Stir gently to mix, then garnish with a fresh lime wedge.\r\n\r\nTips for Success\r\nThe Lime is Key: Do not skip the fresh lime; it elevates a standard rum and coke into a balanced, citrusy cocktail.\r\nUse Quality Ingredients: Premium Cola (like Fever-Tree) or Mexican Coke can enhance the flavor.\r\nStir Gently: Stir, don't shake, to keep the carbonation in the drink."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 13,
+  "fields": {
+    "text": "Key Ingredients & Proportions\r\nSpirit: \r\n–\r\n2 2.5oz Vodka or Gin (e.g., Grey Goose).\r\nDry Vermouth: \r\n0.5oz (e.g., Noilly Prat).\r\nOlive Brine: \r\n–\r\n0.5-1oz (add more for \"filthy\").\r\nGarnish: 1–3 Green Olives (pitted).\r\n\r\nSteps to Make\r\nChill: Place a martini glass in the freezer or fill with ice and water while preparing.\r\nCombine: Add the spirit, dry vermouth, and olive brine into a cocktail shaker or mixing glass.\r\nMix: Add a generous amount of ice. Shake (for colder, slightly diluted with ice chips) or stir (for a clearer drink).\r\nStrain: Strain into the chilled martini glass.\r\nGarnish: Garnish with olives on a cocktail stick.\r\n\r\nPro Tips\r\nShaking vs. Stirring: While traditionally stirred, many prefer to shake dirty martinis to ensure the brine and spirits are well-mixed and extra cold.\r\nQuality Brine: Use high-quality olive brine, such as from jarred Castelvetrano or Sevillano olives.\r\nDouble Strain: To avoid ice chips in the final drink, use a fine strainer in addition to a Hawthorne strainer."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 14,
+  "fields": {
+    "text": "A Hiroshima cocktail is a layered, high-alcohol shooter designed to resemble a nuclear mushroom cloud, made by layering sambuca, Irish cream, and absinthe, finished with drops of grenadine. It is a strong, sweet drink, often served as a party shot due to its intense visual effect.\r\n\r\nIngredients\r\n0.75 oz Sambuca\r\n0.35 oz Irish Cream Liqueur\r\n0.75 oz Absinthe\r\n3-5 drops Grenadine \r\n\r\nInstructions\r\nPrepare the Base: Pour the sambuca into a shot glass.\r\nLayer the Cream: Using the back of a bar spoon, carefully layer the Irish cream over the sambuca.\r\nLayer the Absinthe: Using the bar spoon again, slowly layer the absinthe on top of the cream.\r\nAdd Grenadine: Carefully add 3–5 drops of grenadine. The heavy syrup will sink through the layers, pulling some of the cream down to create the visual effect. \r\n\r\nTips for Success\r\nLayering: Pouring slowly over a spoon helps keep the liquids separate based on their different densities.\r\nVariation: Some recipes use peach schnapps or triple sec as the base instead of sambuca.\r\nSafety: This drink has a very high alcohol content and should be consumed with caution. Always drink responsibly."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 15,
+  "fields": {
+    "text": "Classic Kamikaze Recipe\r\nThis recipe makes one full-sized cocktail or two standard shots.\r\n\r\nIngredients\r\n1 ½ oz Vodka (use a smooth, high-quality brand)\r\n1 oz Triple Sec (or Cointreau for a smoother finish)\r\n1 oz Freshly squeezed lime juice\r\nGarnish: Lime wedge or wheel\r\n\r\nInstructions\r\nChill your glass: Place a martini glass or coupe in the freezer for a few minutes.\r\nCombine: Pour the vodka, triple sec, and lime juice into a cocktail shaker filled with ice.\r\nShake: Shake vigorously for 10 to 15 seconds until the shaker is frostily cold.\r\nStrain: Fine strain the mixture into your chilled glass (for a cocktail) or two shot glasses (for shooters).\r\nGarnish: Add a lime wheel to the rim and serve immediately.\r\n\r\nBlue Kamikaze: Replace the triple sec with Blue Curaçao for a vibrant electric blue color.\r\nSweetened: If the drink is too tart, add ¼ oz of simple syrup to balance the acidity.\r\nFlavored: Use raspberry or citrus-flavored vodka to add a fruity twist to the base.\r\nJalapeño Kamikaze: Add ½ oz of jalapeño-infused simple syrup for a spicy kick."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 16,
+  "fields": {
+    "text": "A classic Long Island Iced Tea is made by mixing equal parts vodka, tequila, light rum, gin, and triple sec (usually 15-20ml or 0.5-0.75 oz each) with lemon juice and simple syrup, shaken with ice, strained into a highball glass, and topped with a splash of cola. Garnish with a lemon wedge and serve over fresh ice.\r\n\r\nClassic Long Island Iced Tea Recipe\r\nPrep time: 5 minutes\r\nServings: 1 cocktail\r\n\r\nIngredients:\r\n15 ml (1/2 oz) Vodka\r\n15 ml (1/2 oz) Tequila\r\n15 ml (1/2 oz) Light Rum\r\n15 ml (1/2 oz) Gin\r\n15 ml (1/2 oz) Triple Sec (or Cointreau)\r\n25 ml (approx. 1 oz) Fresh Lemon Juice\r\n15 ml (1/2 oz) Simple Syrup (1:1 sugar and water)\r\nTop with Coca-Cola\r\nIce\r\nLemon wedge for garnish\r\n\r\nInstructions:\r\nCombine Spirits: Add the vodka, tequila, rum, gin, triple sec, lemon juice, and simple syrup into a cocktail shaker.\r\nShake: Add a handful of ice to the shaker and shake well until the outside feels cold.\r\nStrain: Fill a tall highball glass with fresh ice and strain the mixture into the glass.\r\nTop and Garnish: Top with a splash of Coca-Cola for color and stir gently. Garnish with a lemon wedge or slice.\r\n\r\nTips for the Perfect Long Island\r\nQuality Ingredients: Use a decent quality, neutral vodka.\r\nFresh Juice: Always use fresh lemon juice rather than bottled for better flavor.\r\nBalance: If you prefer it less sweet, reduce the simple syrup. If you prefer it stronger on the orange flavor, use Cointreau.\r\nAlternative Method: For a quick method, skip the shaker and add all ingredients directly into a tall glass filled with ice, then stir well."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 17,
+  "fields": {
+    "text": "Classic Mai Tai Recipe\r\n1.5 oz Aged Jamaican Rum (or 1 oz white rum + 0.5 oz dark rum)\r\n0.75 oz Fresh Lime Juice\r\n0.5 oz Orange Curaçao\r\n0.5 oz Orgeat (Almond Syrup)\r\n0.25 oz Rich Simple Syrup (optional, for extra sweetness)\r\nGarnish: Lime wheel/shell and fresh mint sprig\r\nIce: Crushed ice\r\n\r\nInstructions\r\nPrep: Squeeze fresh lime juice.\r\nShake: Add all ingredients into a shaker with a handful of crushed ice. Shake briefly—about 3–5 seconds—to chill without over-diluting.\r\nPour: Pour the entire shaker contents into a double rocks glass.\r\nTop & Garnish: Fill the glass with more crushed ice and garnish with a mint sprig and lime\r\n\r\nKey Tips\r\nThe Rum: A high-quality aged Jamaican rum is key to a \"funky\" traditional taste, but a blend of white and dark rum is a popular alternative.\r\nOrgeat is Essential: This almond syrup is crucial for the flavor profile.\r\nDon't Over-shake: Because you are using crushed ice, you only need a very quick shake to get the drink cold and properly mixed."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 18,
+  "fields": {
+    "text": "Classic Margarita Recipe\r\nIngredients:\r\n2 oz Blanco Tequila\r\n1 oz Orange Liqueur (Cointreau or Triple Sec)\r\n1 oz Fresh Lime Juice\r\n1/2 oz Agave Syrup (optional, to taste)\r\nIce\r\nKosher salt for rim\r\nLime wheel for garnish\r\n\r\nInstructions:\r\nPrep the Glass: Rub a lime wedge around the rim of a rocks glass and dip it in salt.\r\nShake: Combine tequila, orange liqueur, lime juice, and agave syrup in a shaker with ice.\r\nChill: Shake vigorously for 10-12 seconds until well-chilled.\r\nStrain & Serve: Strain into the prepared glass over fresh ice.\r\nGarnish: Garnish with a lime wheel.\r\n\r\nTips for the Best Margarita\r\nFresh Lime Juice: Always use fresh lime juice rather than bottled mix for better flavor.\r\nQuality Tequila: Use a good quality 100% agave tequila.\r\nOptional Sweetener: Add 1/4 to 1/2 oz simple syrup or agave syrup if you prefer a sweeter cocktail.\r\nSalt Rim: For added flavor, mix a little chili powder or Tajín into the rim salt."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 19,
+  "fields": {
+    "text": "Classic Mint Julep Recipe\r\nIngredients:\r\n2 oz Bourbon\r\n1/2 oz Simple Syrup (1:1 ratio sugar/water)\r\n8–10 Fresh Mint Leaves\r\nCrushed Ice (essential)\r\nGarnish: Mint sprig, optional powdered sugar\r\n\r\nInstructions:\r\nMuddle: Lightly muddle the mint leaves and simple syrup in a julep cup or rocks glass to release the oils without shredding the leaves.\r\nCombine: Add the bourbon.\r\nIce & Stir: Fill the cup with crushed ice and stir well until the outside of the cup frosts.\r\nTop & Garnish: Top with more crushed ice to form a cone or dome. Garnish with a fresh mint sprig.\r\n\r\nTips for the Best Mint Julep\r\nUse Proper Ice: Crushed ice is essential to properly dilute the drink and create the iconic frosty cup.\r\nSmack the Mint: Before garnishing, slap the mint sprig between your hands to release its aroma.\r\nChoose Bourbon: Use a high-quality, high-proof bourbon (90 proof or higher) so it stands up to the ice dilution.\r\nCup Choice: A metal (tin or silver) julep cup is traditional and helps keep the drink colder."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 20,
+  "fields": {
+    "text": "Ingredients\r\nMint: 8-12 fresh mint leaves (spearmint is preferred).\r\nLime: 1 oz (30ml) fresh lime juice (about 1/2 a lime) or 3-4 lime wedges.\r\nSweetener: 1/2 oz (15ml) simple syrup or 2 tsp white sugar/caster sugar.\r\nRum: 2 oz (60ml) white rum (e.g., Bacardi Carta Blanca).\r\nSoda: Club soda or sparkling water.\r\nIce: Crushed ice is traditional.\r\n\r\nInstructions\r\nMuddle Mint and Lime: In a sturdy highball glass, add the mint leaves, lime juice, and simple syrup (or sugar). Use a muddler or the back of a spoon to gently press the mint 5-10 times to release its aroma. Do not shred the leaves.\r\nAdd Rum: Pour in the 2 oz of white rum.\r\nFill with Ice: Fill the glass almost to the top with crushed ice.\r\nStir and Top: Stir the mixture well with a long-handled spoon to lift the mint from the bottom and dissolve the sugar. Top off the glass with a splash of club soda.\r\nGarnish: Garnish with a fresh sprig of mint (slap it against your hand first to release oils) and a lime slice.\r\n\r\nTips for the Best Mojito\r\nUse Simple Syrup: Simple syrup dissolves instantly, avoiding the gritty, undissolved sugar at the bottom of the glass.\r\nDon't Over-muddle: Over-muddling or shredding the mint makes the drink bitter.\r\nUse Fresh Ingredients: Freshly squeezed lime juice is essential for a bright, tangy flavor.\r\nGroup Serving: To make a pitcher, multiply the ingredients by the number of servings, but add the soda water just before serving to keep it bubbly."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 21,
+  "fields": {
+    "text": "Ingredients (Single Serving)\r\nWhite Rum: 2oz\r\nCream of Coconut: 2oz\r\nPineapple Juice: 2oz\r\nIce: 1–2 cups\r\nGarnish: Pineapple wedge, leaves, or cherry (optional)\r\n\r\nInstructions\r\nCombine: Add the white rum, cream of coconut, pineapple juice, and ice to a blender.\r\nBlend: Blend on high speed for about 30 seconds until the mixture is thick, smooth, and slushy.\r\nServe: Pour into a hurricane glass, garnish, and serve immediately.\r\n\r\nTips for the Best Piña Colada\r\nCream of Coconut vs. Milk: Use cream of coconut (like Coco Re'al) for a thicker, sweeter, and more authentic flavor.\r\nFrozen Pineapple: Use 1/2cup of frozen pineapple chunks instead of ice for a more intense flavor and thicker texture.\r\nOptional Kick: Add a splash of aged or golden rum on top for added flavor depth.\r\nLight Version: Substitute 1 part coconut milk with 1 part pineapple juice for a less dense drink."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 22,
+  "fields": {
+    "text": "A classic Pisco Sour is made by shaking 2 oz Pisco, 1 oz fresh lime juice, 1/2 oz simple syrup, and 1 egg white vigorously without ice (dry shake), then again with ice. Strain into a chilled glass and top with 3–5 drops of Angostura bitters for a frothy, tangy Peruvian cocktail.\r\n\r\nIngredients\r\nPisco: 2 oz (60ml)\r\nLime Juice: 1 oz (30ml) freshly squeezed\r\nSimple Syrup: 1/2 oz to 3/4 oz (15-22ml)\r\nEgg White: 1\r\nGarnish: 3-5 drops Angostura or Amargo bitters\r\nIce: Handful for shaking\r\n\r\nInstructions\r\nCombine: Add the pisco, lime juice, simple syrup, and egg white into a cocktail shaker.\r\nDry Shake: Shake vigorously without ice for 10-20 seconds to emulsify the egg white and create foam.\r\nWet Shake: Add a large handful of ice to the shaker and shake again vigorously for 10-20 seconds until well-chilled.\r\nStrain & Garnish: Strain into a chilled glass (coupe or Nick & Nora). Top with 3 to 5 drops of Angostura bitters, often swirled into a design.\r\n\r\nTips for the Best Pisco Sour\r\nPisco Choice: Use a Quebranta pisco for a traditional, robust cocktail.\r\nThe Foam: The \"dry shake\" (without ice) is crucial for a thick, foamy head.\r\nSubstitute: Use 1 oz of egg white instead of one whole white for more precise measurements. If you prefer a vegan option, substitute the egg white with aquafaba.\r\nBitters: While Angostura is common, Amargo Chuncho bitters are considered the most authentic Peruvian choice."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 23,
+  "fields": {
+    "text": "A Salty Dog is a refreshing cocktail made by combining 1.5oz of gin or vodka with 3–4 oz of fresh grapefruit juice, served over ice in a highball or rocks glass with a salted rim. It is essentially a salt-rimmed Greyhound, perfected by wetting the glass rim with grapefruit and dipping it in coarse salt.\r\n\r\nIngredients\r\n\r\n\r\n1.5oz Gin or Vodka\r\n3–4 oz Fresh Grapefruit Juice (Ruby red recommended)\r\nCoarse Salt (Kosher or sea salt for the rim)\r\nGrapefruit Wedge/Slice (For rimming and garnish)\r\nIce\r\n \r\nInstructions\r\nPrepare the Rim: Run a grapefruit wedge around the rim of a rocks or highball glass. Dip the edge into a small plate of coarse salt to coat.\r\nFill the Glass: Add ice to the prepared glass.\r\nCombine Ingredients: Pour 1.5oz of gin or vodka and 3-4 oz of fresh grapefruit juice into the glass.\r\nStir & Garnish: Stir gently to combine without disrupting the salt rim. Garnish with a grapefruit slice or twist.\r\n\r\nTips for the Best Salty Dog\r\nFresh Juice is Key: Using fresh-squeezed grapefruit juice is highly recommended over bottled for better flavor.\r\nGin vs. Vodka: Gin provides a more classic, botanical flavor, while vodka makes for a lighter, juice-forward drink.\r\nSalt Choice: Use coarse salt rather than fine table salt to prevent it from dissolving too quickly into the drink."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 24,
+  "fields": {
+    "text": "A Screwdriver cocktail is made by combining 1 ½ oz vodka and 6 oz orange juice in a highball glass over ice, typically garnished with an orange slice or wedge. Simply pour the ingredients over ice, stir gently, and serve.\r\n\r\nClassic Screwdriver Recipe\r\nIngredients: 1 ½ fluid ounces vodka, 6 fluid ounces orange juice, 1 ½ cups ice cubes, orange slice for garnish.\r\nOptional: A few dashes of bitters for depth.\r\n\r\nInstructions\r\nPrep Glass: Fill a highball or Collins glass with ice.\r\nAdd Vodka: Pour 1 ½ oz of vodka over the ice.\r\nTop with Juice: Fill the rest of the glass with orange juice.\r\nStir & Garnish: Stir gently to combine. Garnish with an orange slice or wedge.\r\n\r\nFor a lower-alcohol option, you can use 50ml vodka with 1 large orange squeezed, or add a dash of bitters for a more complex flavor profile."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 25,
+  "fields": {
+    "text": "A classic frozen strawberry daiquiri is made by blending 1.5–2 oz white rum, 1 cup frozen strawberries, 1 tbsp lime juice, 0.5–1 oz simple syrup, and 1 cup ice until slushy. Garnish with a fresh strawberry and lime wheel. For a shaken version, muddle fresh strawberries with syrup, shake with ingredients and ice, then strain.\r\n\r\nFrozen Strawberry Daiquiri Recipe (Blender)\r\nThis method creates a slushy, refreshing drink. \r\n\r\nIngredients:\r\n1 ½ cups White Rum\r\n16 oz (1 package) Frozen Strawberries\r\n½ cup Fresh Lime Juice\r\n¼ to ⅓ cup Simple Syrup (adjust to taste)\r\n1–2 cups Ice (as needed for consistency)\r\n\r\nMethod:\r\nAdd all ingredients to a high-speed blender.\r\nBlend on high until smooth and slushy.\r\nTaste and add more sweetener or lime if necessary.\r\nPour into glasses and garnish with a strawberry or lime wheel.\r\n\r\nShaken Strawberry Daiquiri Recipe (On the Rocks)\r\nThis method creates a fresh, bright cocktail. \r\nIngredients:\r\n50ml White Rum\r\n25ml Fresh Lime Juice\r\n12.5ml – 25ml Simple Syrup\r\n4-6 Fresh Strawberries\r\nIce\r\nMethod:\r\nMuddle the fresh strawberries in the bottom of a shaker.\r\nAdd the rum, lime juice, simple syrup, and a handful of ice.\r\nShake vigorously until cold.\r\nStrain into a chilled glass filled with fresh ice.\r\n\r\nTips for the Best Daiquiri\r\nSimple Syrup: Make your own by dissolving equal parts sugar and hot water, then cooling.\r\nSweetness: Taste your strawberries; if they are tart, you may need more syrup.\r\nBetter Quality Rum: Use a decent quality white rum to avoid a harsh aftertaste.\r\nNon-alcoholic: Omit the rum and use tonic water or lemon-lime soda for a virgin version."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 26,
+  "fields": {
+    "text": "A refreshing strawberry mojito is made by muddling 3-4 fresh strawberries, 6-8 mint leaves, 1 tablespoon of sugar (or simple syrup), and 1 ounce of lime juice in a highball glass. Add 2 ounces of white rum, fill with crushed ice, top with club soda, and garnish with mint and strawberry slices.\r\n\r\nClassic Strawberry Mojito Ingredients (Per Drink)\r\nStrawberries: 3-4 fresh, ripe strawberries, hulled and quartered\r\nMint: 8-12 fresh mint leaves\r\nLime: 1 lime, cut into wedges (or 1 oz fresh juice)\r\nSweetener: 20ml sugar syrup or 1-2 tsp granulated sugar\r\nRum: 60ml (2 oz) white rum\r\nSoda: Top with club soda or sparkling water\r\nIce: Crushed ice\r\n\r\nStep-by-Step Instructions\r\nMuddle: In a sturdy glass, muddle the strawberries, mint leaves, lime wedges, and sugar/syrup together until the fruit is smashed and juicy, but the mint is only bruised.\r\nAdd Rum: Pour in the white rum.\r\nIce & Stir: Fill the glass with crushed ice and stir well to combine and chill the drink.\r\nTop & Garnish: Top with a splash of club soda. Garnish with a fresh mint sprig and a strawberry slice.\r\n\r\nTips for the Best Mojito\r\nDon't Over-muddle: Muddle gently to avoid making the mint bitter.\r\nUse Crushed Ice: It keeps the drink colder and dilutes better than cubes.\r\nMake it Sweeter: Use strawberry syrup instead of sugar for more intense flavor.\r\nBatching: To serve a crowd, mix the strawberries, mint, lime juice, and syrup in a pitcher first, adding rum, ice, and soda just before serving."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 27,
+  "fields": {
+    "text": "A Tequila Sunrise is made by pouring 2 oz tequila and 4 oz orange juice into an ice-filled highball glass, then adding 1/2 oz grenadine, which sinks to create a gradient effect. Do not stir immediately; the heavy syrup settles to the bottom naturally. Garnish with a cherry or orange slice.\r\n\r\nClassic Tequila Sunrise Recipe\r\nTequila: 2 oz (60 ml) Blanco or Silver\r\nOrange Juice: 4 oz (120 ml) fresh squeezed\r\nGrenadine: 1/2 oz (15 ml)\r\nGarnish: Orange slice and maraschino cherry\r\nIce: Highball glass filled with ice cubes\r\n\r\nPreparation Steps\r\nPrep Glass: Fill a highball or Collins glass with ice.\r\nCombine Base: Pour the tequila and orange juice into the glass. You can pre-mix them in a shaker with ice first, or pour directly into the glass.\r\nAdd Grenadine: Slowly pour the grenadine over the top. It will sink to the bottom, creating the \"sunrise\" effect.\r\nFinish: Garnish with an orange slice and cherry. Stir gently only right before drinking.\r\n\r\nExpert Tips\r\nLayering: For the best effect, pour the grenadine slowly over the back of a spoon to ensure it settles at the bottom.\r\nVariations: Some recipes call for a dash of lime juice for acidity.\r\nTequila Choice: While Blanco is standard, Reposado can be used for a more aged flavor."
+  }
+},
+{
+  "model": "cocktails.recipe",
+  "pk": 28,
+  "fields": {
+    "text": "Ingredients\r\nSpirit: 50-60ml Bourbon or Rye whiskey\r\nSour: 25-35ml Fresh lemon juice\r\nSweet: 12-15ml Simple syrup (1:1 ratio)\r\nTexture: ½ fresh egg white (optional, for foam)\r\nGarnish: Angostura bitters and a cocktail cherry/lemon twist\r\n\r\nInstructions\r\nCombine: Add the whiskey, lemon juice, simple syrup, and egg white (if using) into a cocktail shaker.\r\nDry Shake: Shake without ice for 10–15 seconds to emulsify the egg white and create foam.\r\nWet Shake: Add ice to the shaker and shake again until very cold, about 10–15 seconds.\r\nStrain & Garnish: Double-strain into a chilled coupe glass or a rocks glass filled with fresh ice.\r\nFinish: Garnish with 2–3 drops of Angostura bitters on top of the foam, a lemon twist, or a maraschino cherry.\r\n\r\nTips for Success\r\nSimple Syrup: Make your own by dissolving equal parts white sugar and water in a saucepan over heat.\r\nVegan Alternative: Replace the egg white with 15-20ml of aquafaba (chickpea water) for the same velvety texture.\r\nIce: Use large ice cubes for shaking to prevent over-dilution."
+  }
+},
+{
+  "model": "cocktails.history",
+  "pk": 6,
+  "fields": {
+    "text": "The Bahama Mama is a tropical rum-based cocktail originating from the Bahamas around the 1950s-1960s, often linked to calypso dancer Dottie Lee Anderson or bartender Oswald Greenslade. It became a staple tourist drink featuring rum, coffee liqueur, coconut liqueur, and fruit juices, often served in the British Colonial Hotel and popular in Miami Beach. \r\n\r\nKey Historical Details\r\nThe Namesake: Many sources believe the drink was named after Dottie Lee Anderson, a Caribbean calypso singer and dancer known as \"Bahama Mama\" who performed in the 1930s-1950s.\r\nThe Creator: Bahamian bartender Oswald Greenslade claimed in his book, One More Cocktail, to have invented the drink in 1963 at the Pink Elephant Night Club, naming it after dancer Maureen Duvalier.\r\nEarly Mentions: The drink appeared in Trader Vic's in 1961 and on Nassau menus in 1960.\r\nIngredients: While recipes vary, it typically combines dark rum, coconut rum, coffee liqueur, pineapple juice, and lemon juice.\r\n\r\nVariations in Origin Story\r\nCultural Term: The term \"Bahama Mama\" was already in the cultural lexicon as early as 1932 due to a song, melmagazine.com reports.\r\nThe Cocktail Name: While Greenslade claims 1963, some sources suggest the cocktail's popularity grew earlier in the 1950s, making the specific inventor debated, says r/Tiki and Daily Meal.\r\nOswald Greenslade's Recipe: According to Difford's Guide, his original, or perhaps a later version, did not include the coffee liqueur often used today, Got Rum? Magazine notes. \r\nIt remains a staple of tropical, \"tiki\" style cocktails, often grouped with other rum-heavy drinks like the Goombay Smash."
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 11,
+  "fields": {
+    "name": "Bahama Mama",
+    "image_url": "/static/cocktails/buttons/bahama-mom.jpg",
+    "recipe": 5,
+    "history": 6,
+    "ingredients": [
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 12,
+  "fields": {
+    "name": "Bloody Mary",
+    "image_url": "/static/cocktails/buttons/bloody-mary.jpg",
+    "recipe": 6,
+    "history": null,
+    "ingredients": [
+      29,
+      30,
+      31,
+      32,
+      33
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 13,
+  "fields": {
+    "name": "Blue Hawaii",
+    "image_url": "/static/cocktails/buttons/blue-hawaii.jpg",
+    "recipe": 7,
+    "history": null,
+    "ingredients": [
+      26,
+      28,
+      34,
+      35,
+      36
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 14,
+  "fields": {
+    "name": "Blue Lagoon",
+    "image_url": "/static/cocktails/buttons/blue-lagoon.jpg",
+    "recipe": 8,
+    "history": null,
+    "ingredients": [
+      29,
+      35,
+      37,
+      38
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 15,
+  "fields": {
+    "name": "Blue Tahoe",
+    "image_url": "/static/cocktails/buttons/blue-tahoe.jpg",
+    "recipe": 9,
+    "history": null,
+    "ingredients": [
+      25,
+      26,
+      27,
+      35,
+      38,
+      39
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 16,
+  "fields": {
+    "name": "Caipirinha",
+    "image_url": "/static/cocktails/buttons/caipirinha.jpg",
+    "recipe": 10,
+    "history": null,
+    "ingredients": [
+      38,
+      40,
+      41,
+      42
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 17,
+  "fields": {
+    "name": "Cosmopolitan",
+    "image_url": "/static/cocktails/buttons/cosmopolitan.jpg",
+    "recipe": 11,
+    "history": null,
+    "ingredients": [
+      38,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 18,
+  "fields": {
+    "name": "Cuba Libre",
+    "image_url": "/static/cocktails/buttons/cuba-libre.jpg",
+    "recipe": 12,
+    "history": null,
+    "ingredients": [
+      34,
+      38,
+      40,
+      48,
+      49
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 19,
+  "fields": {
+    "name": "Dirty Martini",
+    "image_url": "/static/cocktails/buttons/dirty-martini.jpg",
+    "recipe": 13,
+    "history": null,
+    "ingredients": [
+      29,
+      50,
+      51,
+      52
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 20,
+  "fields": {
+    "name": "Hiroshima",
+    "image_url": "/static/cocktails/buttons/hiroshima.jpg",
+    "recipe": 14,
+    "history": null,
+    "ingredients": [
+      27,
+      53,
+      54,
+      55
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 21,
+  "fields": {
+    "name": "Kamikaze",
+    "image_url": "/static/cocktails/buttons/kamikaze.jpg",
+    "recipe": 15,
+    "history": null,
+    "ingredients": [
+      29,
+      46,
+      56
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 22,
+  "fields": {
+    "name": "Long Island Iced Tea",
+    "image_url": "/static/cocktails/buttons/long-island-iced-tea.jpg",
+    "recipe": 16,
+    "history": null,
+    "ingredients": [
+      29,
+      31,
+      38,
+      49,
+      50,
+      56,
+      57,
+      58,
+      59
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 23,
+  "fields": {
+    "name": "Mai Tai",
+    "image_url": "/static/cocktails/buttons/mai-tai.jpg",
+    "recipe": 17,
+    "history": null,
+    "ingredients": [
+      24,
+      28,
+      34,
+      40,
+      46,
+      59,
+      60,
+      61,
+      62
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 24,
+  "fields": {
+    "name": "Margarita",
+    "image_url": "/static/cocktails/buttons/margarita.jpg",
+    "recipe": 18,
+    "history": null,
+    "ingredients": [
+      38,
+      46,
+      56,
+      57,
+      61,
+      63,
+      64
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 25,
+  "fields": {
+    "name": "Mint Julep",
+    "image_url": "/static/cocktails/buttons/mint-julep.jpg",
+    "recipe": 19,
+    "history": null,
+    "ingredients": [
+      28,
+      59,
+      65,
+      66
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 26,
+  "fields": {
+    "name": "Mojito",
+    "image_url": "/static/cocktails/buttons/mojito.jpg",
+    "recipe": 20,
+    "history": null,
+    "ingredients": [
+      28,
+      34,
+      46,
+      59,
+      66,
+      67
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 27,
+  "fields": {
+    "name": "Pina Colada",
+    "image_url": "/static/cocktails/buttons/pina-colada.jpg",
+    "recipe": 21,
+    "history": null,
+    "ingredients": [
+      38,
+      26,
+      34,
+      36
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 28,
+  "fields": {
+    "name": "Pisco Sour",
+    "image_url": "/static/cocktails/buttons/pisco-sour.jpg",
+    "recipe": 22,
+    "history": null,
+    "ingredients": [
+      68,
+      69,
+      38,
+      46,
+      59
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 29,
+  "fields": {
+    "name": "Salty Dog",
+    "image_url": "/static/cocktails/buttons/salty-dog.jpg",
+    "recipe": 23,
+    "history": null,
+    "ingredients": [
+      64,
+      70,
+      38,
+      50,
+      29
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 30,
+  "fields": {
+    "name": "Screwdriver",
+    "image_url": "/static/cocktails/buttons/screwdriver.jpg",
+    "recipe": 24,
+    "history": null,
+    "ingredients": [
+      25,
+      29,
+      38
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 31,
+  "fields": {
+    "name": "Strawberry Daiquiri",
+    "image_url": "/static/cocktails/buttons/strawberry-daiquiri.jpg",
+    "recipe": 25,
+    "history": null,
+    "ingredients": [
+      34,
+      38,
+      71,
+      46,
+      59
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 32,
+  "fields": {
+    "name": "Strawberry Mojito",
+    "image_url": "/static/cocktails/buttons/strawberry-mojito.jpg",
+    "recipe": 26,
+    "history": null,
+    "ingredients": [
+      34,
+      67,
+      66,
+      38,
+      40,
+      72,
+      73
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 33,
+  "fields": {
+    "name": "Tequila Sunrise",
+    "image_url": "/static/cocktails/buttons/tequila-sunrise.jpg",
+    "recipe": 27,
+    "history": null,
+    "ingredients": [
+      25,
+      27,
+      38,
+      57
+    ]
+  }
+},
+{
+  "model": "cocktails.cocktail",
+  "pk": 34,
+  "fields": {
+    "name": "Whiskey Sour",
+    "image_url": "/static/cocktails/buttons/whiskey-sour.jpg",
+    "recipe": 28,
+    "history": null,
+    "ingredients": [
+      65,
+      69,
+      74,
+      59,
+      31
+    ]
+  }
+}
+]
