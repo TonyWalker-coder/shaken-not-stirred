@@ -1,26 +1,24 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
 <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
 
 <body>
     <div class="hero">
-    <h1 class="title"><a href="/">Shaken!Stirred</a></h1>
-</div>
+        <h1 class="title"><a href="/">Shaken!Stirred</a></h1>
+    </div>
     <div class="cocktail-grid">
-    {% for cocktail in cocktails %}
-        <div class="cocktail-card"
-             data-name="{{ cocktail.name }}"
-             data-ingredients="{{ cocktail.ingredients }}"
-             data-recipe="{{ cocktail.recipe }}"
-             data-history="{{ cocktail.history }}"
-             data-image="{{ cocktail.image_url }}">
+        {% for cocktail in cocktails %}
+        <div class="cocktail-card" data-name="{{ cocktail.name }}"
+            data-ingredients="{% for ing in cocktail.ingredients.all %}{{ ing.name }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+            data-recipe="{{ cocktail.recipe.text }}" data-history="{{ cocktail.history.text }}"
+            data-image="{{ cocktail.image_url }}">
 
             <img src="{{ cocktail.image_url }}" alt="{{ cocktail.name }}">
             <h2>{{ cocktail.name }}</h2>
         </div>
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
 
     <div id="cocktail-modal" class="modal hidden">
         <div class="modal-content">
