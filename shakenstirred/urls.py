@@ -20,7 +20,8 @@ from cocktails.views import cocktail_list
 from shakenstirred import views 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("", views.index, name="index"),
+    path('admin/', admin.site.urls),          # Django admin
+    path("", views.index, name="index"),      # Homepage
     path('cocktails/', cocktail_list, name='cocktail_list'),
+    path('dashboard/', views.admin_page, name='admin_page'),  # Custom admin page
 ]

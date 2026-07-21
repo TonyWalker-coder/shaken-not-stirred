@@ -28,6 +28,80 @@ h1, h2 {
     color: #e16222;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 1.0);
 }
+.admin-grid {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1200px) {
+    .admin-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .admin-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.admin-card {
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Visual polish */
+    background: #ed9c32;
+    border-radius: 18px;
+    padding: 1rem;
+
+    /* Soft tropical shadow */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+
+    /* Smooth animations */
+    transition: transform 0.25s ease, 
+                box-shadow 0.25s ease,
+                filter 0.25s ease;
+}
+
+.admin-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Hover effects */
+.admin-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+
+    /* Slight glow to match your tropical buttons */
+    filter: brightness(1.08);
+}
+
+.admin-card h2 {
+    margin-top: auto;
+    text-align: center;
+}
+
+.admin-wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+    
+}
+
+.admin-body{
+    background-color: #f79532;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
 .cocktail-grid {
     display: grid;

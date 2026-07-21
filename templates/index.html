@@ -107,7 +107,7 @@
         .spinner {
             font-size: 1.5rem;
             animation: pulse 0.8s infinite ease-in-out;
-            display:none;
+            display: none;
         }
 
         @keyframes pulse {
@@ -135,16 +135,21 @@
                 <span class="tile-text">🍸 Cocktails</span>
                 <span class="spinner">⏳</span>
             </a>
-            <a class="tile" href="#">Link1</a>
+
+            <a class="tile" href="{% url 'admin_page' %}">
+                <span class="tile-text">🛠️ Admin</span>
+            </a>
+
             <a class="tile" href="#">Link2</a>
         </div>
     </div>
 
 </body>
 <script>
-document.getElementById("cocktailTile").addEventListener("click", function () {
-    this.querySelector(".tile-text").style.display = "none";
-    this.querySelector(".spinner").style.display = "inline";
-});
+    document.getElementById("cocktailTile").addEventListener("click", function () {
+        this.querySelector(".tile-text").style.display = "none";
+        this.querySelector(".spinner").style.display = "inline";
+    });
 </script>
+
 </html>
