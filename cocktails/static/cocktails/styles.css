@@ -57,7 +57,7 @@ h1, h2 {
     align-items: center;
 
     /* Visual polish */
-    background: #ed9c32;
+    background: #d67616;
     border-radius: 18px;
     padding: 1rem;
 
@@ -97,7 +97,7 @@ h1, h2 {
 }
 
 .admin-body{
-    background-color: #f79532;
+    background-color: #ba621e;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -142,6 +142,10 @@ h1, h2 {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+
+    background: #dd9b0c;
+    border-radius: 18px;
+    padding: 1rem;
 }
 
 .cocktail-card h2 {

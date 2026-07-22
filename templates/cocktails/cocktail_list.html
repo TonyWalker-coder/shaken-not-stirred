@@ -14,7 +14,7 @@
             data-recipe="{{ cocktail.recipe.text }}" data-history="{{ cocktail.history.text }}"
             data-image="{{ cocktail.image_url }}">
 
-            <img src="{{ cocktail.image_url }}" alt="{{ cocktail.name }}">
+            <img class="cocktail-image" src="{{ cocktail.image_url }}" alt="{{ cocktail.name }}">
             <h2>{{ cocktail.name }}</h2>
         </div>
         {% endfor %}
