@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from cocktails.views import cocktail_list
 from shakenstirred import views 
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin
     path("", views.index, name="index"),      # Homepage
     path('cocktails/', cocktail_list, name='cocktail_list'),
     path('dashboard/', views.admin_page, name='admin_page'),  # Custom admin page
+    path("", include("cocktails.urls")),
 ]

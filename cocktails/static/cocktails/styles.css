@@ -251,6 +251,39 @@ h1, h2 {
 .modal-content {
     animation: tikiFade 0.25s ease-out;
 }
+.ingredient-item {
+    background: #ffe0b3;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ingredient-actions a {
+    margin-left: 10px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+}
+
+.edit-btn {
+    background: #ff9933;
+}
+
+.delete-btn {
+    background: #cc3300;
+}
+
+.add-btn {
+    background: #ff9933;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
 
 @keyframes tikiFade {
     from {
