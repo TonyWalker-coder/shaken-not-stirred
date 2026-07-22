@@ -4,6 +4,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
 
 <body class="admin-body">
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <p class="message">{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
     <div class="admin-wrapper">
         <div class="hero">
             <h1 class="title"><a href="/">Shaken!Stirred</a></h1>
@@ -110,6 +118,7 @@ this correctly, and the modal works as intended.
 
 <script>
     function openIngredientsModal() {
+        document.querySelectorAll('.messages').forEach(msg => msg.remove());
         document.getElementById("ingredientsModal").classList.remove("hidden");
     }
 
@@ -118,17 +127,42 @@ this correctly, and the modal works as intended.
     }
 
     function openEditIngredientModal(id, name) {
-        // Fill the input with the current name
         document.getElementById("editIngredientName").value = name;
-
-        // Set the form action dynamically
         document.getElementById("editIngredientForm").action = `/ingredient/edit/${id}/`;
-
-        // Show modal
         document.getElementById("editIngredientModal").classList.remove("hidden");
     }
 
     function closeEditIngredientModal() {
         document.getElementById("editIngredientModal").classList.add("hidden");
     }
+
+    // CLICK OUTSIDE TO CLOSE
+    document.addEventListener("click", function (e) {
+        const ingredientsModal = document.getElementById("ingredientsModal");
+        const editModal = document.getElementById("editIngredientModal");
+
+        if (!ingredientsModal.classList.contains("hidden") &&
+            e.target === ingredientsModal) {
+            ingredientsModal.classList.add("hidden");
+        }
+
+        if (!editModal.classList.contains("hidden") &&
+            e.target === editModal) {
+            editModal.classList.add("hidden");
+        }
+    });
+
+    // PREVENT INSIDE CLICKS FROM CLOSING MODAL
+    document.querySelectorAll('.modal-content').forEach(box => {
+        box.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+
+    // PREVENT EDIT BUTTON CLICK FROM CLOSING MODAL
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
 </script>

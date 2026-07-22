@@ -296,3 +296,14 @@ h1, h2 {
         transform: translateY(0);
     }
 }
+
+.messages {
+    margin: 10px 0;
+}
+
+.message {
+    background: #ffcccb;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
