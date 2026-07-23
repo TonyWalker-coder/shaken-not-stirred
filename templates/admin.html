@@ -50,10 +50,20 @@
 
                 <span class="close" onclick="closeIngredientsModal()">&times;</span>
 
-                <!-- Your button artwork at the top -->
+                <!-- Artwork -->
                 <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients" class="modal-image">
 
                 <h2>Ingredients</h2>
+
+                <!-- Add Ingredient (moved to top, styled as a header action) -->
+                <div class="add-ingredient-top">
+                    <h3>Add Ingredient</h3>
+                    <form method="POST" action="{% url 'add_ingredient' %}" class="add-form-inline">
+                        {% csrf_token %}
+                        <input type="text" name="name" placeholder="Ingredient name" required>
+                        <button type="submit" class="add-btn">Add</button>
+                    </form>
+                </div>
 
                 <!-- Ingredient list -->
                 <div class="ingredient-list">
@@ -61,34 +71,23 @@
                     <div class="ingredient-item">
                         <span>{{ ingredient.name }}</span>
 
-                        <!--
-VS Code may show a JavaScript syntax warning here.
-This is NOT an error — it happens because Django template tags
-are embedded inside an onclick="" attribute. The browser handles
-this correctly, and the modal works as intended.
--->
                         <div class="ingredient-actions">
                             <a href="#" class="edit-btn"
-                                onclick="openEditIngredientModal({{ ingredient.id }}, &quot;{{ ingredient.name|escapejs }}&quot;)">Edit</a>
+                                onclick="openEditIngredientModal({{ ingredient.id }}, &quot;{{ ingredient.name|escapejs }}&quot;)">
+                                Edit
+                            </a>
 
                             <a href="{% url 'delete_ingredient' ingredient.id %}" class="delete-btn">Delete</a>
                         </div>
-
                     </div>
                     {% empty %}
                     <p>No ingredients yet.</p>
                     {% endfor %}
                 </div>
 
-                <h3>Add Ingredient</h3>
-                <form method="POST" action="{% url 'add_ingredient' %}">
-                    {% csrf_token %}
-                    <input type="text" name="name" placeholder="Ingredient name" required>
-                    <button type="submit" class="add-btn">Add</button>
-                </form>
-
             </div>
         </div>
+
 
         <!-- EDIT INGREDIENT MODAL -->
         <div id="editIngredientModal" class="modal hidden">
@@ -154,14 +153,14 @@ this correctly, and the modal works as intended.
 
     // PREVENT INSIDE CLICKS FROM CLOSING MODAL
     document.querySelectorAll('.modal-content').forEach(box => {
-        box.addEventListener('click', function(e) {
+        box.addEventListener('click', function (e) {
             e.stopPropagation();
         });
     });
 
     // PREVENT EDIT BUTTON CLICK FROM CLOSING MODAL
     document.querySelectorAll('.edit-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             e.stopPropagation();
         });
     });

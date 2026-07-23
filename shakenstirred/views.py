@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from cocktails.models import Ingredient
 from django.db.models.functions import Lower
 from django.contrib import messages
@@ -6,9 +6,26 @@ from django.contrib import messages
 def index(request):
     return render(request, "index.html")
 
+ADMIN_PASSWORD = "CrushedIce"
+
 def admin_page(request):
+    if not request.session.get("is_admin"):
+        return redirect("index")
     ingredients = Ingredient.objects.all().order_by(Lower("name"))
     return render(request, "admin.html", {
         "ingredients": ingredients,
         "messages": messages.get_messages(request)
-    })
+    }) 
+
+def admin_login(request):
+    if request.method == "POST":
+        password = request.POST.get("password")
+
+        if password == ADMIN_PASSWORD:
+            request.session["is_admin"] = True
+            return redirect("admin_page")
+
+        messages.error(request, "Incorrect password.")
+        return redirect("index")
+
+    return redirect("index")
