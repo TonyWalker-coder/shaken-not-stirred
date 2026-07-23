@@ -2,6 +2,8 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from .models import Cocktail, Ingredient
 from django.db.models.functions import Lower
+from django.shortcuts import render, get_object_or_404
+from cocktails.models import Ingredient
 
 def cocktail_list(request):
     cocktails = Cocktail.objects.all().order_by(Lower("name"))
@@ -9,8 +11,17 @@ def cocktail_list(request):
 
 def add_ingredient(request):
     if request.method == "POST":
-        name = request.POST.get("name")
+        raw_name = request.POST.get("name", "")
+        name = raw_name.strip().lower()   # NORMALISE FIRST
+
+        # Duplicate check using normalised name
+        if Ingredient.objects.filter(name=name).exists():
+            messages.error(request, f"Ingredient '{raw_name.strip()}' already exists.")
+            return redirect("admin_page")
+
+        # Save normalised name
         Ingredient.objects.create(name=name)
+        messages.success(request, f"Ingredient '{raw_name.strip()}' added.")
         return redirect("admin_page")
 
 def delete_ingredient(request, ingredient_id):
