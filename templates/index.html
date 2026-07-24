@@ -152,9 +152,25 @@
         }
 
         .modal-image {
-            width: 180px;
+            width: 100%;
             margin-bottom: 12px;
             border-radius: 12px;
+        }
+
+        .close {
+            font-size: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #d46b00;
+            /* tropical orange */
+        }
+
+        .modal-content input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #d46b00;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -219,6 +235,22 @@
     function closeAdminLoginModal() {
         document.getElementById("adminLoginModal").classList.add("hidden");
     }
+
+    // Close when clicking outside modal-content
+    document.getElementById("adminLoginModal").addEventListener("click", function (e) {
+        const content = document.querySelector("#adminLoginModal .modal-content");
+
+        // If the click is NOT inside the modal-content, close it
+        if (!content.contains(e.target)) {
+            closeAdminLoginModal();
+        }
+    });
+
+    document.querySelector("#adminLoginModal .modal-content")
+    .addEventListener("click", function (e) {
+        e.stopPropagation();
+    });
+
 </script>
 
 </html>
