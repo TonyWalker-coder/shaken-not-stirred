@@ -4,11 +4,14 @@ body {
     margin: 0;
     padding: 0;
 }
-html, body {
+
+html,
+body {
     overflow-x: hidden;
 }
 
-h1, h2 {
+h1,
+h2 {
     font-family: 'Henny Penny', cursive;
 }
 
@@ -19,6 +22,7 @@ h1, h2 {
     margin-left: 1rem;
     margin-top: 1rem;
 }
+
 .title a {
     color: inherit;
     text-decoration: none;
@@ -28,6 +32,7 @@ h1, h2 {
     color: #e16222;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 1.0);
 }
+
 .admin-grid {
     display: grid;
     gap: 1.5rem;
@@ -65,9 +70,9 @@ h1, h2 {
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 
     /* Smooth animations */
-    transition: transform 0.25s ease, 
-                box-shadow 0.25s ease,
-                filter 0.25s ease;
+    transition: transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
 }
 
 .admin-card img {
@@ -93,10 +98,10 @@ h1, h2 {
 .admin-wrapper {
     max-width: 1600px;
     margin: 0 auto;
-    
+
 }
 
-.admin-body{
+.admin-body {
     background-color: #ba621e;
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -110,17 +115,19 @@ h1, h2 {
     grid-template-columns: repeat(5, 1fr);
 
 }
+
 @media (max-width: 1730px) {
     .cocktail-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    
+
 }
+
 @media (max-width: 1400px) {
     .cocktail-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
 }
 
 @media (max-width: 900px) {
@@ -251,6 +258,7 @@ h1, h2 {
 .modal-content {
     animation: tikiFade 0.25s ease-out;
 }
+
 .ingredient-item {
     background: #ffe0b3;
     padding: 10px;
@@ -306,4 +314,28 @@ h1, h2 {
     padding: 10px;
     border-radius: 6px;
     font-weight: bold;
+}
+
+.history-item {
+    background: #ffe0b3;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-actions a {
+    margin-left: 10px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+}
+
+.history-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
 }

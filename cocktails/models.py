@@ -1,10 +1,7 @@
 from django.db import models
 
-# Create your models here.
-# cocktails/models.py
 
-from django.db import models
-
+# Ingredient model
 class Ingredient(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
@@ -12,6 +9,7 @@ class Ingredient(models.Model):
         return self.name.title()
 
 
+# Recipe model
 class Recipe(models.Model):
     text = models.TextField()
 
@@ -19,13 +17,7 @@ class Recipe(models.Model):
         return f"Recipe #{self.id}"
 
 
-class History(models.Model):
-    text = models.TextField()
-
-    def __str__(self):
-        return f"History #{self.id}"
-
-
+# Cocktail model
 class Cocktail(models.Model):
     name = models.CharField(max_length=100)
     image_url = models.CharField(max_length=255)
@@ -36,8 +28,20 @@ class Cocktail(models.Model):
     # One-to-one: each cocktail has one recipe
     recipe = models.OneToOneField(Recipe, on_delete=models.CASCADE, null=True, blank=True)
 
-    # One-to-one: optional history/story
-    history = models.OneToOneField(History, on_delete=models.CASCADE, null=True, blank=True)
-
     def __str__(self):
         return self.name
+
+
+# History model — one optional history per cocktail
+class History(models.Model):
+    cocktail = models.OneToOneField(
+        "Cocktail",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="history"
+    )
+    text = models.TextField()
+
+    def __str__(self):
+        return f"History for {self.cocktail.name if self.cocktail else 'Unassigned'}"

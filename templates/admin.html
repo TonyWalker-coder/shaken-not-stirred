@@ -25,9 +25,10 @@
                 <img src="{% static 'cocktails/buttons/images.png' %}" alt="Images">
             </div>
 
-            <div class="admin-card">
+            <div class="admin-card" onclick="openHistoryModal()">
                 <img src="{% static 'cocktails/buttons/history.png' %}" alt="History">
             </div>
+
 
             <div class="admin-card">
                 <img src="{% static 'cocktails/buttons/recipes.png' %}" alt="Recipes">
@@ -109,6 +110,118 @@
             </div>
         </div>
 
+        <!-- HISTORY MODAL -->
+        <div id="historyModal" class="modal hidden">
+            <div class="modal-content">
+
+                <span class="close" onclick="closeHistoryModal()">&times;</span>
+
+                <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image">
+
+                <h2>Cocktail History</h2>
+
+                <div class="history-list">
+                    {% for cocktail in cocktails %}
+                    <div class="history-item">
+
+                        <span class="history-name">{{ cocktail.name }}</span>
+
+                        <div class="history-actions">
+
+                            {% if cocktail.history %}
+                            <img src="{% static 'cocktails/icons/history-ok.png' %}" class="history-icon">
+
+                            <a href="#" class="edit-btn" onclick="openEditHistoryModal({{ cocktail.id }}, 
+                           &quot;{{ cocktail.history.text|escapejs }}&quot;)">
+                                Edit
+                            </a>
+
+                            <a href="#" class="delete-btn" onclick="openDeleteHistoryModal({{ cocktail.id }})">
+                                Delete
+                            </a>
+
+                            {% else %}
+                            <img src="{% static 'cocktails/icons/history-missing.png' %}" class="history-icon">
+
+                            <a href="#" class="add-btn" onclick="openAddHistoryModal({{ cocktail.id }})">
+                                Add
+                            </a>
+
+                            <a href="#" class="delete-btn" onclick="noHistoryTrap()">
+                                Delete
+                            </a>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+                    {% empty %}
+                    <p>No cocktails found.</p>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+        <!-- EDIT HISTORY MODAL -->
+        <div id="editHistoryModal" class="modal hidden">
+            <div class="modal-content">
+
+                <span class="close" onclick="closeEditHistoryModal()">&times;</span>
+
+                <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image">
+
+                <h2>Edit History</h2>
+
+                <form method="POST" action="" id="editHistoryForm">
+                    {% csrf_token %}
+                    <textarea name="text" id="editHistoryText" rows="6" required></textarea>
+                    <button type="submit" class="add-btn">Save</button>
+                </form>
+
+            </div>
+        </div>
+
+
+        <!-- ADD HISTORY MODAL -->
+        <div id="addHistoryModal" class="modal hidden">
+            <div class="modal-content">
+
+                <span class="close" onclick="closeAddHistoryModal()">&times;</span>
+
+                <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image">
+
+                <h2>Add History</h2>
+
+                <form method="POST" action="" id="addHistoryForm">
+                    {% csrf_token %}
+                    <textarea name="text" rows="6" required></textarea>
+                    <button type="submit" class="add-btn">Add</button>
+                </form>
+
+            </div>
+        </div>
+
+
+        <!-- DELETE HISTORY MODAL -->
+        <div id="deleteHistoryModal" class="modal hidden">
+            <div class="modal-content">
+
+                <span class="close" onclick="closeDeleteHistoryModal()">&times;</span>
+
+                <h2>Delete History?</h2>
+                <p>Are you sure you want to delete this history entry?</p>
+
+                <form method="POST" action="" id="deleteHistoryForm">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">Yes, delete</button>
+                </form>
+
+            </div>
+        </div>
+
+
+
 
 
 
@@ -164,4 +277,63 @@
             e.stopPropagation();
         });
     });
+
+    function openHistoryModal() {
+        document.getElementById("historyModal").classList.remove("hidden");
+    }
+    function closeHistoryModal() {
+        document.getElementById("historyModal").classList.add("hidden");
+    }
+
+    function openEditHistoryModal(id, text) {
+        document.getElementById("editHistoryText").value = text;
+        document.getElementById("editHistoryForm").action = `/history/edit/${id}/`;
+        document.getElementById("editHistoryModal").classList.remove("hidden");
+    }
+    function closeEditHistoryModal() {
+        document.getElementById("editHistoryModal").classList.add("hidden");
+    }
+
+    function openAddHistoryModal(id) {
+        document.getElementById("addHistoryForm").action = `/history/add/${id}/`;
+        document.getElementById("addHistoryModal").classList.remove("hidden");
+    }
+    function closeAddHistoryModal() {
+        document.getElementById("addHistoryModal").classList.add("hidden");
+    }
+
+    function openDeleteHistoryModal(id) {
+        document.getElementById("deleteHistoryForm").action = `/history/delete/${id}/`;
+        document.getElementById("deleteHistoryModal").classList.remove("hidden");
+    }
+    function closeDeleteHistoryModal() {
+        document.getElementById("deleteHistoryModal").classList.add("hidden");
+    }
+
+    function noHistoryTrap() {
+        alert("This cocktail has no history yet.");
+    }
+
+    // CLICK OUTSIDE TO CLOSE
+    document.addEventListener("click", function (e) {
+        const modals = [
+            "historyModal",
+            "editHistoryModal",
+            "addHistoryModal",
+            "deleteHistoryModal"
+        ];
+
+        modals.forEach(id => {
+            const modal = document.getElementById(id);
+            if (!modal.classList.contains("hidden") && e.target === modal) {
+                modal.classList.add("hidden");
+            }
+        });
+    });
+
+    // PREVENT INSIDE CLICKS FROM CLOSING
+    document.querySelectorAll('.modal-content').forEach(box => {
+        box.addEventListener('click', e => e.stopPropagation());
+    });
+
 </script>
