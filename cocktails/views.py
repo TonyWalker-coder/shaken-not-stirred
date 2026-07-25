@@ -1,10 +1,9 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
-from .models import Cocktail, Ingredient, History
+from .models import Cocktail, Ingredient, History, Recipe
 from django.db.models.functions import Lower
 from django.shortcuts import render, get_object_or_404
 from cocktails.models import Ingredient
-
 
 def cocktail_list(request):
     cocktails = Cocktail.objects.all().order_by(Lower("name"))
@@ -83,3 +82,45 @@ def history_delete(request, cocktail_id):
         return redirect("admin_page")
 
     return redirect("admin_page")
+
+def recipe_add(request, cocktail_id):
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
+
+    if request.method == "POST":
+        text = request.POST.get("text")
+        recipe = Recipe.objects.create(text=text)
+        cocktail.recipe = recipe
+        cocktail.save()
+
+        messages.success(request, "Recipe added!")
+        return redirect('admin_page')
+
+
+
+def recipe_edit(request, cocktail_id):
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
+    recipe = cocktail.recipe
+
+    if request.method == "POST":
+        recipe.text = request.POST.get("text")
+        recipe.save()
+
+        messages.success(request, "Recipe updated!")
+        return redirect('admin_page')
+
+
+
+def recipe_delete(request, cocktail_id):
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
+    recipe = cocktail.recipe
+
+    if request.method == "POST":
+        recipe.delete()
+        cocktail.recipe = None
+        cocktail.save()
+
+        messages.success(request, "Recipe deleted!")
+        return redirect('admin_page')
+
+
+

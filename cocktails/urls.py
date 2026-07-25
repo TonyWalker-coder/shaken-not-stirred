@@ -11,4 +11,10 @@ urlpatterns = [
     path("history/add/<int:cocktail_id>/", views.history_add, name="history_add"),
     path("history/edit/<int:cocktail_id>/", views.history_edit, name="history_edit"),
     path("history/delete/<int:cocktail_id>/", views.history_delete, name="history_delete"),
+
+    # RECIPES
+    path('recipe/add/<int:cocktail_id>/', views.recipe_add, name='recipe_add'),
+    path('recipe/edit/<int:cocktail_id>/', views.recipe_edit, name='recipe_edit'),
+    path('recipe/delete/<int:cocktail_id>/', views.recipe_delete, name='recipe_delete'),
+
 ]
