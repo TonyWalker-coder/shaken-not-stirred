@@ -311,8 +311,26 @@
     }
 
     function noHistoryTrap() {
-        alert("This cocktail has no history yet.");
+        // Close the delete history modal immediately
+        closeHistoryModal();
+
+        const container = document.querySelector('.messages') || (() => {
+            const newContainer = document.createElement('div');
+            newContainer.className = 'messages';
+            document.body.prepend(newContainer);
+            return newContainer;
+        })();
+
+        const box = document.createElement('p');
+        box.className = 'message';
+        box.textContent = "This cocktail has no history yet.";
+
+        container.appendChild(box);
+
+        setTimeout(() => box.remove(), 3000);
     }
+
+
 
     // CLICK OUTSIDE TO CLOSE
     document.addEventListener("click", function (e) {

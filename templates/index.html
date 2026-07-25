@@ -26,13 +26,40 @@
             padding: 0;
         }
 
-        .title {
-            font-size: clamp(2rem, 5vw, 4rem);
-            color: #f77c24;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
+        .title-overlay {
+            display: inline-block;
+            /* makes overlay wrap the text */
+            background: rgba(255, 255, 255, 0.25);
+            /* soft glassy white */
+            padding: 0.5rem 1rem;
+            /* comfortable spacing */
+            border-radius: 14px;
+            /* tropical rounded corners */
+            backdrop-filter: blur(6px);
+            /* glass effect */
             margin-left: 1rem;
             margin-top: 1rem;
+            width: fit-content;
         }
+
+        /* improved clamp for smoother scaling */
+        .title {
+            font-size: clamp(2.4rem, 6vw, 4.8rem);
+            color: #f77c24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
+        }
+
+        .title-overlay {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
 
         .title a {
             color: inherit;
@@ -92,7 +119,7 @@
         }
 
         .hero {
-            background-image: url("{% static 'images/background/pineapple-bg.jpg' %}");
+            background-image: url("{% static 'images/background/cartoon.png' %}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -177,7 +204,7 @@
 
 <body>
     <div class="hero">
-        <h1 class="title">Welcome to Shaken!Stirred</h1>
+        <h1 class="title title-overlay">Welcome to Shaken!Stirred</h1>
 
         <div class="tile-row">
             <a class="tile" id="cocktailTile" href="{% url 'cocktail_list' %}">
@@ -247,9 +274,9 @@
     });
 
     document.querySelector("#adminLoginModal .modal-content")
-    .addEventListener("click", function (e) {
-        e.stopPropagation();
-    });
+        .addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
 
 </script>
 

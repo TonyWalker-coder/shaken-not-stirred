@@ -259,6 +259,20 @@ h2 {
     animation: tikiFade 0.25s ease-out;
 }
 
+.modal-content textarea {
+    width: 100%;               /* fills the modal width */
+    box-sizing: border-box;    /* includes padding in width */
+    padding: 12px;             /* comfortable spacing */
+    border-radius: 10px;       /* tropical rounded corners */
+    border: 1px solid #d46b00; /* matches your admin password field */
+    font-family: 'Englebert', sans-serif;
+    font-size: 1rem;
+    resize: vertical;          /* allow vertical resize only */
+    background: #fff3d4;       /* warm parchment tone */
+    color: #5a3b00;            /* tiki brown text */
+    margin-bottom: 1rem;       /* spacing before the Add button */
+}
+
 .ingredient-item {
     background: #ffe0b3;
     padding: 10px;
@@ -306,14 +320,23 @@ h2 {
 }
 
 .messages {
-    margin: 10px 0;
+    display: flex;
+    justify-content: center;   /* centres the message box */
+    margin-top: 1rem;
 }
 
 .message {
     background: #ffcccb;
-    padding: 10px;
-    border-radius: 6px;
+    padding: 0.6rem 1rem;       /* slightly tighter */
+    border-radius: 10px;        /* smoother, more tropical */
     font-weight: bold;
+    color: #a30000;
+    box-sizing: border-box;
+    width: fit-content;
+    max-width: 80%;           /* keeps it tight */
+    text-align: center;         /* looks cleaner for short messages */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    font-size: 0.95rem;
 }
 
 .history-item {

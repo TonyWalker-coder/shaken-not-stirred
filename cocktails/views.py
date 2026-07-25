@@ -48,15 +48,18 @@ def edit_ingredient(request, id):
 
 
 def history_add(request, cocktail_id):
-    cocktails = Cocktail.objects.all().select_related("history").order_by(Lower("name"))
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
     if request.method == "POST":
         text = request.POST.get("text")
+
         History.objects.create(cocktail=cocktail, text=text)
-        messages.success(request, "History added.")
+
+        messages.success(request, "History added!")
         return redirect("admin_page")
 
     return redirect("admin_page")
+
 
 
 def history_edit(request, cocktail_id):
