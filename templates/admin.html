@@ -230,9 +230,14 @@
 
 <script>
     function openIngredientsModal() {
-        document.querySelectorAll('.messages').forEach(msg => msg.remove());
+        // Remove ONLY ingredient messages
+        document.querySelectorAll('.message').forEach(msg => {
+            if (msg.textContent.includes("ingredient")) msg.remove();
+        });
+
         document.getElementById("ingredientsModal").classList.remove("hidden");
     }
+
 
     function closeIngredientsModal() {
         document.getElementById("ingredientsModal").classList.add("hidden");
@@ -353,5 +358,30 @@
     document.querySelectorAll('.modal-content').forEach(box => {
         box.addEventListener('click', e => e.stopPropagation());
     });
+
+    function ingredientMessage(text) {
+        // Close the ingredients modal first
+        closeIngredientsModal();
+
+        const container = document.querySelector('.messages') || (() => {
+            const newContainer = document.createElement('div');
+            newContainer.className = 'messages';
+            document.body.prepend(newContainer);
+            return newContainer;
+        })();
+
+        const box = document.createElement('p');
+        box.className = 'message';
+        box.textContent = text;
+
+        container.appendChild(box);
+
+        setTimeout(() => box.remove(), 3000);
+    }
+
+    // Auto-remove Django messages after 3 seconds
+    setTimeout(() => {
+        document.querySelectorAll('.message').forEach(msg => msg.remove());
+    }, 3000);
 
 </script>
