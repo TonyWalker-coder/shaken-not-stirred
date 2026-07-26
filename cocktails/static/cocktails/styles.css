@@ -154,6 +154,8 @@ h2 {
     background: #dd9b0c;
     border-radius: 18px;
     padding: 1rem;
+
+   
 }
 
 .cocktail-card h2 {
@@ -204,6 +206,9 @@ h2 {
     /* soft tropical shadow */
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25),
         0 0 0 6px rgba(255, 200, 120, 0.4);
+
+
+    
 }
 
 /* Close button — chunky, friendly, beachy */
