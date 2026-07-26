@@ -15,11 +15,16 @@ def admin_page(request):
     ingredients = Ingredient.objects.all().order_by(Lower("name"))
     cocktails = Cocktail.objects.all().select_related("history").order_by(Lower("name"))
 
+    # Mark each ingredient as used or unused
+    for ing in ingredients:
+        ing.used = Cocktail.objects.filter(ingredients=ing).exists()
+
     return render(request, "admin.html", {
         "ingredients": ingredients,
         "cocktails": cocktails,
         "messages": messages.get_messages(request)
     })
+
 
 def admin_login(request):
     if request.method == "POST":

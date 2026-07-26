@@ -17,6 +17,7 @@ h2 {
 
 .title {
     font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
     color: #f77c24;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
     margin-left: 1rem;
@@ -361,5 +362,144 @@ h2 {
     width: 28px;
     height: 28px;
     margin-right: 10px;
+}
+
+/* ================================
+   SHARED MODAL ELEMENTS
+   ================================ */
+
+/* Banner image at top of modal */
+.modal-banner {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Main modal title */
+.modal-title {
+    font-family: 'Henny Penny', cursive;
+    color: #c45a00;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+/* ================================
+   ADD INGREDIENT BLOCK
+   ================================ */
+
+.modal-add-block {
+    background: #ffe0b3;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.modal-add-block h3 {
+    font-family: 'Henny Penny', cursive;
+    color: #d46b00;
+    margin-bottom: 0.6rem;
+}
+
+/* Input field */
+.modal-input,
+.modal-add-block input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #d46b00;
+    background: #fff3d4;
+    color: #5a3b00;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+/* Add button */
+.modal-button,
+.add-btn {
+    background: #ff9933;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+.modal-button:hover,
+.add-btn:hover {
+    background: #ff7f00;
+}
+
+/* ================================
+   INGREDIENT LIST
+   ================================ */
+
+.modal-list {
+    margin-top: 1rem;
+}
+
+.modal-item {
+    background: #ffe0b3;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+.item-name {
+    color: #5a3b00;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Edit/Delete buttons */
+.item-actions a {
+    margin-left: 10px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.edit-btn {
+    background: #ff9933;
+}
+
+.edit-btn:hover {
+    background: #ff7f00;
+}
+
+.delete-btn {
+    background: #cc3300;
+}
+
+.delete-btn:hover {
+    background: #b30000;
+}
+
+/* Empty text */
+.empty-text {
+    text-align: center;
+    color: #5a3b00;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+.ingredient-status-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    flex-shrink: 0;
 }
 

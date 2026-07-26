@@ -46,70 +46,101 @@
 
         </div>
 
+
         <!-- INGREDIENTS MODAL -->
         <div id="ingredientsModal" class="modal hidden">
             <div class="modal-content">
 
+                <!-- Close button -->
                 <span class="close" onclick="closeIngredientsModal()">&times;</span>
 
-                <!-- Artwork -->
-                <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients" class="modal-image">
+                <!-- Banner -->
+                <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients Banner"
+                    class="modal-banner">
 
-                <h2>Ingredients</h2>
+                <!-- Title -->
+                <h2 class="modal-title">Ingredients</h2>
 
-                <!-- Add Ingredient (moved to top, styled as a header action) -->
-                <div class="add-ingredient-top">
+                <!-- Add Ingredient Block -->
+                <div class="modal-add-block">
                     <h3>Add Ingredient</h3>
-                    <form method="POST" action="{% url 'add_ingredient' %}" class="add-form-inline">
+                    <form method="POST" action="{% url 'add_ingredient' %}">
                         {% csrf_token %}
-                        <input type="text" name="name" placeholder="Ingredient name" required>
-                        <button type="submit" class="add-btn">Add</button>
+                        <input type="text" name="name" class="modal-input" placeholder="Ingredient name" required>
+                        <button type="submit" class="modal-button">Add</button>
                     </form>
                 </div>
 
-                <!-- Ingredient list -->
-                <div class="ingredient-list">
+                <!-- Ingredient List -->
+                {% with ingredients_modal=True %}
+                <div class="modal-list">
                     {% for ingredient in ingredients %}
-                    <div class="ingredient-item">
-                        <span>{{ ingredient.name }}</span>
+                    <div class="modal-item">
 
-                        <div class="ingredient-actions">
+                        <!-- Ingredient name -->
+                        <span class="item-name">{{ ingredient.name }}</span>
+
+                        <!-- RIGHT SIDE: buttons + icon -->
+                        <div class="item-actions" style="display: flex; align-items: center; gap: 10px;">
+
+                            <!-- Status icon (matches History layout) -->
+                            <img src="{% static ingredient.used|yesno:'cocktails/icons/ingredient-ok.png,cocktails/icons/missing.png' %}"
+                                alt="Ingredient Status" class="ingredient-status-icon">
+
+                            <!-- Edit -->
                             <a href="#" class="edit-btn"
                                 onclick="openEditIngredientModal({{ ingredient.id }}, &quot;{{ ingredient.name|escapejs }}&quot;)">
                                 Edit
                             </a>
 
-                            <a href="{% url 'delete_ingredient' ingredient.id %}" class="delete-btn">Delete</a>
+                            <!-- Delete -->
+                            <a href="{% url 'delete_ingredient' ingredient.id %}" class="delete-btn">
+                                Delete
+                            </a>
+
+                            
+
                         </div>
+
                     </div>
                     {% empty %}
-                    <p>No ingredients yet.</p>
+                    <p class="empty-text">No ingredients yet.</p>
                     {% endfor %}
                 </div>
+                {% endwith %}
 
             </div>
         </div>
+
 
 
         <!-- EDIT INGREDIENT MODAL -->
         <div id="editIngredientModal" class="modal hidden">
             <div class="modal-content">
 
+                <!-- Close -->
                 <span class="close" onclick="closeEditIngredientModal()">&times;</span>
 
-                <!-- Artwork at top (same as Ingredients) -->
-                <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Edit Ingredient" class="modal-image">
+                <!-- Banner -->
+                <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Edit Ingredient Banner"
+                    class="modal-banner">
 
-                <h2>Edit Ingredient</h2>
+                <!-- Title -->
+                <h2 class="modal-title">Edit Ingredient</h2>
 
+                <!-- Edit Form -->
                 <form method="POST" action="" id="editIngredientForm">
                     {% csrf_token %}
-                    <input type="text" name="name" id="editIngredientName" required>
-                    <button type="submit" class="add-btn">Save</button>
+                    <input type="text" name="name" id="editIngredientName" class="modal-input" required>
+                    <button type="submit" class="modal-button">Save</button>
                 </form>
 
             </div>
         </div>
+
+
+
+
 
         <!-- HISTORY MODAL -->
         <div id="historyModal" class="modal hidden">
@@ -142,7 +173,7 @@
                             </a>
 
                             {% else %}
-                            <img src="{% static 'cocktails/icons/history-missing.png' %}" class="history-icon">
+                            <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon">
 
                             <a href="#" class="add-btn" onclick="openAddHistoryModal({{ cocktail.id }})">
                                 Add
@@ -344,140 +375,158 @@
 </body>
 
 <script>
-    function openIngredientsModal() {
-        // Remove ONLY ingredient messages
-        document.querySelectorAll('.message').forEach(msg => {
-            if (msg.textContent.includes("ingredient")) msg.remove();
-        });
+    /* ============================================================
+   GENERIC MODAL CONTROLS
+   ============================================================ */
 
-        document.getElementById("ingredientsModal").classList.remove("hidden");
+    /* Open any modal by ID */
+    function openModal(id) {
+        document.getElementById(id).classList.remove("hidden");
     }
 
-
-    function closeIngredientsModal() {
-        document.getElementById("ingredientsModal").classList.add("hidden");
+    /* Close any modal by ID */
+    function closeModal(id) {
+        document.getElementById(id).classList.add("hidden");
     }
 
-    function openEditIngredientModal(id, name) {
-        document.getElementById("editIngredientName").value = name;
-        document.getElementById("editIngredientForm").action = `/ingredient/edit/${id}/`;
-        document.getElementById("editIngredientModal").classList.remove("hidden");
-    }
-
-    function closeEditIngredientModal() {
-        document.getElementById("editIngredientModal").classList.add("hidden");
-    }
-
-    // CLICK OUTSIDE TO CLOSE
+    /* Close when clicking backdrop */
     document.addEventListener("click", function (e) {
-        const ingredientsModal = document.getElementById("ingredientsModal");
-        const editModal = document.getElementById("editIngredientModal");
+        const openModals = document.querySelectorAll(".modal:not(.hidden)");
 
-        if (!ingredientsModal.classList.contains("hidden") &&
-            e.target === ingredientsModal) {
-            ingredientsModal.classList.add("hidden");
-        }
-
-        if (!editModal.classList.contains("hidden") &&
-            e.target === editModal) {
-            editModal.classList.add("hidden");
-        }
-    });
-
-    // PREVENT INSIDE CLICKS FROM CLOSING MODAL
-    document.querySelectorAll('.modal-content').forEach(box => {
-        box.addEventListener('click', function (e) {
-            e.stopPropagation();
-        });
-    });
-
-    // PREVENT EDIT BUTTON CLICK FROM CLOSING MODAL
-    document.querySelectorAll('.edit-btn').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            e.stopPropagation();
-        });
-    });
-
-    function openHistoryModal() {
-        document.getElementById("historyModal").classList.remove("hidden");
-    }
-    function closeHistoryModal() {
-        document.getElementById("historyModal").classList.add("hidden");
-    }
-
-    function openEditHistoryModal(id, text) {
-        document.getElementById("editHistoryText").value = text;
-        document.getElementById("editHistoryForm").action = `/history/edit/${id}/`;
-        document.getElementById("editHistoryModal").classList.remove("hidden");
-    }
-    function closeEditHistoryModal() {
-        document.getElementById("editHistoryModal").classList.add("hidden");
-    }
-
-    function openAddHistoryModal(id) {
-        document.getElementById("addHistoryForm").action = `/history/add/${id}/`;
-        document.getElementById("addHistoryModal").classList.remove("hidden");
-    }
-    function closeAddHistoryModal() {
-        document.getElementById("addHistoryModal").classList.add("hidden");
-    }
-
-    function openDeleteHistoryModal(id) {
-        document.getElementById("deleteHistoryForm").action = `/history/delete/${id}/`;
-        document.getElementById("deleteHistoryModal").classList.remove("hidden");
-    }
-    function closeDeleteHistoryModal() {
-        document.getElementById("deleteHistoryModal").classList.add("hidden");
-    }
-
-    function noHistoryTrap() {
-        // Close the delete history modal immediately
-        closeHistoryModal();
-
-        const container = document.querySelector('.messages') || (() => {
-            const newContainer = document.createElement('div');
-            newContainer.className = 'messages';
-            document.body.prepend(newContainer);
-            return newContainer;
-        })();
-
-        const box = document.createElement('p');
-        box.className = 'message';
-        box.textContent = "This cocktail has no history yet.";
-
-        container.appendChild(box);
-
-        setTimeout(() => box.remove(), 3000);
-    }
-
-
-
-    // CLICK OUTSIDE TO CLOSE
-    document.addEventListener("click", function (e) {
-        const modals = [
-            "historyModal",
-            "editHistoryModal",
-            "addHistoryModal",
-            "deleteHistoryModal"
-        ];
-
-        modals.forEach(id => {
-            const modal = document.getElementById(id);
-            if (!modal.classList.contains("hidden") && e.target === modal) {
+        openModals.forEach(modal => {
+            if (e.target === modal) {
                 modal.classList.add("hidden");
             }
         });
     });
 
-    // PREVENT INSIDE CLICKS FROM CLOSING
+    /* Prevent inside clicks from closing */
     document.querySelectorAll('.modal-content').forEach(box => {
         box.addEventListener('click', e => e.stopPropagation());
     });
 
-    function ingredientMessage(text) {
-        // Close the ingredients modal first
-        closeIngredientsModal();
 
+    /* ============================================================
+       INGREDIENTS
+       ============================================================ */
+
+    function openIngredientsModal() {
+        removeScopedMessages("ingredient");
+        openModal("ingredientsModal");
+    }
+
+    function closeIngredientsModal() {
+        closeModal("ingredientsModal");
+    }
+
+    function openEditIngredientModal(id, name) {
+        document.getElementById("editIngredientName").value = name;
+        document.getElementById("editIngredientForm").action = `/ingredient/edit/${id}/`;
+        openModal("editIngredientModal");
+    }
+
+    function closeEditIngredientModal() {
+        closeModal("editIngredientModal");
+    }
+
+
+    /* ============================================================
+       RECIPES
+       ============================================================ */
+
+    function openRecipesModal() {
+        openModal("recipesModal");
+    }
+
+    function closeRecipesModal() {
+        closeModal("recipesModal");
+    }
+
+    function openEditRecipeModal(id, text) {
+        document.getElementById("editRecipeText").value = text;
+        document.getElementById("editRecipeForm").action = `/recipe/edit/${id}/`;
+        openModal("editRecipeModal");
+    }
+
+    function closeEditRecipeModal() {
+        closeModal("editRecipeModal");
+    }
+
+    function openAddRecipeModal(id) {
+        document.getElementById("addRecipeForm").action = `/recipe/add/${id}/`;
+        openModal("addRecipeModal");
+    }
+
+    function closeAddRecipeModal() {
+        closeModal("addRecipeModal");
+    }
+
+    function openDeleteRecipeModal(id) {
+        document.getElementById("deleteRecipeForm").action = `/recipe/delete/${id}/`;
+        openModal("deleteRecipeModal");
+    }
+
+    function closeDeleteRecipeModal() {
+        closeModal("deleteRecipeModal");
+    }
+
+
+    /* ============================================================
+       HISTORY
+       ============================================================ */
+
+    function openHistoryModal() {
+        openModal("historyModal");
+    }
+
+    function closeHistoryModal() {
+        closeModal("historyModal");
+    }
+
+    function openEditHistoryModal(id, text) {
+        document.getElementById("editHistoryText").value = text;
+        document.getElementById("editHistoryForm").action = `/history/edit/${id}/`;
+        openModal("editHistoryModal");
+    }
+
+    function closeEditHistoryModal() {
+        closeModal("editHistoryModal");
+    }
+
+    function openAddHistoryModal(id) {
+        document.getElementById("addHistoryForm").action = `/history/add/${id}/`;
+        openModal("addHistoryModal");
+    }
+
+    function closeAddHistoryModal() {
+        closeModal("addHistoryModal");
+    }
+
+    function openDeleteHistoryModal(id) {
+        document.getElementById("deleteHistoryForm").action = `/history/delete/${id}/`;
+        openModal("deleteHistoryModal");
+    }
+
+    function closeDeleteHistoryModal() {
+        closeModal("deleteHistoryModal");
+    }
+
+
+    /* ============================================================
+       MESSAGE SYSTEM (Shared)
+       ============================================================ */
+
+    /* Remove messages only for a specific feature */
+    function removeScopedMessages(keyword) {
+        document.querySelectorAll('.message').forEach(msg => {
+            if (msg.textContent.toLowerCase().includes(keyword)) {
+                msg.remove();
+            }
+        });
+    }
+
+    /* Create a message (used by ingredients/history/recipes) */
+    function createMessage(text) {
         const container = document.querySelector('.messages') || (() => {
             const newContainer = document.createElement('div');
             newContainer.className = 'messages';
@@ -494,61 +543,32 @@
         setTimeout(() => box.remove(), 3000);
     }
 
-    function openRecipesModal() {
-        document.getElementById("recipesModal").classList.remove("hidden");
-    }
-    function closeRecipesModal() {
-        document.getElementById("recipesModal").classList.add("hidden");
-    }
-
-    function openEditRecipeModal(id, text) {
-        document.getElementById("editRecipeText").value = text;
-        document.getElementById("editRecipeForm").action = `/recipe/edit/${id}/`;
-        document.getElementById("editRecipeModal").classList.remove("hidden");
-    }
-    function closeEditRecipeModal() {
-        document.getElementById("editRecipeModal").classList.add("hidden");
+    /* History trap */
+    function noHistoryTrap() {
+        closeHistoryModal();
+        createMessage("This cocktail has no history yet.");
     }
 
-    function openAddRecipeModal(id) {
-        document.getElementById("addRecipeForm").action = `/recipe/add/${id}/`;
-        document.getElementById("addRecipeModal").classList.remove("hidden");
-    }
-    function closeAddRecipeModal() {
-        document.getElementById("addRecipeModal").classList.add("hidden");
-    }
-
-    function openDeleteRecipeModal(id) {
-        document.getElementById("deleteRecipeForm").action = `/recipe/delete/${id}/`;
-        document.getElementById("deleteRecipeModal").classList.remove("hidden");
-    }
-    function closeDeleteRecipeModal() {
-        document.getElementById("deleteRecipeModal").classList.add("hidden");
-    }
-
+    /* Recipe trap */
     function noRecipeTrap() {
         closeRecipesModal();
+        createMessage("This cocktail has no recipe yet.");
+    }
 
-        const container = document.querySelector('.messages') || (() => {
-            const newContainer = document.createElement('div');
-            newContainer.className = 'messages';
-            document.body.prepend(newContainer);
-            return newContainer;
-        })();
-
-        const box = document.createElement('p');
-        box.className = 'message';
-        box.textContent = "This cocktail has no recipe yet.";
-
-        container.appendChild(box);
-
-        setTimeout(() => box.remove(), 3000);
+    /* Ingredient trap */
+    function ingredientMessage(text) {
+        closeIngredientsModal();
+        createMessage(text);
     }
 
 
-    // Auto-remove Django messages after 3 seconds
+    /* ============================================================
+       Auto-remove Django messages
+       ============================================================ */
+
     setTimeout(() => {
         document.querySelectorAll('.message').forEach(msg => msg.remove());
     }, 3000);
+
 
 </script>
