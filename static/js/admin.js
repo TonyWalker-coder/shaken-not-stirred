@@ -2,17 +2,23 @@
    GENERIC MODAL CONTROLS
    ============================================================ */
 
-/* Open any modal by ID */
+/**
+ * Open any modal by ID
+ */
 function openModal(id) {
   document.getElementById(id).classList.remove("hidden");
 }
 
-/* Close any modal by ID */
+/**
+ * Close any modal by ID
+ */
 function closeModal(id) {
   document.getElementById(id).classList.add("hidden");
 }
 
-/* Close when clicking backdrop */
+/**
+ * Close modal when clicking the backdrop (outside modal-content)
+ */
 document.addEventListener("click", function (e) {
   const openModals = document.querySelectorAll(".modal:not(.hidden)");
 
@@ -23,14 +29,17 @@ document.addEventListener("click", function (e) {
   });
 });
 
-/* Prevent inside clicks from closing */
+/**
+ * Prevent clicks inside modal-content from closing the modal
+ */
 document.querySelectorAll(".modal-content").forEach((box) => {
   box.addEventListener("click", (e) => e.stopPropagation());
 });
 
+
 /* ============================================================
-       INGREDIENTS
-    ============================================================ */
+   INGREDIENT MODALS
+   ============================================================ */
 
 function openIngredientsModal() {
   removeScopedMessages("ingredient");
@@ -42,9 +51,9 @@ function closeIngredientsModal() {
 }
 
 function openEditIngredientModal(id, name) {
+  // Pre-fill edit form
   document.getElementById("editIngredientName").value = name;
-  document.getElementById("editIngredientForm").action =
-    `/ingredient/edit/${id}/`;
+  document.getElementById("editIngredientForm").action = `/ingredient/edit/${id}/`;
   openModal("editIngredientModal");
 }
 
@@ -52,9 +61,10 @@ function closeEditIngredientModal() {
   closeModal("editIngredientModal");
 }
 
+
 /* ============================================================
-       RECIPES
-       ============================================================ */
+   RECIPE MODALS
+   ============================================================ */
 
 function openRecipesModal() {
   openModal("recipesModal");
@@ -92,9 +102,10 @@ function closeDeleteRecipeModal() {
   closeModal("deleteRecipeModal");
 }
 
+
 /* ============================================================
-       HISTORY
-       ============================================================ */
+   HISTORY MODALS
+   ============================================================ */
 
 function openHistoryModal() {
   openModal("historyModal");
@@ -124,8 +135,7 @@ function closeAddHistoryModal() {
 }
 
 function openDeleteHistoryModal(id) {
-  document.getElementById("deleteHistoryForm").action =
-    `/history/delete/${id}/`;
+  document.getElementById("deleteHistoryForm").action = `/history/delete/${id}/`;
   openModal("deleteHistoryModal");
 }
 
@@ -133,11 +143,14 @@ function closeDeleteHistoryModal() {
   closeModal("deleteHistoryModal");
 }
 
-/* ============================================================
-       MESSAGE SYSTEM (Shared)
-       ============================================================ */
 
-/* Remove messages only for a specific feature */
+/* ============================================================
+   MESSAGE SYSTEM
+   ============================================================ */
+
+/**
+ * Remove messages containing a specific keyword
+ */
 function removeScopedMessages(keyword) {
   document.querySelectorAll(".message").forEach((msg) => {
     if (msg.textContent.toLowerCase().includes(keyword)) {
@@ -146,7 +159,9 @@ function removeScopedMessages(keyword) {
   });
 }
 
-/* Create a message (used by ingredients/history/recipes) */
+/**
+ * Create a temporary message box
+ */
 function createMessage(text) {
   const container =
     document.querySelector(".messages") ||
@@ -166,120 +181,97 @@ function createMessage(text) {
   setTimeout(() => box.remove(), 3000);
 }
 
-/* History trap */
+/* Convenience traps */
 function noHistoryTrap() {
   closeHistoryModal();
   createMessage("This cocktail has no history yet.");
 }
 
-/* Recipe trap */
 function noRecipeTrap() {
   closeRecipesModal();
   createMessage("This cocktail has no recipe yet.");
 }
 
-/* Ingredient trap */
 function ingredientMessage(text) {
   closeIngredientsModal();
   createMessage(text);
 }
 
+
+/* ============================================================
+   INGREDIENT LIST REFRESHER
+   ============================================================ */
+
+/**
+ * Rebuild ingredient list inside the modal
+ */
 function refreshIngredientList(ingredients) {
   const list = document.querySelector(".modal-list");
-  list.innerHTML = ""; // clear existing list
+  list.innerHTML = "";
 
   ingredients.forEach((ingredient) => {
     const div = document.createElement("div");
     div.classList.add("modal-item");
 
     div.innerHTML = `
-            <span class="item-name">${ingredient.name}</span>
+      <span class="item-name">${ingredient.name}</span>
 
-            <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
-                <img src="/static/cocktails/icons/${ingredient.used ? "ingredient-ok.png" : "missing.png"}"
-                     class="ingredient-status-icon">
+      <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
+          <img src="/static/cocktails/icons/${ingredient.used ? "ingredient-ok.png" : "missing.png"}"
+               class="ingredient-status-icon">
 
-                <a href="#" class="edit-btn"
-                   onclick="openEditIngredientModal(${ingredient.id}, '${ingredient.name.replace(/'/g, "\\'")}')">
-                    Edit
-                </a>
+          <a href="#" class="edit-btn"
+             onclick="openEditIngredientModal(${ingredient.id}, '${ingredient.name.replace(/'/g, "\\'")}')">
+              Edit
+          </a>
 
-                <a href="/ingredient/delete/${ingredient.id}/" 
-                    class="delete-btn"
-                    onclick="deleteIngredient(event, ${ingredient.id})">
-                    Delete
-                </a>
-
-            </div>
-        `;
+          <a href="/ingredient/delete/${ingredient.id}/"
+             class="delete-btn"
+             onclick="deleteIngredient(event, ${ingredient.id})">
+              Delete
+          </a>
+      </div>
+    `;
 
     list.appendChild(div);
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("#ingredientsModal form");
 
-  form.addEventListener("submit", async (e) => {
+/* ============================================================
+   AJAX: ADD + EDIT INGREDIENTS
+   ============================================================ */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ADD INGREDIENT */
+  const addForm = document.querySelector("#ingredientsModal form");
+
+  addForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(form);
+    const formData = new FormData(addForm);
 
-    const response = await fetch(form.action, {
+    const response = await fetch(addForm.action, {
       method: "POST",
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
+      headers: { "X-Requested-With": "XMLHttpRequest" },
       body: formData,
     });
 
     const data = await response.json();
 
-    // ⭐ DUPLICATE INGREDIENT → use your existing message system
     if (data.error) {
-      createMessage(data.message); // your existing message system
-      closeIngredientsModal(); // <-- THIS closes the modal
+      createMessage(data.message);
+      closeIngredientsModal();
       return;
     }
 
-    // ⭐ SUCCESS → add ingredient to list
     refreshIngredientList(data.ingredients);
-    form.reset();
+    addForm.reset();
   });
-});
 
-function addIngredientToList(ingredient) {
-  const list = document.querySelector(".modal-list");
 
-  // Remove "No ingredients yet" if present
-  const emptyText = list.querySelector(".empty-text");
-  if (emptyText) emptyText.remove();
-
-  const div = document.createElement("div");
-  div.classList.add("modal-item");
-
-  div.innerHTML = `
-        <span class="item-name">${ingredient.name}</span>
-
-        <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
-            <img src="/static/cocktails/icons/${ingredient.used ? "ingredient-ok.png" : "missing.png"}"
-                 class="ingredient-status-icon">
-
-            <a href="#" class="edit-btn"
-               onclick="openEditIngredientModal(${ingredient.id}, '${ingredient.name.replace(/'/g, "\\'")}')">
-                Edit
-            </a>
-
-            <a href="/ingredients/delete/${ingredient.id}" class="delete-btn">
-                Delete
-            </a>
-        </div>
-    `;
-
-  list.appendChild(div);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
+  /* EDIT INGREDIENT */
   const editForm = document.getElementById("editIngredientForm");
 
   editForm.addEventListener("submit", async (e) => {
@@ -289,59 +281,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const response = await fetch(editForm.action, {
       method: "POST",
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
+      headers: { "X-Requested-With": "XMLHttpRequest" },
       body: formData,
     });
 
     const data = await response.json();
 
-    // Duplicate → message + close modal
     if (data.error) {
       createMessage(data.message);
       closeEditIngredientModal();
       return;
     }
 
-    // Success → refresh list + close child modal
     refreshIngredientList(data.ingredients);
-    closeEditIngredientModal(); // ⭐ THIS WAS MISSING
+    closeEditIngredientModal();
   });
 });
 
+
+/* ============================================================
+   AJAX: DELETE INGREDIENT
+   ============================================================ */
+
+/**
+ * Get CSRF token from page
+ */
 function getCSRFToken() {
   return document.querySelector("[name=csrfmiddlewaretoken]").value;
 }
 
+/**
+ * Delete ingredient via AJAX
+ */
 async function deleteIngredient(event, id) {
-  event.preventDefault(); // stop normal navigation
+  event.preventDefault();
 
   const response = await fetch(`/ingredient/delete/${id}/`, {
     method: "POST",
     headers: {
       "X-Requested-With": "XMLHttpRequest",
       "Content-Type": "application/json",
-      "X-CSRFToken": getCSRFToken(), // ⭐ REQUIRED
+      "X-CSRFToken": getCSRFToken(),
     },
     body: JSON.stringify({}),
   });
 
   const data = await response.json();
 
-  // Ingredient is used → message + keep modal open
   if (data.error) {
     createMessage(data.message);
     return;
   }
 
-  // Success → refresh list
   refreshIngredientList(data.ingredients);
 }
 
+
 /* ============================================================
-       Auto-remove Django messages
-       ============================================================ */
+   AUTO-REMOVE DJANGO MESSAGES
+   ============================================================ */
 
 setTimeout(() => {
   document.querySelectorAll(".message").forEach((msg) => msg.remove());
