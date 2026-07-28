@@ -4,10 +4,13 @@ from .models import Cocktail, Ingredient, History, Recipe
 from django.db.models.functions import Lower
 from django.shortcuts import render, get_object_or_404
 from cocktails.models import Ingredient
+from django.http import JsonResponse, request
 
 def cocktail_list(request):
     cocktails = Cocktail.objects.all().order_by(Lower("name"))
     return render(request, 'cocktails/cocktail_list.html', {'cocktails': cocktails})
+
+from django.http import JsonResponse
 
 def add_ingredient(request):
     if request.method == "POST":
@@ -16,32 +19,121 @@ def add_ingredient(request):
 
         # Duplicate check using normalised name
         if Ingredient.objects.filter(name=name).exists():
+
+            # AJAX request → return JSON instead of redirect
+            if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+                return JsonResponse({
+                    "error": True,
+                    "message": f"Ingredient '{raw_name.strip()}' already exists."
+                })
+
             messages.error(request, f"Ingredient '{raw_name.strip()}' already exists.")
             return redirect("admin_page")
 
         # Save normalised name
-        Ingredient.objects.create(name=name)
+        ingredient = Ingredient.objects.create(name=name)
+
+        # AJAX request → return JSON instead of redirect
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            ingredients = []
+            for ing in Ingredient.objects.all().order_by(Lower("name")):
+                ingredients.append({
+                    "id": ing.id,
+                    "name": ing.name,
+                    "used": Cocktail.objects.filter(ingredients=ing).exists()
+            })
+
+            return JsonResponse({
+                "error": False,
+                "ingredients": ingredients
+        })
+
+
         messages.success(request, f"Ingredient '{raw_name.strip()}' added.")
         return redirect("admin_page")
 
+
 def delete_ingredient(request, ingredient_id):
     ingredient = get_object_or_404(Ingredient, id=ingredient_id)
-    # Check if ingredient is used in any cocktail
+
     in_use = Cocktail.objects.filter(ingredients=ingredient).exists()
 
+    # AJAX delete blocked → return JSON
+    if in_use and request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return JsonResponse({
+            "error": True,
+            "message": "Cannot delete: this ingredient is used in one or more cocktails."
+        })
+
+    # Normal delete blocked → redirect
     if in_use:
         messages.error(request, "Cannot delete: this ingredient is used in one or more cocktails.")
-        return redirect("admin_page")  # whatever your admin page URL name is
+        return redirect("admin_page")
 
+    # Perform delete
     ingredient.delete()
+
+    # AJAX success → return sorted list
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        ingredients = []
+        for ing in Ingredient.objects.all().order_by(Lower("name")):
+            ingredients.append({
+                "id": ing.id,
+                "name": ing.name,
+                "used": Cocktail.objects.filter(ingredients=ing).exists()
+            })
+
+        return JsonResponse({
+            "error": False,
+            "ingredients": ingredients
+        })
+
+    # Fallback for non-AJAX
     messages.success(request, "Ingredient deleted.")
     return redirect("admin_page")
 
+
 def edit_ingredient(request, id):
     ingredient = Ingredient.objects.get(id=id)
+
     if request.method == "POST":
-        ingredient.name = request.POST.get("name")
+        raw_name = request.POST.get("name", "")
+        name = raw_name.strip().lower()
+
+        # Duplicate check (but allow same ingredient to keep its own name)
+        if Ingredient.objects.filter(name=name).exclude(id=id).exists():
+
+            # AJAX duplicate → JSON + message
+            if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+                return JsonResponse({
+                    "error": True,
+                    "message": f"Ingredient '{raw_name.strip()}' already exists."
+                })
+
+            messages.error(request, f"Ingredient '{raw_name.strip()}' already exists.")
+            return redirect("admin_page")
+
+        # Save updated name
+        ingredient.name = name
         ingredient.save()
+
+        # AJAX success → return sorted list
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            ingredients = []
+            for ing in Ingredient.objects.all().order_by(Lower("name")):
+                ingredients.append({
+                    "id": ing.id,
+                    "name": ing.name,
+                    "used": Cocktail.objects.filter(ingredients=ing).exists()
+                })
+
+            return JsonResponse({
+                "error": False,
+                "ingredients": ingredients
+            })
+
+        # Fallback for non-AJAX
+        messages.success(request, "Ingredient updated.")
         return redirect("admin_page")
 
 
