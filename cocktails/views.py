@@ -144,36 +144,92 @@ def history_add(request, cocktail_id):
     if request.method == "POST":
         text = request.POST.get("text")
 
-        History.objects.create(cocktail=cocktail, text=text)
+        existing = History.objects.filter(cocktail=cocktail).first()
+
+        if existing:
+            # Treat "Add" as "Replace"
+            existing.text = text
+            existing.save()
+
+            if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+                return JsonResponse({
+                    "error": False,
+                    "message": "History replaced.",
+                    "history": existing.text
+                })
+
+            messages.success(request, "History replaced.")
+            return redirect("admin_page")
+
+        # Safe create
+        history = History.objects.create(cocktail=cocktail, text=text)
+
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({
+                "error": False,
+                "message": "History added!",
+                "history": history.text
+            })
 
         messages.success(request, "History added!")
         return redirect("admin_page")
 
-    return redirect("admin_page")
 
 
 
-def history_edit(request, cocktail_id):
-    history = get_object_or_404(History, cocktail_id=cocktail_id)
+
+
+def history_edit(request, history_id):
+    history = get_object_or_404(History, id=history_id)
 
     if request.method == "POST":
         history.text = request.POST.get("text")
         history.save()
+
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({
+                "error": False,
+                "message": "History updated.",
+                "history": history.text
+            })
+
         messages.success(request, "History updated.")
         return redirect("admin_page")
 
-    return redirect("admin_page")
 
 
-def history_delete(request, cocktail_id):
-    history = get_object_or_404(History, cocktail_id=cocktail_id)
+
+def history_delete(request, history_id):
+    history = get_object_or_404(History, id=history_id)
 
     if request.method == "POST":
         history.delete()
+
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({
+                "error": False,
+                "message": "History deleted."
+            })
+
         messages.success(request, "History deleted.")
         return redirect("admin_page")
 
-    return redirect("admin_page")
+
+def history_list_json(request):
+    cocktails = Cocktail.objects.all().order_by(Lower("name"))
+    data = []
+
+    for c in cocktails:
+        data.append({
+            "id": c.id,
+            "name": c.name,
+            "history": c.history.text if hasattr(c, "history") else None,
+            "history_id": c.history.id if hasattr(c, "history") else None
+        })
+
+    return JsonResponse({"cocktails": data})
+
+
 
 def recipe_add(request, cocktail_id):
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)

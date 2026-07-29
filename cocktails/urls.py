@@ -9,8 +9,14 @@ urlpatterns = [
 
     # HISTORY
     path("history/add/<int:cocktail_id>/", views.history_add, name="history_add"),
-    path("history/edit/<int:cocktail_id>/", views.history_edit, name="history_edit"),
-    path("history/delete/<int:cocktail_id>/", views.history_delete, name="history_delete"),
+    path("history/edit/<int:history_id>/", views.history_edit, name="history_edit"),
+    path("history/delete/<int:history_id>/", views.history_delete, name="history_delete"),
+
+    # HISTORY JSON (needed for AJAX refresh)
+    path("history/list/json/", views.history_list_json, name="history_list_json"),
+
+
+
 
     # RECIPES
     path('recipe/add/<int:cocktail_id>/', views.recipe_add, name='recipe_add'),

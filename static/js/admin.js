@@ -36,7 +36,6 @@ document.querySelectorAll(".modal-content").forEach((box) => {
   box.addEventListener("click", (e) => e.stopPropagation());
 });
 
-
 /* ============================================================
    INGREDIENT MODALS
    ============================================================ */
@@ -53,14 +52,14 @@ function closeIngredientsModal() {
 function openEditIngredientModal(id, name) {
   // Pre-fill edit form
   document.getElementById("editIngredientName").value = name;
-  document.getElementById("editIngredientForm").action = `/ingredient/edit/${id}/`;
+  document.getElementById("editIngredientForm").action =
+    `/ingredient/edit/${id}/`;
   openModal("editIngredientModal");
 }
 
 function closeEditIngredientModal() {
   closeModal("editIngredientModal");
 }
-
 
 /* ============================================================
    RECIPE MODALS
@@ -102,7 +101,6 @@ function closeDeleteRecipeModal() {
   closeModal("deleteRecipeModal");
 }
 
-
 /* ============================================================
    HISTORY MODALS
    ============================================================ */
@@ -115,34 +113,111 @@ function closeHistoryModal() {
   closeModal("historyModal");
 }
 
-function openEditHistoryModal(id, text) {
-  document.getElementById("editHistoryText").value = text;
-  document.getElementById("editHistoryForm").action = `/history/edit/${id}/`;
-  openModal("editHistoryModal");
+function openEditHistoryModal(historyId, text) {
+    document.getElementById("editHistoryForm").action = `/history/edit/${historyId}/`;
+    document.getElementById("editHistoryText").value = text;
+    document.getElementById("editHistoryModal").classList.remove("hidden");
 }
 
-function closeEditHistoryModal() {
-  closeModal("editHistoryModal");
+
+
+function closeEditHistoryModal(e) {
+    if (e) e.stopPropagation();
+    document.getElementById("editHistoryModal").classList.add("hidden");
 }
 
-function openAddHistoryModal(id) {
-  document.getElementById("addHistoryForm").action = `/history/add/${id}/`;
-  openModal("addHistoryModal");
+function openAddHistoryModal(cocktailId) {
+    document.getElementById("addHistoryForm").action = `/history/add/${cocktailId}/`;
+    openModal("addHistoryModal");
 }
 
-function closeAddHistoryModal() {
-  closeModal("addHistoryModal");
+function closeAddHistoryModal(e) {
+    if (e) e.stopPropagation();
+    document.getElementById("addHistoryModal").classList.add("hidden");
 }
 
-function openDeleteHistoryModal(id) {
-  document.getElementById("deleteHistoryForm").action = `/history/delete/${id}/`;
-  openModal("deleteHistoryModal");
+function openDeleteHistoryModal(historyId) {
+    document.getElementById("deleteHistoryForm").action = `/history/delete/${historyId}/`;
+    openModal("deleteHistoryModal");
 }
 
-function closeDeleteHistoryModal() {
-  closeModal("deleteHistoryModal");
+function closeDeleteHistoryModal(e) {
+    if (e) e.stopPropagation();
+    document.getElementById("deleteHistoryModal").classList.add("hidden");
 }
 
+// --- HISTORY AJAX HANDLER ---
+function ajaxHistorySubmit(formId) {
+    const form = document.getElementById(formId);
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const url = form.action;
+        const formData = new FormData(form);
+
+        fetch(url, {
+            method: "POST",
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            showMessage(data.message, data.error ? "error" : "success");
+
+            if (!data.error) {
+                refreshHistoryList();
+            }
+
+            // ⭐ CLOSE THE MODAL AFTER SUCCESSFUL EDIT
+            if (formId === "editHistoryForm" && !data.error) {
+                closeEditHistoryModal();
+            }
+        });
+    });
+}
+
+
+
+
+function refreshHistoryList() {
+    fetch("/history/list/json/")
+        .then(res => res.json())
+        .then(data => {
+            const container = document.querySelector(".history-list");
+            container.innerHTML = "";
+
+            data.cocktails.forEach(c => {
+                container.innerHTML += `
+                    <div class="history-item">
+                        <span class="history-name">${c.name}</span>
+                        <div class="history-actions">
+                            ${c.history ? `
+                                <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
+                                <a href="#" class="edit-btn"
+                                   onclick="openEditHistoryModal(${c.history_id}, '${c.history.replace(/'/g, "\\'")}')">Edit</a>
+                                <a href="#" class="delete-btn"
+                                   onclick="openDeleteHistoryModal(${c.history_id})">Delete</a>
+                            ` : `
+                                <img src="/static/cocktails/icons/missing.png" class="history-icon">
+                                <a href="#" class="add-btn"
+                                   onclick="openAddHistoryModal(${c.id})">Add</a>
+                                <a href="#" class="delete-btn" onclick="noHistoryTrap()">Delete</a>
+                            `}
+                        </div>
+                    </div>
+                `;
+            });
+        });
+}
+
+
+
+// Attach handlers
+ajaxHistorySubmit("addHistoryForm", "addHistoryModal");
+ajaxHistorySubmit("editHistoryForm", "editHistoryModal");
+ajaxHistorySubmit("deleteHistoryForm", "deleteHistoryModal");
 
 /* ============================================================
    MESSAGE SYSTEM
@@ -197,7 +272,6 @@ function ingredientMessage(text) {
   createMessage(text);
 }
 
-
 /* ============================================================
    INGREDIENT LIST REFRESHER
    ============================================================ */
@@ -237,13 +311,11 @@ function refreshIngredientList(ingredients) {
   });
 }
 
-
 /* ============================================================
    AJAX: ADD + EDIT INGREDIENTS
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
-
   /* ADD INGREDIENT */
   const addForm = document.querySelector("#ingredientsModal form");
 
@@ -269,7 +341,6 @@ document.addEventListener("DOMContentLoaded", () => {
     refreshIngredientList(data.ingredients);
     addForm.reset();
   });
-
 
   /* EDIT INGREDIENT */
   const editForm = document.getElementById("editIngredientForm");
@@ -297,7 +368,6 @@ document.addEventListener("DOMContentLoaded", () => {
     closeEditIngredientModal();
   });
 });
-
 
 /* ============================================================
    AJAX: DELETE INGREDIENT
@@ -334,6 +404,70 @@ async function deleteIngredient(event, id) {
   }
 
   refreshIngredientList(data.ingredients);
+}
+
+function ajaxHistorySubmit(formId) {
+    const oldForm = document.getElementById(formId);
+
+    // Remove old listeners
+    const form = oldForm.cloneNode(true);
+    oldForm.parentNode.replaceChild(form, oldForm);
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const url = form.action;
+        const formData = new FormData(form);
+
+        fetch(url, {
+            method: "POST",
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            if (!data.error) {
+                refreshHistoryList();
+
+                // ⭐ CLOSE THE CORRECT MODAL
+                if (formId === "editHistoryForm") {
+                    closeEditHistoryModal();
+                }
+                if (formId === "addHistoryForm") {
+                    closeAddHistoryModal();
+                }
+                if (formId === "deleteHistoryForm") {
+                    closeDeleteHistoryModal();
+                }
+            }
+        });
+    });
+}
+
+
+
+
+// Attach handlers
+ajaxHistorySubmit("addHistoryForm");
+ajaxHistorySubmit("editHistoryForm");
+ajaxHistorySubmit("deleteHistoryForm");
+
+function showMessage(text, type = "success") {
+    const container = document.querySelector(".messages") || (() => {
+        const newContainer = document.createElement("div");
+        newContainer.className = "messages";
+        document.body.prepend(newContainer);
+        return newContainer;
+    })();
+
+    const box = document.createElement("p");
+    box.className = `message ${type}`;
+    box.textContent = text;
+
+    container.appendChild(box);
+
+    setTimeout(() => box.remove(), 3000);
 }
 
 
