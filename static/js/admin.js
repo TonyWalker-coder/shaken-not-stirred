@@ -1,44 +1,66 @@
-/* ============================================================
-   GENERIC MODAL CONTROLS
-   ============================================================ */
-
-/**
- * Open any modal by ID
- */
 function openModal(id) {
-  document.getElementById(id).classList.remove("hidden");
+  const modal = document.getElementById(id);
+  if (modal) modal.classList.remove("hidden");
 }
 
-/**
- * Close any modal by ID
- */
 function closeModal(id) {
-  document.getElementById(id).classList.add("hidden");
+  const modal = document.getElementById(id);
+  if (modal) modal.classList.add("hidden");
 }
 
-/**
- * Close modal when clicking the backdrop (outside modal-content)
- */
 document.addEventListener("click", function (e) {
-  const openModals = document.querySelectorAll(".modal:not(.hidden)");
-
-  openModals.forEach((modal) => {
-    if (e.target === modal) {
-      modal.classList.add("hidden");
-    }
+  document.querySelectorAll(".modal:not(.hidden)").forEach((modal) => {
+    if (e.target === modal) modal.classList.add("hidden");
   });
 });
 
-/**
- * Prevent clicks inside modal-content from closing the modal
- */
 document.querySelectorAll(".modal-content").forEach((box) => {
   box.addEventListener("click", (e) => e.stopPropagation());
 });
 
-/* ============================================================
-   INGREDIENT MODALS
-   ============================================================ */
+function getMessageContainer() {
+  return (
+    document.querySelector(".messages") ||
+    (() => {
+      const newContainer = document.createElement("div");
+      newContainer.className = "messages";
+      document.body.prepend(newContainer);
+      return newContainer;
+    })()
+  );
+}
+
+function showMessage(text, type = "error") {
+  const container = getMessageContainer();
+  const box = document.createElement("p");
+  box.className = `message ${type}`;
+  box.textContent = text;
+  container.appendChild(box);
+  setTimeout(() => box.remove(), 3000);
+}
+
+function removeScopedMessages(keyword) {
+  document.querySelectorAll(".message").forEach((msg) => {
+    if (msg.textContent.toLowerCase().includes(keyword.toLowerCase())) {
+      msg.remove();
+    }
+  });
+}
+
+function noHistoryTrap() {
+  closeHistoryModal();
+  showMessage("This cocktail has no history yet.", "error");
+}
+
+function noRecipeTrap() {
+  closeRecipesModal();
+  showMessage("This cocktail has no recipe yet.", "error");
+}
+
+function ingredientMessage(text) {
+  closeIngredientsModal();
+  showMessage(text, "error");
+}
 
 function openIngredientsModal() {
   removeScopedMessages("ingredient");
@@ -50,20 +72,14 @@ function closeIngredientsModal() {
 }
 
 function openEditIngredientModal(id, name) {
-  // Pre-fill edit form
   document.getElementById("editIngredientName").value = name;
-  document.getElementById("editIngredientForm").action =
-    `/ingredient/edit/${id}/`;
+  document.getElementById("editIngredientForm").action = `/ingredient/edit/${id}/`;
   openModal("editIngredientModal");
 }
 
 function closeEditIngredientModal() {
   closeModal("editIngredientModal");
 }
-
-/* ============================================================
-   RECIPE MODALS
-   ============================================================ */
 
 function openRecipesModal() {
   openModal("recipesModal");
@@ -101,10 +117,6 @@ function closeDeleteRecipeModal() {
   closeModal("deleteRecipeModal");
 }
 
-/* ============================================================
-   HISTORY MODALS
-   ============================================================ */
-
 function openHistoryModal() {
   openModal("historyModal");
 }
@@ -114,173 +126,114 @@ function closeHistoryModal() {
 }
 
 function openEditHistoryModal(historyId, text) {
-    document.getElementById("editHistoryForm").action = `/history/edit/${historyId}/`;
-    document.getElementById("editHistoryText").value = text;
-    document.getElementById("editHistoryModal").classList.remove("hidden");
+  document.getElementById("editHistoryForm").action = `/history/edit/${historyId}/`;
+  document.getElementById("editHistoryText").value = text;
+  openModal("editHistoryModal");
 }
 
-
-
 function closeEditHistoryModal(e) {
-    if (e) e.stopPropagation();
-    document.getElementById("editHistoryModal").classList.add("hidden");
+  if (e) e.stopPropagation();
+  closeModal("editHistoryModal");
 }
 
 function openAddHistoryModal(cocktailId) {
-    document.getElementById("addHistoryForm").action = `/history/add/${cocktailId}/`;
-    openModal("addHistoryModal");
+  document.getElementById("addHistoryForm").action = `/history/add/${cocktailId}/`;
+  openModal("addHistoryModal");
 }
 
 function closeAddHistoryModal(e) {
-    if (e) e.stopPropagation();
-    document.getElementById("addHistoryModal").classList.add("hidden");
+  if (e) e.stopPropagation();
+  closeModal("addHistoryModal");
 }
 
 function openDeleteHistoryModal(historyId) {
-    document.getElementById("deleteHistoryForm").action = `/history/delete/${historyId}/`;
-    openModal("deleteHistoryModal");
+  document.getElementById("deleteHistoryForm").action = `/history/delete/${historyId}/`;
+  openModal("deleteHistoryModal");
 }
 
 function closeDeleteHistoryModal(e) {
-    if (e) e.stopPropagation();
-    document.getElementById("deleteHistoryModal").classList.add("hidden");
+  if (e) e.stopPropagation();
+  closeModal("deleteHistoryModal");
 }
 
-// --- HISTORY AJAX HANDLER ---
 function ajaxHistorySubmit(formId) {
-    const form = document.getElementById(formId);
+  const oldForm = document.getElementById(formId);
+  if (!oldForm) return;
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
+  const form = oldForm.cloneNode(true);
+  oldForm.parentNode.replaceChild(form, oldForm);
 
-        const url = form.action;
-        const formData = new FormData(form);
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const url = form.action;
+    const formData = new FormData(form);
 
-        fetch(url, {
-            method: "POST",
-            headers: { "X-Requested-With": "XMLHttpRequest" },
-            body: formData
-        })
-        .then(res => res.json())
-        .then(data => {
+    fetch(url, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          showMessage(data.message, "error");
+          return;
+        }
 
-            showMessage(data.message, data.error ? "error" : "success");
+        refreshHistoryList();
 
-            if (!data.error) {
-                refreshHistoryList();
-            }
-
-            // ⭐ CLOSE THE MODAL AFTER SUCCESSFUL EDIT
-            if (formId === "editHistoryForm" && !data.error) {
-                closeEditHistoryModal();
-            }
-        });
-    });
-}
-
-
-
-
-function refreshHistoryList() {
-    fetch("/history/list/json/")
-        .then(res => res.json())
-        .then(data => {
-            const container = document.querySelector(".history-list");
-            container.innerHTML = "";
-
-            data.cocktails.forEach(c => {
-                container.innerHTML += `
-                    <div class="history-item">
-                        <span class="history-name">${c.name}</span>
-                        <div class="history-actions">
-                            ${c.history ? `
-                                <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
-                                <a href="#" class="edit-btn"
-                                   onclick="openEditHistoryModal(${c.history_id}, '${c.history.replace(/'/g, "\\'")}')">Edit</a>
-                                <a href="#" class="delete-btn"
-                                   onclick="openDeleteHistoryModal(${c.history_id})">Delete</a>
-                            ` : `
-                                <img src="/static/cocktails/icons/missing.png" class="history-icon">
-                                <a href="#" class="add-btn"
-                                   onclick="openAddHistoryModal(${c.id})">Add</a>
-                                <a href="#" class="delete-btn" onclick="noHistoryTrap()">Delete</a>
-                            `}
-                        </div>
-                    </div>
-                `;
-            });
-        });
-}
-
-
-
-// Attach handlers
-ajaxHistorySubmit("addHistoryForm", "addHistoryModal");
-ajaxHistorySubmit("editHistoryForm", "editHistoryModal");
-ajaxHistorySubmit("deleteHistoryForm", "deleteHistoryModal");
-
-/* ============================================================
-   MESSAGE SYSTEM
-   ============================================================ */
-
-/**
- * Remove messages containing a specific keyword
- */
-function removeScopedMessages(keyword) {
-  document.querySelectorAll(".message").forEach((msg) => {
-    if (msg.textContent.toLowerCase().includes(keyword)) {
-      msg.remove();
-    }
+        if (formId === "editHistoryForm") closeEditHistoryModal();
+        if (formId === "addHistoryForm") closeAddHistoryModal();
+        if (formId === "deleteHistoryForm") closeDeleteHistoryModal();
+      });
   });
 }
 
-/**
- * Create a temporary message box
- */
-function createMessage(text) {
-  const container =
-    document.querySelector(".messages") ||
-    (() => {
-      const newContainer = document.createElement("div");
-      newContainer.className = "messages";
-      document.body.prepend(newContainer);
-      return newContainer;
-    })();
+ajaxHistorySubmit("addHistoryForm");
+ajaxHistorySubmit("editHistoryForm");
+ajaxHistorySubmit("deleteHistoryForm");
 
-  const box = document.createElement("p");
-  box.className = "message";
-  box.textContent = text;
+function refreshHistoryList() {
+  fetch("/history/list/json/")
+    .then((res) => res.json())
+    .then((data) => {
+      const container = document.querySelector(".history-list");
+      if (!container) return;
 
-  container.appendChild(box);
+      container.innerHTML = "";
 
-  setTimeout(() => box.remove(), 3000);
+      data.cocktails.forEach((c) => {
+        container.innerHTML += `
+          <div class="history-item">
+            <span class="history-name">${c.name}</span>
+            <div class="history-actions">
+              ${
+                c.history
+                  ? `
+                <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
+                <a href="#" class="edit-btn"
+                   onclick="openEditHistoryModal(${c.history_id}, '${c.history.replace(/'/g, "\\'")}')">Edit</a>
+                <a href="#" class="delete-btn"
+                   onclick="openDeleteHistoryModal(${c.history_id})">Delete</a>
+              `
+                  : `
+                <img src="/static/cocktails/icons/missing.png" class="history-icon">
+                <a href="#" class="add-btn"
+                   onclick="openAddHistoryModal(${c.id})">Add</a>
+                <a href="#" class="delete-btn" onclick="noHistoryTrap()">Delete</a>
+              `
+              }
+            </div>
+          </div>
+        `;
+      });
+    });
 }
 
-/* Convenience traps */
-function noHistoryTrap() {
-  closeHistoryModal();
-  createMessage("This cocktail has no history yet.");
-}
-
-function noRecipeTrap() {
-  closeRecipesModal();
-  createMessage("This cocktail has no recipe yet.");
-}
-
-function ingredientMessage(text) {
-  closeIngredientsModal();
-  createMessage(text);
-}
-
-/* ============================================================
-   INGREDIENT LIST REFRESHER
-   ============================================================ */
-
-/**
- * Rebuild ingredient list inside the modal
- */
 function refreshIngredientList(ingredients) {
   const list = document.querySelector(".modal-list");
+  if (!list) return;
+
   list.innerHTML = "";
 
   ingredients.forEach((ingredient) => {
@@ -289,21 +242,18 @@ function refreshIngredientList(ingredients) {
 
     div.innerHTML = `
       <span class="item-name">${ingredient.name}</span>
-
       <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
-          <img src="/static/cocktails/icons/${ingredient.used ? "ingredient-ok.png" : "missing.png"}"
-               class="ingredient-status-icon">
-
-          <a href="#" class="edit-btn"
-             onclick="openEditIngredientModal(${ingredient.id}, '${ingredient.name.replace(/'/g, "\\'")}')">
-              Edit
-          </a>
-
-          <a href="/ingredient/delete/${ingredient.id}/"
-             class="delete-btn"
-             onclick="deleteIngredient(event, ${ingredient.id})">
-              Delete
-          </a>
+        <img src="/static/cocktails/icons/${ingredient.used ? "ingredient-ok.png" : "missing.png"}"
+             class="ingredient-status-icon">
+        <a href="#" class="edit-btn"
+           onclick="openEditIngredientModal(${ingredient.id}, '${ingredient.name.replace(/'/g, "\\'")}')">
+          Edit
+        </a>
+        <a href="/ingredient/delete/${ingredient.id}/"
+           class="delete-btn"
+           onclick="deleteIngredient(event, ${ingredient.id})">
+          Delete
+        </a>
       </div>
     `;
 
@@ -311,78 +261,63 @@ function refreshIngredientList(ingredients) {
   });
 }
 
-/* ============================================================
-   AJAX: ADD + EDIT INGREDIENTS
-   ============================================================ */
-
 document.addEventListener("DOMContentLoaded", () => {
-  /* ADD INGREDIENT */
   const addForm = document.querySelector("#ingredientsModal form");
+  if (addForm) {
+    addForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(addForm);
 
-  addForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+      const response = await fetch(addForm.action, {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        body: formData,
+      });
 
-    const formData = new FormData(addForm);
+      const data = await response.json();
 
-    const response = await fetch(addForm.action, {
-      method: "POST",
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-      body: formData,
+      if (data.error) {
+        showMessage(data.message, "error");
+        closeIngredientsModal();
+        return;
+      }
+
+      refreshIngredientList(data.ingredients);
+      addForm.reset();
     });
+  }
 
-    const data = await response.json();
-
-    if (data.error) {
-      createMessage(data.message);
-      closeIngredientsModal();
-      return;
-    }
-
-    refreshIngredientList(data.ingredients);
-    addForm.reset();
-  });
-
-  /* EDIT INGREDIENT */
   const editForm = document.getElementById("editIngredientForm");
+  if (editForm) {
+    editForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(editForm);
 
-  editForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+      const response = await fetch(editForm.action, {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        body: formData,
+      });
 
-    const formData = new FormData(editForm);
+      const data = await response.json();
 
-    const response = await fetch(editForm.action, {
-      method: "POST",
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-      body: formData,
-    });
+      if (data.error) {
+        showMessage(data.message, "error");
+        closeEditIngredientModal();
+        return;
+      }
 
-    const data = await response.json();
-
-    if (data.error) {
-      createMessage(data.message);
+      refreshIngredientList(data.ingredients);
       closeEditIngredientModal();
-      return;
-    }
-
-    refreshIngredientList(data.ingredients);
-    closeEditIngredientModal();
-  });
+    });
+  }
 });
 
-/* ============================================================
-   AJAX: DELETE INGREDIENT
-   ============================================================ */
-
-/**
- * Get CSRF token from page
- */
 function getCSRFToken() {
-  return document.querySelector("[name=csrfmiddlewaretoken]").value;
+  const token = document.querySelector("[name=csrfmiddlewaretoken]");
+  return token ? token.value : "";
 }
 
-/**
- * Delete ingredient via AJAX
- */
 async function deleteIngredient(event, id) {
   event.preventDefault();
 
@@ -399,81 +334,12 @@ async function deleteIngredient(event, id) {
   const data = await response.json();
 
   if (data.error) {
-    createMessage(data.message);
+    showMessage(data.message, "error");
     return;
   }
 
   refreshIngredientList(data.ingredients);
 }
-
-function ajaxHistorySubmit(formId) {
-    const oldForm = document.getElementById(formId);
-
-    // Remove old listeners
-    const form = oldForm.cloneNode(true);
-    oldForm.parentNode.replaceChild(form, oldForm);
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const url = form.action;
-        const formData = new FormData(form);
-
-        fetch(url, {
-            method: "POST",
-            headers: { "X-Requested-With": "XMLHttpRequest" },
-            body: formData
-        })
-        .then(res => res.json())
-        .then(data => {
-
-            if (!data.error) {
-                refreshHistoryList();
-
-                // ⭐ CLOSE THE CORRECT MODAL
-                if (formId === "editHistoryForm") {
-                    closeEditHistoryModal();
-                }
-                if (formId === "addHistoryForm") {
-                    closeAddHistoryModal();
-                }
-                if (formId === "deleteHistoryForm") {
-                    closeDeleteHistoryModal();
-                }
-            }
-        });
-    });
-}
-
-
-
-
-// Attach handlers
-ajaxHistorySubmit("addHistoryForm");
-ajaxHistorySubmit("editHistoryForm");
-ajaxHistorySubmit("deleteHistoryForm");
-
-function showMessage(text, type = "success") {
-    const container = document.querySelector(".messages") || (() => {
-        const newContainer = document.createElement("div");
-        newContainer.className = "messages";
-        document.body.prepend(newContainer);
-        return newContainer;
-    })();
-
-    const box = document.createElement("p");
-    box.className = `message ${type}`;
-    box.textContent = text;
-
-    container.appendChild(box);
-
-    setTimeout(() => box.remove(), 3000);
-}
-
-
-/* ============================================================
-   AUTO-REMOVE DJANGO MESSAGES
-   ============================================================ */
 
 setTimeout(() => {
   document.querySelectorAll(".message").forEach((msg) => msg.remove());

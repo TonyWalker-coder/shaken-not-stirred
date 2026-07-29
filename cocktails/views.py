@@ -236,12 +236,37 @@ def recipe_add(request, cocktail_id):
 
     if request.method == "POST":
         text = request.POST.get("text")
+
+        # If recipe already exists → treat add as replace
+        if cocktail.recipe:
+            cocktail.recipe.text = text
+            cocktail.recipe.save()
+
+            if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+                return JsonResponse({
+                    "error": False,
+                    "message": "Recipe replaced.",
+                    "recipe": cocktail.recipe.text
+                })
+
+            messages.success(request, "Recipe replaced!")
+            return redirect("admin_page")
+
+        # Create new recipe
         recipe = Recipe.objects.create(text=text)
         cocktail.recipe = recipe
         cocktail.save()
 
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({
+                "error": False,
+                "message": "Recipe added!",
+                "recipe": recipe.text
+            })
+
         messages.success(request, "Recipe added!")
-        return redirect('admin_page')
+        return redirect("admin_page")
+
 
 
 
@@ -253,8 +278,16 @@ def recipe_edit(request, cocktail_id):
         recipe.text = request.POST.get("text")
         recipe.save()
 
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({
+                "error": False,
+                "message": "Recipe updated!",
+                "recipe": recipe.text
+            })
+
         messages.success(request, "Recipe updated!")
-        return redirect('admin_page')
+        return redirect("admin_page")
+
 
 
 
@@ -267,8 +300,16 @@ def recipe_delete(request, cocktail_id):
         cocktail.recipe = None
         cocktail.save()
 
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({
+                "error": False,
+                "message": "Recipe deleted.",
+                "recipe": None
+            })
+
         messages.success(request, "Recipe deleted!")
-        return redirect('admin_page')
+        return redirect("admin_page")
+
 
 
 
