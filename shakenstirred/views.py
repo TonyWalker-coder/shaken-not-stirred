@@ -13,7 +13,7 @@ def admin_page(request):
         return redirect("index")
 
     ingredients = Ingredient.objects.all().order_by(Lower("name"))
-    cocktails = Cocktail.objects.all().select_related("history").order_by(Lower("name"))
+    cocktails = Cocktail.objects.all().select_related("history_obj").order_by(Lower("name"))
 
     # Mark each ingredient as used or unused
     for ing in ingredients:
@@ -24,6 +24,7 @@ def admin_page(request):
         "cocktails": cocktails,
         "messages": messages.get_messages(request)
     })
+
 
 
 def admin_login(request):

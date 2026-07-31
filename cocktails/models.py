@@ -23,13 +23,6 @@ class Cocktail(models.Model):
         related_name="recipe_entry"
     )
 
-    history = models.OneToOneField(
-        "History",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        related_name="history_entry"
-    )
 
     def __str__(self):
         return self.name

@@ -213,14 +213,18 @@ def history_list_json(request):
     data = []
 
     for c in cocktails:
+        history_obj = getattr(c, "history_obj", None)
+
         data.append({
             "id": c.id,
             "name": c.name,
-            "history": c.history.text if hasattr(c, "history") else None,
-            "history_id": c.history.id if hasattr(c, "history") else None
+            "history": history_obj.text if history_obj else None,
+            "history_id": history_obj.id if history_obj else None
         })
 
     return JsonResponse({"cocktails": data})
+
+
 
 
 
