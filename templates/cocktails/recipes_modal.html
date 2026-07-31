@@ -1,0 +1,36 @@
+<div class="history-list">
+  {% for cocktail in cocktails %}
+  <div class="history-item">
+
+    <span class="history-name">{{ cocktail.name }}</span>
+
+    <div class="history-actions">
+      {% with r=cocktail.recipe %}
+      {% if r %}
+      <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon">
+
+      <a href="#" class="edit-btn" onclick='openEditRecipeModal({{ r.id }}, "{{ r.text|escapejs }}")'>
+        Edit
+      </a>
+
+      <a href="#" class="delete-btn" onclick="openDeleteRecipeModal({{ r.id }})">
+        Delete
+      </a>
+
+      {% else %}
+      <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon">
+
+      <a href="#" class="add-btn" onclick="openAddRecipeModal({{ cocktail.id }})">
+        Add
+      </a>
+
+      <a href="#" class="delete-btn" onclick="noRecipeTrap()">
+        Delete
+      </a>
+      {% endif %}
+      {% endwith %}
+    </div>
+
+  </div>
+  {% endfor %}
+</div>

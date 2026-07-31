@@ -2,7 +2,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from .models import Cocktail, Ingredient, History, Recipe
 from django.db.models.functions import Lower
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from cocktails.models import Ingredient
 from django.http import JsonResponse, request
 
@@ -137,7 +137,6 @@ def edit_ingredient(request, id):
         return redirect("admin_page")
 
 
-
 def history_add(request, cocktail_id):
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
@@ -175,10 +174,6 @@ def history_add(request, cocktail_id):
         return redirect("admin_page")
 
 
-
-
-
-
 def history_edit(request, history_id):
     history = get_object_or_404(History, id=history_id)
 
@@ -195,8 +190,6 @@ def history_edit(request, history_id):
 
         messages.success(request, "History updated.")
         return redirect("admin_page")
-
-
 
 
 def history_delete(request, history_id):
@@ -231,85 +224,41 @@ def history_list_json(request):
 
 
 
-def recipe_add(request, cocktail_id):
+def recipes_modal(request):
+    cocktails = Cocktail.objects.all()
+    return render(request, "cocktails/recipes_modal.html", {"cocktails": cocktails})
+
+
+def add_recipe(request, cocktail_id):
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
     if request.method == "POST":
-        text = request.POST.get("text")
-
-        # If recipe already exists → treat add as replace
-        if cocktail.recipe:
-            cocktail.recipe.text = text
-            cocktail.recipe.save()
-
-            if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-                return JsonResponse({
-                    "error": False,
-                    "message": "Recipe replaced.",
-                    "recipe": cocktail.recipe.text
-                })
-
-            messages.success(request, "Recipe replaced!")
-            return redirect("admin_page")
-
-        # Create new recipe
-        recipe = Recipe.objects.create(text=text)
-        cocktail.recipe = recipe
-        cocktail.save()
-
-        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-            return JsonResponse({
-                "error": False,
-                "message": "Recipe added!",
-                "recipe": recipe.text
-            })
-
-        messages.success(request, "Recipe added!")
+        text = request.POST.get("text", "").strip()
+        Recipe.objects.create(cocktail=cocktail, text=text)
         return redirect("admin_page")
 
+    return redirect("admin_page")
 
 
 
-def recipe_edit(request, cocktail_id):
-    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
-    recipe = cocktail.recipe
+
+def edit_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if request.method == "POST":
-        recipe.text = request.POST.get("text")
+        recipe.text = request.POST.get("text", "").strip()
         recipe.save()
-
-        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-            return JsonResponse({
-                "error": False,
-                "message": "Recipe updated!",
-                "recipe": recipe.text
-            })
-
-        messages.success(request, "Recipe updated!")
         return redirect("admin_page")
 
+    return redirect("admin_page")
 
 
 
-def recipe_delete(request, cocktail_id):
-    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
-    recipe = cocktail.recipe
+def delete_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if request.method == "POST":
         recipe.delete()
-        cocktail.recipe = None
-        cocktail.save()
-
-        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-            return JsonResponse({
-                "error": False,
-                "message": "Recipe deleted.",
-                "recipe": None
-            })
-
-        messages.success(request, "Recipe deleted!")
         return redirect("admin_page")
 
-
-
-
+    return redirect("admin_page")

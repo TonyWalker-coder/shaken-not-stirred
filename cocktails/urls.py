@@ -19,8 +19,9 @@ urlpatterns = [
 
 
     # RECIPES
-    path('recipe/add/<int:cocktail_id>/', views.recipe_add, name='recipe_add'),
-    path('recipe/edit/<int:cocktail_id>/', views.recipe_edit, name='recipe_edit'),
-    path('recipe/delete/<int:cocktail_id>/', views.recipe_delete, name='recipe_delete'),
+    path("recipes/modal/", views.recipes_modal, name="recipes-modal"),
+    path("recipes/add/<int:cocktail_id>/", views.add_recipe, name="add-recipe"),
+    path("recipes/edit/<int:recipe_id>/", views.edit_recipe, name="edit-recipe"),
+    path("recipes/delete/<int:recipe_id>/", views.delete_recipe, name="delete-recipe"),
 
 ]

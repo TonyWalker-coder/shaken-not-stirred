@@ -81,40 +81,113 @@ function closeEditIngredientModal() {
   closeModal("editIngredientModal");
 }
 
+/* ================================
+   RECIPE MODAL — OPEN / CLOSE
+================================ */
+
 function openRecipesModal() {
-  openModal("recipesModal");
+    document.getElementById("recipesModal").classList.remove("hidden");
 }
 
 function closeRecipesModal() {
-  closeModal("recipesModal");
+    document.getElementById("recipesModal").classList.add("hidden");
 }
 
-function openEditRecipeModal(id, text) {
-  document.getElementById("editRecipeText").value = text;
-  document.getElementById("editRecipeForm").action = `/recipe/edit/${id}/`;
-  openModal("editRecipeModal");
+/* ================================
+   EDIT RECIPE
+================================ */
+
+function openEditRecipeModal(recipeId, text) {
+    const modal = document.getElementById("editRecipeModal");
+    const form = document.getElementById("editRecipeForm");
+    const textarea = document.getElementById("editRecipeText");
+
+    textarea.value = text;
+    form.action = `/recipes/edit/${recipeId}/`;
+
+    modal.classList.remove("hidden");
 }
 
-function closeEditRecipeModal() {
-  closeModal("editRecipeModal");
+function closeEditRecipeModal(event) {
+    event?.stopPropagation();
+    document.getElementById("editRecipeModal").classList.add("hidden");
 }
 
-function openAddRecipeModal(id) {
-  document.getElementById("addRecipeForm").action = `/recipe/add/${id}/`;
-  openModal("addRecipeModal");
+
+/* ================================
+   ADD RECIPE
+================================ */
+
+function openAddRecipeModal(cocktailId) {
+    const modal = document.getElementById("addRecipeModal");
+    const form = document.getElementById("addRecipeForm");
+
+    form.action = `/recipes/add/${cocktailId}/`;
+    modal.classList.remove("hidden");
 }
 
-function closeAddRecipeModal() {
-  closeModal("addRecipeModal");
+function closeAddRecipeModal(event) {
+    event?.stopPropagation();
+    document.getElementById("addRecipeModal").classList.add("hidden");
 }
 
-function openDeleteRecipeModal(id) {
-  document.getElementById("deleteRecipeForm").action = `/recipe/delete/${id}/`;
-  openModal("deleteRecipeModal");
+/* ================================
+   DELETE RECIPE
+================================ */
+
+function openDeleteRecipeModal(recipeId) {
+    const modal = document.getElementById("deleteRecipeModal");
+    const form = document.getElementById("deleteRecipeForm");
+
+    form.action = `/recipes/delete/${recipeId}/`;
+    modal.classList.remove("hidden");
 }
 
-function closeDeleteRecipeModal() {
-  closeModal("deleteRecipeModal");
+function closeDeleteRecipeModal(event) {
+    event?.stopPropagation();
+    document.getElementById("deleteRecipeModal").classList.add("hidden");
+}
+
+/* ================================
+   AUTO-CLOSE CHILD MODALS + REFRESH
+================================ */
+
+document.getElementById("addRecipeForm").addEventListener("submit", function () {
+    
+    refreshRecipesModal();
+    closeAddRecipeModal();
+});
+
+document.getElementById("editRecipeForm").addEventListener("submit", function () {
+    
+    refreshRecipesModal();
+    closeEditRecipeModal();
+});
+
+document.getElementById("deleteRecipeForm").addEventListener("submit", function () {
+    
+    refreshRecipesModal();
+    closeDeleteRecipeModal();
+});
+
+
+/* ================================
+   REFRESH THE RECIPE MODAL CONTENT
+================================ */
+
+function refreshRecipesModal() {
+    fetch("/recipes/modal/")
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+
+            const newList = doc.querySelector(".history-list");
+            const oldList = document.querySelector("#recipesModal .history-list");
+
+            oldList.innerHTML = newList.innerHTML;
+        })
+        .catch(err => console.error("Refresh failed:", err));
 }
 
 function openHistoryModal() {

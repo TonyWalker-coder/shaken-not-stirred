@@ -239,36 +239,31 @@
         <span class="close" onclick="closeRecipesModal()">&times;</span>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
-
         <h2>Cocktail Recipes</h2>
 
         <div class="history-list">
-          <!-- SAME wrapper as history -->
-
           {% for cocktail in cocktails %}
           <div class="history-item">
-            <!-- SAME item style -->
 
             <span class="history-name">{{ cocktail.name }}</span>
-            <!-- SAME name style -->
 
             <div class="history-actions">
-              <!-- SAME actions style -->
+              {% with r=cocktail.recipe %}
+              {% if r %}
+              <!-- Recipe exists -->
+              <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon">
 
-              {% if cocktail.recipe %}
-              <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon" />
-
-              <a href="#" class="edit-btn" onclick='openEditRecipeModal({{ cocktail.id }},
-                           "{{ cocktail.recipe.text|escapejs }}")'>
+              <a href="#" class="edit-btn" onclick='openEditRecipeModal({{ r.id }}, "{{ r.text|escapejs }}")'>
                 Edit
               </a>
 
-              <a href="#" class="delete-btn" onclick="openDeleteRecipeModal({{ cocktail.id }})">
+              <a href="#" class="delete-btn" onclick="openDeleteRecipeModal({{ r.id }})">
                 Delete
               </a>
 
               {% else %}
-              <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" />
+              <!-- No recipe -->
+              <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon">
 
               <a href="#" class="add-btn" onclick="openAddRecipeModal({{ cocktail.id }})">
                 Add
@@ -278,24 +273,28 @@
                 Delete
               </a>
               {% endif %}
+              {% endwith %}
             </div>
+
           </div>
           {% empty %}
           <p>No cocktails found.</p>
           {% endfor %}
         </div>
+
       </div>
     </div>
+
 
     <!-- EDIT RECIPE MODAL -->
     <div id="editRecipeModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeEditRecipeModal()">&times;</span>
+        <span class="close" onclick="closeEditRecipeModal(event)">&times;</span>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
-
         <h2>Edit Recipe</h2>
 
+        <!-- IMPORTANT: action MUST stay empty -->
         <form method="POST" action="" id="editRecipeForm">
           {% csrf_token %}
           <textarea name="text" id="editRecipeText" rows="6" required></textarea>
@@ -304,13 +303,13 @@
       </div>
     </div>
 
+
     <!-- ADD RECIPE MODAL -->
     <div id="addRecipeModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeAddRecipeModal()">&times;</span>
+        <span class="close" onclick="closeAddRecipeModal(event)">&times;</span>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
-
         <h2>Add Recipe</h2>
 
         <form method="POST" action="" id="addRecipeForm">
@@ -321,10 +320,11 @@
       </div>
     </div>
 
+
     <!-- DELETE RECIPE MODAL -->
     <div id="deleteRecipeModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeDeleteRecipeModal()">&times;</span>
+        <span class="close" onclick="closeDeleteRecipeModal(event)">&times;</span>
 
         <h2>Delete Recipe?</h2>
         <p>Are you sure you want to delete this recipe?</p>
@@ -335,6 +335,8 @@
         </form>
       </div>
     </div>
+
+
   </div>
 </body>
 

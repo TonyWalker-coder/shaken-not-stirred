@@ -532,31 +532,6 @@
   }
 },
 {
-  "model": "cocktails.history",
-  "pk": 6,
-  "fields": {
-    "text": "The Bahama Mama is a tropical rum-based cocktail originating from the Bahamas around the 1950s-1960s, often linked to calypso dancer Dottie Lee Anderson or bartender Oswald Greenslade. It became a staple tourist drink featuring rum, coffee liqueur, coconut liqueur, and fruit juices, often served in the British Colonial Hotel and popular in Miami Beach. \r\n\r\nKey Historical Details\r\nThe Namesake: Many sources believe the drink was named after Dottie Lee Anderson, a Caribbean calypso singer and dancer known as \"Bahama Mama\" who performed in the 1930s-1950s.\r\nThe Creator: Bahamian bartender Oswald Greenslade claimed in his book, One More Cocktail, to have invented the drink in 1963 at the Pink Elephant Night Club, naming it after dancer Maureen Duvalier.\r\nEarly Mentions: The drink appeared in Trader Vic's in 1961 and on Nassau menus in 1960.\r\nIngredients: While recipes vary, it typically combines dark rum, coconut rum, coffee liqueur, pineapple juice, and lemon juice.\r\n\r\nVariations in Origin Story\r\nCultural Term: The term \"Bahama Mama\" was already in the cultural lexicon as early as 1932 due to a song, melmagazine.com reports.\r\nThe Cocktail Name: While Greenslade claims 1963, some sources suggest the cocktail's popularity grew earlier in the 1950s, making the specific inventor debated, says r/Tiki and Daily Meal.\r\nOswald Greenslade's Recipe: According to Difford's Guide, his original, or perhaps a later version, did not include the coffee liqueur often used today, Got Rum? Magazine notes. \r\nIt remains a staple of tropical, \"tiki\" style cocktails, often grouped with other rum-heavy drinks like the Goombay Smash."
-  }
-},
-{
-  "model": "cocktails.cocktail",
-  "pk": 11,
-  "fields": {
-    "name": "Bahama Mama",
-    "image_url": "/static/cocktails/buttons/bahama-mom.jpg",
-    "recipe": 5,
-    "history": 6,
-    "ingredients": [
-      23,
-      24,
-      25,
-      26,
-      27,
-      28
-    ]
-  }
-},
-{
   "model": "cocktails.cocktail",
   "pk": 12,
   "fields": {
