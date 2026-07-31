@@ -15,7 +15,7 @@
           {{ ing.name }}{% if not forloop.last %}, {% endif %}
         {% endfor %}"
         data-recipe="{{ cocktail.recipe.text }}"
-        data-history="{{ cocktail.history.text }}"
+        data-history="{{ cocktail.history_obj.text }}"
         data-image="{{ cocktail.image_url }}">
         <img class="cocktail-image" src="{{ cocktail.image_url }}" alt="{{ cocktail.name }}" onerror="this.src='{% static 'cocktails/buttons/no-image.jpg' %}'" />
 
