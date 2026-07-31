@@ -407,12 +407,19 @@ async function deleteIngredient(event, id) {
   const data = await response.json();
 
   if (data.error) {
+
+    // ⭐ CLOSE THE INGREDIENTS MODAL
+    document.getElementById("ingredientsModal").classList.add("hidden");
+
+    // ⭐ SHOW THE ERROR MESSAGE
     showMessage(data.message, "error");
     return;
   }
 
   refreshIngredientList(data.ingredients);
 }
+
+
 
 setTimeout(() => {
   document.querySelectorAll(".message").forEach((msg) => msg.remove());
