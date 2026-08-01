@@ -1,3 +1,7 @@
+/* ============================================================
+   UNIVERSAL MODAL ENGINE — OPTION A (NO INLINE JS)
+   ============================================================ */
+
 function openModal(id) {
   const modal = document.getElementById(id);
   if (modal) modal.classList.remove("hidden");
@@ -8,35 +12,59 @@ function closeModal(id) {
   if (modal) modal.classList.add("hidden");
 }
 
-document.addEventListener("click", function (e) {
-  document.querySelectorAll(".modal:not(.hidden)").forEach((modal) => {
-    if (e.target === modal) modal.classList.add("hidden");
-  });
+/* Backdrop click closes modal */
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("modal")) {
+    e.target.classList.add("hidden");
+  }
 });
 
-document.querySelectorAll(".modal-content").forEach((box) => {
-  box.addEventListener("click", (e) => e.stopPropagation());
+/* Prevent closing when clicking inside modal-content */
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".modal-content")) {
+    e.stopPropagation();
+  }
 });
+
+/* Delegated modal open/close buttons */
+document.addEventListener("click", (e) => {
+  const openTarget = e.target.closest("[data-open]");
+  const closeTarget = e.target.closest("[data-close]");
+
+  if (openTarget) {
+    const id = openTarget.dataset.open;
+    openModal(id);
+  }
+
+  if (closeTarget) {
+    const id = closeTarget.dataset.close;
+    closeModal(id);
+  }
+});
+
+/* ============================================================
+   MESSAGE SYSTEM
+   ============================================================ */
 
 function getMessageContainer() {
   return (
     document.querySelector(".messages") ||
     (() => {
-      const newContainer = document.createElement("div");
-      newContainer.className = "messages";
-      document.body.prepend(newContainer);
-      return newContainer;
+      const div = document.createElement("div");
+      div.className = "messages";
+      document.body.prepend(div);
+      return div;
     })()
   );
 }
 
 function showMessage(text, type = "error") {
   const container = getMessageContainer();
-  const box = document.createElement("p");
-  box.className = `message ${type}`;
-  box.textContent = text;
-  container.appendChild(box);
-  setTimeout(() => box.remove(), 3000);
+  const msg = document.createElement("p");
+  msg.className = `message ${type}`;
+  msg.textContent = text;
+  container.appendChild(msg);
+  setTimeout(() => msg.remove(), 3000);
 }
 
 function removeScopedMessages(keyword) {
@@ -47,261 +75,9 @@ function removeScopedMessages(keyword) {
   });
 }
 
-function noHistoryTrap() {
-  closeHistoryModal();
-  showMessage("This cocktail has no history yet.", "error");
-}
-
-function noRecipeTrap() {
-  closeRecipesModal();
-  showMessage("This cocktail has no recipe yet.", "error");
-}
-
-function ingredientMessage(text) {
-  closeIngredientsModal();
-  showMessage(text, "error");
-}
-
-function openIngredientsModal() {
-  removeScopedMessages("ingredient");
-  openModal("ingredientsModal");
-}
-
-function closeIngredientsModal() {
-  closeModal("ingredientsModal");
-}
-
-function openEditIngredientModal(id, name) {
-  document.getElementById("editIngredientName").value = name;
-  document.getElementById("editIngredientForm").action = `/ingredient/edit/${id}/`;
-  openModal("editIngredientModal");
-}
-
-function closeEditIngredientModal() {
-  closeModal("editIngredientModal");
-}
-
-/* ================================
-   RECIPE MODAL — OPEN / CLOSE
-================================ */
-
-function openRecipesModal() {
-    document.getElementById("recipesModal").classList.remove("hidden");
-}
-
-function closeRecipesModal() {
-    document.getElementById("recipesModal").classList.add("hidden");
-}
-
-/* ================================
-   EDIT RECIPE
-================================ */
-
-function openEditRecipeModal(recipeId, text) {
-    const modal = document.getElementById("editRecipeModal");
-    const form = document.getElementById("editRecipeForm");
-    const textarea = document.getElementById("editRecipeText");
-
-    textarea.value = text;
-    form.action = `/recipes/edit/${recipeId}/`;
-
-    modal.classList.remove("hidden");
-}
-
-function closeEditRecipeModal(event) {
-    event?.stopPropagation();
-    document.getElementById("editRecipeModal").classList.add("hidden");
-}
-
-
-/* ================================
-   ADD RECIPE
-================================ */
-
-function openAddRecipeModal(cocktailId) {
-    const modal = document.getElementById("addRecipeModal");
-    const form = document.getElementById("addRecipeForm");
-
-    form.action = `/recipes/add/${cocktailId}/`;
-    modal.classList.remove("hidden");
-}
-
-function closeAddRecipeModal(event) {
-    event?.stopPropagation();
-    document.getElementById("addRecipeModal").classList.add("hidden");
-}
-
-/* ================================
-   DELETE RECIPE
-================================ */
-
-function openDeleteRecipeModal(recipeId) {
-    const modal = document.getElementById("deleteRecipeModal");
-    const form = document.getElementById("deleteRecipeForm");
-
-    form.action = `/recipes/delete/${recipeId}/`;
-    modal.classList.remove("hidden");
-}
-
-function closeDeleteRecipeModal(event) {
-    event?.stopPropagation();
-    document.getElementById("deleteRecipeModal").classList.add("hidden");
-}
-
-/* ================================
-   AUTO-CLOSE CHILD MODALS + REFRESH
-================================ */
-
-document.getElementById("addRecipeForm").addEventListener("submit", function () {
-    
-    refreshRecipesModal();
-    closeAddRecipeModal();
-});
-
-document.getElementById("editRecipeForm").addEventListener("submit", function () {
-    
-    refreshRecipesModal();
-    closeEditRecipeModal();
-});
-
-document.getElementById("deleteRecipeForm").addEventListener("submit", function () {
-    
-    refreshRecipesModal();
-    closeDeleteRecipeModal();
-});
-
-
-/* ================================
-   REFRESH THE RECIPE MODAL CONTENT
-================================ */
-
-function refreshRecipesModal() {
-    fetch("/recipes/modal/")
-        .then(response => response.text())
-        .then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-
-            const newList = doc.querySelector(".history-list");
-            const oldList = document.querySelector("#recipesModal .history-list");
-
-            oldList.innerHTML = newList.innerHTML;
-        })
-        .catch(err => console.error("Refresh failed:", err));
-}
-
-function openHistoryModal() {
-  openModal("historyModal");
-}
-
-function closeHistoryModal() {
-  closeModal("historyModal");
-}
-
-function openEditHistoryModal(historyId, text) {
-  document.getElementById("editHistoryForm").action = `/history/edit/${historyId}/`;
-  document.getElementById("editHistoryText").value = text;
-  openModal("editHistoryModal");
-}
-
-function closeEditHistoryModal(e) {
-  if (e) e.stopPropagation();
-  closeModal("editHistoryModal");
-}
-
-function openAddHistoryModal(cocktailId) {
-  document.getElementById("addHistoryForm").action = `/history/add/${cocktailId}/`;
-  openModal("addHistoryModal");
-}
-
-function closeAddHistoryModal(e) {
-  if (e) e.stopPropagation();
-  closeModal("addHistoryModal");
-}
-
-function openDeleteHistoryModal(historyId) {
-  document.getElementById("deleteHistoryForm").action = `/history/delete/${historyId}/`;
-  openModal("deleteHistoryModal");
-}
-
-function closeDeleteHistoryModal(e) {
-  if (e) e.stopPropagation();
-  closeModal("deleteHistoryModal");
-}
-
-function ajaxHistorySubmit(formId) {
-  const oldForm = document.getElementById(formId);
-  if (!oldForm) return;
-
-  const form = oldForm.cloneNode(true);
-  oldForm.parentNode.replaceChild(form, oldForm);
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const url = form.action;
-    const formData = new FormData(form);
-
-    fetch(url, {
-      method: "POST",
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          showMessage(data.message, "error");
-          return;
-        }
-
-        refreshHistoryList();
-
-        if (formId === "editHistoryForm") closeEditHistoryModal();
-        if (formId === "addHistoryForm") closeAddHistoryModal();
-        if (formId === "deleteHistoryForm") closeDeleteHistoryModal();
-      });
-  });
-}
-
-ajaxHistorySubmit("addHistoryForm");
-ajaxHistorySubmit("editHistoryForm");
-ajaxHistorySubmit("deleteHistoryForm");
-
-function refreshHistoryList() {
-  fetch("/history/list/json/")
-    .then((res) => res.json())
-    .then((data) => {
-      const container = document.querySelector(".history-list");
-      if (!container) return;
-
-      container.innerHTML = "";
-
-      data.cocktails.forEach((c) => {
-        container.innerHTML += `
-          <div class="history-item">
-            <span class="history-name">${c.name}</span>
-            <div class="history-actions">
-              ${
-                c.history
-                  ? `
-                <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
-                <a href="#" class="edit-btn"
-                   onclick="openEditHistoryModal(${c.history_id}, '${c.history.replace(/'/g, "\\'")}')">Edit</a>
-                <a href="#" class="delete-btn"
-                   onclick="openDeleteHistoryModal(${c.history_id})">Delete</a>
-              `
-                  : `
-                <img src="/static/cocktails/icons/missing.png" class="history-icon">
-                <a href="#" class="add-btn"
-                   onclick="openAddHistoryModal(${c.id})">Add</a>
-                <a href="#" class="delete-btn" onclick="noHistoryTrap()">Delete</a>
-              `
-              }
-            </div>
-          </div>
-        `;
-      });
-    });
-}
+/* ============================================================
+   INGREDIENTS
+   ============================================================ */
 
 function refreshIngredientList(ingredients) {
   const list = document.querySelector(".modal-list");
@@ -318,15 +94,18 @@ function refreshIngredientList(ingredients) {
       <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
         <img src="/static/cocktails/icons/${ingredient.used ? "ingredient-ok.png" : "missing.png"}"
              class="ingredient-status-icon">
-        <a href="#" class="edit-btn"
-           onclick="openEditIngredientModal(${ingredient.id}, '${ingredient.name.replace(/'/g, "\\'")}')">
+
+        <button class="edit-btn"
+                data-open="editIngredientModal"
+                data-id="${ingredient.id}"
+                data-name="${ingredient.name.replace(/"/g, "&quot;")}">
           Edit
-        </a>
-        <a href="/ingredient/delete/${ingredient.id}/"
-           class="delete-btn"
-           onclick="deleteIngredient(event, ${ingredient.id})">
+        </button>
+
+        <button class="delete-btn"
+                data-delete-ingredient="${ingredient.id}">
           Delete
-        </a>
+        </button>
       </div>
     `;
 
@@ -334,67 +113,83 @@ function refreshIngredientList(ingredients) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const addForm = document.querySelector("#ingredientsModal form");
-  if (addForm) {
-    addForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(addForm);
+/* Ingredient modal population */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='editIngredientModal']");
+  if (!btn) return;
 
-      const response = await fetch(addForm.action, {
-        method: "POST",
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-        body: formData,
-      });
+  const id = btn.dataset.id;
+  const name = btn.dataset.name;
 
-      const data = await response.json();
-
-      if (data.error) {
-        showMessage(data.message, "error");
-        closeIngredientsModal();
-        return;
-      }
-
-      refreshIngredientList(data.ingredients);
-      addForm.reset();
-    });
-  }
-
-  const editForm = document.getElementById("editIngredientForm");
-  if (editForm) {
-    editForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(editForm);
-
-      const response = await fetch(editForm.action, {
-        method: "POST",
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (data.error) {
-        showMessage(data.message, "error");
-        closeEditIngredientModal();
-        return;
-      }
-
-      refreshIngredientList(data.ingredients);
-      closeEditIngredientModal();
-    });
-  }
+  document.getElementById("editIngredientName").value = name;
+  document.getElementById("editIngredientForm").action = `/ingredient/edit/${id}/`;
 });
 
+/* Ingredient add form */
+document.addEventListener("DOMContentLoaded", () => {
+  const addForm = document.querySelector("#ingredientsModal form");
+  if (!addForm) return;
+
+  addForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(addForm);
+
+    const res = await fetch(addForm.action, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      showMessage(data.message, "error");
+      closeModal("ingredientsModal");
+      return;
+    }
+
+    refreshIngredientList(data.ingredients);
+    addForm.reset();
+  });
+});
+
+/* Ingredient edit form */
+document.getElementById("editIngredientForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+
+  const res = await fetch(form.action, {
+    method: "POST",
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+    body: formData,
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    showMessage(data.message, "error");
+    closeModal("editIngredientModal");
+    return;
+  }
+
+  refreshIngredientList(data.ingredients);
+  closeModal("editIngredientModal");
+});
+
+/* Ingredient delete */
 function getCSRFToken() {
   const token = document.querySelector("[name=csrfmiddlewaretoken]");
   return token ? token.value : "";
 }
 
-async function deleteIngredient(event, id) {
-  event.preventDefault();
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-delete-ingredient]");
+  if (!btn) return;
 
-  const response = await fetch(`/ingredient/delete/${id}/`, {
+  const id = btn.dataset.deleteIngredient;
+
+  const res = await fetch(`/ingredient/delete/${id}/`, {
     method: "POST",
     headers: {
       "X-Requested-With": "XMLHttpRequest",
@@ -404,22 +199,240 @@ async function deleteIngredient(event, id) {
     body: JSON.stringify({}),
   });
 
-  const data = await response.json();
+  const data = await res.json();
 
   if (data.error) {
-
-    // ⭐ CLOSE THE INGREDIENTS MODAL
-    document.getElementById("ingredientsModal").classList.add("hidden");
-
-    // ⭐ SHOW THE ERROR MESSAGE
+    closeModal("ingredientsModal");
     showMessage(data.message, "error");
     return;
   }
 
   refreshIngredientList(data.ingredients);
+});
+
+/* ============================================================
+   HISTORY (Unified)
+   ============================================================ */
+
+function refreshHistoryList() {
+  fetch("/history/list/json/")
+    .then((res) => res.json())
+    .then((data) => {
+      const container = document.querySelector("#historyModal .history-list");
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      data.cocktails.forEach((c) => {
+        container.innerHTML += `
+          <div class="history-item">
+            <span class="history-name">${c.name}</span>
+            <div class="history-actions">
+
+              ${
+                c.history
+                  ? `
+              <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
+
+              <button class="edit-btn"
+                      data-open="editHistoryModal"
+                      data-id="${c.history_id}"
+                      data-text="${c.history.replace(/"/g, "&quot;")}">
+                Edit
+              </button>
+
+              <button class="delete-btn"
+                      data-open="deleteHistoryModal"
+                      data-id="${c.history_id}">
+                Delete
+              </button>
+              `
+                  : `
+              <img src="/static/cocktails/icons/missing.png" class="history-icon">
+
+              <button class="add-btn"
+                      data-open="addHistoryModal"
+                      data-id="${c.id}">
+                Add
+              </button>
+
+              <button class="delete-btn"
+                      data-open="noHistoryTrap">
+                Delete
+              </button>
+              `
+              }
+
+            </div>
+          </div>
+        `;
+      });
+    });
+}
+
+/* Populate edit history modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='editHistoryModal']");
+  if (!btn) return;
+
+  document.getElementById("editHistoryForm").action = `/history/edit/${btn.dataset.id}/`;
+  document.getElementById("editHistoryText").value = btn.dataset.text;
+});
+
+/* Populate add history modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='addHistoryModal']");
+  if (!btn) return;
+
+  document.getElementById("addHistoryForm").action = `/history/add/${btn.dataset.id}/`;
+});
+
+/* Populate delete history modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='deleteHistoryModal']");
+  if (!btn) return;
+
+  document.getElementById("deleteHistoryForm").action = `/history/delete/${btn.dataset.id}/`;
+});
+
+/* History AJAX submit */
+["addHistoryForm", "editHistoryForm", "deleteHistoryForm"].forEach((id) => {
+  const form = document.getElementById(id);
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          showMessage(data.message, "error");
+          return;
+        }
+
+        refreshHistoryList();
+        closeModal(form.closest(".modal").id);
+      });
+  });
+});
+
+/* ============================================================
+   RECIPES (Unified)
+   ============================================================ */
+
+function refreshRecipesModal() {
+  fetch("/recipes/list/json/")
+    .then(res => res.json())
+    .then(data => {
+      const container = document.querySelector("#recipesModal .history-list");
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      data.cocktails.forEach(c => {
+        container.innerHTML += `
+          <div class="history-item">
+            <span class="history-name">${c.name}</span>
+            <div class="history-actions">
+
+              ${
+                c.recipe
+                  ? `
+              <img src="/static/cocktails/icons/recipe-ok.png" class="history-icon">
+
+              <button class="edit-btn"
+                      data-open="editRecipeModal"
+                      data-id="${c.recipe_id}"
+                      data-text="${c.recipe.replace(/"/g, "&quot;")}">
+                Edit
+              </button>
+
+              <button class="delete-btn"
+                      data-open="deleteRecipeModal"
+                      data-id="${c.recipe_id}">
+                Delete
+              </button>
+              `
+                  : `
+              <img src="/static/cocktails/icons/missing.png" class="history-icon">
+
+              <button class="add-btn"
+                      data-open="addRecipeModal"
+                      data-id="${c.id}">
+                Add
+              </button>
+
+              <button class="delete-btn"
+                      data-open="noRecipeTrap">
+                Delete
+              </button>
+              `
+              }
+
+            </div>
+          </div>
+        `;
+      });
+    });
 }
 
 
+/* Populate edit recipe modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='editRecipeModal']");
+  if (!btn) return;
+
+  document.getElementById("editRecipeForm").action = `/recipes/edit/${btn.dataset.id}/`;
+  document.getElementById("editRecipeText").value = btn.dataset.text;
+});
+
+/* Populate add recipe modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='addRecipeModal']");
+  if (!btn) return;
+
+  document.getElementById("addRecipeForm").action = `/recipes/add/${btn.dataset.id}/`;
+});
+
+/* Populate delete recipe modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='deleteRecipeModal']");
+  if (!btn) return;
+
+  document.getElementById("deleteRecipeForm").action = `/recipes/delete/${btn.dataset.id}/`;
+});
+
+/* Recipe AJAX submit */
+["addRecipeForm", "editRecipeForm", "deleteRecipeForm"].forEach((id) => {
+  const form = document.getElementById(id);
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        closeModal(form.closest(".modal").id);
+        refreshRecipesModal();
+      });
+  });
+});
+
+/* ============================================================
+   AUTO-CLEAR INITIAL MESSAGES
+   ============================================================ */
 
 setTimeout(() => {
   document.querySelectorAll(".message").forEach((msg) => msg.remove());

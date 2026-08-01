@@ -19,9 +19,12 @@ urlpatterns = [
 
 
     # RECIPES
-    path("recipes/modal/", views.recipes_modal, name="recipes-modal"),
     path("recipes/add/<int:cocktail_id>/", views.add_recipe, name="add-recipe"),
     path("recipes/edit/<int:recipe_id>/", views.edit_recipe, name="edit-recipe"),
     path("recipes/delete/<int:recipe_id>/", views.delete_recipe, name="delete-recipe"),
+
+    # JSON refresh endpoint
+    path("recipes/list/json/", views.recipes_list_json, name="recipes_list_json"),
+
 
 ]

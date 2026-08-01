@@ -224,45 +224,79 @@ def history_list_json(request):
 
     return JsonResponse({"cocktails": data})
 
+# ============================================================
+# RECIPES — FULL AJAX / JSON REWRITE (matches Ingredients + History)
+# ============================================================
 
+def recipes_list_json(request):
+    """Return all cocktails + their recipe info as JSON (for modal refresh)."""
+    cocktails = Cocktail.objects.all().order_by(Lower("name"))
+    data = []
 
+    for c in cocktails:
+        recipe_obj = getattr(c, "recipe_obj", None)
 
+        data.append({
+            "id": c.id,
+            "name": c.name,
+            "recipe": recipe_obj.text if recipe_obj else None,
+            "recipe_id": recipe_obj.id if recipe_obj else None
+        })
 
-def recipes_modal(request):
-    cocktails = Cocktail.objects.all()
-    return render(request, "cocktails/recipes_modal.html", {"cocktails": cocktails})
+    return JsonResponse({"cocktails": data})
 
 
 def add_recipe(request, cocktail_id):
+    """Add or replace a recipe — AJAX aware."""
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
     if request.method == "POST":
         text = request.POST.get("text", "").strip()
-        Recipe.objects.create(cocktail=cocktail, text=text)
+        recipe = getattr(cocktail, "recipe_obj", None)
+
+        if recipe:
+            recipe.text = text
+            recipe.save()
+        else:
+            Recipe.objects.create(cocktail=cocktail, text=text)
+
+        # AJAX response
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({"error": False})
+
         return redirect("admin_page")
 
     return redirect("admin_page")
 
 
-
-
 def edit_recipe(request, recipe_id):
+    """Edit an existing recipe — AJAX aware."""
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if request.method == "POST":
         recipe.text = request.POST.get("text", "").strip()
         recipe.save()
+
+        # AJAX response
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({"error": False})
+
         return redirect("admin_page")
 
     return redirect("admin_page")
 
 
-
 def delete_recipe(request, recipe_id):
+    """Delete a recipe — AJAX aware."""
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if request.method == "POST":
         recipe.delete()
+
+        # AJAX response
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({"error": False})
+
         return redirect("admin_page")
 
     return redirect("admin_page")

@@ -16,48 +16,54 @@
       <h1 class="title"><a href="/">Shaken!Stirred</a></h1>
     </div>
     <div class="admin-grid">
-      <div class="admin-card" onclick="openIngredientsModal()">
+
+      <!-- INGREDIENTS -->
+      <div class="admin-card" data-open="ingredientsModal">
         <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients" />
       </div>
 
+      <!-- IMAGES (not wired yet — will add later) -->
       <div class="admin-card">
         <img src="{% static 'cocktails/buttons/images.png' %}" alt="Images" />
       </div>
 
-      <div class="admin-card" onclick="openHistoryModal()">
+      <!-- HISTORY -->
+      <div class="admin-card" data-open="historyModal">
         <img src="{% static 'cocktails/buttons/history.png' %}" alt="History" />
       </div>
 
-      <div class="admin-card" onclick="openRecipesModal()">
+      <!-- RECIPES -->
+      <div class="admin-card" data-open="recipesModal">
         <img src="{% static 'cocktails/buttons/recipes.png' %}" alt="Recipes" />
       </div>
 
+      <!-- CUSTOMISE (not wired yet) -->
       <div class="admin-card">
         <img src="{% static 'cocktails/buttons/customise.png' %}" alt="Customise" />
       </div>
 
+      <!-- ADD (not wired yet) -->
       <div class="admin-card">
         <img src="{% static 'cocktails/buttons/add.png' %}" alt="Add" />
       </div>
 
+      <!-- DELETE (not wired yet) -->
       <div class="admin-card">
         <img src="{% static 'cocktails/buttons/delete.png' %}" alt="Delete" />
       </div>
+
     </div>
+
 
     <!-- INGREDIENTS MODAL -->
     <div id="ingredientsModal" class="modal hidden">
       <div class="modal-content">
-        <!-- Close button -->
-        <span class="close" onclick="closeIngredientsModal()">&times;</span>
+        <button class="close" data-close="ingredientsModal">&times;</button>
 
-        <!-- Banner -->
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients Banner" class="modal-banner" />
-
-        <!-- Title -->
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}" class="modal-banner" />
         <h2 class="modal-title">Ingredients</h2>
 
-        <!-- Add Ingredient Block -->
+        <!-- Add Ingredient -->
         <div class="modal-add-block">
           <h3>Add Ingredient</h3>
           <form method="POST" action="{% url 'add_ingredient' %}">
@@ -68,54 +74,41 @@
         </div>
 
         <!-- Ingredient List -->
-        {% with ingredients_modal=True %}
         <div class="modal-list">
           {% for ingredient in ingredients %}
           <div class="modal-item">
-            <!-- Ingredient name -->
             <span class="item-name">{{ ingredient.name }}</span>
 
-            <!-- RIGHT SIDE: buttons + icon -->
-            <div class="item-actions" style="display: flex; align-items: center; gap: 10px">
-              <!-- Status icon (matches History layout) -->
+            <div class="item-actions">
               <img
                 src="{% static ingredient.used|yesno:'cocktails/icons/ingredient-ok.png,cocktails/icons/missing.png' %}"
-                alt="Ingredient Status" class="ingredient-status-icon" />
+                class="ingredient-status-icon" />
 
-              <!-- Edit -->
-              <a href="#" class="edit-btn"
-                onclick='openEditIngredientModal({{ ingredient.id }}, "{{ ingredient.name|escapejs }}")'>
+              <button class="edit-btn" data-open="editIngredientModal" data-id="{{ ingredient.id }}"
+                data-name="{{ ingredient.name|escapejs }}">
                 Edit
-              </a>
+              </button>
 
-              <!-- Delete -->
-              <a href="{% url 'delete_ingredient' ingredient.id %}" class="delete-btn"
-                onclick="deleteIngredient(event, {{ ingredient.id }})">
+              <button class="delete-btn" data-delete-ingredient="{{ ingredient.id }}">
                 Delete
-              </a>
+              </button>
             </div>
           </div>
           {% empty %}
           <p class="empty-text">No ingredients yet.</p>
           {% endfor %}
         </div>
-        {% endwith %}
       </div>
     </div>
 
     <!-- EDIT INGREDIENT MODAL -->
     <div id="editIngredientModal" class="modal hidden">
       <div class="modal-content">
-        <!-- Close -->
-        <span class="close" onclick="closeEditIngredientModal()">&times;</span>
+        <button class="close" data-close="editIngredientModal">&times;</button>
 
-        <!-- Banner -->
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Edit Ingredient Banner" class="modal-banner" />
-
-        <!-- Title -->
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}" class="modal-banner" />
         <h2 class="modal-title">Edit Ingredient</h2>
 
-        <!-- Edit Form -->
         <form method="POST" action="" id="editIngredientForm">
           {% csrf_token %}
           <input type="text" name="name" id="editIngredientName" class="modal-input" required />
@@ -127,67 +120,57 @@
     <!-- HISTORY MODAL -->
     <div id="historyModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeHistoryModal()">&times;</span>
+        <button class="close" data-close="historyModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" />
-
         <h2>Cocktail History</h2>
 
         <div class="history-list">
           {% for cocktail in cocktails %}
           <div class="history-item">
-
             <span class="history-name">{{ cocktail.name }}</span>
 
             <div class="history-actions">
-
               {% with h=cocktail.history_obj %}
               {% if h %}
-              <!-- History exists -->
               <img src="{% static 'cocktails/icons/history-ok.png' %}" class="history-icon">
 
-              <a href="#" class="edit-btn" onclick='openEditHistoryModal({{ h.id }},
-                          "{{ h.text|escapejs }}")'>
+              <button class="edit-btn" data-open="editHistoryModal" data-id="{{ h.id }}"
+                data-text="{{ h.text|escapejs }}">
                 Edit
-              </a>
+              </button>
 
-              <a href="#" class="delete-btn" onclick="openDeleteHistoryModal({{ h.id }})">
+              <button class="delete-btn" data-open="deleteHistoryModal" data-id="{{ h.id }}">
                 Delete
-              </a>
+              </button>
 
               {% else %}
-              <!-- No history -->
               <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon">
 
-              <a href="#" class="add-btn" onclick="openAddHistoryModal({{ cocktail.id }})">
+              <button class="add-btn" data-open="addHistoryModal" data-id="{{ cocktail.id }}">
                 Add
-              </a>
+              </button>
 
-              <a href="#" class="delete-btn" onclick="noHistoryTrap()">
+              <button class="delete-btn" data-open="noHistoryTrap">
                 Delete
-              </a>
+              </button>
               {% endif %}
               {% endwith %}
-
             </div>
-
           </div>
           {% empty %}
           <p>No cocktails found.</p>
           {% endfor %}
         </div>
-
       </div>
     </div>
-
 
     <!-- EDIT HISTORY MODAL -->
     <div id="editHistoryModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeEditHistoryModal(event)">&times;</span>
+        <button class="close" data-close="editHistoryModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" />
-
         <h2>Edit History</h2>
 
         <form method="POST" action="" id="editHistoryForm">
@@ -198,14 +181,12 @@
       </div>
     </div>
 
-
     <!-- ADD HISTORY MODAL -->
     <div id="addHistoryModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeAddHistoryModal(event)">&times;</span>
+        <button class="close" data-close="addHistoryModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" />
-
         <h2>Add History</h2>
 
         <form method="POST" action="" id="addHistoryForm">
@@ -216,11 +197,10 @@
       </div>
     </div>
 
-
     <!-- DELETE HISTORY MODAL -->
     <div id="deleteHistoryModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeDeleteHistoryModal(event)">&times;</span>
+        <button class="close" data-close="deleteHistoryModal">&times;</button>
 
         <h2>Delete History?</h2>
         <p>Are you sure you want to delete this history entry?</p>
@@ -232,11 +212,10 @@
       </div>
     </div>
 
-
     <!-- RECIPES MODAL -->
     <div id="recipesModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeRecipesModal()">&times;</span>
+        <button class="close" data-close="recipesModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
         <h2>Cocktail Recipes</h2>
@@ -244,57 +223,51 @@
         <div class="history-list">
           {% for cocktail in cocktails %}
           <div class="history-item">
-
             <span class="history-name">{{ cocktail.name }}</span>
 
             <div class="history-actions">
-              {% with r=cocktail.recipe %}
+              {% with r=cocktail.recipe_obj %}
               {% if r %}
-              <!-- Recipe exists -->
               <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon">
 
-              <a href="#" class="edit-btn" onclick='openEditRecipeModal({{ r.id }}, "{{ r.text|escapejs }}")'>
+              <button class="edit-btn" data-open="editRecipeModal" data-id="{{ r.id }}"
+                data-text="{{ r.text|escapejs }}">
                 Edit
-              </a>
+              </button>
 
-              <a href="#" class="delete-btn" onclick="openDeleteRecipeModal({{ r.id }})">
+              <button class="delete-btn" data-open="deleteRecipeModal" data-id="{{ r.id }}">
                 Delete
-              </a>
+              </button>
 
               {% else %}
-              <!-- No recipe -->
               <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon">
 
-              <a href="#" class="add-btn" onclick="openAddRecipeModal({{ cocktail.id }})">
+              <button class="add-btn" data-open="addRecipeModal" data-id="{{ cocktail.id }}">
                 Add
-              </a>
+              </button>
 
-              <a href="#" class="delete-btn" onclick="noRecipeTrap()">
+              <button class="delete-btn" data-open="noRecipeTrap">
                 Delete
-              </a>
+              </button>
               {% endif %}
               {% endwith %}
             </div>
-
           </div>
           {% empty %}
           <p>No cocktails found.</p>
           {% endfor %}
         </div>
-
       </div>
     </div>
-
 
     <!-- EDIT RECIPE MODAL -->
     <div id="editRecipeModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeEditRecipeModal(event)">&times;</span>
+        <button class="close" data-close="editRecipeModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
         <h2>Edit Recipe</h2>
 
-        <!-- IMPORTANT: action MUST stay empty -->
         <form method="POST" action="" id="editRecipeForm">
           {% csrf_token %}
           <textarea name="text" id="editRecipeText" rows="6" required></textarea>
@@ -303,11 +276,10 @@
       </div>
     </div>
 
-
     <!-- ADD RECIPE MODAL -->
     <div id="addRecipeModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeAddRecipeModal(event)">&times;</span>
+        <button class="close" data-close="addRecipeModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
         <h2>Add Recipe</h2>
@@ -320,11 +292,10 @@
       </div>
     </div>
 
-
     <!-- DELETE RECIPE MODAL -->
     <div id="deleteRecipeModal" class="modal hidden">
       <div class="modal-content">
-        <span class="close" onclick="closeDeleteRecipeModal(event)">&times;</span>
+        <button class="close" data-close="deleteRecipeModal">&times;</button>
 
         <h2>Delete Recipe?</h2>
         <p>Are you sure you want to delete this recipe?</p>
@@ -335,6 +306,7 @@
         </form>
       </div>
     </div>
+
 
 
   </div>

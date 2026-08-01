@@ -14,16 +14,6 @@ class Cocktail(models.Model):
 
     ingredients = models.ManyToManyField(Ingredient, blank=True)
 
-    # Forward accessors
-    recipe = models.OneToOneField(
-        "Recipe",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        related_name="recipe_entry"
-    )
-
-
     def __str__(self):
         return self.name
 
@@ -31,12 +21,13 @@ class Cocktail(models.Model):
 class Recipe(models.Model):
     cocktail = models.OneToOneField(
         "Cocktail",
-        on_delete=models.CASCADE,
-        null=True,        # MUST be here
-        blank=True,       # MUST be here
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name="recipe_obj"
     )
     text = models.TextField()
+
 
     def __str__(self):
         return f"Recipe for {self.cocktail.name}"
