@@ -48,7 +48,7 @@
       </div>
 
       <!-- DELETE (not wired yet) -->
-      <div class="admin-card">
+      <div class="admin-card" data-open="deleteCocktailModal">
         <img src="{% static 'cocktails/buttons/delete.png' %}" alt="Delete" />
       </div>
 
@@ -402,6 +402,70 @@
       </button>
     </div>
   </div>
+
+  <!-- DELETE COCKTAIL MODAL -->
+<div id="deleteCocktailModal" class="modal hidden">
+  <div class="modal-content">
+    <button class="close" data-close="deleteCocktailModal">&times;</button>
+
+    <img src="{% static 'cocktails/buttons/delete.png' %}" class="modal-banner" />
+    <h2 class="modal-title">Delete Cocktail</h2>
+
+    <p>Select a cocktail to delete. This will remove its history, recipe, and image assignment.</p>
+
+    <div class="modal-list">
+      {% for cocktail in cocktails %}
+      <div class="modal-item">
+        <span class="item-name">{{ cocktail.name }}</span>
+
+        <div class="item-actions">
+          <button class="delete-btn"
+                  data-open="confirmDeleteCocktailModal"
+                  data-id="{{ cocktail.id }}"
+                  data-name="{{ cocktail.name|escapejs }}">
+            Delete
+          </button>
+        </div>
+      </div>
+      {% empty %}
+      <p class="empty-text">No cocktails found.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DELETE COCKTAIL MODAL -->
+<div id="confirmDeleteCocktailModal" class="modal hidden">
+  <div class="modal-content">
+
+    <button class="close" data-close="confirmDeleteCocktailModal">&times;</button>
+
+    <!-- Dino Warning Icon -->
+    <img src="{% static 'cocktails/icons/dino-warning.png' %}" 
+         class="modal-image" 
+         alt="Danger Dinosaur Icon"
+         style="width:120px; margin:0 auto; display:block;" />
+
+    <h2 style="margin-top:10px;">Delete Cocktail?</h2>
+
+    <p id="confirmDeleteCocktailText" style="font-size:1.1rem; margin-bottom:10px;">
+      Are you sure you want to delete this cocktail?
+    </p>
+
+    <p style="color:#b30000; font-weight:bold; margin-bottom:20px;">
+      ⚠ This action is permanent and cannot be undone.
+    </p>
+
+    <form method="POST" action="" id="deleteCocktailForm">
+      {% csrf_token %}
+      <button type="submit" class="delete-btn">
+        Yes, delete forever
+      </button>
+    </form>
+
+  </div>
+</div>
+
 
 
 

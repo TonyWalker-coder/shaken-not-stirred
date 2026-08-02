@@ -29,5 +29,9 @@ urlpatterns = [
     path("cocktail/add/", views.add_cocktail, name="add_cocktail"),
     path("cocktail/check-name/", views.check_cocktail_name, name="check_cocktail_name"),
 
+    path("cocktail/delete/<int:cocktail_id>/", views.delete_cocktail, name="delete_cocktail"),
+
+    path("cocktails/list/json/", views.cocktails_list_json),
+
 
 ]

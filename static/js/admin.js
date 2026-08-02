@@ -186,121 +186,6 @@ function getCSRFToken() {
   return token ? token.value : "";
 }
 
-document.addEventListener("click", async (e) => {
-  const btn = e.target.closest("[data-delete-ingredient]");
-  if (!btn) return;
-
-  const id = btn.dataset.deleteIngredient;
-
-  const res = await fetch(`/ingredient/delete/${id}/`, {
-    method: "POST",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      "Content-Type": "application/json",
-      "X-CSRFToken": getCSRFToken(),
-    },
-    body: JSON.stringify({}),
-  });
-
-  const data = await res.json();
-
-  if (data.error) {
-    closeModal("ingredientsModal");
-    showMessage(data.message, "error");
-    return;
-  }
-
-  refreshIngredientList(data.ingredients);
-});
-
-/* ============================================================
-   HISTORY (Unified)
-   ============================================================ */
-
-function refreshHistoryList() {
-  fetch("/history/list/json/")
-    .then((res) => res.json())
-    .then((data) => {
-      const container = document.querySelector("#historyModal .history-list");
-      if (!container) return;
-
-      container.innerHTML = "";
-
-      data.cocktails.forEach((c) => {
-        container.innerHTML += `
-          <div class="history-item">
-            <span class="history-name">${c.name}</span>
-            <div class="history-actions">
-
-              ${
-                c.history
-                  ? `
-              <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
-
-              <button class="edit-btn"
-                      data-open="editHistoryModal"
-                      data-id="${c.history_id}"
-                      data-text="${c.history.replace(/"/g, "&quot;")}">
-                Edit
-              </button>
-
-              <button class="delete-btn"
-                      data-open="deleteHistoryModal"
-                      data-id="${c.history_id}">
-                Delete
-              </button>
-              `
-                  : `
-              <img src="/static/cocktails/icons/missing.png" class="history-icon">
-
-              <button class="add-btn"
-                      data-open="addHistoryModal"
-                      data-id="${c.id}">
-                Add
-              </button>
-
-              <button class="delete-btn"
-                      data-open="noHistoryTrap">
-                Delete
-              </button>
-              `
-              }
-
-            </div>
-          </div>
-        `;
-      });
-    });
-}
-
-/* Populate edit history modal */
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-open='editHistoryModal']");
-  if (!btn) return;
-
-  document.getElementById("editHistoryForm").action =
-    `/history/edit/${btn.dataset.id}/`;
-  document.getElementById("editHistoryText").value = btn.dataset.text;
-});
-
-/* Populate add history modal */
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-open='addHistoryModal']");
-  if (!btn) return;
-
-  document.getElementById("addHistoryForm").action =
-    `/history/add/${btn.dataset.id}/`;
-});
-
-/* Populate delete history modal */
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-open='deleteHistoryModal']");
-  if (!btn) return;
-
-  document.getElementById("deleteHistoryForm").action =
-    `/history/delete/${btn.dataset.id}/`;
-});
-
 /* History AJAX submit */
 ["addHistoryForm", "editHistoryForm", "deleteHistoryForm"].forEach((id) => {
   const form = document.getElementById(id);
@@ -420,6 +305,121 @@ document.addEventListener("click", (e) => {
 ["addRecipeForm", "editRecipeForm", "deleteRecipeForm"].forEach((id) => {
   const form = document.getElementById(id);
   if (!form) return;
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-delete-ingredient]");
+  if (!btn) return;
+
+  const id = btn.dataset.deleteIngredient;
+
+  const res = await fetch(`/ingredient/delete/${id}/`, {
+    method: "POST",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCSRFToken(),
+    },
+    body: JSON.stringify({}),
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    closeModal("ingredientsModal");
+    showMessage(data.message, "error");
+    return;
+  }
+
+  refreshIngredientList(data.ingredients);
+});
+
+/* ============================================================
+   HISTORY (Unified)
+   ============================================================ */
+
+function refreshHistoryList() {
+  fetch("/history/list/json/")
+    .then((res) => res.json())
+    .then((data) => {
+      const container = document.querySelector("#historyModal .history-list");
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      data.cocktails.forEach((c) => {
+        container.innerHTML += `
+          <div class="history-item">
+            <span class="history-name">${c.name}</span>
+            <div class="history-actions">
+
+              ${
+                c.history
+                  ? `
+              <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
+
+              <button class="edit-btn"
+                      data-open="editHistoryModal"
+                      data-id="${c.history_id}"
+                      data-text="${c.history.replace(/"/g, "&quot;")}">
+                Edit
+              </button>
+
+              <button class="delete-btn"
+                      data-open="deleteHistoryModal"
+                      data-id="${c.history_id}">
+                Delete
+              </button>
+              `
+                  : `
+              <img src="/static/cocktails/icons/missing.png" class="history-icon">
+
+              <button class="add-btn"
+                      data-open="addHistoryModal"
+                      data-id="${c.id}">
+                Add
+              </button>
+
+              <button class="delete-btn"
+                      data-open="noHistoryTrap">
+                Delete
+              </button>
+              `
+              }
+
+            </div>
+          </div>
+        `;
+      });
+    });
+}
+
+/* Populate edit history modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='editHistoryModal']");
+  if (!btn) return;
+
+  document.getElementById("editHistoryForm").action =
+    `/history/edit/${btn.dataset.id}/`;
+  document.getElementById("editHistoryText").value = btn.dataset.text;
+});
+
+/* Populate add history modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='addHistoryModal']");
+  if (!btn) return;
+
+  document.getElementById("addHistoryForm").action =
+    `/history/add/${btn.dataset.id}/`;
+});
+
+/* Populate delete history modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='deleteHistoryModal']");
+  if (!btn) return;
+
+  document.getElementById("deleteHistoryForm").action =
+    `/history/delete/${btn.dataset.id}/`;
+});
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -572,6 +572,143 @@ function refreshIngredientCheckboxList(ingredients) {
     list.appendChild(div);
   });
 }
+
+/* ============================================================
+   DELETE COCKTAILS
+   ============================================================ */
+
+/* 1. Open confirm modal + inject cocktail name + ID */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='confirmDeleteCocktailModal']");
+  if (!btn) return;
+
+  const cocktailId = btn.dataset.id;
+  const cocktailName = btn.dataset.name;
+
+  // Update confirm text
+  const text = document.getElementById("confirmDeleteCocktailText");
+  text.textContent = `Are you sure you want to delete "${cocktailName}"?`;
+
+  // Update form action
+  const form = document.getElementById("deleteCocktailForm");
+  form.action = `/cocktail/delete/${cocktailId}/`;
+
+  openModal("confirmDeleteCocktailModal");
+});
+
+/* 2. Delete Cocktail (AJAX) */
+document.getElementById("deleteCocktailForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+  const url = form.action;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": getCSRFToken(),
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({})
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    showMessage(data.message, "error");
+    closeModal("confirmDeleteCocktailModal");
+    return;
+  }
+
+  // SUCCESS — refresh all cocktail-related modals
+  refreshCocktailList(data.cocktails);
+
+  closeModal("confirmDeleteCocktailModal");
+  closeModal("deleteCocktailModal");
+  refreshCocktailList?.(data.cocktails);
+
+  showMessage("Cocktail deleted", "success");
+});
+
+/* 3. Refresh cocktail list (used by delete + add) */
+function refreshCocktailList(cocktails) {
+
+  /* HISTORY MODAL */
+  const historyBlock = document.querySelector("#historyModal .history-list");
+  if (historyBlock) {
+    historyBlock.innerHTML = "";
+    cocktails.forEach((c) => {
+      historyBlock.innerHTML += `
+        <div class="history-item">
+          <span class="history-name">${c.name}</span>
+          <div class="history-actions">
+            <img src="/static/cocktails/icons/missing.png" class="history-icon">
+            <button class="add-btn" data-open="addHistoryModal" data-id="${c.id}">Add</button>
+            <button class="delete-btn" data-open="noHistoryTrap">Delete</button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  /* RECIPES MODAL */
+  const recipeBlock = document.querySelector("#recipesModal .history-list");
+  if (recipeBlock) {
+    recipeBlock.innerHTML = "";
+    cocktails.forEach((c) => {
+      recipeBlock.innerHTML += `
+        <div class="history-item">
+          <span class="history-name">${c.name}</span>
+          <div class="history-actions">
+            <img src="/static/cocktails/icons/missing.png" class="history-icon">
+            <button class="add-btn" data-open="addRecipeModal" data-id="${c.id}">Add</button>
+            <button class="delete-btn" data-open="noRecipeTrap">Delete</button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  /* DELETE COCKTAIL MODAL */
+  const deleteBlock = document.querySelector("#deleteCocktailModal .modal-list");
+  if (deleteBlock) {
+    deleteBlock.innerHTML = "";
+    cocktails.forEach((c) => {
+      deleteBlock.innerHTML += `
+        <div class="modal-item">
+          <span class="item-name">${c.name}</span>
+          <div class="item-actions">
+            <button class="delete-btn"
+                    data-open="confirmDeleteCocktailModal"
+                    data-id="${c.id}"
+                    data-name="${c.name.replace(/"/g, "&quot;")}">
+              Delete
+            </button>
+          </div>
+        </div>
+      `;
+    });
+  }
+}
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-open='deleteCocktailModal']");
+  if (!btn) return;
+
+  // Fetch fresh cocktail list
+  const res = await fetch("/cocktails/list/json/", {
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
+
+  const data = await res.json();
+
+  // Refresh the delete modal list
+  refreshCocktailList(data.cocktails);
+
+  // Now open the modal
+  openModal("deleteCocktailModal");
+});
 
 /* ============================================================
    AUTO-CLEAR INITIAL MESSAGES

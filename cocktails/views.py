@@ -344,3 +344,49 @@ def check_cocktail_name(request):
     print("CHECK NAME VIEW FIRED:", name)
     exists = Cocktail.objects.filter(name__iexact=name).exists()
     return JsonResponse({"exists": exists})
+
+def delete_cocktail(request, cocktail_id):
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
+
+    if request.method != "POST":
+        return JsonResponse({
+            "error": True,
+            "message": "Invalid request method."
+        })
+
+    # --- Delete related objects safely ---
+    # History
+    History.objects.filter(cocktail=cocktail).delete()
+
+    # Recipe
+    Recipe.objects.filter(cocktail=cocktail).delete()
+
+    # Ingredient relations (do NOT delete ingredients)
+    cocktail.ingredients.clear()
+
+    # Image assignment (do NOT delete physical file)
+    if hasattr(cocktail, "image"):
+        cocktail.image = None
+        cocktail.save()
+
+    # Delete cocktail itself
+    cocktail.delete()
+
+    # Build updated cocktail list for JS refresh
+    cocktails = []
+    for c in Cocktail.objects.all().order_by(Lower("name")):
+        cocktails.append({
+            "id": c.id,
+            "name": c.name,
+        })
+
+    return JsonResponse({
+        "error": False,
+        "message": "Cocktail deleted.",
+        "cocktails": cocktails
+    })
+
+def cocktails_list_json(request):
+    cocktails = Cocktail.objects.all().order_by(Lower("name"))
+    data = [{"id": c.id, "name": c.name} for c in cocktails]
+    return JsonResponse({"cocktails": data})
