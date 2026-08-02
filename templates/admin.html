@@ -43,7 +43,7 @@
       </div>
 
       <!-- ADD (not wired yet) -->
-      <div class="admin-card">
+      <div class="admin-card" data-open="addCocktailModal">
         <img src="{% static 'cocktails/buttons/add.png' %}" alt="Add" />
       </div>
 
@@ -307,9 +307,104 @@
       </div>
     </div>
 
+    <!-- ADD COCKTAIL MODAL -->
+    <div id="addCocktailModal" class="modal hidden">
 
 
+      <div class="modal-content">
+        <button class="close" data-close="addCocktailModal">&times;</button>
+
+        <img src="{% static 'cocktails/buttons/add.png' %}" class="modal-image" />
+        <h2>Add Cocktail</h2>
+
+        <form method="POST" action="{% url 'add_cocktail' %}" id="addCocktailForm">
+          {% csrf_token %}
+
+          <!-- Cocktail Name -->
+          <div class="modal-add-block">
+            <h3>Cocktail Name</h3>
+            <input type="text" name="name" id="newCocktailName" class="modal-input" placeholder="Enter cocktail name"
+              required />
+
+            <p id="nameValidationMsg" class="empty-text" style="color:red; display:none;">
+              Name already exists.
+            </p>
+          </div>
+
+          <!-- Optional History -->
+          <div class="modal-add-block">
+            <h3>History (optional)</h3>
+            <textarea name="history" rows="4" class="modal-input"></textarea>
+          </div>
+
+          <!-- Optional Recipe -->
+          <div class="modal-add-block">
+            <h3>Recipe (optional)</h3>
+            <textarea name="recipe" rows="4" class="modal-input"></textarea>
+          </div>
+
+          <!-- Ingredient Selection -->
+          <div class="modal-add-block">
+            <h3>Select Ingredients</h3>
+
+            <div class="modal-list">
+              {% for ingredient in ingredients %}
+              <div class="modal-item">
+                <label class="ingredient-select">
+                  <input type="checkbox" name="ingredients" value="{{ ingredient.id }}" />
+                  <span>{{ ingredient.name }}</span>
+                </label>
+              </div>
+              {% empty %}
+              <p class="empty-text">No ingredients available.</p>
+              {% endfor %}
+            </div>
+
+            <div class="modal-add-block">
+              <h3>Add New Ingredient</h3>
+
+              <input type="text" id="newIngredientName" class="modal-input" placeholder="Enter ingredient name" />
+
+              <button type="button" id="addIngredientInlineBtn" class="modal-button-small">
+                Add Ingredient
+              </button>
+
+              <p id="inlineIngredientMsg" class="empty-text" style="display:none; color:red;"></p>
+
+            </div>
+
+          </div>
+
+          <!-- Final Create Button -->
+          <button type="submit" id="createCocktailBtn" class="modal-button" disabled>
+            Create Cocktail
+          </button>
+
+        </form>
+      </div>
+    </div>
   </div>
+
+  <!-- IMAGE REMINDER MODAL -->
+  <div id="imageReminderModal" class="modal hidden">
+    <div class="modal-content small-modal">
+
+      <h3>Cocktail Created</h3>
+
+      <!-- Big paint brush icon -->
+      <img src="{% static 'cocktails/icons/paintbrush.png' %}" class="reminder-icon" alt="Paint Brush Icon" />
+
+      
+      <p>Please add an image manually.</p>
+
+      <button class="modal-button" data-close="imageReminderModal">
+        OK
+      </button>
+    </div>
+  </div>
+
+
+
 </body>
 
 <script src="{% static 'js/admin.js' %}"></script>

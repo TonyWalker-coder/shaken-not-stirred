@@ -1,4 +1,5 @@
 .venv/
+venv/
 env.py
 __pycache__/
 READ

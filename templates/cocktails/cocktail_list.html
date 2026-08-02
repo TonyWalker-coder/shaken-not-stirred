@@ -17,7 +17,7 @@
         data-recipe="{{ cocktail.recipe_obj.text }}"
         data-history="{{ cocktail.history_obj.text }}"
         data-image="{{ cocktail.image_url }}">
-        <img class="cocktail-image" src="{{ cocktail.image_url }}" alt="{{ cocktail.name }}" onerror="this.src='{% static 'cocktails/buttons/no-image.jpg' %}'" />
+        <img class="cocktail-image" src="{{ cocktail.image_url }}" alt="{{ cocktail.name }}" onerror="this.src='{% static 'cocktails/buttons/no-image.png' %}'" />
 
         <h2>{{ cocktail.name }}</h2>
       </div>
@@ -28,7 +28,7 @@
     <div class="modal-content">
       <span class="close">&times;</span>
 
-      <img id="modal-image" class="modal-image" alt="{{ cocktail.name }}" onerror="this.src='{% static 'cocktails/buttons/no-image.jpg' %}'" />
+      <img id="modal-image" class="modal-image" alt="{{ cocktail.name }}" onerror="this.src='{% static 'cocktails/buttons/no-image.png' %}'" />
 
       <h2 id="modal-name"></h2>
 

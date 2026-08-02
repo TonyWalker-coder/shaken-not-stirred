@@ -3,8 +3,7 @@ from django.contrib import messages
 from .models import Cocktail, Ingredient, History, Recipe
 from django.db.models.functions import Lower
 from django.shortcuts import render, get_object_or_404, redirect
-from cocktails.models import Ingredient
-from django.http import JsonResponse, request
+from django.http import JsonResponse
 
 def cocktail_list(request):
     cocktails = Cocktail.objects.all().order_by(Lower("name"))
@@ -300,3 +299,48 @@ def delete_recipe(request, recipe_id):
         return redirect("admin_page")
 
     return redirect("admin_page")
+
+def add_cocktail(request):
+
+    print("ADD COCKTAIL VIEW FIRED")
+    if request.method != "POST":
+        return JsonResponse({"error": True, "message": "Invalid request"})
+
+    name = request.POST.get("name", "").strip()
+    history_text = request.POST.get("history", "").strip()
+    recipe_text = request.POST.get("recipe", "").strip()
+    ingredient_ids = request.POST.getlist("ingredients")
+
+    # UNIQUE NAME VALIDATION
+    if Cocktail.objects.filter(name__iexact=name).exists():
+        return JsonResponse({"error": True, "message": "Cocktail name already exists"})
+
+    # CREATE COCKTAIL
+    cocktail = Cocktail.objects.create(name=name)
+
+    # OPTIONAL HISTORY
+    if history_text:
+        History.objects.create(cocktail=cocktail, text=history_text)
+
+    # OPTIONAL RECIPE
+    if recipe_text:
+        Recipe.objects.create(cocktail=cocktail, text=recipe_text)
+
+    # INGREDIENTS
+    if ingredient_ids:
+        ingredients = Ingredient.objects.filter(id__in=ingredient_ids)
+        cocktail.ingredients.set(ingredients)
+
+    return JsonResponse({
+        "error": False,
+        "message": "Cocktail created",
+        "cocktail_id": cocktail.id,
+    })
+
+def check_cocktail_name(request):
+
+    
+    name = request.GET.get("name", "").strip()
+    print("CHECK NAME VIEW FIRED:", name)
+    exists = Cocktail.objects.filter(name__iexact=name).exists()
+    return JsonResponse({"exists": exists})

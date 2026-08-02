@@ -26,5 +26,8 @@ urlpatterns = [
     # JSON refresh endpoint
     path("recipes/list/json/", views.recipes_list_json, name="recipes_list_json"),
 
+    path("cocktail/add/", views.add_cocktail, name="add_cocktail"),
+    path("cocktail/check-name/", views.check_cocktail_name, name="check_cocktail_name"),
+
 
 ]

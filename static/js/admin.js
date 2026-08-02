@@ -122,7 +122,8 @@ document.addEventListener("click", (e) => {
   const name = btn.dataset.name;
 
   document.getElementById("editIngredientName").value = name;
-  document.getElementById("editIngredientForm").action = `/ingredient/edit/${id}/`;
+  document.getElementById("editIngredientForm").action =
+    `/ingredient/edit/${id}/`;
 });
 
 /* Ingredient add form */
@@ -154,28 +155,30 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* Ingredient edit form */
-document.getElementById("editIngredientForm")?.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
+document
+  .getElementById("editIngredientForm")
+  ?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
 
-  const res = await fetch(form.action, {
-    method: "POST",
-    headers: { "X-Requested-With": "XMLHttpRequest" },
-    body: formData,
-  });
+    const res = await fetch(form.action, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (data.error) {
-    showMessage(data.message, "error");
+    if (data.error) {
+      showMessage(data.message, "error");
+      closeModal("editIngredientModal");
+      return;
+    }
+
+    refreshIngredientList(data.ingredients);
     closeModal("editIngredientModal");
-    return;
-  }
-
-  refreshIngredientList(data.ingredients);
-  closeModal("editIngredientModal");
-});
+  });
 
 /* Ingredient delete */
 function getCSRFToken() {
@@ -275,7 +278,8 @@ document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='editHistoryModal']");
   if (!btn) return;
 
-  document.getElementById("editHistoryForm").action = `/history/edit/${btn.dataset.id}/`;
+  document.getElementById("editHistoryForm").action =
+    `/history/edit/${btn.dataset.id}/`;
   document.getElementById("editHistoryText").value = btn.dataset.text;
 });
 
@@ -284,7 +288,8 @@ document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='addHistoryModal']");
   if (!btn) return;
 
-  document.getElementById("addHistoryForm").action = `/history/add/${btn.dataset.id}/`;
+  document.getElementById("addHistoryForm").action =
+    `/history/add/${btn.dataset.id}/`;
 });
 
 /* Populate delete history modal */
@@ -292,7 +297,8 @@ document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='deleteHistoryModal']");
   if (!btn) return;
 
-  document.getElementById("deleteHistoryForm").action = `/history/delete/${btn.dataset.id}/`;
+  document.getElementById("deleteHistoryForm").action =
+    `/history/delete/${btn.dataset.id}/`;
 });
 
 /* History AJAX submit */
@@ -328,14 +334,14 @@ document.addEventListener("click", (e) => {
 
 function refreshRecipesModal() {
   fetch("/recipes/list/json/")
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       const container = document.querySelector("#recipesModal .history-list");
       if (!container) return;
 
       container.innerHTML = "";
 
-      data.cocktails.forEach(c => {
+      data.cocktails.forEach((c) => {
         container.innerHTML += `
           <div class="history-item">
             <span class="history-name">${c.name}</span>
@@ -382,13 +388,13 @@ function refreshRecipesModal() {
     });
 }
 
-
 /* Populate edit recipe modal */
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='editRecipeModal']");
   if (!btn) return;
 
-  document.getElementById("editRecipeForm").action = `/recipes/edit/${btn.dataset.id}/`;
+  document.getElementById("editRecipeForm").action =
+    `/recipes/edit/${btn.dataset.id}/`;
   document.getElementById("editRecipeText").value = btn.dataset.text;
 });
 
@@ -397,7 +403,8 @@ document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='addRecipeModal']");
   if (!btn) return;
 
-  document.getElementById("addRecipeForm").action = `/recipes/add/${btn.dataset.id}/`;
+  document.getElementById("addRecipeForm").action =
+    `/recipes/add/${btn.dataset.id}/`;
 });
 
 /* Populate delete recipe modal */
@@ -405,7 +412,8 @@ document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='deleteRecipeModal']");
   if (!btn) return;
 
-  document.getElementById("deleteRecipeForm").action = `/recipes/delete/${btn.dataset.id}/`;
+  document.getElementById("deleteRecipeForm").action =
+    `/recipes/delete/${btn.dataset.id}/`;
 });
 
 /* Recipe AJAX submit */
@@ -429,6 +437,141 @@ document.addEventListener("click", (e) => {
       });
   });
 });
+
+/* ============================================================
+   ADD COCKTAIL — UNIQUE NAME VALIDATION + CREATE LOCK
+   ============================================================ */
+
+const cocktailNameInput = document.getElementById("newCocktailName");
+const nameMsg = document.getElementById("nameValidationMsg");
+const createBtn = document.getElementById("createCocktailBtn");
+
+let nameIsValid = false;
+
+/* Live name validation */
+cocktailNameInput?.addEventListener("input", async () => {
+  const name = cocktailNameInput.value.trim();
+
+  if (!name) {
+    nameMsg.style.display = "none";
+    createBtn.disabled = true;
+    nameIsValid = false;
+    return;
+  }
+
+  const res = await fetch(
+    `/cocktail/check-name/?name=${encodeURIComponent(name)}`,
+    {
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+    },
+  );
+
+  const data = await res.json();
+
+  if (data.exists) {
+    nameMsg.style.display = "block";
+    nameIsValid = false;
+    createBtn.disabled = true;
+  } else {
+    nameMsg.style.display = "none";
+    nameIsValid = true;
+    createBtn.disabled = false;
+  }
+});
+
+/* Submit handler */
+document
+  .getElementById("addCocktailForm")
+  ?.addEventListener("submit", async (e) => {
+    console.log("CREATE BUTTON CLICKED");
+    e.preventDefault();
+    if (!nameIsValid) return;
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const res = await fetch(form.action, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      showMessage(data.message, "error");
+      return;
+    }
+
+    // Close the Add Cocktail modal
+    closeModal("addCocktailModal");
+
+    // Show the reminder modal
+    openModal("imageReminderModal");
+
+    refreshHistoryList?.();
+    refreshRecipesModal?.();
+  });
+
+/* ============================================================
+   INLINE INGREDIENT ADD (INSIDE ADD COCKTAIL MODAL)
+   ============================================================ */
+
+const inlineInput = document.getElementById("newIngredientName");
+const inlineBtn = document.getElementById("addIngredientInlineBtn");
+const inlineMsg = document.getElementById("inlineIngredientMsg");
+
+inlineBtn?.addEventListener("click", async () => {
+  const name = inlineInput.value.trim().toLowerCase();
+  if (!name) return;
+
+  const formData = new FormData();
+  formData.append("name", name);
+
+  const res = await fetch("/ingredient/add/", {
+    method: "POST",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": getCSRFToken(),
+    },
+    body: formData,
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    inlineMsg.textContent = data.message;
+    inlineMsg.style.display = "block";
+    return;
+  }
+
+  // Ingredient added → refresh ingredient list
+  inlineMsg.style.display = "none";
+  inlineInput.value = "";
+
+  refreshIngredientCheckboxList(data.ingredients);
+});
+
+function refreshIngredientCheckboxList(ingredients) {
+  const list = document.querySelector("#addCocktailModal .modal-list");
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  ingredients.forEach((ing) => {
+    const div = document.createElement("div");
+    div.className = "modal-item";
+
+    div.innerHTML = `
+      <label class="ingredient-select">
+        <input type="checkbox" name="ingredients" value="${ing.id}" />
+        <span>${ing.name}</span>
+      </label>
+    `;
+
+    list.appendChild(div);
+  });
+}
 
 /* ============================================================
    AUTO-CLEAR INITIAL MESSAGES
