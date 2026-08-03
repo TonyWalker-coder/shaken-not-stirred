@@ -38,4 +38,9 @@ urlpatterns = [
     path("cocktail/<int:cocktail_id>/add/<int:ingredient_id>/", views.cocktail_add_ingredient),
     path("cocktail/<int:cocktail_id>/remove/<int:ingredient_id>/", views.cocktail_remove_ingredient),
 
+    path("images/upload/", views.upload_image, name="upload_image"),
+
+    path("images/assign/<int:cocktail_id>/<str:filename>/", views.assign_image, name="assign_image"),
+
+
 ]

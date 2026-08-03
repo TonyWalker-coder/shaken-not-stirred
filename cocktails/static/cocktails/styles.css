@@ -520,3 +520,81 @@ h2 {
   opacity: 0.95;
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.3));
 }
+
+.item-thumb {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+
+/* Confirmation Modal Layout */
+.assign-preview {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 20px 0;
+}
+
+.preview-block {
+    flex: 1;
+    text-align: center;
+}
+
+.preview-block h4 {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.assign-thumb {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    background: #f8f8f8;
+}
+
+.assign-text {
+    margin: 15px 0;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+.assign-preview::after {
+    content: "";
+    width: 1px;
+    background: rgba(255,255,255,0.2);
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    bottom: 10px;
+}
+.small-modal {
+    border-radius: 14px;
+}
+.modal-content {
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.assign-figure {
+  text-align: center;
+  margin: 0;
+}
+
+.assign-figure figcaption {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #555;
+}
+

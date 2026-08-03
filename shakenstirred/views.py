@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from cocktails.models import Ingredient, Cocktail
 from django.db.models.functions import Lower
 from django.contrib import messages
+from django.conf import settings
 
 def index(request):
     return render(request, "index.html")
@@ -19,9 +20,25 @@ def admin_page(request):
     for ing in ingredients:
         ing.used = Cocktail.objects.filter(ingredients=ing).exists()
 
+    # ⭐ ADD THIS BLOCK ⭐
+    import os
+    buttons_dir = os.path.join(
+        settings.BASE_DIR,
+        "cocktails",
+        "static",
+        "cocktails",
+        "buttons"
+    )
+
+    images = [
+        f for f in os.listdir(buttons_dir)
+        if f.lower().endswith((".png", ".jpg", ".jpeg"))
+    ]
+
     return render(request, "admin.html", {
         "ingredients": ingredients,
         "cocktails": cocktails,
+        "images": images,   # ⭐ THIS WAS MISSING ⭐
         "messages": messages.get_messages(request)
     })
 

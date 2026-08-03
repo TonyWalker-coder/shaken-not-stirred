@@ -814,6 +814,120 @@ document.addEventListener("click", (e) => {
     });
 });
 
+/* ============================================================
+   IMAGES — UPLOAD + MODAL WIRING
+   ============================================================ */
+
+window.addEventListener("load", () => {
+  const form = document.querySelector("#imagesModal form");
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const res = await fetch(form.action, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      showMessage(data.message, "error");
+      return;
+    }
+
+    showMessage("Image uploaded successfully!", "success");
+    form.reset();
+    closeModal("imagesModal");
+  });
+});
+
+/* ============================================================
+   IMAGES — ASSIGN IMAGE TO COCKTAIL (Enhanced Confirmation)
+   ============================================================ */
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='assignImageConfirmModal']");
+  if (!btn) return;
+
+  const filename = btn.dataset.image;
+  const cocktailId = Number(document.getElementById("imageCocktailSelect").value);
+
+
+  if (!cocktailId) {
+    showMessage("Please select a cocktail first.", "error");
+    return;
+  }
+
+  // Find cocktail object from your cocktails list
+  const cocktail = window.cocktails?.find(c => c.id == cocktailId);
+
+  // Update cocktail name
+  document.getElementById("assignCocktailName").textContent = cocktail?.name || "Unknown";
+
+  // Update current cocktail image
+  const currentImg = cocktail?.image_url || "/static/cocktails/buttons/no-image.png";
+  document.getElementById("assignCocktailCurrentImage").src = currentImg;
+
+   // Cleaner confirmation text
+document.getElementById("assignImageText").textContent =
+  `Assign this image to ${cocktail?.name}?`;
+
+// Add ALT text to the new image thumbnail
+document.getElementById("assignNewImageThumb").alt = filename;
+
+// Add SRC to the new image thumbnail (this was missing)
+document.getElementById("assignNewImageThumb").src =
+  `/static/cocktails/buttons/${filename}`;
+
+
+  // Update form action
+  const form = document.getElementById("assignImageForm");
+  form.action = `/images/assign/${cocktailId}/${filename}/`;
+
+  openModal("assignImageConfirmModal");
+});
+
+
+/* AJAX submit */
+document.getElementById("assignImageForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const res = await fetch(form.action, {
+    method: "POST",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": getCSRFToken(),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    showMessage(data.message, "error");
+    return;
+  }
+
+  /* ⭐ UPDATE IN-MEMORY COCKTAIL IMAGE (fixes stale modal) */
+  const cocktailId = Number(document.getElementById("imageCocktailSelect").value);
+  const newImage = form.action.split("/").pop(); // last part of URL = filename
+
+  const cocktail = window.cocktails.find(c => c.id === cocktailId);
+  if (cocktail) {
+    cocktail.image_url = `/static/cocktails/buttons/${newImage}`;
+  }
+
+  showMessage("Image assigned!", "success");
+  closeModal("assignImageConfirmModal");
+});
 
 
 

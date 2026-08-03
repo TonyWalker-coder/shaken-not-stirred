@@ -4,6 +4,8 @@ from .models import Cocktail, Ingredient, History, Recipe
 from django.db.models.functions import Lower
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
+import os
+from django.conf import settings
 
 def cocktail_list(request):
     cocktails = Cocktail.objects.all().order_by(Lower("name"))
@@ -429,3 +431,67 @@ def cocktail_remove_ingredient(request, cocktail_id, ingredient_id):
 
     return JsonResponse({"error": False})
 
+def upload_image(request):
+    if request.method != "POST":
+        return JsonResponse({"error": True, "message": "Invalid request method."})
+
+    file = request.FILES.get("image")
+    if not file:
+        return JsonResponse({"error": True, "message": "No file uploaded."})
+
+    ext = os.path.splitext(file.name)[1].lower()
+    if ext not in [".png", ".jpg", ".jpeg"]:
+        return JsonResponse({"error": True, "message": "Only PNG/JPG images allowed."})
+
+    # Correct path for your project
+    save_dir = os.path.join(
+        settings.BASE_DIR,
+        "cocktails",
+        "static",
+        "cocktails",
+        "buttons"
+    )
+    os.makedirs(save_dir, exist_ok=True)
+
+    save_path = os.path.join(save_dir, file.name)
+
+    with open(save_path, "wb+") as dest:
+        for chunk in file.chunks():
+            dest.write(chunk)
+
+    return JsonResponse({
+        "error": False,
+        "message": "Image uploaded successfully.",
+        "filename": file.name,
+        "url": f"/static/cocktails/buttons/{file.name}",
+    })
+
+def images_modal(request):
+    buttons_dir = os.path.join(
+        settings.BASE_DIR,
+        "cocktails",
+        "static",
+        "cocktails",
+        "buttons"
+    )
+
+    files = [
+        f for f in os.listdir(buttons_dir)
+        if f.lower().endswith((".png", ".jpg", ".jpeg"))
+    ]
+
+    return render(request, "admin.html", {
+        "images": files,
+        "cocktails": Cocktail.objects.all(),
+    })
+
+def assign_image(request, cocktail_id, filename):
+    cocktail = Cocktail.objects.get(id=cocktail_id)
+    cocktail.image_url = f"/static/cocktails/buttons/{filename}"
+    cocktail.save()
+
+    return JsonResponse({
+        "error": False,
+        "message": "Image assigned.",
+        "image_url": cocktail.image_url,
+    })
