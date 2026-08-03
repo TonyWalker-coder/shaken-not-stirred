@@ -390,3 +390,42 @@ def cocktails_list_json(request):
     cocktails = Cocktail.objects.all().order_by(Lower("name"))
     data = [{"id": c.id, "name": c.name} for c in cocktails]
     return JsonResponse({"cocktails": data})
+
+def cocktail_ingredients_json(request, cocktail_id):
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
+
+    all_ings = Ingredient.objects.all().order_by(Lower("name"))
+    cocktail_ings = cocktail.ingredients.values_list("id", flat=True)
+
+    data = {
+        "all_ingredients": [
+            {"id": ing.id, "name": ing.name}
+            for ing in all_ings
+        ],
+        "cocktail_ingredients": list(cocktail_ings)
+    }
+
+    return JsonResponse(data)
+
+def cocktail_add_ingredient(request, cocktail_id, ingredient_id):
+    if request.method != "POST":
+        return JsonResponse({"error": True, "message": "Invalid request method."})
+
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
+    ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+
+    cocktail.ingredients.add(ingredient)
+
+    return JsonResponse({"error": False})
+
+def cocktail_remove_ingredient(request, cocktail_id, ingredient_id):
+    if request.method != "POST":
+        return JsonResponse({"error": True, "message": "Invalid request method."})
+
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
+    ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+
+    cocktail.ingredients.remove(ingredient)
+
+    return JsonResponse({"error": False})
+

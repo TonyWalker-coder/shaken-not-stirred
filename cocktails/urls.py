@@ -33,5 +33,9 @@ urlpatterns = [
 
     path("cocktails/list/json/", views.cocktails_list_json),
 
+# CUSTOMISE COCKTAIL
+    path("cocktail/<int:cocktail_id>/ingredients/", views.cocktail_ingredients_json),
+    path("cocktail/<int:cocktail_id>/add/<int:ingredient_id>/", views.cocktail_add_ingredient),
+    path("cocktail/<int:cocktail_id>/remove/<int:ingredient_id>/", views.cocktail_remove_ingredient),
 
 ]
