@@ -42,5 +42,7 @@ urlpatterns = [
 
     path("images/assign/<int:cocktail_id>/<str:filename>/", views.assign_image, name="assign_image"),
 
+    path("refresh-all/", views.refresh_all, name="refresh_all"),
+
 
 ]

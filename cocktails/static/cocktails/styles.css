@@ -324,6 +324,7 @@ h2 {
     }
 }
 
+
 .messages {
     display: flex;
     justify-content: center;   /* centres the message box */
@@ -596,5 +597,31 @@ h2 {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #555;
+}
+
+.modal-message {
+    padding: 12px 16px;
+    margin: 10px 0 14px 0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: none;
+    text-align: center;
+}
+
+.modal-message.success {
+    background: #d9f7e6;
+    color: #0f5132;
+    border: 2px solid #a3e4c4;
+}
+
+.modal-message.error {
+    background: #fde2e1;
+    color: #842029;
+    border: 2px solid #f5b5b2;
+}
+
+.modal-message.show {
+    display: block;
 }
 

@@ -27,13 +27,18 @@ document.addEventListener("click", (e) => {
 });
 
 /* Delegated modal open/close buttons */
-document.addEventListener("click", (e) => {
+document.addEventListener("click", async (e) => {
   const openTarget = e.target.closest("[data-open]");
   const closeTarget = e.target.closest("[data-close]");
 
   if (openTarget) {
     const id = openTarget.dataset.open;
+
     openModal(id);
+    // ⭐ Wait for refresh to finish
+    await refreshAll();
+
+    
   }
 
   if (closeTarget) {
@@ -43,6 +48,60 @@ document.addEventListener("click", (e) => {
 });
 
 
+
+/* ============================================================
+   NEW MESSAGE SYSTEM
+   ============================================================ */
+
+function smoothScrollToTop(element) {
+    const start = element.scrollTop;
+    const duration = 200;
+    const startTime = performance.now();
+
+    function animate(time) {
+        const progress = Math.min((time - startTime) / duration, 1);
+        element.scrollTop = start * (1 - progress);
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+function modalMessage(modalId, type, text) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    const successBox = modal.querySelector('.modal-message.success');
+    const errorBox = modal.querySelector('.modal-message.error');
+
+    // Hide both first
+    successBox.classList.remove('show');
+    errorBox.classList.remove('show');
+
+    // Apply message
+    if (type === 'success') {
+        successBox.textContent = text;
+        successBox.classList.add('show');
+    } else {
+        errorBox.textContent = text;
+        errorBox.classList.add('show');
+    }
+
+    // 🔥 NEW: Smooth scroll to top
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+        smoothScrollToTop(modalContent);
+    }
+
+    // Auto-hide after 3 seconds
+    setTimeout(() => {
+        successBox.classList.remove('show');
+        errorBox.classList.remove('show');
+    }, 3000);
+}
 /* ============================================================
    MESSAGE SYSTEM
    ============================================================ */
@@ -76,13 +135,32 @@ function removeScopedMessages(keyword) {
   });
 }
 
+async function refreshAll() {
+    const res = await fetch("/refresh-all/", {
+        headers: { "X-Requested-With": "XMLHttpRequest" }
+    });
+
+    const data = await res.json();
+
+    refreshIngredientList(data.ingredients);
+
+    // Only enable these when they exist:
+    // refreshCocktailList(data.cocktails);
+    // refreshHistoryList(data.history);
+    // refreshImageList(data.images);
+    // refreshRecipeList(data.recipes);
+}
+
 /* ============================================================
-   INGREDIENTS
+   INGREDIENTS — UPDATED FOR UNIFIED MODAL MESSAGE SYSTEM
    ============================================================ */
 
 function refreshIngredientList(ingredients) {
   const list = document.querySelector(".modal-list");
   if (!list) return;
+
+  // ⭐ Sort alphabetically
+  ingredients.sort((a, b) => a.name.localeCompare(b.name));
 
   list.innerHTML = "";
 
@@ -114,10 +192,12 @@ function refreshIngredientList(ingredients) {
   });
 }
 
+
 /* Ingredient modal population */
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='editIngredientModal']");
   if (!btn) return;
+
 
   const id = btn.dataset.id;
   const name = btn.dataset.name;
@@ -145,12 +225,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = await res.json();
 
     if (data.error) {
-      showMessage(data.message, "error");
-      closeModal("ingredientsModal");
+      modalMessage("ingredientsModal", "error", data.message);
       return;
     }
 
-    refreshIngredientList(data.ingredients);
+    /*refreshIngredientList(data.ingredients);*/
+    refreshAll();
+    modalMessage("ingredientsModal", "success", "Ingredient added!");
     addForm.reset();
   });
 });
@@ -172,20 +253,54 @@ document
     const data = await res.json();
 
     if (data.error) {
-      showMessage(data.message, "error");
-      closeModal("editIngredientModal");
+      modalMessage("editIngredientModal", "error", data.message);
       return;
     }
 
-    refreshIngredientList(data.ingredients);
+    /*refreshIngredientList(data.ingredients);*/
+    refreshAll();
+
+   
+
+
+    modalMessage("ingredientsModal", "success", "Ingredient updated!");
     closeModal("editIngredientModal");
   });
 
-/* Ingredient delete */
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-delete-ingredient]");
+  if (!btn) return;
+
+  e.stopPropagation(); // stops old modal triggers
+
+  const ingredientId = btn.dataset.deleteIngredient;
+
+  const res = await fetch(`/ingredient/delete/${ingredientId}/`, {
+    method: "POST",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": getCSRFToken(),
+    },
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    modalMessage("ingredientsModal", "error", data.message);
+    return;
+  }
+
+  /*refreshIngredientList(data.ingredients);*/
+    refreshAll();
+  modalMessage("ingredientsModal", "success", "Ingredient deleted!");
+});
+
+
 function getCSRFToken() {
   const token = document.querySelector("[name=csrfmiddlewaretoken]");
   return token ? token.value : "";
 }
+
 
 /* History AJAX submit */
 ["addHistoryForm", "editHistoryForm", "deleteHistoryForm"].forEach((id) => {
@@ -326,12 +441,12 @@ document.addEventListener("click", (e) => {
     const data = await res.json();
 
     if (data.error) {
-      closeModal("ingredientsModal");
       showMessage(data.message, "error");
       return;
     }
 
-    refreshIngredientList(data.ingredients);
+    /*refreshIngredientList(data.ingredients);*/
+    refreshAll();
   });
 
   /* ============================================================
@@ -928,6 +1043,10 @@ document.getElementById("assignImageForm")?.addEventListener("submit", async (e)
   showMessage("Image assigned!", "success");
   closeModal("assignImageConfirmModal");
 });
+
+
+
+
 
 
 

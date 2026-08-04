@@ -495,3 +495,51 @@ def assign_image(request, cocktail_id, filename):
         "message": "Image assigned.",
         "image_url": cocktail.image_url,
     })
+
+
+def refresh_all(request):
+    # INGREDIENTS
+    ingredients = []
+    for ing in Ingredient.objects.all():
+        ingredients.append({
+            "id": ing.id,
+            "name": ing.name,
+            "used": ing.cocktail_set.exists()  # True if used in any cocktail
+        })
+
+    # COCKTAILS
+    cocktails = []
+    for c in Cocktail.objects.all():
+        cocktails.append({
+            "id": c.id,
+            "name": c.name,
+            "image_url": c.image_url,
+            "ingredients": list(c.ingredients.values("id", "name"))
+        })
+
+    # RECIPES
+    recipes = []
+    for r in Recipe.objects.all():
+        recipes.append({
+            "id": r.id,
+            "cocktail_id": r.cocktail_id,
+            "text": r.text
+        })
+
+    # HISTORY
+    history = []
+    for h in History.objects.all():
+        history.append({
+            "id": h.id,
+            "cocktail_id": h.cocktail_id,
+            "text": h.text
+        })
+
+    return JsonResponse({
+        "ingredients": ingredients,
+        "cocktails": cocktails,
+        "recipes": recipes,
+        "history": history,
+    })
+
+
