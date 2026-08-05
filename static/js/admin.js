@@ -27,7 +27,7 @@ document.addEventListener("click", (e) => {
 });
 
 /* Delegated modal open/close buttons */
-document.addEventListener("click", async (e) => {
+document.addEventListener("click", (e) => {
   const openTarget = e.target.closest("[data-open]");
   const closeTarget = e.target.closest("[data-close]");
 
@@ -35,10 +35,16 @@ document.addEventListener("click", async (e) => {
     const id = openTarget.dataset.open;
 
     openModal(id);
-    // ⭐ Wait for refresh to finish
-    await refreshAll();
 
-    
+    // ⭐ Skip refresh + loading message for child modals
+    if (!openTarget.dataset.child) {
+
+      // ⭐ NEW: Replace egg timer with unified "Working..." message
+      modalMessage(id, "success", "Working...");
+
+      // ⭐ Still run refreshAll (but without egg timer)
+      refreshAll();
+    }
   }
 
   if (closeTarget) {
@@ -48,59 +54,58 @@ document.addEventListener("click", async (e) => {
 });
 
 
-
 /* ============================================================
    NEW MESSAGE SYSTEM
    ============================================================ */
 
 function smoothScrollToTop(element) {
-    const start = element.scrollTop;
-    const duration = 200;
-    const startTime = performance.now();
+  const start = element.scrollTop;
+  const duration = 200;
+  const startTime = performance.now();
 
-    function animate(time) {
-        const progress = Math.min((time - startTime) / duration, 1);
-        element.scrollTop = start * (1 - progress);
+  function animate(time) {
+    const progress = Math.min((time - startTime) / duration, 1);
+    element.scrollTop = start * (1 - progress);
 
-        if (progress < 1) {
-            requestAnimationFrame(animate);
-        }
+    if (progress < 1) {
+      requestAnimationFrame(animate);
     }
+  }
 
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 }
 
 function modalMessage(modalId, type, text) {
-    const modal = document.getElementById(modalId);
-    if (!modal) return;
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
 
-    const successBox = modal.querySelector('.modal-message.success');
-    const errorBox = modal.querySelector('.modal-message.error');
+  const successBox = modal.querySelector(".modal-message.success");
+  const errorBox = modal.querySelector(".modal-message.error");
 
-    // Hide both first
-    successBox.classList.remove('show');
-    errorBox.classList.remove('show');
+  // Hide both first
+  successBox.classList.remove("show");
+  errorBox.classList.remove("show");
 
-    // Apply message
-    if (type === 'success') {
-        successBox.textContent = text;
-        successBox.classList.add('show');
-    } else {
-        errorBox.textContent = text;
-        errorBox.classList.add('show');
-    }
+  // Apply message
+  if (type === "success") {
+    successBox.textContent = text;
+    successBox.classList.add("show");
+  } else {
+    errorBox.textContent = text;
+    errorBox.classList.add("show");
+  }
 
-    // 🔥 NEW: Smooth scroll to top
-    const modalContent = modal.querySelector('.modal-content');
-    if (modalContent) {
-        smoothScrollToTop(modalContent);
-    }
+  // 🔥 NEW: Smooth scroll to top
+  const modalContent = modal.querySelector(".modal-content");
+  if (modalContent) {
+    smoothScrollToTop(modalContent);
+  }
 
-    // Auto-hide after 3 seconds
-    setTimeout(() => {
-        successBox.classList.remove('show');
-        errorBox.classList.remove('show');
-    }, 3000);
+  // Auto-hide after 3 seconds
+  setTimeout(() => {
+    successBox.classList.remove("show");
+    errorBox.classList.remove("show");
+  }, 3000);
 }
 /* ============================================================
    MESSAGE SYSTEM
@@ -136,19 +141,30 @@ function removeScopedMessages(keyword) {
 }
 
 async function refreshAll() {
-    const res = await fetch("/refresh-all/", {
-        headers: { "X-Requested-With": "XMLHttpRequest" }
-    });
+  //showLoadingModal(); // ⭐ Show egg timer modal
 
-    const data = await res.json();
+  const res = await fetch("/refresh-all/", {
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+  });
 
-    refreshIngredientList(data.ingredients);
+  const data = await res.json();
 
-    // Only enable these when they exist:
-    // refreshCocktailList(data.cocktails);
-    // refreshHistoryList(data.history);
-    // refreshImageList(data.images);
-    // refreshRecipeList(data.recipes);
+  refreshIngredientList(data.ingredients);
+  refreshHistoryList(data.history);
+
+  // Later you can enable these:
+  // refreshCocktailList(data.cocktails);
+
+  // refreshImageList(data.images);
+  // refreshRecipeList(data.recipes);
+}
+
+function showLoadingModal() {
+  openModal("loadingModal");
+
+  setTimeout(() => {
+    closeModal("loadingModal");
+  }, 3000);
 }
 
 /* ============================================================
@@ -192,12 +208,10 @@ function refreshIngredientList(ingredients) {
   });
 }
 
-
 /* Ingredient modal population */
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='editIngredientModal']");
   if (!btn) return;
-
 
   const id = btn.dataset.id;
   const name = btn.dataset.name;
@@ -260,9 +274,6 @@ document
     /*refreshIngredientList(data.ingredients);*/
     refreshAll();
 
-   
-
-
     modalMessage("ingredientsModal", "success", "Ingredient updated!");
     closeModal("editIngredientModal");
   });
@@ -291,43 +302,14 @@ document.addEventListener("click", async (e) => {
   }
 
   /*refreshIngredientList(data.ingredients);*/
-    refreshAll();
+  refreshAll();
   modalMessage("ingredientsModal", "success", "Ingredient deleted!");
 });
-
 
 function getCSRFToken() {
   const token = document.querySelector("[name=csrfmiddlewaretoken]");
   return token ? token.value : "";
 }
-
-
-/* History AJAX submit */
-["addHistoryForm", "editHistoryForm", "deleteHistoryForm"].forEach((id) => {
-  const form = document.getElementById(id);
-  if (!form) return;
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-      method: "POST",
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          showMessage(data.message, "error");
-          return;
-        }
-
-        refreshHistoryList();
-        closeModal(form.closest(".modal").id);
-      });
-  });
-});
 
 /* ============================================================
    RECIPES (Unified)
@@ -417,6 +399,114 @@ document.addEventListener("click", (e) => {
     `/recipes/delete/${btn.dataset.id}/`;
 });
 
+/* ============================================================
+   HISTORY (Unified)
+   ============================================================ */
+/* History AJAX submit */
+["addHistoryForm", "editHistoryForm", "deleteHistoryForm"].forEach((id) => {
+  const form = document.getElementById(id);
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    const childModalId = form.closest(".modal").id;
+
+    // 1. Close child modal
+    closeModal(childModalId);
+
+    // 2. Open parent history modal (so unified system has a target)
+    openModal("historyModal");
+
+    // 3. Egg timer inside parent modal
+    modalMessage("historyModal", "success", "Working...");
+
+    // 4. Run DB operation
+    fetch(form.action, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          modalMessage("historyModal", "error", data.message);
+          return;
+        }
+
+        // 5. Refresh parent AFTER DB op
+        fetch("/history/list/json/")
+          .then((res) => res.json())
+          .then((fullList) => {
+            refreshHistoryList(fullList.cocktails);
+
+            // 6. Unified success message inside parent modal
+            modalMessage("historyModal", "success", data.message);
+          });
+      });
+  });
+});
+
+function refreshHistoryList(historyData) {
+  const container = document.querySelector("#historyModal .history-list");
+  if (!container) return;
+
+  // ⭐ Sort alphabetically
+  historyData.sort((a, b) => a.name.localeCompare(b.name));
+
+  container.innerHTML = "";
+
+  historyData.forEach((c) => {
+    container.innerHTML += `
+        <div class="history-item">
+            <span class="history-name">${c.name}</span>
+            <div class="history-actions">
+
+              ${
+                c.history
+                  ? `
+              <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
+
+              <button class="edit-btn"
+                      data-open="editHistoryModal"
+                      data-id="${c.history_id}"
+                      data-text="${c.history.replace(/"/g, "&quot;")}"
+                      data-child="true">
+                Edit
+              </button>
+
+              <button class="delete-btn"
+                      data-open="deleteHistoryModal"
+                      data-id="${c.history_id}"
+                      data-child="true">
+                Delete
+              </button>
+              `
+                  : `
+              <img src="/static/cocktails/icons/missing.png" class="history-icon">
+
+              <button class="add-btn"
+                      data-open="addHistoryModal"
+                      data-id="${c.id}"
+                      data-child="true">
+                Add
+              </button>
+
+              <button class="delete-btn"
+                      data-open="noHistoryTrap"
+                      data-child="true">
+                Delete
+              </button>
+              `
+              }
+
+            </div>
+        </div>
+        `;
+  });
+}
+
 /* Recipe AJAX submit */
 ["addRecipeForm", "editRecipeForm", "deleteRecipeForm"].forEach((id) => {
   const form = document.getElementById(id);
@@ -448,66 +538,6 @@ document.addEventListener("click", (e) => {
     /*refreshIngredientList(data.ingredients);*/
     refreshAll();
   });
-
-  /* ============================================================
-   HISTORY (Unified)
-   ============================================================ */
-
-  function refreshHistoryList() {
-    fetch("/history/list/json/")
-      .then((res) => res.json())
-      .then((data) => {
-        const container = document.querySelector("#historyModal .history-list");
-        if (!container) return;
-
-        container.innerHTML = "";
-
-        data.cocktails.forEach((c) => {
-          container.innerHTML += `
-          <div class="history-item">
-            <span class="history-name">${c.name}</span>
-            <div class="history-actions">
-
-              ${
-                c.history
-                  ? `
-              <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
-
-              <button class="edit-btn"
-                      data-open="editHistoryModal"
-                      data-id="${c.history_id}"
-                      data-text="${c.history.replace(/"/g, "&quot;")}">
-                Edit
-              </button>
-
-              <button class="delete-btn"
-                      data-open="deleteHistoryModal"
-                      data-id="${c.history_id}">
-                Delete
-              </button>
-              `
-                  : `
-              <img src="/static/cocktails/icons/missing.png" class="history-icon">
-
-              <button class="add-btn"
-                      data-open="addHistoryModal"
-                      data-id="${c.id}">
-                Add
-              </button>
-
-              <button class="delete-btn"
-                      data-open="noHistoryTrap">
-                Delete
-              </button>
-              `
-              }
-
-            </div>
-          </div>
-        `;
-        });
-      });
-  }
 
   /* Populate edit history modal */
   document.addEventListener("click", (e) => {
@@ -549,7 +579,7 @@ document.addEventListener("click", (e) => {
       .then((res) => res.json())
       .then((data) => {
         closeModal(form.closest(".modal").id);
-        refreshRecipesModal();
+        refreshAll();
       });
   });
 });
@@ -909,9 +939,9 @@ document.addEventListener("click", (e) => {
     headers: {
       "X-Requested-With": "XMLHttpRequest",
       "X-CSRFToken": getCSRFToken(),
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({})
+    body: JSON.stringify({}),
   })
     .then((res) => res.json())
     .then((data) => {
@@ -970,8 +1000,9 @@ document.addEventListener("click", (e) => {
   if (!btn) return;
 
   const filename = btn.dataset.image;
-  const cocktailId = Number(document.getElementById("imageCocktailSelect").value);
-
+  const cocktailId = Number(
+    document.getElementById("imageCocktailSelect").value,
+  );
 
   if (!cocktailId) {
     showMessage("Please select a cocktail first.", "error");
@@ -979,26 +1010,27 @@ document.addEventListener("click", (e) => {
   }
 
   // Find cocktail object from your cocktails list
-  const cocktail = window.cocktails?.find(c => c.id == cocktailId);
+  const cocktail = window.cocktails?.find((c) => c.id == cocktailId);
 
   // Update cocktail name
-  document.getElementById("assignCocktailName").textContent = cocktail?.name || "Unknown";
+  document.getElementById("assignCocktailName").textContent =
+    cocktail?.name || "Unknown";
 
   // Update current cocktail image
-  const currentImg = cocktail?.image_url || "/static/cocktails/buttons/no-image.png";
+  const currentImg =
+    cocktail?.image_url || "/static/cocktails/buttons/no-image.png";
   document.getElementById("assignCocktailCurrentImage").src = currentImg;
 
-   // Cleaner confirmation text
-document.getElementById("assignImageText").textContent =
-  `Assign this image to ${cocktail?.name}?`;
+  // Cleaner confirmation text
+  document.getElementById("assignImageText").textContent =
+    `Assign this image to ${cocktail?.name}?`;
 
-// Add ALT text to the new image thumbnail
-document.getElementById("assignNewImageThumb").alt = filename;
+  // Add ALT text to the new image thumbnail
+  document.getElementById("assignNewImageThumb").alt = filename;
 
-// Add SRC to the new image thumbnail (this was missing)
-document.getElementById("assignNewImageThumb").src =
-  `/static/cocktails/buttons/${filename}`;
-
+  // Add SRC to the new image thumbnail (this was missing)
+  document.getElementById("assignNewImageThumb").src =
+    `/static/cocktails/buttons/${filename}`;
 
   // Update form action
   const form = document.getElementById("assignImageForm");
@@ -1007,52 +1039,45 @@ document.getElementById("assignNewImageThumb").src =
   openModal("assignImageConfirmModal");
 });
 
-
 /* AJAX submit */
-document.getElementById("assignImageForm")?.addEventListener("submit", async (e) => {
-  e.preventDefault();
+document
+  .getElementById("assignImageForm")
+  ?.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const form = e.target;
+    const form = e.target;
 
-  const res = await fetch(form.action, {
-    method: "POST",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      "X-CSRFToken": getCSRFToken(),
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({}),
+    const res = await fetch(form.action, {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": getCSRFToken(),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      showMessage(data.message, "error");
+      return;
+    }
+
+    /* ⭐ UPDATE IN-MEMORY COCKTAIL IMAGE (fixes stale modal) */
+    const cocktailId = Number(
+      document.getElementById("imageCocktailSelect").value,
+    );
+    const newImage = form.action.split("/").pop(); // last part of URL = filename
+
+    const cocktail = window.cocktails.find((c) => c.id === cocktailId);
+    if (cocktail) {
+      cocktail.image_url = `/static/cocktails/buttons/${newImage}`;
+    }
+
+    showMessage("Image assigned!", "success");
+    closeModal("assignImageConfirmModal");
   });
-
-  const data = await res.json();
-
-  if (data.error) {
-    showMessage(data.message, "error");
-    return;
-  }
-
-  /* ⭐ UPDATE IN-MEMORY COCKTAIL IMAGE (fixes stale modal) */
-  const cocktailId = Number(document.getElementById("imageCocktailSelect").value);
-  const newImage = form.action.split("/").pop(); // last part of URL = filename
-
-  const cocktail = window.cocktails.find(c => c.id === cocktailId);
-  if (cocktail) {
-    cocktail.image_url = `/static/cocktails/buttons/${newImage}`;
-  }
-
-  showMessage("Image assigned!", "success");
-  closeModal("assignImageConfirmModal");
-});
-
-
-
-
-
-
-
-
-
-
 
 /* ============================================================
    AUTO-CLEAR INITIAL MESSAGES

@@ -601,7 +601,7 @@ h2 {
 
 .modal-message {
     padding: 12px 16px;
-    margin: 10px 0 14px 0;
+    margin: 20px 0 14px 0;
     border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 600;
@@ -625,3 +625,33 @@ h2 {
     display: block;
 }
 
+/* Base modal fade */
+.modal {
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+}
+
+.modal:not(.hidden) {
+    opacity: 1;
+}
+
+/* Loading modal styling */
+#loadingModal .loading-content {
+    width: 180px;        
+    margin: 110px auto 10px auto;      /* centers horizontally */
+    padding: 20px;
+    border-radius: 12px;
+    background: #f7f2e8;
+    text-align: center;  /* centers icon + text */
+}
+
+.loading-icon {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    color: #333;
+}

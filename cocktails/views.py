@@ -526,14 +526,21 @@ def refresh_all(request):
             "text": r.text
         })
 
-    # HISTORY
+    # HISTORY (correct shape for JS)
     history = []
-    for h in History.objects.all():
+    for c in Cocktail.objects.all():
+        h = getattr(c, "history_obj", None)  # ← THIS matches your working view
+
         history.append({
-            "id": h.id,
-            "cocktail_id": h.cocktail_id,
-            "text": h.text
-        })
+            "id": c.id,
+            "name": c.name,
+            "history": h.text if h else None,
+            "history_id": h.id if h else None,
+    })
+
+
+
+
 
     return JsonResponse({
         "ingredients": ingredients,
