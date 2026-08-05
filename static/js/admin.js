@@ -923,8 +923,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-/* 1. Load ingredient list when selecting a cocktail */
-document.addEventListener("change", (e) => {
+document.addEventListener("change", async (e) => {
   if (!e.target.matches("#customiseCocktailSelect")) return;
 
   const cocktailId = e.target.value;
@@ -936,39 +935,47 @@ document.addEventListener("change", (e) => {
     return;
   }
 
-  fetch(`/cocktail/${cocktailId}/ingredients/`, {
-    headers: { "X-Requested-With": "XMLHttpRequest" },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      list.innerHTML = "";
+  // ⭐ Normal unified "Working..." message
+  modalMessage("customiseModal", "success", "Working...");
 
-      data.all_ingredients.forEach((ing) => {
-        const inCocktail = data.cocktail_ingredients.includes(ing.id);
+  // ⭐ FAST correct endpoint
+  const res = await fetch(`/cocktail/${cocktailId}/ingredients/`, {
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
 
-        const div = document.createElement("div");
-        div.classList.add("modal-item");
+  const data = await res.json();
 
-        div.innerHTML = `
-          <span class="item-name">${ing.name}</span>
+  // ⭐ Rebuild customise ingredient list
+  list.innerHTML = "";
 
-          <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
-            <img src="/static/cocktails/icons/${inCocktail ? "ingredient-ok.png" : "missing.png"}"
-                 class="ingredient-status-icon">
+  data.all_ingredients
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .forEach((ing) => {
+    const inCocktail = data.cocktail_ingredients.includes(ing.id);
 
-            <button class="${inCocktail ? "delete-btn" : "add-btn"}"
-                    data-customise-action="${inCocktail ? "remove" : "add"}"
-                    data-ingredient-id="${ing.id}"
-                    data-cocktail-id="${cocktailId}">
-              ${inCocktail ? "Remove" : "Add"}
-            </button>
-          </div>
-        `;
+    const div = document.createElement("div");
+    div.classList.add("modal-item");
 
-        list.appendChild(div);
-      });
-    });
+    div.innerHTML = `
+      <span class="item-name">${ing.name}</span>
+
+      <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
+        <img src="/static/cocktails/icons/${inCocktail ? "ingredient-ok.png" : "missing.png"}"
+             class="ingredient-status-icon">
+
+        <button class="${inCocktail ? "delete-btn" : "add-btn"}"
+                data-customise-action="${inCocktail ? "remove" : "add"}"
+                data-ingredient-id="${ing.id}"
+                data-cocktail-id="${cocktailId}">
+          ${inCocktail ? "Remove" : "Add"}
+        </button>
+      </div>
+    `;
+
+    list.appendChild(div);
+  });
 });
+
 
 /* 2. Add / Remove ingredient from cocktail */
 document.addEventListener("click", (e) => {
