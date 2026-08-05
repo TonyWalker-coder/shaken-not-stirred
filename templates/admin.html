@@ -232,6 +232,8 @@
     <div id="recipesModal" class="modal hidden">
       <div class="modal-content">
         <button class="close" data-close="recipesModal">&times;</button>
+        <div class="modal-message success hidden"></div>
+        <div class="modal-message error hidden"></div>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
         <h2>Cocktail Recipes</h2>
@@ -247,22 +249,22 @@
               <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon">
 
               <button class="edit-btn" data-open="editRecipeModal" data-id="{{ r.id }}"
-                data-text="{{ r.text|escapejs }}">
+                data-text="{{ r.text|escapejs }}" data-child="true">
                 Edit
               </button>
 
-              <button class="delete-btn" data-open="deleteRecipeModal" data-id="{{ r.id }}">
+              <button class="delete-btn" data-open="deleteRecipeModal" data-id="{{ r.id }}" data-child="true">
                 Delete
               </button>
 
               {% else %}
               <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon">
 
-              <button class="add-btn" data-open="addRecipeModal" data-id="{{ cocktail.id }}">
+              <button class="add-btn" data-open="addRecipeModal" data-id="{{ cocktail.id }}" data-child="true">
                 Add
               </button>
 
-              <button class="delete-btn" data-open="noRecipeTrap">
+              <button class="delete-btn" data-open="noRecipeTrap" data-child="true">
                 Delete
               </button>
               {% endif %}

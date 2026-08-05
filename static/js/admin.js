@@ -311,93 +311,8 @@ function getCSRFToken() {
   return token ? token.value : "";
 }
 
-/* ============================================================
-   RECIPES (Unified)
-   ============================================================ */
 
-function refreshRecipesModal() {
-  fetch("/recipes/list/json/")
-    .then((res) => res.json())
-    .then((data) => {
-      const container = document.querySelector("#recipesModal .history-list");
-      if (!container) return;
 
-      container.innerHTML = "";
-
-      data.cocktails.forEach((c) => {
-        container.innerHTML += `
-          <div class="history-item">
-            <span class="history-name">${c.name}</span>
-            <div class="history-actions">
-
-              ${
-                c.recipe
-                  ? `
-              <img src="/static/cocktails/icons/recipe-ok.png" class="history-icon">
-
-              <button class="edit-btn"
-                      data-open="editRecipeModal"
-                      data-id="${c.recipe_id}"
-                      data-text="${c.recipe.replace(/"/g, "&quot;")}">
-                Edit
-              </button>
-
-              <button class="delete-btn"
-                      data-open="deleteRecipeModal"
-                      data-id="${c.recipe_id}">
-                Delete
-              </button>
-              `
-                  : `
-              <img src="/static/cocktails/icons/missing.png" class="history-icon">
-
-              <button class="add-btn"
-                      data-open="addRecipeModal"
-                      data-id="${c.id}">
-                Add
-              </button>
-
-              <button class="delete-btn"
-                      data-open="noRecipeTrap">
-                Delete
-              </button>
-              `
-              }
-
-            </div>
-          </div>
-        `;
-      });
-    });
-}
-
-/* Populate edit recipe modal */
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-open='editRecipeModal']");
-  if (!btn) return;
-
-  document.getElementById("editRecipeForm").action =
-    `/recipes/edit/${btn.dataset.id}/`;
-  document.getElementById("editRecipeText").value = btn.dataset.text;
-});
-
-/* Populate add recipe modal */
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-open='addRecipeModal']");
-  if (!btn) return;
-
-  document.getElementById("addRecipeForm").action =
-    `/recipes/add/${btn.dataset.id}/`;
-});
-
-/* Populate delete recipe modal */
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-open='deleteRecipeModal']");
-  if (!btn) return;
-
-  document.getElementById("deleteRecipeForm").action =
-    `/recipes/delete/${btn.dataset.id}/`;
-});
 
 /* ============================================================
    HISTORY (Unified)
@@ -507,82 +422,212 @@ function refreshHistoryList(historyData) {
   });
 }
 
-/* Recipe AJAX submit */
+/* ============================================================
+   RECIPES (Unified)
+   ============================================================ */
+
+function refreshRecipesModal() {
+  fetch("/recipes/list/json/")
+    .then((res) => res.json())
+    .then((data) => {
+      const container = document.querySelector("#recipesModal .history-list");
+      if (!container) return;
+
+      container.innerHTML = "";
+
+      data.cocktails.forEach((c) => {
+        container.innerHTML += `
+          <div class="history-item">
+            <span class="history-name">${c.name}</span>
+            <div class="history-actions">
+
+              ${
+                c.recipe
+                  ? `
+              <img src="/static/cocktails/icons/recipe-ok.png" class="history-icon">
+
+              <button class="edit-btn"
+                      data-open="editRecipeModal"
+                      data-id="${c.recipe_id}"
+                      data-text="${c.recipe.replace(/"/g, "&quot;")}"
+                      data-child="true">
+                Edit
+              </button>
+
+              <button class="delete-btn"
+                      data-open="deleteRecipeModal"
+                      data-id="${c.recipe_id}"
+                      data-child="true">
+                Delete
+              </button>
+              `
+                  : `
+              <img src="/static/cocktails/icons/missing.png" class="history-icon">
+
+              <button class="add-btn"
+                      data-open="addRecipeModal"
+                      data-id="${c.id}"
+                      data-child="true">
+                Add
+              </button>
+
+              <button class="delete-btn"
+                      data-open="noRecipeTrap"
+                      data-child="true">
+                Delete
+              </button>
+              `
+              }
+
+            </div>
+          </div>
+        `;
+      });
+    });
+}
+
+
+/* Populate edit recipe modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='editRecipeModal']");
+  if (!btn) return;
+
+  document.getElementById("editRecipeForm").action =
+    `/recipes/edit/${btn.dataset.id}/`;
+  document.getElementById("editRecipeText").value = btn.dataset.text;
+});
+
+/* Populate add recipe modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='addRecipeModal']");
+  if (!btn) return;
+
+  document.getElementById("addRecipeForm").action =
+    `/recipes/add/${btn.dataset.id}/`;
+});
+
+/* Populate delete recipe modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='deleteRecipeModal']");
+  if (!btn) return;
+
+  document.getElementById("deleteRecipeForm").action =
+    `/recipes/delete/${btn.dataset.id}/`;
+});
+
+/* ============================================================
+   RECIPE AJAX SUBMIT (Unified)
+   ============================================================ */
+
 ["addRecipeForm", "editRecipeForm", "deleteRecipeForm"].forEach((id) => {
   const form = document.getElementById(id);
   if (!form) return;
 
-  document.addEventListener("click", async (e) => {
-    const btn = e.target.closest("[data-delete-ingredient]");
-    if (!btn) return;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
 
-    const id = btn.dataset.deleteIngredient;
+    const childModalId = form.closest(".modal").id;
 
-    const res = await fetch(`/ingredient/delete/${id}/`, {
+    // 1. Close child modal
+    closeModal(childModalId);
+
+    // 2. Open parent recipes modal
+    openModal("recipesModal");
+
+    // 3. Unified "Working..." message
+    modalMessage("recipesModal", "success", "Working...");
+
+    // 4. Run DB operation
+    const res = await fetch(form.action, {
       method: "POST",
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "Content-Type": "application/json",
-        "X-CSRFToken": getCSRFToken(),
-      },
-      body: JSON.stringify({}),
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
     });
 
     const data = await res.json();
 
     if (data.error) {
-      showMessage(data.message, "error");
+      modalMessage("recipesModal", "error", data.message || "Error");
       return;
     }
 
-    /*refreshIngredientList(data.ingredients);*/
-    refreshAll();
-  });
-
-  /* Populate edit history modal */
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-open='editHistoryModal']");
-    if (!btn) return;
-
-    document.getElementById("editHistoryForm").action =
-      `/history/edit/${btn.dataset.id}/`;
-    document.getElementById("editHistoryText").value = btn.dataset.text;
-  });
-
-  /* Populate add history modal */
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-open='addHistoryModal']");
-    if (!btn) return;
-
-    document.getElementById("addHistoryForm").action =
-      `/history/add/${btn.dataset.id}/`;
-  });
-
-  /* Populate delete history modal */
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-open='deleteHistoryModal']");
-    if (!btn) return;
-
-    document.getElementById("deleteHistoryForm").action =
-      `/history/delete/${btn.dataset.id}/`;
-  });
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-      method: "POST",
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-      body: formData,
-    })
+    // 5. Refresh parent AFTER DB op
+    fetch("/recipes/list/json/")
       .then((res) => res.json())
-      .then((data) => {
-        closeModal(form.closest(".modal").id);
-        refreshAll();
+      .then((fullList) => {
+        refreshRecipesModal(fullList.cocktails);
+
+        // 6. Unified success message (fixed)
+        let msg = "Recipe updated!";
+
+        if (id === "addRecipeForm") msg = "Recipe added!";
+        if (id === "deleteRecipeForm") msg = "Recipe deleted!";
+
+        modalMessage("recipesModal", "success", msg);
       });
   });
 });
+
+
+/* Populate edit history modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='editHistoryModal']");
+  if (!btn) return;
+
+  document.getElementById("editHistoryForm").action =
+    `/history/edit/${btn.dataset.id}/`;
+  document.getElementById("editHistoryText").value = btn.dataset.text;
+});
+
+/* Populate add history modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='addHistoryModal']");
+  if (!btn) return;
+
+  document.getElementById("addHistoryForm").action =
+    `/history/add/${btn.dataset.id}/`;
+});
+
+/* Populate delete history modal */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='deleteHistoryModal']");
+  if (!btn) return;
+
+  document.getElementById("deleteHistoryForm").action =
+    `/history/delete/${btn.dataset.id}/`;
+});
+
+/* Ingredient delete (standalone, not inside recipe loop) */
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-delete-ingredient]");
+  if (!btn) return;
+
+  e.stopPropagation();
+
+  const id = btn.dataset.deleteIngredient;
+
+  const res = await fetch(`/ingredient/delete/${id}/`, {
+    method: "POST",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCSRFToken(),
+    },
+    body: JSON.stringify({}),
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    modalMessage("ingredientsModal", "error", data.message);
+    return;
+  }
+
+  refreshAll();
+  modalMessage("ingredientsModal", "success", "Ingredient deleted!");
+});
+
 
 /* ============================================================
    ADD COCKTAIL — UNIQUE NAME VALIDATION + CREATE LOCK
