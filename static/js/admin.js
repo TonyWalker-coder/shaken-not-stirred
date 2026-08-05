@@ -38,7 +38,6 @@ document.addEventListener("click", (e) => {
 
     // ⭐ Skip refresh + loading message for child modals
     if (!openTarget.dataset.child) {
-
       // ⭐ NEW: Replace egg timer with unified "Working..." message
       modalMessage(id, "success", "Working...");
 
@@ -52,7 +51,6 @@ document.addEventListener("click", (e) => {
     closeModal(id);
   }
 });
-
 
 /* ============================================================
    NEW MESSAGE SYSTEM
@@ -311,9 +309,6 @@ function getCSRFToken() {
   return token ? token.value : "";
 }
 
-
-
-
 /* ============================================================
    HISTORY (Unified)
    ============================================================ */
@@ -486,7 +481,6 @@ function refreshRecipesModal() {
     });
 }
 
-
 /* Populate edit recipe modal */
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='editRecipeModal']");
@@ -569,7 +563,6 @@ document.addEventListener("click", (e) => {
   });
 });
 
-
 /* Populate edit history modal */
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open='editHistoryModal']");
@@ -628,9 +621,8 @@ document.addEventListener("click", async (e) => {
   modalMessage("ingredientsModal", "success", "Ingredient deleted!");
 });
 
-
 /* ============================================================
-   ADD COCKTAIL — UNIQUE NAME VALIDATION + CREATE LOCK
+   ADD COCKTAIL — UNIFIED
    ============================================================ */
 
 const cocktailNameInput = document.getElementById("newCocktailName");
@@ -670,78 +662,76 @@ cocktailNameInput?.addEventListener("input", async () => {
   }
 });
 
-/* Submit handler */
-document
-  .getElementById("addCocktailForm")
-  ?.addEventListener("submit", async (e) => {
-    console.log("CREATE BUTTON CLICKED");
-    e.preventDefault();
-    if (!nameIsValid) return;
+/* Submit handler — UNIFIED */
+document.getElementById("addCocktailForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!nameIsValid) return;
 
-    const form = e.target;
-    const formData = new FormData(form);
+  const form = e.target;
+  const formData = new FormData(form);
 
-    const res = await fetch(form.action, {
-      method: "POST",
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-      body: formData,
-    });
+  // Keep modal open
+  openModal("addCocktailModal");
 
-    const data = await res.json();
+  // ⭐ MANUAL INLINE "Working..." INJECTION (no message system)
+  const msgBox = document.querySelector("#addCocktailModal .modal-message.success");
+  msgBox.textContent = "Working...";
+  msgBox.classList.remove("hidden");
+  msgBox.classList.add("show");
 
-    if (data.error) {
-      showMessage(data.message, "error");
-      return;
-    }
+  // ⭐ Scroll modal to top
+  const modalContent = document.querySelector("#addCocktailModal .modal-content");
+  if (modalContent) modalContent.scrollTop = 0;
 
-    // Close the Add Cocktail modal
-    closeModal("addCocktailModal");
-
-    // Show the reminder modal
-    openModal("imageReminderModal");
-
-    refreshHistoryList?.();
-    refreshRecipesModal?.();
-  });
-
-/* ============================================================
-   INLINE INGREDIENT ADD (INSIDE ADD COCKTAIL MODAL)
-   ============================================================ */
-
-const inlineInput = document.getElementById("newIngredientName");
-const inlineBtn = document.getElementById("addIngredientInlineBtn");
-const inlineMsg = document.getElementById("inlineIngredientMsg");
-
-inlineBtn?.addEventListener("click", async () => {
-  const name = inlineInput.value.trim().toLowerCase();
-  if (!name) return;
-
-  const formData = new FormData();
-  formData.append("name", name);
-
-  const res = await fetch("/ingredient/add/", {
+  // POST cocktail
+  const res = await fetch(form.action, {
     method: "POST",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      "X-CSRFToken": getCSRFToken(),
-    },
+    headers: { "X-Requested-With": "XMLHttpRequest" },
     body: formData,
   });
 
   const data = await res.json();
 
   if (data.error) {
-    inlineMsg.textContent = data.message;
-    inlineMsg.style.display = "block";
+    const errBox = document.querySelector("#addCocktailModal .modal-message.error");
+    errBox.textContent = data.message;
+    errBox.classList.remove("hidden");
+    errBox.classList.add("show");
     return;
   }
 
-  // Ingredient added → refresh ingredient list
-  inlineMsg.style.display = "none";
-  inlineInput.value = "";
+  // ⭐ Refresh-all (this will naturally overwrite the manual "Working...")
+  const ingRes = await fetch("/refresh-all/", {
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+  });
+  const ingData = await ingRes.json();
 
-  refreshIngredientCheckboxList(data.ingredients);
+  // Rebuild ingredient list
+  refreshIngredientCheckboxList(ingData.ingredients);
+
+  // ⭐ Clear fields AFTER refresh
+  const historyField = document.getElementById("newCocktailHistory");
+  const recipeField  = document.getElementById("newCocktailRecipe");
+
+  if (historyField) historyField.value = "";
+  if (recipeField)  recipeField.value = "";
+
+  document
+    .querySelectorAll("#addCocktailModal input[type='checkbox']")
+    .forEach(cb => cb.checked = false);
+
+  // Reset form fields
+  form.reset();
+  nameIsValid = false;
+  createBtn.disabled = true;
+  nameMsg.style.display = "none";
+
+  // ⭐ FINAL NORMAL SUCCESS MESSAGE (auto-clears as usual)
+  modalMessage("addCocktailModal", "success", "Cocktail added!");
 });
+
+
+
 
 function refreshIngredientCheckboxList(ingredients) {
   const list = document.querySelector("#addCocktailModal .modal-list");
@@ -787,7 +777,10 @@ document.addEventListener("click", (e) => {
   openModal("confirmDeleteCocktailModal");
 });
 
-/* 2. Delete Cocktail (AJAX) */
+/* ============================================================
+   DELETE COCKTAILS — AJAX (Unified)
+   ============================================================ */
+
 document
   .getElementById("deleteCocktailForm")
   ?.addEventListener("submit", async (e) => {
@@ -796,6 +789,16 @@ document
     const form = e.target;
     const url = form.action;
 
+    // 1. Close confirm modal
+    closeModal("confirmDeleteCocktailModal");
+
+    // 2. Open main delete modal (parent)
+    openModal("deleteCocktailModal");
+
+    // 3. Unified "Working..." message
+    modalMessage("deleteCocktailModal", "success", "Working...");
+
+    // 4. Run DB delete
     const res = await fetch(url, {
       method: "POST",
       headers: {
@@ -809,22 +812,21 @@ document
     const data = await res.json();
 
     if (data.error) {
-      showMessage(data.message, "error");
-      closeModal("confirmDeleteCocktailModal");
+      modalMessage("deleteCocktailModal", "error", data.message);
       return;
     }
 
-    // SUCCESS — refresh all cocktail-related modals
+    // 5. Refresh delete modal list
     refreshCocktailList(data.cocktails);
 
-    closeModal("confirmDeleteCocktailModal");
-    closeModal("deleteCocktailModal");
-    refreshCocktailList?.(data.cocktails);
-
-    showMessage("Cocktail deleted", "success");
+    // 6. Unified success message
+    modalMessage("deleteCocktailModal", "success", "Cocktail deleted!");
   });
 
-/* 3. Refresh cocktail list (used by delete + add) */
+/* ============================================================
+   REFRESH COCKTAIL LIST (Unified)
+   ============================================================ */
+
 function refreshCocktailList(cocktails) {
   /* HISTORY MODAL */
   const historyBlock = document.querySelector("#historyModal .history-list");
@@ -836,8 +838,8 @@ function refreshCocktailList(cocktails) {
           <span class="history-name">${c.name}</span>
           <div class="history-actions">
             <img src="/static/cocktails/icons/missing.png" class="history-icon">
-            <button class="add-btn" data-open="addHistoryModal" data-id="${c.id}">Add</button>
-            <button class="delete-btn" data-open="noHistoryTrap">Delete</button>
+            <button class="add-btn" data-open="addHistoryModal" data-id="${c.id}" data-child="true">Add</button>
+            <button class="delete-btn" data-open="noHistoryTrap" data-child="true">Delete</button>
           </div>
         </div>
       `;
@@ -854,8 +856,8 @@ function refreshCocktailList(cocktails) {
           <span class="history-name">${c.name}</span>
           <div class="history-actions">
             <img src="/static/cocktails/icons/missing.png" class="history-icon">
-            <button class="add-btn" data-open="addRecipeModal" data-id="${c.id}">Add</button>
-            <button class="delete-btn" data-open="noRecipeTrap">Delete</button>
+            <button class="add-btn" data-open="addRecipeModal" data-id="${c.id}" data-child="true">Add</button>
+            <button class="delete-btn" data-open="noRecipeTrap" data-child="true">Delete</button>
           </div>
         </div>
       `;
@@ -876,7 +878,8 @@ function refreshCocktailList(cocktails) {
             <button class="delete-btn"
                     data-open="confirmDeleteCocktailModal"
                     data-id="${c.id}"
-                    data-name="${c.name.replace(/"/g, "&quot;")}">
+                    data-name="${c.name.replace(/"/g, "&quot;")}"
+                    data-child="true">
               Delete
             </button>
           </div>
@@ -890,17 +893,14 @@ document.addEventListener("click", async (e) => {
   const btn = e.target.closest("[data-open='deleteCocktailModal']");
   if (!btn) return;
 
-  // Fetch fresh cocktail list
   const res = await fetch("/cocktails/list/json/", {
     headers: { "X-Requested-With": "XMLHttpRequest" },
   });
 
   const data = await res.json();
 
-  // Refresh the delete modal list
   refreshCocktailList(data.cocktails);
 
-  // Now open the modal
   openModal("deleteCocktailModal");
 });
 

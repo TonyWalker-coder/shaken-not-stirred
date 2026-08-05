@@ -331,6 +331,8 @@
 
       <div class="modal-content">
         <button class="close" data-close="addCocktailModal">&times;</button>
+        <div class="modal-message success hidden"></div>
+        <div class="modal-message error hidden"></div>
 
         <img src="{% static 'cocktails/buttons/add.png' %}" class="modal-image" />
         <h2>Add Cocktail</h2>
@@ -352,13 +354,13 @@
           <!-- Optional History -->
           <div class="modal-add-block">
             <h3>History (optional)</h3>
-            <textarea name="history" rows="4" class="modal-input"></textarea>
+            <textarea name="history" id="newCocktailHistory" rows="4" class="modal-input"></textarea>
           </div>
 
           <!-- Optional Recipe -->
           <div class="modal-add-block">
             <h3>Recipe (optional)</h3>
-            <textarea name="recipe" rows="4" class="modal-input"></textarea>
+            <textarea name="recipe" id="newCocktailRecipe" rows="4" class="modal-input"></textarea>
           </div>
 
           <!-- Ingredient Selection -->
@@ -425,6 +427,8 @@
   <div id="deleteCocktailModal" class="modal hidden">
     <div class="modal-content">
       <button class="close" data-close="deleteCocktailModal">&times;</button>
+      <div class="modal-message success hidden"></div>
+      <div class="modal-message error hidden"></div>
 
       <img src="{% static 'cocktails/buttons/delete.png' %}" class="modal-banner" />
       <h2 class="modal-title">Delete Cocktail</h2>
@@ -438,7 +442,7 @@
 
           <div class="item-actions">
             <button class="delete-btn" data-open="confirmDeleteCocktailModal" data-id="{{ cocktail.id }}"
-              data-name="{{ cocktail.name|escapejs }}">
+              data-name="{{ cocktail.name|escapejs }}" data-child="true">
               Delete
             </button>
           </div>
