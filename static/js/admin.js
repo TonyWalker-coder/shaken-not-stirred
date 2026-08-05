@@ -730,6 +730,52 @@ document.getElementById("addCocktailForm")?.addEventListener("submit", async (e)
   modalMessage("addCocktailModal", "success", "Cocktail added!");
 });
 
+/* ============================================================
+   INLINE INGREDIENT ADD (INSIDE ADD COCKTAIL MODAL)
+   ============================================================ */
+
+const inlineInput = document.getElementById("newIngredientName");
+const inlineBtn = document.getElementById("addIngredientInlineBtn");
+const inlineMsg = document.getElementById("inlineIngredientMsg");
+
+inlineBtn?.addEventListener("click", async () => {
+  const name = inlineInput.value.trim().toLowerCase();
+  if (!name) return;
+
+  // ⭐ Normal unified "Working..." message
+  modalMessage("addCocktailModal", "success", "Working...");
+
+  // ⭐ Scroll modal to top
+  const modalContent = document.querySelector("#addCocktailModal .modal-content");
+  if (modalContent) modalContent.scrollTop = 0;
+
+  const formData = new FormData();
+  formData.append("name", name);
+
+  const res = await fetch("/ingredient/add/", {
+    method: "POST",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": getCSRFToken(),
+    },
+    body: formData,
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    inlineMsg.textContent = data.message;
+    inlineMsg.style.display = "block";
+    return;
+  }
+
+  inlineMsg.style.display = "none";
+  inlineInput.value = "";
+
+  // ⭐ Refresh ingredient checkbox list
+  refreshIngredientCheckboxList(data.ingredients);
+});
+
 
 
 
