@@ -1,5 +1,5 @@
 /* ============================================================
-   UNIVERSAL MODAL ENGINE — OPTION A (NO INLINE JS)
+   UNIVERSAL MODAL ENGINE (NO INLINE JS)
    ============================================================ */
 
 function openModal(id) {
@@ -26,31 +26,51 @@ document.addEventListener("click", (e) => {
   }
 });
 
-/* Delegated modal open/close buttons */
+/* ============================================================
+   DELEGATED MODAL OPEN/CLOSE — FLICKER-FREE VERSION
+   ============================================================ */
+
 document.addEventListener("click", (e) => {
   const openTarget = e.target.closest("[data-open]");
   const closeTarget = e.target.closest("[data-close]");
 
+  /* ---------------------------
+     OPEN MODAL
+     --------------------------- */
   if (openTarget) {
     const id = openTarget.dataset.open;
 
+    // Open modal immediately (but content may be hidden)
     openModal(id);
 
-    // ⭐ Skip refresh + loading message for child modals
-    if (!openTarget.dataset.child) {
-      // ⭐ NEW: Replace egg timer with unified "Working..." message
-      modalMessage(id, "success", "Working...");
+    // Skip refresh for child modals
+    if (openTarget.dataset.child) return;
 
-      // ⭐ Still run refreshAll (but without egg timer)
-      refreshAll();
+    // INGREDIENTS MODAL — hide list before refresh
+    if (id === "ingredientsModal") {
+      hideIngredientList();   // hide stale content
     }
+
+    // Show unified loading message
+    modalMessage(id, "success", "Working...");
+
+    // Run refreshAll and reveal content afterwards
+    refreshAll().then(() => {
+      if (id === "ingredientsModal") {
+        showIngredientList(); // reveal fresh content
+      }
+    });
   }
 
+  /* ---------------------------
+     CLOSE MODAL
+     --------------------------- */
   if (closeTarget) {
     const id = closeTarget.dataset.close;
     closeModal(id);
   }
 });
+
 
 /* ============================================================
    NEW MESSAGE SYSTEM
@@ -137,9 +157,18 @@ function removeScopedMessages(keyword) {
     }
   });
 }
-
+//
+// refreshAll
+//
 async function refreshAll() {
-  //showLoadingModal(); // ⭐ Show egg timer modal
+  /*delete /showLoadingModal(); // ⭐ Show egg timer modal
+  function showLoadingModal() {
+  openModal("loadingModal");
+
+  setTimeout(() => {
+    closeModal("loadingModal");
+  }, 3000);
+}*/
 
   const res = await fetch("/refresh-all/", {
     headers: { "X-Requested-With": "XMLHttpRequest" },
@@ -155,14 +184,6 @@ async function refreshAll() {
 
   // refreshImageList(data.images);
   // refreshRecipeList(data.recipes);
-}
-
-function showLoadingModal() {
-  openModal("loadingModal");
-
-  setTimeout(() => {
-    closeModal("loadingModal");
-  }, 3000);
 }
 
 /* ============================================================
@@ -269,11 +290,14 @@ document
       return;
     }
 
-    /*refreshIngredientList(data.ingredients);*/
-    refreshAll();
+    closeModal("editIngredientModal");
+    // Force layout flush
+    await new Promise(requestAnimationFrame);
+
+    modalMessage("ingredientsModal", "success", "Working...");
+    await refreshAll();
 
     modalMessage("ingredientsModal", "success", "Ingredient updated!");
-    closeModal("editIngredientModal");
   });
 
 document.addEventListener("click", async (e) => {
@@ -308,6 +332,18 @@ function getCSRFToken() {
   const token = document.querySelector("[name=csrfmiddlewaretoken]");
   return token ? token.value : "";
 }
+
+function hideIngredientList() {
+  const list = document.querySelector(".modal-list");
+  if (list) list.style.visibility = "hidden";
+}
+
+function showIngredientList() {
+  const list = document.querySelector(".modal-list");
+  if (list) list.style.visibility = "visible";
+}
+
+
 
 /* ============================================================
    HISTORY (Unified)
@@ -663,72 +699,80 @@ cocktailNameInput?.addEventListener("input", async () => {
 });
 
 /* Submit handler — UNIFIED */
-document.getElementById("addCocktailForm")?.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  if (!nameIsValid) return;
+document
+  .getElementById("addCocktailForm")
+  ?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!nameIsValid) return;
 
-  const form = e.target;
-  const formData = new FormData(form);
+    const form = e.target;
+    const formData = new FormData(form);
 
-  // Keep modal open
-  openModal("addCocktailModal");
+    // Keep modal open
+    openModal("addCocktailModal");
 
-  // ⭐ MANUAL INLINE "Working..." INJECTION (no message system)
-  const msgBox = document.querySelector("#addCocktailModal .modal-message.success");
-  msgBox.textContent = "Working...";
-  msgBox.classList.remove("hidden");
-  msgBox.classList.add("show");
+    // ⭐ MANUAL INLINE "Working..." INJECTION (no message system)
+    const msgBox = document.querySelector(
+      "#addCocktailModal .modal-message.success",
+    );
+    msgBox.textContent = "Working...";
+    msgBox.classList.remove("hidden");
+    msgBox.classList.add("show");
 
-  // ⭐ Scroll modal to top
-  const modalContent = document.querySelector("#addCocktailModal .modal-content");
-  if (modalContent) modalContent.scrollTop = 0;
+    // ⭐ Scroll modal to top
+    const modalContent = document.querySelector(
+      "#addCocktailModal .modal-content",
+    );
+    if (modalContent) modalContent.scrollTop = 0;
 
-  // POST cocktail
-  const res = await fetch(form.action, {
-    method: "POST",
-    headers: { "X-Requested-With": "XMLHttpRequest" },
-    body: formData,
+    // POST cocktail
+    const res = await fetch(form.action, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      const errBox = document.querySelector(
+        "#addCocktailModal .modal-message.error",
+      );
+      errBox.textContent = data.message;
+      errBox.classList.remove("hidden");
+      errBox.classList.add("show");
+      return;
+    }
+
+    // ⭐ Refresh-all (this will naturally overwrite the manual "Working...")
+    const ingRes = await fetch("/refresh-all/", {
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+    });
+    const ingData = await ingRes.json();
+
+    // Rebuild ingredient list
+    refreshIngredientCheckboxList(ingData.ingredients);
+
+    // ⭐ Clear fields AFTER refresh
+    const historyField = document.getElementById("newCocktailHistory");
+    const recipeField = document.getElementById("newCocktailRecipe");
+
+    if (historyField) historyField.value = "";
+    if (recipeField) recipeField.value = "";
+
+    document
+      .querySelectorAll("#addCocktailModal input[type='checkbox']")
+      .forEach((cb) => (cb.checked = false));
+
+    // Reset form fields
+    form.reset();
+    nameIsValid = false;
+    createBtn.disabled = true;
+    nameMsg.style.display = "none";
+
+    // ⭐ FINAL NORMAL SUCCESS MESSAGE (auto-clears as usual)
+    modalMessage("addCocktailModal", "success", "Cocktail added!");
   });
-
-  const data = await res.json();
-
-  if (data.error) {
-    const errBox = document.querySelector("#addCocktailModal .modal-message.error");
-    errBox.textContent = data.message;
-    errBox.classList.remove("hidden");
-    errBox.classList.add("show");
-    return;
-  }
-
-  // ⭐ Refresh-all (this will naturally overwrite the manual "Working...")
-  const ingRes = await fetch("/refresh-all/", {
-    headers: { "X-Requested-With": "XMLHttpRequest" },
-  });
-  const ingData = await ingRes.json();
-
-  // Rebuild ingredient list
-  refreshIngredientCheckboxList(ingData.ingredients);
-
-  // ⭐ Clear fields AFTER refresh
-  const historyField = document.getElementById("newCocktailHistory");
-  const recipeField  = document.getElementById("newCocktailRecipe");
-
-  if (historyField) historyField.value = "";
-  if (recipeField)  recipeField.value = "";
-
-  document
-    .querySelectorAll("#addCocktailModal input[type='checkbox']")
-    .forEach(cb => cb.checked = false);
-
-  // Reset form fields
-  form.reset();
-  nameIsValid = false;
-  createBtn.disabled = true;
-  nameMsg.style.display = "none";
-
-  // ⭐ FINAL NORMAL SUCCESS MESSAGE (auto-clears as usual)
-  modalMessage("addCocktailModal", "success", "Cocktail added!");
-});
 
 /* ============================================================
    INLINE INGREDIENT ADD (INSIDE ADD COCKTAIL MODAL)
@@ -746,7 +790,9 @@ inlineBtn?.addEventListener("click", async () => {
   modalMessage("addCocktailModal", "success", "Working...");
 
   // ⭐ Scroll modal to top
-  const modalContent = document.querySelector("#addCocktailModal .modal-content");
+  const modalContent = document.querySelector(
+    "#addCocktailModal .modal-content",
+  );
   if (modalContent) modalContent.scrollTop = 0;
 
   const formData = new FormData();
@@ -775,9 +821,6 @@ inlineBtn?.addEventListener("click", async () => {
   // ⭐ Refresh ingredient checkbox list
   refreshIngredientCheckboxList(data.ingredients);
 });
-
-
-
 
 function refreshIngredientCheckboxList(ingredients) {
   const list = document.querySelector("#addCocktailModal .modal-list");
@@ -986,7 +1029,7 @@ document.addEventListener("change", async (e) => {
 
   // ⭐ FAST correct endpoint
   const res = await fetch(`/cocktail/${cocktailId}/ingredients/`, {
-    headers: { "X-Requested-With": "XMLHttpRequest" }
+    headers: { "X-Requested-With": "XMLHttpRequest" },
   });
 
   const data = await res.json();
@@ -995,14 +1038,14 @@ document.addEventListener("change", async (e) => {
   list.innerHTML = "";
 
   data.all_ingredients
-  .sort((a, b) => a.name.localeCompare(b.name))
-  .forEach((ing) => {
-    const inCocktail = data.cocktail_ingredients.includes(ing.id);
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach((ing) => {
+      const inCocktail = data.cocktail_ingredients.includes(ing.id);
 
-    const div = document.createElement("div");
-    div.classList.add("modal-item");
+      const div = document.createElement("div");
+      div.classList.add("modal-item");
 
-    div.innerHTML = `
+      div.innerHTML = `
       <span class="item-name">${ing.name}</span>
 
       <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
@@ -1018,10 +1061,9 @@ document.addEventListener("change", async (e) => {
       </div>
     `;
 
-    list.appendChild(div);
-  });
+      list.appendChild(div);
+    });
 });
-
 
 /* 2. Add / Remove ingredient from cocktail */
 document.addEventListener("click", (e) => {
