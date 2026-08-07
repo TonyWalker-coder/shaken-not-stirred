@@ -44,5 +44,14 @@ urlpatterns = [
 
     path("refresh-all/", views.refresh_all, name="refresh_all"),
 
+    path("images/list/", views.image_list, name="image_list"),
+
+    path("cocktails/list/simple/", views.cocktail_list_json, name="cocktail_list_simple"),
+
+    path("cocktail/json/<int:cocktail_id>/", views.cocktail_json, name="cocktail_json"),
+
+
+
+
 
 ]

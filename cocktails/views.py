@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 import os
 from django.conf import settings
+from django.contrib.staticfiles import finders
 
 def cocktail_list(request):
     cocktails = Cocktail.objects.all().order_by(Lower("name"))
@@ -504,7 +505,7 @@ def refresh_all(request):
         ingredients.append({
             "id": ing.id,
             "name": ing.name,
-            "used": ing.cocktail_set.exists()  # True if used in any cocktail
+            "used": ing.cocktail_set.exists()
         })
 
     # COCKTAILS
@@ -526,21 +527,17 @@ def refresh_all(request):
             "text": r.text
         })
 
-    # HISTORY (correct shape for JS)
+    # HISTORY
     history = []
     for c in Cocktail.objects.all():
-        h = getattr(c, "history_obj", None)  # ← THIS matches your working view
+        h = getattr(c, "history_obj", None)
 
         history.append({
             "id": c.id,
             "name": c.name,
             "history": h.text if h else None,
             "history_id": h.id if h else None,
-    })
-
-
-
-
+        })
 
     return JsonResponse({
         "ingredients": ingredients,
@@ -548,5 +545,52 @@ def refresh_all(request):
         "recipes": recipes,
         "history": history,
     })
+
+
+def image_list(request):
+    # Find the actual folder Django is serving
+    folder = finders.find('cocktails/buttons')
+
+    if not folder:
+        return JsonResponse({"images": []})
+
+    try:
+        images = sorted(os.listdir(folder))
+    except Exception:
+        images = []
+
+    return JsonResponse({"images": images})
+
+def cocktail_list_json(request):
+    cocktails = list(
+        Cocktail.objects
+        .all()
+        .order_by(Lower("name"))
+        .values("id", "name")
+    )
+    return JsonResponse({"cocktails": cocktails})
+
+def cocktail_json(request, cocktail_id):
+    c = get_object_or_404(Cocktail, id=cocktail_id)
+    return JsonResponse({
+        "id": c.id,
+        "name": c.name,
+        "image_url": c.image_url or "",
+    })
+
+def assign_image(request, cocktail_id, filename):
+    if request.method != "POST":
+        return JsonResponse({"error": True, "message": "Invalid request"}, status=400)
+
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
+    cocktail.image_url = f"cocktails/buttons/{filename}"
+    cocktail.save()
+
+    # AJAX request → return JSON
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return JsonResponse({"success": True})
+
+    # Normal form POST → redirect
+    return redirect("dashboard")
 
 
