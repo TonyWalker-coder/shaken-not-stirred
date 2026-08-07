@@ -1,0 +1,1115 @@
+[
+{
+    "model": "cocktails.ingredient",
+    "pk": 23,
+    "fields": {
+        "name": "Coconut Rum"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 24,
+    "fields": {
+        "name": "Dark Rum"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 25,
+    "fields": {
+        "name": "Orange Juice"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 26,
+    "fields": {
+        "name": "Pineapple Juice"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 27,
+    "fields": {
+        "name": "Grenadine"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 28,
+    "fields": {
+        "name": "Crushed Ice"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 29,
+    "fields": {
+        "name": "Vodka"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 30,
+    "fields": {
+        "name": "Tomato Juice"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 31,
+    "fields": {
+        "name": "Lemon Juice"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 32,
+    "fields": {
+        "name": "Worcestershire Sauce"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 33,
+    "fields": {
+        "name": "Tabasco"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 34,
+    "fields": {
+        "name": "White Rum"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 35,
+    "fields": {
+        "name": "Blue Curaçao"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 36,
+    "fields": {
+        "name": "Cream of Coconut"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 37,
+    "fields": {
+        "name": "Lemonade"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 38,
+    "fields": {
+        "name": "Ice"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 39,
+    "fields": {
+        "name": "Tahoe Blue Vodka"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 40,
+    "fields": {
+        "name": "Lime"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 41,
+    "fields": {
+        "name": "Sugar"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 42,
+    "fields": {
+        "name": "Cachaça"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 43,
+    "fields": {
+        "name": "Citrus Vodka"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 44,
+    "fields": {
+        "name": "Cointreau"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 45,
+    "fields": {
+        "name": "Orange Liqueur"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 46,
+    "fields": {
+        "name": "Lime Juice"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 47,
+    "fields": {
+        "name": "Cranberry Juice"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 48,
+    "fields": {
+        "name": "Gold Rum"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 49,
+    "fields": {
+        "name": "Cola"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 50,
+    "fields": {
+        "name": "Gin"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 51,
+    "fields": {
+        "name": "Dry Vermouth"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 52,
+    "fields": {
+        "name": "Olive Brine"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 53,
+    "fields": {
+        "name": "Sambuca"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 54,
+    "fields": {
+        "name": "Irish Cream Liqueur"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 55,
+    "fields": {
+        "name": "absinthe"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 56,
+    "fields": {
+        "name": "Triple Sec"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 57,
+    "fields": {
+        "name": "Tequila"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 58,
+    "fields": {
+        "name": "Light Rum"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 59,
+    "fields": {
+        "name": "Simple Syrup"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 60,
+    "fields": {
+        "name": "Jamaican Rum"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 61,
+    "fields": {
+        "name": "Orange Curaçao"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 62,
+    "fields": {
+        "name": "Orgeat"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 63,
+    "fields": {
+        "name": "Agave Syrup"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 64,
+    "fields": {
+        "name": "Kosher salt"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 65,
+    "fields": {
+        "name": "Bourbon"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 66,
+    "fields": {
+        "name": "Fresh Mint Leaves"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 67,
+    "fields": {
+        "name": "Club soda"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 68,
+    "fields": {
+        "name": "Pisco"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 69,
+    "fields": {
+        "name": "Egg White"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 70,
+    "fields": {
+        "name": "Grapefruit Juice"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 71,
+    "fields": {
+        "name": "Frozen Strawberries"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 72,
+    "fields": {
+        "name": "Strawberries"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 73,
+    "fields": {
+        "name": "Sugar syrup"
+    }
+},
+{
+    "model": "cocktails.ingredient",
+    "pk": 74,
+    "fields": {
+        "name": "Rye whiskey"
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 14,
+    "fields": {
+        "name": "Blue Lagoon",
+        "image_url": "cocktails/buttons/blue-lagoon.jpg",
+        "ingredients": [
+            29,
+            35,
+            37,
+            38
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 15,
+    "fields": {
+        "name": "Blue Tahoe",
+        "image_url": "cocktails/buttons/blue-tahoe.jpg",
+        "ingredients": [
+            25,
+            26,
+            27,
+            35,
+            38,
+            39
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 16,
+    "fields": {
+        "name": "Caipirinha",
+        "image_url": "cocktails/buttons/caipirinha.jpg",
+        "ingredients": [
+            38,
+            40,
+            41,
+            42
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 17,
+    "fields": {
+        "name": "Cosmopolitan",
+        "image_url": "cocktails/buttons/cosmopolitan.jpg",
+        "ingredients": [
+            38,
+            43,
+            44,
+            45,
+            46,
+            47
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 18,
+    "fields": {
+        "name": "Cuba Libre",
+        "image_url": "cocktails/buttons/cuba-libre.jpg",
+        "ingredients": [
+            34,
+            38,
+            40,
+            48,
+            49
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 19,
+    "fields": {
+        "name": "Dirty Martini",
+        "image_url": "cocktails/buttons/dirty-martini.jpg",
+        "ingredients": [
+            29,
+            50,
+            51,
+            52
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 20,
+    "fields": {
+        "name": "Hiroshima",
+        "image_url": "cocktails/buttons/hiroshima.jpg",
+        "ingredients": [
+            27,
+            53,
+            54,
+            55
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 21,
+    "fields": {
+        "name": "Kamikaze",
+        "image_url": "cocktails/buttons/kamikaze.jpg",
+        "ingredients": [
+            29,
+            46,
+            56
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 22,
+    "fields": {
+        "name": "Long Island Iced Tea",
+        "image_url": "cocktails/buttons/long-island-iced-tea.jpg",
+        "ingredients": [
+            29,
+            31,
+            38,
+            49,
+            50,
+            56,
+            57,
+            58,
+            59
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 23,
+    "fields": {
+        "name": "Mai Tai",
+        "image_url": "cocktails/buttons/mai-tai.jpg",
+        "ingredients": [
+            24,
+            28,
+            34,
+            40,
+            46,
+            59,
+            60,
+            61,
+            62
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 24,
+    "fields": {
+        "name": "Margarita",
+        "image_url": "cocktails/buttons/margarita.jpg",
+        "ingredients": [
+            38,
+            46,
+            56,
+            57,
+            61,
+            63,
+            64
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 25,
+    "fields": {
+        "name": "Mint Julep",
+        "image_url": "cocktails/buttons/mint-julep.jpg",
+        "ingredients": [
+            28,
+            59,
+            65,
+            66
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 26,
+    "fields": {
+        "name": "Mojito",
+        "image_url": "cocktails/buttons/mojito.jpg",
+        "ingredients": [
+            28,
+            34,
+            46,
+            59,
+            66,
+            67
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 27,
+    "fields": {
+        "name": "Pina Colada",
+        "image_url": "cocktails/buttons/pina-colada.jpg",
+        "ingredients": [
+            26,
+            34,
+            36,
+            38
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 28,
+    "fields": {
+        "name": "Pisco Sour",
+        "image_url": "cocktails/buttons/pisco-sour.jpg",
+        "ingredients": [
+            38,
+            46,
+            59,
+            68,
+            69
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 29,
+    "fields": {
+        "name": "Salty Dog",
+        "image_url": "cocktails/buttons/salty-dog.jpg",
+        "ingredients": [
+            29,
+            38,
+            50,
+            64,
+            70
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 30,
+    "fields": {
+        "name": "Screwdriver",
+        "image_url": "cocktails/buttons/screwdriver.jpg",
+        "ingredients": [
+            25,
+            29,
+            38
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 31,
+    "fields": {
+        "name": "Strawberry Daiquiri",
+        "image_url": "cocktails/buttons/strawberry-daiquiri.jpg",
+        "ingredients": [
+            34,
+            38,
+            46,
+            59,
+            71
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 32,
+    "fields": {
+        "name": "Strawberry Mojito",
+        "image_url": "cocktails/buttons/strawberry-mojito.jpg",
+        "ingredients": [
+            34,
+            38,
+            40,
+            66,
+            67,
+            72,
+            73
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 33,
+    "fields": {
+        "name": "Tequila Sunrise",
+        "image_url": "cocktails/buttons/tequila-sunrise.jpg",
+        "ingredients": [
+            25,
+            27,
+            38,
+            57
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 34,
+    "fields": {
+        "name": "Whiskey Sour",
+        "image_url": "cocktails/buttons/whiskey-sour.jpg",
+        "ingredients": [
+            31,
+            59,
+            65,
+            69,
+            74
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 36,
+    "fields": {
+        "name": "Bahama Mama",
+        "image_url": "cocktails/buttons/bahama-mom.jpg",
+        "ingredients": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 38,
+    "fields": {
+        "name": "Bloody Mary",
+        "image_url": "cocktails/buttons/bloody-mary.jpg",
+        "ingredients": [
+            29,
+            30,
+            31,
+            32,
+            33
+        ]
+    }
+},
+{
+    "model": "cocktails.cocktail",
+    "pk": 39,
+    "fields": {
+        "name": "Blue Hawaii",
+        "image_url": "cocktails/buttons/blue-hawaii.jpg",
+        "ingredients": [
+            26,
+            28,
+            34,
+            35,
+            36
+        ]
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 33,
+    "fields": {
+        "cocktail": 14,
+        "text": "Classic Blended Blue Hawaiian 1 ½ oz White Rum ¾ oz Blue Curaçao 2 oz Pineapple Juice ¾ oz Cream of Coconut 1 cup Crushed Ice Garnish: Pineapple wedge, maraschino cherry Instructions: Add all ingredients into a blender. Blend on high until smooth and creamy. Pour into a chilled Hurricane or highball glass. Garnish with a pineapple wedge and cherry. Shaken (On the Rocks) Method If preferred, shake the ingredients in a cocktail shaker with ice and strain into a glass filled with fresh crushed ice. Key Tips Cream of Coconut: Use a product like Real Cream of Coconut for best results. If it is thick, gently warm it before mixing. Variation (Blue Hawaii): The \"Blue Hawaii\" usually uses vodka and sour mix, whereas the \"Blue Hawaiian\" is known for its creamy coconut flavor. Garnish: A cocktail umbrella is a classic addition."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 36,
+    "fields": {
+        "cocktail": 15,
+        "text": "A Blue Tahoe is a vibrant blue, layered cocktail featuring Tahoe Blue Vodka, blue curaçao, and fruit juices. To make it, combine 1¾ oz Tahoe Blue Vodka ¾ oz grenadine 4 oz pineapple or orange juice over ice then slowly layer an additional 1 oz vodka mixed with ½ oz blue curaçao on top. Other Varieties: Blue Tahoe Cocktail (Bevvy): 1 oz each of blue curaçao, tequila, and lime juice, topped with champagne. Hard Lemonade: 1 part vodka to 3 parts lemonade, with fresh ginger."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 39,
+    "fields": {
+        "cocktail": 16,
+        "text": "Key Ingredients & Steps: Lime: 1 lime, cut into 6–8 wedges. Remove the white center pith to avoid bitterness. Sugar: 1 to 2 tablespoons of white sugar or caster sugar. Cachaça: 50–60ml (2 oz) of Brazilian sugarcane spirit. Ice: Generous amount of crushed ice. Method: Muddle: Place lime wedges and sugar into a sturdy rocks glass. Muddle (mash) well to release the juice and dissolve the sugar. Add Cachaça: Pour in the cachaça. Add Ice & Stir: Fill the glass with crushed ice and stir thoroughly, allowing the sugar and lime to mix with the alcohol. Finish: Top with more crushed ice and garnish with a lime wedge if desired. Tips for the Perfect Caipirinha: Avoid Bitterness: Muddle gently, as crushing the lime peel too hard can make the drink bitter. Sugar Choice: While white sugar is traditional, superfine sugar dissolves faster, ensuring no gritty texture. Ice: Using crushed ice is key for the correct dilution and cooling in a caipirinha, notes and."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 40,
+    "fields": {
+        "cocktail": 17,
+        "text": "Classic Cosmopolitan Recipe Prep time: 5 minutes Serves: 1 Ingredients: 2oz Citrus Vodka (or standard Vodka) 1oz Cointreau or Orange Liqueur 1oz Fresh Lime Juice 1oz Cranberry Juice Ice Garnish: Orange twist or zest Instructions: Prepare: Chill a martini or coupe glass in the freezer. Shake: Add the vodka, Cointreau, cranberry juice, and lime juice into a cocktail shaker. Fill with ice and shake vigorously for 10-15 seconds until well-chilled. Strain: Strain into the chilled glass. Garnish: Twist a piece of orange peel over the drink to release the oils and drop it in Tips for the Best Cosmo Fresh Lime is Essential: Use fresh lime juice, never bottled, for the best flavor. Citrus Vodka: While standard vodka works, using Citron vodka (like Absolut Citron) is generally preferred for a brighter taste. The Flame Trick: For a classic experience, hold a 3cm round piece of orange zest over the drink, light a match underneath it, and bend the edge towards the flame to release the caramelized orange oils"
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 41,
+    "fields": {
+        "cocktail": 18,
+        "text": "A classic Cuba Libre is made by filling a highball glass with ice, adding 50-60ml (about 2 oz) of light or gold rum, the juice of half a lime, and topping with 100-150ml (about 4 oz) of cola. Garnish with the remaining lime wedge and stir gently. Ingredients Rum: 50-60ml (2 oz) White or Gold Rum (e.g., BACARDÍ Carta Oro or Havana Club). Cola: 100-150ml (4 oz) Coca-Cola. Lime: 1/2 fresh lime. Ice: Cubed. Instructions Prepare the glass: Fill a highball glass with ice cubes. Add Rum: Pour 50-60ml of rum over the ice. Add Lime: Squeeze the juice of half a lime into the glass, then drop the spent wedges in. Top with Cola: Fill the rest of the glass with cola. Stir & Garnish: Stir gently to mix, then garnish with a fresh lime wedge. Tips for Success The Lime is Key: Do not skip the fresh lime; it elevates a standard rum and coke into a balanced, citrusy cocktail. Use Quality Ingredients: Premium Cola (like Fever-Tree) or Mexican Coke can enhance the flavor. Stir Gently: Stir, don't shake, to keep the carbonation in the drink."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 48,
+    "fields": {
+        "cocktail": 19,
+        "text": "Key Ingredients & Proportions Spirit: – 2 2.5oz Vodka or Gin (e.g., Grey Goose). Dry Vermouth: 0.5oz (e.g., Noilly Prat). Olive Brine: – 0.5-1oz (add more for \"filthy\"). Garnish: 1–3 Green Olives (pitted). Steps to Make Chill: Place a martini glass in the freezer or fill with ice and water while preparing. Combine: Add the spirit, dry vermouth, and olive brine into a cocktail shaker or mixing glass. Mix: Add a generous amount of ice. Shake (for colder, slightly diluted with ice chips) or stir (for a clearer drink). Strain: Strain into the chilled martini glass. Garnish: Garnish with olives on a cocktail stick. Pro Tips Shaking vs. Stirring: While traditionally stirred, many prefer to shake dirty martinis to ensure the brine and spirits are well-mixed and extra cold. Quality Brine: Use high-quality olive brine, such as from jarred Castelvetrano or Sevillano olives. Double Strain: To avoid ice chips in the final drink, use a fine strainer in addition to a Hawthorne strainer."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 51,
+    "fields": {
+        "cocktail": 20,
+        "text": "A Hiroshima cocktail is a layered, high-alcohol shooter designed to resemble a nuclear mushroom cloud, made by layering sambuca, Irish cream, and absinthe, finished with drops of grenadine. It is a strong, sweet drink, often served as a party shot due to its intense visual effect. Ingredients 0.75 oz Sambuca 0.35 oz Irish Cream Liqueur 0.75 oz Absinthe 3-5 drops Grenadine Instructions Prepare the Base: Pour the sambuca into a shot glass. Layer the Cream: Using the back of a bar spoon, carefully layer the Irish cream over the sambuca. Layer the Absinthe: Using the bar spoon again, slowly layer the absinthe on top of the cream. Add Grenadine: Carefully add 3–5 drops of grenadine. The heavy syrup will sink through the layers, pulling some of the cream down to create the visual effect. Tips for Success Layering: Pouring slowly over a spoon helps keep the liquids separate based on their different densities. Variation: Some recipes use peach schnapps or triple sec as the base instead of sambuca. Safety: This drink has a very high alcohol content and should be consumed with caution. Always drink responsibly."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 52,
+    "fields": {
+        "cocktail": 21,
+        "text": "Classic Kamikaze Recipe This recipe makes one full-sized cocktail or two standard shots. Ingredients 1 ½ oz Vodka (use a smooth, high-quality brand) 1 oz Triple Sec (or Cointreau for a smoother finish) 1 oz Freshly squeezed lime juice Garnish: Lime wedge or wheel Instructions Chill your glass: Place a martini glass or coupe in the freezer for a few minutes. Combine: Pour the vodka, triple sec, and lime juice into a cocktail shaker filled with ice. Shake: Shake vigorously for 10 to 15 seconds until the shaker is frostily cold. Strain: Fine strain the mixture into your chilled glass (for a cocktail) or two shot glasses (for shooters). Garnish: Add a lime wheel to the rim and serve immediately. Blue Kamikaze: Replace the triple sec with Blue Curaçao for a vibrant electric blue color. Sweetened: If the drink is too tart, add ¼ oz of simple syrup to balance the acidity. Flavored: Use raspberry or citrus-flavored vodka to add a fruity twist to the base. Jalapeño Kamikaze: Add ½ oz of jalapeño-infused simple syrup for a spicy kick."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 53,
+    "fields": {
+        "cocktail": 22,
+        "text": "A classic Long Island Iced Tea is made by mixing equal parts vodka, tequila, light rum, gin, and triple sec (usually 15-20ml or 0.5-0.75 oz each) with lemon juice and simple syrup, shaken with ice, strained into a highball glass, and topped with a splash of cola. Garnish with a lemon wedge and serve over fresh ice. Classic Long Island Iced Tea Recipe Prep time: 5 minutes Servings: 1 cocktail Ingredients: 15 ml (1/2 oz) Vodka 15 ml (1/2 oz) Tequila 15 ml (1/2 oz) Light Rum 15 ml (1/2 oz) Gin 15 ml (1/2 oz) Triple Sec (or Cointreau) 25 ml (approx. 1 oz) Fresh Lemon Juice 15 ml (1/2 oz) Simple Syrup (1:1 sugar and water) Top with Coca-Cola Ice Lemon wedge for garnish Instructions: Combine Spirits: Add the vodka, tequila, rum, gin, triple sec, lemon juice, and simple syrup into a cocktail shaker. Shake: Add a handful of ice to the shaker and shake well until the outside feels cold. Strain: Fill a tall highball glass with fresh ice and strain the mixture into the glass. Top and Garnish: Top with a splash of Coca-Cola for color and stir gently. Garnish with a lemon wedge or slice. Tips for the Perfect Long Island Quality Ingredients: Use a decent quality, neutral vodka. Fresh Juice: Always use fresh lemon juice rather than bottled for better flavor. Balance: If you prefer it less sweet, reduce the simple syrup. If you prefer it stronger on the orange flavor, use Cointreau. Alternative Method: For a quick method, skip the shaker and add all ingredients directly into a tall glass filled with ice, then stir well."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 54,
+    "fields": {
+        "cocktail": 23,
+        "text": "Classic Mai Tai Recipe 1.5 oz Aged Jamaican Rum (or 1 oz white rum + 0.5 oz dark rum) 0.75 oz Fresh Lime Juice 0.5 oz Orange Curaçao 0.5 oz Orgeat (Almond Syrup) 0.25 oz Rich Simple Syrup (optional, for extra sweetness) Garnish: Lime wheel/shell and fresh mint sprig Ice: Crushed ice Instructions Prep: Squeeze fresh lime juice. Shake: Add all ingredients into a shaker with a handful of crushed ice. Shake briefly—about 3–5 seconds—to chill without over-diluting. Pour: Pour the entire shaker contents into a double rocks glass. Top & Garnish: Fill the glass with more crushed ice and garnish with a mint sprig and lime Key Tips The Rum: A high-quality aged Jamaican rum is key to a \"funky\" traditional taste, but a blend of white and dark rum is a popular alternative. Orgeat is Essential: This almond syrup is crucial for the flavor profile. Don't Over-shake: Because you are using crushed ice, you only need a very quick shake to get the drink cold and properly mixed."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 55,
+    "fields": {
+        "cocktail": 24,
+        "text": "Classic Margarita Recipe Ingredients: 2 oz Blanco Tequila 1 oz Orange Liqueur (Cointreau or Triple Sec) 1 oz Fresh Lime Juice 1/2 oz Agave Syrup (optional, to taste) Ice Kosher salt for rim Lime wheel for garnish Instructions: Prep the Glass: Rub a lime wedge around the rim of a rocks glass and dip it in salt. Shake: Combine tequila, orange liqueur, lime juice, and agave syrup in a shaker with ice. Chill: Shake vigorously for 10-12 seconds until well-chilled. Strain & Serve: Strain into the prepared glass over fresh ice. Garnish: Garnish with a lime wheel. Tips for the Best Margarita Fresh Lime Juice: Always use fresh lime juice rather than bottled mix for better flavor. Quality Tequila: Use a good quality 100% agave tequila. Optional Sweetener: Add 1/4 to 1/2 oz simple syrup or agave syrup if you prefer a sweeter cocktail. Salt Rim: For added flavor, mix a little chili powder or Tajín into the rim salt."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 56,
+    "fields": {
+        "cocktail": 25,
+        "text": "Classic Mint Julep Recipe Ingredients: 2 oz Bourbon 1/2 oz Simple Syrup (1:1 ratio sugar/water) 8–10 Fresh Mint Leaves Crushed Ice (essential) Garnish: Mint sprig, optional powdered sugar Instructions: Muddle: Lightly muddle the mint leaves and simple syrup in a julep cup or rocks glass to release the oils without shredding the leaves. Combine: Add the bourbon. Ice & Stir: Fill the cup with crushed ice and stir well until the outside of the cup frosts. Top & Garnish: Top with more crushed ice to form a cone or dome. Garnish with a fresh mint sprig. Tips for the Best Mint Julep Use Proper Ice: Crushed ice is essential to properly dilute the drink and create the iconic frosty cup. Smack the Mint: Before garnishing, slap the mint sprig between your hands to release its aroma. Choose Bourbon: Use a high-quality, high-proof bourbon (90 proof or higher) so it stands up to the ice dilution. Cup Choice: A metal (tin or silver) julep cup is traditional and helps keep the drink colder."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 57,
+    "fields": {
+        "cocktail": 26,
+        "text": "Ingredients Mint: 8-12 fresh mint leaves (spearmint is preferred). Lime: 1 oz (30ml) fresh lime juice (about 1/2 a lime) or 3-4 lime wedges. Sweetener: 1/2 oz (15ml) simple syrup or 2 tsp white sugar/caster sugar. Rum: 2 oz (60ml) white rum (e.g., Bacardi Carta Blanca). Soda: Club soda or sparkling water. Ice: Crushed ice is traditional. Instructions Muddle Mint and Lime: In a sturdy highball glass, add the mint leaves, lime juice, and simple syrup (or sugar). Use a muddler or the back of a spoon to gently press the mint 5-10 times to release its aroma. Do not shred the leaves. Add Rum: Pour in the 2 oz of white rum. Fill with Ice: Fill the glass almost to the top with crushed ice. Stir and Top: Stir the mixture well with a long-handled spoon to lift the mint from the bottom and dissolve the sugar. Top off the glass with a splash of club soda. Garnish: Garnish with a fresh sprig of mint (slap it against your hand first to release oils) and a lime slice. Tips for the Best Mojito Use Simple Syrup: Simple syrup dissolves instantly, avoiding the gritty, undissolved sugar at the bottom of the glass. Don't Over-muddle: Over-muddling or shredding the mint makes the drink bitter. Use Fresh Ingredients: Freshly squeezed lime juice is essential for a bright, tangy flavor. Group Serving: To make a pitcher, multiply the ingredients by the number of servings, but add the soda water just before serving to keep it bubbly."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 58,
+    "fields": {
+        "cocktail": 27,
+        "text": "Ingredients (Single Serving) White Rum: 2oz Cream of Coconut: 2oz Pineapple Juice: 2oz Ice: 1–2 cups Garnish: Pineapple wedge, leaves, or cherry (optional) Instructions Combine: Add the white rum, cream of coconut, pineapple juice, and ice to a blender. Blend: Blend on high speed for about 30 seconds until the mixture is thick, smooth, and slushy. Serve: Pour into a hurricane glass, garnish, and serve immediately. Tips for the Best Piña Colada Cream of Coconut vs. Milk: Use cream of coconut (like Coco Re'al) for a thicker, sweeter, and more authentic flavor. Frozen Pineapple: Use 1/2cup of frozen pineapple chunks instead of ice for a more intense flavor and thicker texture. Optional Kick: Add a splash of aged or golden rum on top for added flavor depth. Light Version: Substitute 1 part coconut milk with 1 part pineapple juice for a less dense drink."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 59,
+    "fields": {
+        "cocktail": 28,
+        "text": "A classic Pisco Sour is made by shaking 2 oz Pisco, 1 oz fresh lime juice, 1/2 oz simple syrup, and 1 egg white vigorously without ice (dry shake), then again with ice. Strain into a chilled glass and top with 3–5 drops of Angostura bitters for a frothy, tangy Peruvian cocktail. Ingredients Pisco: 2 oz (60ml) Lime Juice: 1 oz (30ml) freshly squeezed Simple Syrup: 1/2 oz to 3/4 oz (15-22ml) Egg White: 1 Garnish: 3-5 drops Angostura or Amargo bitters Ice: Handful for shaking Instructions Combine: Add the pisco, lime juice, simple syrup, and egg white into a cocktail shaker. Dry Shake: Shake vigorously without ice for 10-20 seconds to emulsify the egg white and create foam. Wet Shake: Add a large handful of ice to the shaker and shake again vigorously for 10-20 seconds until well-chilled. Strain & Garnish: Strain into a chilled glass (coupe or Nick & Nora). Top with 3 to 5 drops of Angostura bitters, often swirled into a design. Tips for the Best Pisco Sour Pisco Choice: Use a Quebranta pisco for a traditional, robust cocktail. The Foam: The \"dry shake\" (without ice) is crucial for a thick, foamy head. Substitute: Use 1 oz of egg white instead of one whole white for more precise measurements. If you prefer a vegan option, substitute the egg white with aquafaba. Bitters: While Angostura is common, Amargo Chuncho bitters are considered the most authentic Peruvian choice."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 60,
+    "fields": {
+        "cocktail": 29,
+        "text": "A Salty Dog is a refreshing cocktail made by combining 1.5oz of gin or vodka with 3–4 oz of fresh grapefruit juice, served over ice in a highball or rocks glass with a salted rim. It is essentially a salt-rimmed Greyhound, perfected by wetting the glass rim with grapefruit and dipping it in coarse salt. Ingredients 1.5oz Gin or Vodka 3–4 oz Fresh Grapefruit Juice (Ruby red recommended) Coarse Salt (Kosher or sea salt for the rim) Grapefruit Wedge/Slice (For rimming and garnish) Ice Instructions Prepare the Rim: Run a grapefruit wedge around the rim of a rocks or highball glass. Dip the edge into a small plate of coarse salt to coat. Fill the Glass: Add ice to the prepared glass. Combine Ingredients: Pour 1.5oz of gin or vodka and 3-4 oz of fresh grapefruit juice into the glass. Stir & Garnish: Stir gently to combine without disrupting the salt rim. Garnish with a grapefruit slice or twist. Tips for the Best Salty Dog Fresh Juice is Key: Using fresh-squeezed grapefruit juice is highly recommended over bottled for better flavor. Gin vs. Vodka: Gin provides a more classic, botanical flavor, while vodka makes for a lighter, juice-forward drink. Salt Choice: Use coarse salt rather than fine table salt to prevent it from dissolving too quickly into the drink."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 61,
+    "fields": {
+        "cocktail": 30,
+        "text": "A Screwdriver cocktail is made by combining 1 ½ oz vodka and 6 oz orange juice in a highball glass over ice, typically garnished with an orange slice or wedge. Simply pour the ingredients over ice, stir gently, and serve. Classic Screwdriver Recipe Ingredients: 1 ½ fluid ounces vodka, 6 fluid ounces orange juice, 1 ½ cups ice cubes, orange slice for garnish. Optional: A few dashes of bitters for depth. Instructions Prep Glass: Fill a highball or Collins glass with ice. Add Vodka: Pour 1 ½ oz of vodka over the ice. Top with Juice: Fill the rest of the glass with orange juice. Stir & Garnish: Stir gently to combine. Garnish with an orange slice or wedge. For a lower-alcohol option, you can use 50ml vodka with 1 large orange squeezed, or add a dash of bitters for a more complex flavor profile."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 62,
+    "fields": {
+        "cocktail": 31,
+        "text": "A classic frozen strawberry daiquiri is made by blending 1.5–2 oz white rum, 1 cup frozen strawberries, 1 tbsp lime juice, 0.5–1 oz simple syrup, and 1 cup ice until slushy. Garnish with a fresh strawberry and lime wheel. For a shaken version, muddle fresh strawberries with syrup, shake with ingredients and ice, then strain. Frozen Strawberry Daiquiri Recipe (Blender) This method creates a slushy, refreshing drink. Ingredients: 1 ½ cups White Rum 16 oz (1 package) Frozen Strawberries ½ cup Fresh Lime Juice ¼ to ⅓ cup Simple Syrup (adjust to taste) 1–2 cups Ice (as needed for consistency) Method: Add all ingredients to a high-speed blender. Blend on high until smooth and slushy. Taste and add more sweetener or lime if necessary. Pour into glasses and garnish with a strawberry or lime wheel. Shaken Strawberry Daiquiri Recipe (On the Rocks) This method creates a fresh, bright cocktail. Ingredients: 50ml White Rum 25ml Fresh Lime Juice 12.5ml – 25ml Simple Syrup 4-6 Fresh Strawberries Ice Method: Muddle the fresh strawberries in the bottom of a shaker. Add the rum, lime juice, simple syrup, and a handful of ice. Shake vigorously until cold. Strain into a chilled glass filled with fresh ice. Tips for the Best Daiquiri Simple Syrup: Make your own by dissolving equal parts sugar and hot water, then cooling. Sweetness: Taste your strawberries; if they are tart, you may need more syrup. Better Quality Rum: Use a decent quality white rum to avoid a harsh aftertaste. Non-alcoholic: Omit the rum and use tonic water or lemon-lime soda for a virgin version."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 63,
+    "fields": {
+        "cocktail": 32,
+        "text": "A refreshing strawberry mojito is made by muddling 3-4 fresh strawberries, 6-8 mint leaves, 1 tablespoon of sugar (or simple syrup), and 1 ounce of lime juice in a highball glass. Add 2 ounces of white rum, fill with crushed ice, top with club soda, and garnish with mint and strawberry slices. Classic Strawberry Mojito Ingredients (Per Drink) Strawberries: 3-4 fresh, ripe strawberries, hulled and quartered Mint: 8-12 fresh mint leaves Lime: 1 lime, cut into wedges (or 1 oz fresh juice) Sweetener: 20ml sugar syrup or 1-2 tsp granulated sugar Rum: 60ml (2 oz) white rum Soda: Top with club soda or sparkling water Ice: Crushed ice Step-by-Step Instructions Muddle: In a sturdy glass, muddle the strawberries, mint leaves, lime wedges, and sugar/syrup together until the fruit is smashed and juicy, but the mint is only bruised. Add Rum: Pour in the white rum. Ice & Stir: Fill the glass with crushed ice and stir well to combine and chill the drink. Top & Garnish: Top with a splash of club soda. Garnish with a fresh mint sprig and a strawberry slice. Tips for the Best Mojito Don't Over-muddle: Muddle gently to avoid making the mint bitter. Use Crushed Ice: It keeps the drink colder and dilutes better than cubes. Make it Sweeter: Use strawberry syrup instead of sugar for more intense flavor. Batching: To serve a crowd, mix the strawberries, mint, lime juice, and syrup in a pitcher first, adding rum, ice, and soda just before serving."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 64,
+    "fields": {
+        "cocktail": 33,
+        "text": "A Tequila Sunrise is made by pouring 2 oz tequila and 4 oz orange juice into an ice-filled highball glass, then adding 1/2 oz grenadine, which sinks to create a gradient effect. Do not stir immediately; the heavy syrup settles to the bottom naturally. Garnish with a cherry or orange slice. Classic Tequila Sunrise Recipe Tequila: 2 oz (60 ml) Blanco or Silver Orange Juice: 4 oz (120 ml) fresh squeezed Grenadine: 1/2 oz (15 ml) Garnish: Orange slice and maraschino cherry Ice: Highball glass filled with ice cubes Preparation Steps Prep Glass: Fill a highball or Collins glass with ice. Combine Base: Pour the tequila and orange juice into the glass. You can pre-mix them in a shaker with ice first, or pour directly into the glass. Add Grenadine: Slowly pour the grenadine over the top. It will sink to the bottom, creating the \"sunrise\" effect. Finish: Garnish with an orange slice and cherry. Stir gently only right before drinking. Expert Tips Layering: For the best effect, pour the grenadine slowly over the back of a spoon to ensure it settles at the bottom. Variations: Some recipes call for a dash of lime juice for acidity. Tequila Choice: While Blanco is standard, Reposado can be used for a more aged flavor."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 65,
+    "fields": {
+        "cocktail": 34,
+        "text": "Ingredients Spirit: 50-60ml Bourbon or Rye whiskey Sour: 25-35ml Fresh lemon juice Sweet: 12-15ml Simple syrup (1:1 ratio) Texture: ½ fresh egg white (optional, for foam) Garnish: Angostura bitters and a cocktail cherry/lemon twist Instructions Combine: Add the whiskey, lemon juice, simple syrup, and egg white (if using) into a cocktail shaker. Dry Shake: Shake without ice for 10–15 seconds to emulsify the egg white and create foam. Wet Shake: Add ice to the shaker and shake again until very cold, about 10–15 seconds. Strain & Garnish: Double-strain into a chilled coupe glass or a rocks glass filled with fresh ice. Finish: Garnish with 2–3 drops of Angostura bitters on top of the foam, a lemon twist, or a maraschino cherry. Tips for Success Simple Syrup: Make your own by dissolving equal parts white sugar and water in a saucepan over heat. Vegan Alternative: Replace the egg white with 15-20ml of aquafaba (chickpea water) for the same velvety texture. Ice: Use large ice cubes for shaking to prevent over-dilution."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 67,
+    "fields": {
+        "cocktail": 36,
+        "text": "Classic Blended Bahama Mama Recipe 1 oz Coconut Rum ½ oz Dark Rum (or coffee liqueur for a twist) 1 oz Orange Juice 1 oz Pineapple Juice ½ oz Grenadine 1 cup Crushed Ice Garnish: Pineapple wedge, Maraschino cherry Instructions: Blend: Add the rum, juices, grenadine, and ice into a blender. Combine: Blend until the mixture reaches a smooth, slushy consistency. Serve: Pour into a hurricane glass and garnish with a cherry and orange slice. Variations: On the Rocks: Instead of blending, shake the ingredients (except grenadine) with ice, strain into a glass with fresh ice, and pour the grenadine in last to sink to the bottom. Tropical Twist: Add ½ oz of banana liqueur for more depth.\r\n\r\njust a bit"
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 70,
+    "fields": {
+        "cocktail": 38,
+        "text": "A classic Bloody Mary is made by stirring or shaking 50ml vodka, 150ml tomato juice, 10-15ml lemon juice, 3-6 dashes of Worcestershire sauce, 2-3 dashes of Tabasco, celery salt, and black pepper with ice. Strain into a tall glass with fresh ice and garnish with a celery stick and lemon slice. Ingredients (Single Serving) Vodka:(2 oz) Tomato Juice:(4-5 oz) Lemon Juice: Freshly squeezed from half a lemon Worcestershire Sauce: 3-6 dashes Tabasco/Hot Sauce: 2-3 dashes (to taste) Seasoning: Pinch of celery salt and black pepper Garnish: Celery stick, lemon wedge, optional olives or bacon Instructions Prepare the glass: Rub a lemon wedge around the rim of a tall glass and dip it in a mix of celery salt and smoked paprika, if desired. Mix ingredients: Add the vodka, tomato juice, lemon juice, Worcestershire sauce, hot sauce, and seasonings into a shaker or pitcher with ice. Combine: Stir or shake well until the outside of the container feels cold. Serve: Strain into the prepared glass filled with fresh ice. Garnish: Garnish with a celery stick, lemon wedge, or optional items like pickles or bacon. Tips for the Best Bloody Mary Spiciness: Add more Tabasco, or try other hot sauces like Cholula, Frank's Red Hot, or horseradish for extra kick. Consistency: For a more savory, thicker drink, add 1 tsp of cream sherry or horseradish. Quality: Use good quality, chilled tomato juice. Batching: To make a pitcher, multiply the ingredients by the number of guests, but hold the ice until serving."
+    }
+},
+{
+    "model": "cocktails.recipe",
+    "pk": 71,
+    "fields": {
+        "cocktail": 39,
+        "text": "A classic Blue Hawaiian cocktail combines 1.5 oz light rum, 0.75 oz blue curaçao, 2 oz pineapple juice, and 0.75 oz cream of coconut. Shake or blend these ingredients with ice, then strain into a glass, garnishing with a pineapple wedge and maraschino cherry for a refreshing, tropical, and creamy coconut-pineapple drink. Classic Blended Blue Hawaiian 1 ½ oz White Rum ¾ oz Blue Curaçao 2 oz Pineapple Juice ¾ oz Cream of Coconut 1 cup Crushed Ice Garnish: Pineapple wedge, maraschino cherry Instructions: Add all ingredients into a blender. Blend on high until smooth and creamy. Pour into a chilled Hurricane or highball glass. Garnish with a pineapple wedge and cherry. Shaken (On the Rocks) Method If preferred, shake the ingredients in a cocktail shaker with ice and strain into a glass filled with fresh crushed ice. Liquor.com Liquor.com Key Tips Cream of Coconut: Use a product like Real Cream of Coconut for best results. If it is thick, gently warm it before mixing. Variation (Blue Hawaii): The \"Blue Hawaii\" usually uses vodka and sour mix, whereas the \"Blue Hawaiian\" is known for its creamy coconut flavor. Garnish: A cocktail umbrella is a classic addition."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 7,
+    "fields": {
+        "cocktail": 36,
+        "text": "The Bahama Mama is a tropical rum-based cocktail originating from the Bahamas around the 1950s-1960s, often linked to calypso dancer Dottie Lee Anderson or bartender Oswald Greenslade. It became a staple tourist drink featuring rum, coffee liqueur, coconut liqueur, and fruit juices, often served in the British Colonial Hotel and popular in Miami Beach. Key Historical Details The Namesake: Many sources believe the drink was named after Dottie Lee Anderson, a Caribbean calypso singer and dancer known as \"Bahama Mama\" who performed in the 1930s-1950s. The Creator: Bahamian bartender Oswald Greenslade claimed in his book, One More Cocktail, to have invented the drink in 1963 at the Pink Elephant Night Club, naming it after dancer Maureen Duvalier. Early Mentions: The drink appeared in Trader Vic's in 1961 and on Nassau menus in 1960. Ingredients: While recipes vary, it typically combines dark rum, coconut rum, coffee liqueur, pineapple juice, and lemon juice. Variations in Origin Story Cultural Term: The term \"Bahama Mama\" was already in the cultural lexicon as early as 1932 due to a song, melmagazine.com reports. The Cocktail Name: While Greenslade claims 1963, some sources suggest the cocktail's popularity grew earlier in the 1950s, making the specific inventor debated, says r/Tiki and Daily Meal. Oswald Greenslade's Recipe: According to Difford's Guide, his original, or perhaps a later version, did not include the coffee liqueur often used today, Got Rum? Magazine notes. It remains a staple of tropical, \"tiki\" style cocktails, often grouped with other rum-heavy drinks like the Goombay Smash."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 12,
+    "fields": {
+        "cocktail": 38,
+        "text": "history"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 13,
+    "fields": {
+        "cocktail": 39,
+        "text": "some history"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 21,
+    "fields": {
+        "cocktail": 14,
+        "text": "Origins and CreationThe Bartender: Andy MacElhone ran his father's famous Parisian bar and wanted a vibrant, refreshing drink.The Ingredients: Following the 1960s commercial explosion of blue curaçao (a citrus-flavored orange liqueur dyed bright blue), MacElhone paired it with clean vodka and tart lemonade.The Style: It broke away from heavier, darker mid-century cocktails by offering an eye-catching visual pop and crisp flavor.\r\n\r\nRise in PopularityThe 1980 Film: The drink's fame skyrocketed internationally around 1980. This coincided with the release of the romance-adventure film The Blue Lagoon starring Brooke Shields, though the drink actually predated the movie by nearly a decade.Retro Revival: The cocktail became a symbol of 1970s and 1980s leisure, resort culture, and pool parties."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 47,
+    "fields": {
+        "cocktail": 15,
+        "text": "Origins and RiseThe exact inventor of the Blue Tahoe remains unrecorded in official cocktail history.The drink emerged in online bartending circles and community recipe forums during the 2000s or 2010s.Mixologists created it as a regional and celebratory variation of classic blue drinks like the Blue Lagoon or Blue Margarita.It gained modest popularity in online cocktail databases as an easy-to-mix, high-visibility drink for parties and resort bars."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 48,
+    "fields": {
+        "cocktail": 16,
+        "text": "Name and OriginThe Countryside: The drink was born in rural São Paulo.The Name: The word caipirinha comes from caipira, a Portuguese term for a person from the country, much like \"hillbilly\" or \"country bumpkin\".Early Names: Locals first called it pinga com limão (pinga being a slang name for cachaça) before the modern name took over mid-century.\r\n\r\nKey Evolution Steps1500s: Portuguese colonizers brought sugarcane to Brazil, leading to the creation of cachaça (distilled sugarcane juice).1918: Popular local legend links a primitive, healing hot-toddy version of the drink (with garlic and honey) to the Spanish flu outbreak.Mid-20th Century: The recipe shifted to use fresh lime muddled with cane sugar and ice, making it a refreshing social drink.2003: The Brazilian government declared the caipirinha an official piece of Brazilian cultural heritage.Modern Day: It is recognized globally as an official contemporary classic cocktail by the International Bartenders Association "
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 49,
+    "fields": {
+        "cocktail": 17,
+        "text": "Early Precursors and 1970s Roots1934 Gin Cosmo: Early recipe books feature an unrelated pink drink made with gin, lemon, triple sec, and raspberry syrup.1975 Minneapolis: Bartender Neal Murray claimed he added a splash of cranberry juice to a Kamikaze, prompting a customer to call it \"cosmopolitan\".1970s Provincetown: Unverified reports trace similar vodka-cranberry-lime mixes within the local gay community\r\n\r\nThe 1980s Invention1985 South Beach: Cheryl Cook invented a visually striking martini-glass drink at The Strand using vodka, triple sec, Rose's lime juice, and cranberry juice.1987–1989 New York: Toby Cecchini perfected the contemporary spec using newly launched Absolut Citron, Cointreau, fresh lime, and Ocean Spray cranberry juice.Dale DeGroff: The renowned rainbow-room bartender further popularized a similar elite New York variation"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 50,
+    "fields": {
+        "cocktail": 18,
+        "text": "Origins and the ToastThe Famous Story: American soldiers and local people in a bar in Havana mixed the new soda, which had just arrived in Cuba, with local rum and lime.The Battle Cry: Someone raised a glass and shouted \"¡Por Cuba Libre!\" (For a Free Cuba) to toast freedom, which gave the drink its name.The Bacardi Connection: Much of the popular lore was later promoted by the Bacardi rum company in advertising campaigns during the 1960s\r\n\r\nDifference from Rum and CokeFresh Lime: A traditional Cuba Libre always includes fresh lime juice, while a standard Rum and Coke does not necessarily require citrus.Balance: The lime juice cuts the heavy sweetness of the cola and matches the flavor of the rum."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 51,
+    "fields": {
+        "cocktail": 19,
+        "text": "The Dirty Martini traces back to 1901 at New York’s Waldorf Astoria, where bartender John E. O’Connor began muddling olives into the classic gin-and-vermouth mix. The first printed recipe featuring actual olive brine appeared in G.H. Steele’s 1930 guide, My New Cocktail Book, before rising to fame with political backing.Early Roots and Evolution1901 Invention: New York bartender John E. O'Connor served a Dry Martini with muddled olives at the Waldorf Astoria, leaning into the popularity of the drink's standard garnish.Transition to Brine: Bartenders soon realized that adding a splash of liquid from the olive jar enhanced the savory, salty profile.1930 Print Debut: G.H. Steele published the first formal recipe including olive brine in My New Cocktail Book\r\n\r\nPresidential FameFDR’s Influence: U.S. President Franklin D. Roosevelt was a known home-bartender who frequently mixed martinis for White House guests.Wartime Lore: Legend claims FDR served briny martinis to Winston Churchill and Joseph Stalin at the 1945 Yalta Conference, cementing the drink's elite social standing.\r\n\r\nMid-Century Shifts to Modern DayThe Vodka Switch: As vodka surged in popularity during the mid-20th century, drinkers began swapping out traditional gin for vodka, creating the modern split-base preference.The 1980s/90s Boom: The drink hit a peak era of commercial popularity among corporate power-diners.Modern Craft Revival: Contemporary bartenders have refined the drink using artisanal brines, blue-cheese-stuffed olives, and high-end umami modifiers.\r\n"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 52,
+    "fields": {
+        "cocktail": 34,
+        "text": "Early Origins and EvolutionNaval roots: Sailors mixed daily liquor rations with citrus and water to preserve health at sea.The 1862 Cookbook: Jerry Thomas published the first formal sour template, utilizing lemon, sugar, and spirit.First print: A recorded news mention appeared in the Waukesha Plain Dealer in Wisconsin in 1870"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 53,
+    "fields": {
+        "cocktail": 33,
+        "text": "The Tequila Sunrise has two distinct histories: an original 1930s creation in Arizona made with lime and crème de cassis, and the famous 1970s California update featuring orange juice and grenadine that became a global rock-and-roll icon.\r\n\r\nThe Original 1930s RecipeThe Creator: Gene Sulit at the Arizona Biltmore Hotel in Phoenix during the 1930s.The Ingredients: Tequila, lime juice, crème de cassis, and soda water.The Style: It was a light, refreshing, daisy-style drink where the crème de cassis created a subtle shadow reminiscent of a sunrise.\r\n\r\nThe 1970s Modern RebirthThe Creators: Bobby Lozoff and Billy Rice at The Trident bar in Sausalito, California, in the early 1970s.The Ingredients: Tequila, fresh orange juice, and a pour of grenadine that sinks to the bottom to form a bright color gradient.The Spark: Bobby Lozoff served the drink to Mick Jagger during a private party at the bar in 1972."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 54,
+    "fields": {
+        "cocktail": 32,
+        "text": "Roots of the Classic MojitoThe \r\n\r\n16th-Century Tonic: Sailors under English privateer Sir Francis Drake mixed crude sugarcane spirit (aguardiente), lime, sugar, and mint to combat scurvy and dysentery, creating a drink known as El Draque.\r\n\r\nEvolution in Cuba: By the 19th century, refined white rum replaced the harsh spirit, and the drink took on the name \"Mojito\" (likely from the African term mojo, meaning to cast a small spell).\r\n\r\nHavana Fame: The cocktail gained international renown thanks to Ernest Hemingway frequenting bars like La Bodeguita Del Medio in Havana.\r\n\r\nRise of the Strawberry VariationModern Craft Cocktail Movement: As bars began experimenting with fresh, seasonal purées and muddled berries in the 1990s and 2000s, sweet summer fruits were naturally paired with the refreshing mint-and-lime profile of traditional highballs."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 55,
+    "fields": {
+        "cocktail": 31,
+        "text": "The Strawberry Daiquiri evolved from the classic Cuban Daiquiri invented around 1898 by American mining engineer Jennings Cox in Daiquirí, Cuba. While the original combined just white rum, lime, and sugar, the fruity strawberry variation and its iconic frozen, blended style surged to global popularity during the mid-20th century.\r\n\r\nRoots in Cuba\r\n\r\nThe original drink: Jennings Cox mixed local white rum, lime juice, and sugar over ice in a small mining town near Santiago de Cuba.\r\n\r\nHavana fame: The recipe travelled to El Floridita Bar in Havana, where head bartender Constantino Ribalaigua Vert popularized serving drinks blended over crushed or shaved ice in the 1930s.\r\n\r\nEarly variations: Fruit additions like strawberry syrup or fresh muddled berries naturally emerged in Cuba as bartenders experimented with the classic crushed-ice format.\r\n\r\nThe Rise of the Frozen Blended Craze\r\n\r\nThe electric blender: The mid-1940s and 1950s saw electric blenders become widespread in bars. This technology made smooth, frozen fruit purees effortless to produce.\r\n\r\nGlobal appeal: The frozen Strawberry Daiquiri became a symbol of tropical resorts, tiki culture, and warm-weather leisure across America and beyond.\r\n\r\nModern status: Today, it remains a beloved summertime staple, enjoyed either fresh-shaken with muddled strawberries or blended smooth as a frozen cocktail."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 56,
+    "fields": {
+        "cocktail": 30,
+        "text": "The screwdriver cocktail—a simple mix of vodka and orange juice—was invented during World War II by American engineers, marines, or oil workers stationed in regions like Turkey and the Persian Gulf, who spiked their juice and famously used a metal tool to stir it.\r\n\r\nEarly Beginnings and First Mentions\r\n\r\nWorld War II: American groups in Eastern Europe, Turkey, and the Middle East mixed local spirits with canned orange juice.\r\n\r\nThe Tool Legend: Workers lacked standard bar spoons, so they used a hand-held metal screwdriver to stir the drink, which gave the beverage its permanent name.\r\n\r\nTime Magazine (1949): The first major written record appeared in October 1949, describing a scene at the Park Hotel where intelligence agents and engineers drank the Yankee mix of vodka and orange juice.\r\n\r\nRise in Popularity\r\n\r\n1950s Boom: Vodka was not yet popular in North America.\r\n\r\nMarketing Push: Spirits companies, notably Smirnoff, launched massive marketing campaigns in the 1950s and 1960s to promote vodka as a clean, versatile alternative to other liquors.\r\n\r\nGlobal Staple: Promoting the easy two-ingredient mix turned the drink into a brunch and casual bar classic worldwide."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 57,
+    "fields": {
+        "cocktail": 29,
+        "text": "The Salty Dog is a classic mid-20th-century cocktail made from gin or vodka, tart grapefruit juice, and a distinctive salted rim. Evolving directly from the earlier Greyhound cocktail, it was popularized in the 1950s when salt was added to balance the sharp, bitter edges of the citrus.\r\n\r\nRoots in the Greyhound\r\n\r\nThe story begins with the Greyhound, a simple mix of gin and grapefruit juice.\r\n\r\nHarry Craddock first documented a comparable iteration in his famous 1930 The Savoy Cocktail Book.\r\n\r\nPopular folklore links the Greyhound name to the famous U.S. bus company, where similar quick mixtures were served at terminal counters.\r\n\r\nThe 1950s Shift and the Salt Rim\r\n\r\nAround the 1950s, a pinch of salt or a fully salted glass rim was introduced to the template.\r\n\r\nFood science explains that sodium suppresses bitterness and amplifies perceived sweetness, making the tart grapefruit juice much smoother.\r\n\r\nLore often credits celebrity entertainer George Jessel with inventing the drink as a sophisticated spin on the original Greyhound, though historians note he frequently claimed credit for multiple popular vodka and gin drinks of that era to maintain his spotlight."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 58,
+    "fields": {
+        "cocktail": 28,
+        "text": "The Pisco Sour—South America’s iconic citrus cocktail—combines Peruvian pisco, lime juice, sugar, egg white, and bitters. While rooted in 16th-century Spanish winemaking, the modern cocktail was popularized in Lima during the 1920s by American expat bartender Victor Morris and perfected by Peruvian bartender Mario Bruiget.\r\n\r\nOrigins of the Base Spirit\r\n\r\nColonial Roots: Spanish settlers brought wine grapes to Peru in the 1500s. Leftover or surplus wine was distilled into a clear brandy named pisco, after the Peruvian port town and valley.\r\n\r\nThe Sour Template: The tradition of mixing a base liquor with citrus and sugar grew heavily popular across the Americas during the mid-to-late 19th century (such as the standard whiskey or brandy sour).\r\n\r\nInvention and Evolution in Lima\r\n\r\nMorris' Bar: American bartender Victor Vaughen Morris moved to Peru and opened Morris' Bar in Lima in 1916. He began experimenting with pisco as a substitute for whiskey in traditional sour templates.\r\n\r\nEarly Recipes: Early printed mentions of pisco-and-lime mixtures surfaced in Peruvian print around 1903, but Morris' establishment cemented the drink's fame among locals and international travelers.\r\n\r\nThe Modern Twist: In the late 1920s, Mario Bruiget—a Peruvian bartender working at Morris' Bar—introduced the signature frothy egg white and Angostura bitters garnish that defines the classic modern recipe today.\r\n\r\nGlobal Spread and Cultural Status\r\n\r\nSpread Across South America: As bartenders from Morris' Bar moved to top-tier hotels in Lima like the Hotel Maury and Country Club, the recipe spread widely.\r\n\r\nInternational Fame: Celebrities and writers like Ernest Hemingway championed the drink mid-century, and restaurateurs introduced it to North American and European markets.\r\n\r\nNational Pride: Both Peru and Chile claim deep historical ties to pisco, but Peru formally designated the Pisco Sour as part of its Cultural Heritage and celebrates National Pisco Sour Day on the first Saturday of February every year."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 59,
+    "fields": {
+        "cocktail": 27,
+        "text": "The piña colada—meaning \"strained pineapple\" in Spanish—was invented in 1954 by bartender Ramón \"Monchito\" Marrero at the Caribe Hilton in San Juan, Puerto Rico. He spent three months creating the iconic blend of white rum, fresh pineapple juice, and cream of coconut. Puerto Rico named it their official national drink in 1978.\r\n\r\nEarly Roots and Legends\r\n\r\nPirate Tale: A popular local legend claims 19th-century Puerto Rican pirate Roberto Cofresí gave his crew a tonic of coconut, pineapple, and white rum to boost morale.\r\n\r\nEarly References: The term \"piña colada\" originally referred simply to strained fresh pineapple juice. A 1922 issue of Travel magazine mentioned a drink by that name, but it was just rum, lime, and pineapple juice without coconut.\r\n\r\nInvention in San Juan\r\n\r\nCoco López: The modern cocktail became possible when a homogenized cream of coconut (Coco López) was invented in the 1950s.\r\n\r\nCaribe Hilton Claim: Ramón \"Monchito\" Marrero mixed the first official creamy version at the hotel's Beachcomber Bar on August 15, 1954.\r\n\r\nRival Claims: Another bartender at the hotel, Ricardo García, also claimed credit, while the Old San Juan restaurant Barrachina asserts that their bartender, Ramón Portas Mingot, created it later in 1963.\r\n\r\nGlobal Fame\r\n\r\nNational Status: Puerto Rico officially declared the piña colada its national beverage in 1978.\r\n\r\nPop Culture: The drink reached peak global fame following the release of Rupert Holmes' 1979 hit song \"Escape (The Piña Colada Song)\""
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 60,
+    "fields": {
+        "cocktail": 20,
+        "text": "The Hiroshima is a dramatic, high-proof layered shot made from sambuca, Irish cream, absinthe, and a drop of grenadine. It was reportedly created by bartenders as a provocative cold-war era layered drink—designed both in taste and visual effect to mimic a nuclear mushroom cloud as the red grenadine bleeds through the dense white cream.\r\n\r\nOrigins and Concept\r\n\r\nThe Inspiration: It was conceived as a cheeky or dark counter-response to the famous American layered shooter, the B-52 (named after the US long-range bomber).\r\n\r\nThe Visual Effect: When carefully poured, the heavy liqueurs layer distinctly, and adding drops of grenadine causes tendrils of red syrup to sink through the white Irish cream, resembling an explosion or mushroom cloud.\r\n\r\nRecipe Breakdown\r\n\r\nSambuca: Forms the dense, sweet bottom base layer.\r\n\r\nIrish Cream: Floated in the middle to catch sinking elements.\r\n\r\nAbsinthe: Layered on top as a high-proof, flammable crown.\r\n\r\nGrenadine: Dropped carefully down through the middle to trigger the signature \"mushroom cloud\" visual effect"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 61,
+    "fields": {
+        "cocktail": 21,
+        "text": "The Kamikaze cocktail—a punchy blend of vodka, triple sec, and lime juice—first emerged prominently during the 1970s disco era. While popular lore often claims it was invented on a post-World War II American naval base in Japan, cocktail historians generally trace its verified rise to mid-1970s American bars and ski resorts.\r\n\r\nOrigins and Evolution\r\n\r\nThe Template: Functionally a vodka-based Margarita, the drink relies on equal parts vodka, orange liqueur, and fresh or cordial lime juice.\r\n\r\nThe Name: \"Kamikaze\" translates from Japanese to \"divine wind,\" a moniker chosen to signify the drink's swift, aggressive alcoholic impact.\r\n\r\nAttributed Creators: Cocktail writer John Mariani credited bartender Tony Lauriano with inventing it in 1972 at New York's Les Pyrenees, originally under the name \"Jesus Christ Superstar\" before changing it due to customer confusion.\r\n\r\nAlternative Accounts: Print references from the mid-1970s in sailing and ski magazines point to concurrent popularity spikes originating in Florida and North American ski lodges.\r\n\r\nRise as a Shot and Modern Status\r\n\r\nThe Shooter Boom: Throughout the 1980s and 1990s, the drink transitioned away from a laid-back glass cocktail into a ubiquitous party shot.\r\n\r\nModifications: Swapping triple sec for blue curacao creates a \"Blue Kamikaze.\"\r\n\r\nModern Revival: Contemporary craft bars have re-embraced the recipe, scaling it back up into a chilled coupe or martini glass using fresh lime juice rather than the sweetened neon cordials common in past decades"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 62,
+    "fields": {
+        "cocktail": 22,
+        "text": "The history of the Long Island iced tea involves two main origin stories: a 1970s creation in New York by bartender Robert \"Rosebud\" Butt and an earlier 1920s Prohibition tale from Tennessee by \"Old Man Bishop\".\r\n\r\nThe 1970s New York Legend\r\n\r\nThe Creator: Bartender Robert “Rosebud” Butt.\r\n\r\nThe Location: Oak Beach Inn on Long Island, New York.\r\n\r\nThe Date: 1972.\r\n\r\nThe Event: Created during a contest to invent a new mixed drink featuring triple sec. Butt combined vodka, gin, rum, tequila, triple sec, sour mix, and a splash of cola for color to mimic iced tea. It won the contest and became a global bar staple.\r\n\r\nThe 1920s Prohibition Tale\r\n\r\nThe Creator: Charles \"Old Man\" Bishop\r\n\r\nThe Location: Long Island community in Kingsport, Tennessee.\r\n\r\nThe Date: Around 1920 (Prohibition era).\r\n\r\nThe Event: Bishop allegedly mixed whiskey, maple syrup, and multiple liquors, making a strong drink that looked like harmless iced tea to hide it from authorities. His son Ransom later added lemon, lime, and cola in the 1940s"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 63,
+    "fields": {
+        "cocktail": 23,
+        "text": "The Mai Tai was invented in 1944 by Victor J. Bergeron—known as \"Trader Vic\"—at his restaurant in Oakland, California. He mixed 17-year-old Jamaican rum with lime juice, orange curaçao, and almond-flavored orgeat. When his Tahitian friends tasted it, they cried \"Maitaʻi roa aʻe,\" meaning \"out of this world, the best,\" giving the drink its name.\r\n\r\nThe Origin Dispute\r\n\r\nTrader Vic: Widely credited with the 1944 recipe designed to highlight the pure flavor of high-quality aged rum.\r\n\r\nDon the Beachcomber: Rival tiki pioneer Ernest Gantt claimed he actually invented the drink in 1933, though historians believe his precursor was a different drink called the Q.B. Cooler.\r\n\r\nThe Rum Shortage & Evolution\r\n\r\nThe Original Run: Vic's original recipe used J. Wray & Nephew 17-year-old Jamaican rum.\r\n\r\nThe Custom Blend: When this rare rum ran out due to the drink's massive popularity, Vic began blending different rums to match the original profile, starting a long-standing tradition of custom rum blends in tiki mixology.\r\n\r\nThe Hawaiian Twist: In 1953, Trader Vic brought the drink to Hawaii. By the 1960s, local variations introduced pineapple juice, orange juice, and a dark rum float to appeal to tourists.\r\n\r\nThe Dark Decades: In the 1970s and 1980s, the cocktail devolved into a neon-colored, overly sweet mix using artificial grenadine and pre-made commercial syrups.\r\n\r\nThe Revival: Modern tiki bars have restored the classic 1944 recipe, emphasizing fresh lime and rich orgeat over heavy fruit juices"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 64,
+    "fields": {
+        "cocktail": 24,
+        "text": "The exact origin of the Margarita is unknown, but most stories date the iconic mix of tequila, orange liqueur, and lime juice to the late 1930s and 1940s in Mexico. It likely evolved from a classic family of drinks called \"Daisies\" (margarita is Spanish for daisy).\r\n\r\nPopular Origin Claims\r\n\r\nCarlos \"Danny\" Herrera (1938): A bartender in Tijuana who reportedly made the drink at Rancho La Gloria for a showgirl named Marjorie King who only drank tequila.\r\n\r\nMargaret Sames (1948): A Dallas socialite who claimed she mixed tequila, Cointreau, and lime at a holiday party in Acapulco.\r\n\r\nFrancisco \"Pancho\" Morales (1942): A bartender in Juárez who said he invented the drink by accident at Tommy's Place.\r\n\r\nGrowth and Popularization\r\n\r\n1945: José Cuervo ran US ad campaigns with the tagline \"Margarita: it's more than a girl's name\".\r\n\r\n1953: Esquire magazine featured the cocktail as its Drink of the Month.\r\n\r\n1971: Mariano Martinez invented the frozen margarita machine in Dallas, transforming it into a mass-market resort staple.\r\n\r\n1977: Jimmy Buffett released his hit song \"Margaritaville\", cementing the drink in global pop culture"
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 65,
+    "fields": {
+        "cocktail": 25,
+        "text": "The mint julep originated as an Arabic medicinal drink called gulab, made of water and rose petals. It evolved in the American South during the 18th century into an alcoholic morning refresher. By 1938, it became the official, iconic drink of the Kentucky Derby.\r\n\r\nOrigins and Evolution\r\n\r\nMiddle Eastern roots: The word \"julep\" comes from the Arabic gulab, meaning a rosewater potion used to treat stomach aches.\r\n\r\nEuropean transition: Settlers brought the medicinal syrup concept to Europe, where local mint eventually replaced rose petals.\r\n\r\nEarly American use: By the late 1700s, Southern landowners in Virginia drank juleps as a morning eye-opener.\r\n\r\nOriginal spirits: Early American versions used brandy, cognac, or rum rather than bourbon.\r\n\r\nShift to Bourbon and Ice\r\n\r\nRise of ice: The julep was one of the first popular cocktails served with crushed ice once commercial ice shipping became common in the 1800s.\r\n\r\nThe whiskey shift: A mid-19th-century insect plague destroyed French vineyards, causing a brandy shortage that permanently established American whiskey and bourbon as the drink's primary base.\r\n\r\nThe Kentucky Derby Tradition\r\n\r\nEarly ties: The drink was associated with Southern horse tracks and was served at Churchill Downs as early as the first Kentucky Derby in 1875.\r\n\r\nOfficial status: Churchill Downs officially named the mint julep the signature drink of the Kentucky Derby in 1938, serving it in souvenir cups that guests kept as collectors' items."
+    }
+},
+{
+    "model": "cocktails.history",
+    "pk": 66,
+    "fields": {
+        "cocktail": 26,
+        "text": "The mojito originated in Havana, Wikipedia Cuba, tracing back to the 16th-century medicinal drink \"El Draque\" and evolving through local ingredients and famous fans like Ernest Hemingway.\r\n\r\nThe 16th-Century Roots: El Draque\r\n\r\nSir Francis Drake: In 1586, the English captain's crew anchored off Havana and suffered from tropical illnesses like scurvy and dysentery.\r\n\r\nThe Medicine: Crew members went ashore and returned with local remedies: mint, lime, and sugarcane juice, mixed with aguardiente de caña (a crude, harsh cane-spirit precursor to rum).\r\n\r\nThe Name: The drink was named \"El Draque\" or \"Drac\" after Drake, consumed primarily for its healing properties rather than pure leisure"
+    }
+}
+]
