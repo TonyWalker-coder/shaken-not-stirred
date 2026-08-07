@@ -560,10 +560,10 @@
         <h3>Upload New Image</h3>
 
         <form id="imageUploadForm" method="POST" action="{% url 'upload_image' %}" enctype="multipart/form-data">
-  {% csrf_token %}
-  <input type="file" name="image" accept=".png,.jpg,.jpeg" class="modal-input" required />
-  <button type="submit" class="modal-button">Upload</button>
-</form>
+          {% csrf_token %}
+          <input type="file" name="image" accept=".png,.jpg,.jpeg" class="modal-input" required />
+          <button type="submit" class="modal-button">Upload</button>
+        </form>
 
 
         <p class="empty-text" style="margin-top:10px;">
@@ -590,7 +590,7 @@
           {% for img in images %}
           <div class="modal-item">
 
-            
+
             <img src="{% static 'cocktails/buttons/' %}{{ img }}" class="item-thumb" />
 
             <p class="assign-image-filename">{{ img }}</p>

@@ -493,7 +493,7 @@ def assign_image(request, cocktail_id, filename):
 
     return JsonResponse({
         "error": False,
-        "message": "Image assigned.",
+        "message": "Image assigned!",
         "image_url": cocktail.image_url,
     })
 

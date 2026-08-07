@@ -166,14 +166,7 @@ function removeScopedMessages(keyword) {
 // refreshAll
 //
 async function refreshAll() {
-  /*delete /showLoadingModal(); // ⭐ Show egg timer modal
-  function showLoadingModal() {
-  openModal("loadingModal");
-
-  setTimeout(() => {
-    closeModal("loadingModal");
-  }, 3000);
-}*/
+  
 
   const res = await fetch("/refresh-all/", {
     headers: { "X-Requested-With": "XMLHttpRequest" },
@@ -1142,15 +1135,13 @@ document.addEventListener("click", async (e) => {
 
   const filename = btn.dataset.image;
   if (!filename) {
-    showMessage("Image filename missing.", "error");
+    modalMessage("imagesModal", "error", "Image filename missing.");
     return;
   }
 
-  const cocktailId = Number(
-    document.getElementById("imageCocktailSelect").value
-  );
+  const cocktailId = Number(document.getElementById("imageCocktailSelect").value);
   if (!cocktailId) {
-    showMessage("Please select a cocktail first.", "error");
+    modalMessage("imagesModal", "error", "Please select a cocktail first.");
     return;
   }
 
@@ -1186,36 +1177,31 @@ document.addEventListener("click", async (e) => {
    AJAX SUBMIT — ASSIGN IMAGE
    ============================================================ */
 
-document
-  .getElementById("assignImageForm")
-  ?.addEventListener("submit", async (e) => {
-    e.preventDefault();
+document.getElementById("assignImageForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    const form = e.target;
+  const form = e.target;
 
-    const res = await fetch(form.action, {
-      method: "POST",
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "X-CSRFToken": getCSRFToken(),
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    });
-
-    const data = await res.json();
-
-    if (data.error) {
-      showMessage(data.message, "error");
-      return;
-    }
-
-    showMessage("Image assigned!", "success");
-    closeModal("assignImageConfirmModal");
-
-    // Optional: refresh dashboard via your existing refresh-all
-    // await fetch("/refresh-all/");
+  const res = await fetch(form.action, {
+    method: "POST",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": getCSRFToken(),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
   });
+
+  const data = await res.json();
+
+  if (data.error) {
+  modalMessage("assignImageConfirmModal", "error", data.message);
+  return;
+}
+closeModal("assignImageConfirmModal");
+modalMessage("imagesModal", "success", "Image assigned!");
+
+});
 
 /* ============================================================
    LIVE IMAGE LIST
@@ -1274,21 +1260,6 @@ async function refreshCocktailDropdown() {
     opt.textContent = c.name;
     select.appendChild(opt);
   });
-}
-
-/* ============================================================
-   SAFE MODAL MESSAGE HELPER
-   ============================================================ */
-
-function modalMessage(id, type, msg) {
-  const modal = document.getElementById(id);
-  if (!modal) return;
-
-  const box = modal.querySelector(`.modal-message.${type}`);
-  if (!box) return;
-
-  box.textContent = msg;
-  box.classList.remove("hidden");
 }
 
 
