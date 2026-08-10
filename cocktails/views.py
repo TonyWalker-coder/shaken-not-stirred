@@ -143,7 +143,7 @@ def history_add(request, cocktail_id):
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
     if request.method == "POST":
-        text = request.POST.get("text")
+        text = request.POST.get("text") or request.POST.get("history_text")
 
         existing = History.objects.filter(cocktail=cocktail).first()
 
@@ -312,7 +312,15 @@ def add_cocktail(request):
     name = request.POST.get("name", "").strip()
     history_text = request.POST.get("history", "").strip()
     recipe_text = request.POST.get("recipe", "").strip()
-    ingredient_ids = request.POST.getlist("ingredients")
+    raw_ids = request.POST.getlist("ingredients")
+    ingredient_ids = []
+
+    for i in raw_ids:
+        try:
+            ingredient_ids.append(int(i))
+        except (TypeError, ValueError):
+            pass
+
 
     # UNIQUE NAME VALIDATION
     if Cocktail.objects.filter(name__iexact=name).exists():
@@ -593,4 +601,7 @@ def assign_image(request, cocktail_id, filename):
     # Normal form POST → redirect
     return redirect("dashboard")
 
+def ingredient_list(request):
+    ingredients = Ingredient.objects.all().order_by("name")
+    return JsonResponse({"ingredients": list(ingredients.values())})
 

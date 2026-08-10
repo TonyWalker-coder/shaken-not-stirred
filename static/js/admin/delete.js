@@ -61,24 +61,17 @@ document.addEventListener("click", (e) => {
 */
 
 document.addEventListener("submit", async (e) => {
-  console.log("SUBMIT FIRED!", e.target);
-  const form = e.target;
-  if (!form) return; // Not the delete form → ignore
+  const form = e.target.closest("#deleteCocktailForm");
+  if (!form) return;   // Ignore all other forms
 
   e.preventDefault();
 
   const url = form.action;
 
-  // Close confirm modal
   closeModal("confirmDeleteCocktailModal");
-
-  // Open parent delete modal
   openModal("deleteCocktailModal");
-
-  // Unified loading message
   modalMessage("deleteCocktailModal", "success", "Working...");
 
-  // Perform delete
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -96,12 +89,10 @@ document.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Refresh all cocktail lists
   refreshCocktailList(data.cocktails);
-
-  // Success message
   modalMessage("deleteCocktailModal", "success", "Cocktail deleted!");
 });
+
 
 /* ============================================================
    REFRESH COCKTAIL LISTS (History / Recipes / Delete Modal)

@@ -2,8 +2,7 @@ import {
   modalMessage,
   closeModal,
   openModal,
-  getCSRFToken,
-  refreshImageList
+  getCSRFToken
 } from "./admin-core.js";
 
 /* ============================================================
@@ -139,3 +138,38 @@ document.addEventListener("submit", async (e) => {
 
   await refreshImageList();   // unified refresh
 });
+/* ============================================================
+   UNIVERSAL — REFRESH IMAGE LIST
+   ============================================================ */
+
+async function refreshImageList() {
+  const res = await fetch("/images/list/", {
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+  });
+  const data = await res.json();
+
+  const container = document.getElementById("imageList");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (!data.images || !data.images.length) {
+    container.innerHTML = `<p class="empty-text">No images found.</p>`;
+    return;
+  }
+
+  data.images.forEach((img) => {
+    const item = document.createElement("div");
+    item.className = "modal-item";
+
+    item.innerHTML = `
+      <img src="/static/cocktails/buttons/${img}?v=${Date.now()}" class="item-thumb" />
+      <p class="assign-image-filename">${img}</p>
+      <button class="add-btn" data-open="assignImageConfirmModal" data-image="${img}">
+        Assign
+      </button>
+    `;
+
+    container.appendChild(item);
+  });
+}

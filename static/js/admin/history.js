@@ -84,19 +84,26 @@ export function refreshHistoryList(historyData) {
   const container = document.querySelector("#historyModal .history-list");
   if (!container) return;
 
-  // Sort alphabetically
+  if (!Array.isArray(historyData)) {
+    console.error("Invalid history data:", historyData);
+    container.innerHTML = "<p class='empty-text'>No history found.</p>";
+    return;
+  }
+
   historyData.sort((a, b) => a.name.localeCompare(b.name));
 
   container.innerHTML = "";
 
   historyData.forEach((c) => {
+    const hasHistory = c.history && c.history.trim().length > 0;
+
     container.innerHTML += `
       <div class="history-item">
         <span class="history-name">${c.name}</span>
 
         <div class="history-actions">
           ${
-            c.history
+            hasHistory
               ? `
             <img src="/static/cocktails/icons/history-ok.png" class="history-icon">
 
@@ -137,6 +144,7 @@ export function refreshHistoryList(historyData) {
     `;
   });
 }
+
 
 /* ============================================================
    HISTORY — POPULATE CHILD MODALS

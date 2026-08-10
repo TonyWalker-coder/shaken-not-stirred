@@ -100,18 +100,18 @@
             <span class="item-name">{{ ingredient.name }}</span>
 
             <div class="item-actions">
-              <button class="delete-btn" data-open="confirmDeleteCocktailModal" data-id="{{ cocktail.id }}"
-                data-name="{{ cocktail.name|escapejs }}">
+              <button class="delete-btn" data-delete-ingredient="{{ ingredient.id }}">
                 Delete
               </button>
             </div>
-
 
           </div>
           {% empty %}
           <p class="empty-text">No ingredients yet.</p>
           {% endfor %}
         </div>
+
+
       </div>
     </div>
 
@@ -486,37 +486,6 @@
   </div>
 
 
-  <!-- CONFIRM DELETE COCKTAIL MODAL -->
-  <div id="confirmDeleteCocktailModal" class="modal hidden">
-    <div class="modal-content">
-
-      <button class="close" data-close="confirmDeleteCocktailModal">&times;</button>
-
-
-      <!-- Dino Warning Icon -->
-      <img src="{% static 'cocktails/icons/dino-warning.png' %}" class="modal-image" alt="Danger Dinosaur Icon"
-        style="width:120px; margin:0 auto; display:block;" />
-
-      <h2 style="margin-top:10px;">Delete Cocktail?</h2>
-
-      <p id="confirmDeleteCocktailText" style="font-size:1.1rem; margin-bottom:10px;">
-        Are you sure you want to delete this cocktail?
-      </p>
-
-      <p style="color:#b30000; font-weight:bold; margin-bottom:20px;">
-        ⚠ This action is permanent and cannot be undone.
-      </p>
-
-      <form method="POST" action="" id="deleteCocktailForm">
-        {% csrf_token %}
-        <button type="submit" class="delete-btn">
-          Yes, delete forever
-        </button>
-      </form>
-
-    </div>
-  </div>
-
   <!-- CUSTOMISE COCKTAIL MODAL -->
   <div id="customiseModal" class="modal hidden">
     <div class="modal-content">
@@ -649,7 +618,14 @@
 
 
 
-  <script src="{% static 'js/admin.js' %}"></script>
+  <script type="module" src="/static/js/admin/admin-core.js"></script>
+  <script type="module" src="/static/js/admin/ingredients.js"></script>
+  <script type="module" src="/static/js/admin/history.js"></script>
+  <script type="module" src="/static/js/admin/recipes.js"></script>
+  <script type="module" src="/static/js/admin/add.js"></script>
+  <script type="module" src="/static/js/admin/delete.js"></script>
+  <script type="module" src="/static/js/admin/customise.js"></script>
+  <script type="module" src="/static/js/admin/image.js"></script>
 
   <script>
     window.cocktails = [
@@ -662,7 +638,6 @@
     {% endfor %}
   ];
 
-    console.log("window.cocktails loaded:", window.cocktails);
   </script>
 
 </body>

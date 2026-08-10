@@ -1,19 +1,14 @@
 import {
   modalMessage,
   closeModal,
-  getCSRFToken,
-  refreshIngredientList
+  getCSRFToken
 } from "./admin-core.js";
 
 /* ============================================================
-   INGREDIENTS — ADD NEW INGREDIENT
+   INGREDIENTS — ADD NEW INGREDIENT  
    ============================================================ */
-/*
-   Handles the form inside #ingredientsModal.
-   Sends the ingredient name to the server, receives the updated
-   ingredient list, refreshes the UI, and shows a success message.
-*/
 document.addEventListener("submit", async (e) => {
+  e.stopPropagation();
   const form = e.target;
   if (!form.matches("#ingredientsModal form")) return;
 
@@ -42,13 +37,9 @@ document.addEventListener("submit", async (e) => {
 /* ============================================================
    INGREDIENTS — EDIT EXISTING INGREDIENT
    ============================================================ */
-/*
-   Handles the edit form inside #editIngredientModal.
-   Updates the ingredient name, refreshes the list, closes the modal,
-   and shows a success message.
-*/
 document.getElementById("editIngredientForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
+  e.stopPropagation();
 
   const form = e.target;
   const formData = new FormData(form);
@@ -74,14 +65,11 @@ document.getElementById("editIngredientForm")?.addEventListener("submit", async 
 /* ============================================================
    INGREDIENTS — DELETE INGREDIENT
    ============================================================ */
-/*
-   Handles delete buttons inside the ingredient list.
-   Sends a POST request to delete the ingredient, refreshes the list,
-   and shows a success message.
-*/
 document.addEventListener("click", async (e) => {
   const btn = e.target.closest("[data-delete-ingredient]");
   if (!btn) return;
+
+  e.stopPropagation();
 
   const ingredientId = btn.dataset.deleteIngredient;
 
@@ -102,4 +90,58 @@ document.addEventListener("click", async (e) => {
 
   refreshIngredientList(data.ingredients);
   modalMessage("ingredientsModal", "success", "Ingredient deleted!");
+});
+
+/* ============================================================
+   REFRESH INGREDIENT LIST — FIXED & STABLE
+   ============================================================ */
+
+function refreshIngredientList(ingredients) {
+  const list = document.querySelector("#ingredientsModal .modal-list");
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  ingredients
+    .filter(ing => ing.name && ing.name.trim().length > 0)   // remove null/blank
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach((ingredient) => {
+      const div = document.createElement("div");
+      div.classList.add("modal-item");
+
+      div.innerHTML = `
+        <span class="item-name">${ingredient.name}</span>
+        <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
+          <img src="/static/cocktails/icons/${ingredient.used ? "ingredient-ok.png" : "missing.png"}"
+               class="ingredient-status-icon">
+
+          <button class="edit-btn"
+                  data-open="editIngredientModal"
+                  data-id="${ingredient.id}"
+                  data-name="${ingredient.name.replace(/"/g, "&quot;")}">
+            Edit
+          </button>
+
+          <button class="delete-btn"
+                  data-delete-ingredient="${ingredient.id}">
+            Delete
+          </button>
+        </div>
+      `;
+
+      list.appendChild(div);
+    });
+}
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-open='ingredientsModal']");
+  if (!btn) return;
+
+  // Fetch fresh ingredients
+  const res = await fetch("/ingredient/list/", {
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
+
+  const data = await res.json();
+
+  refreshIngredientList(data.ingredients);
 });
