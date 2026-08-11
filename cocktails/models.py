@@ -10,7 +10,7 @@ class Ingredient(models.Model):
 
 class Cocktail(models.Model):
     name = models.CharField(max_length=100)
-    image_url = models.CharField(max_length=255)
+    image_url = models.CharField(max_length=255, null=True, blank=True)
 
     ingredients = models.ManyToManyField(Ingredient, blank=True)
 

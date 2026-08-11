@@ -71,7 +71,8 @@ urlpatterns = [
     path("cocktails/list/json/", views.cocktails_list_json),
 
     # Simple cocktail list (alternate JSON format)
-    path("cocktails/list/simple/", views.cocktail_list_json, name="cocktail_list_simple"),
+    path("cocktails/list/simple/", views.cocktails_list_json, name="cocktail_list_simple"),
+
 
     # Fetch single cocktail as JSON (used for modal editing / preview)
     path("cocktail/json/<int:cocktail_id>/", views.cocktail_json, name="cocktail_json"),

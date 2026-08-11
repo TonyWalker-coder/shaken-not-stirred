@@ -35,35 +35,34 @@ document.addEventListener("submit", async (e) => {
   form.reset();
 });
 
-/* ============================================================
-   INGREDIENTS — EDIT EXISTING INGREDIENT
-   ============================================================ */
-document
-  .getElementById("editIngredientForm")
-  ?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+document.addEventListener("submit", async (e) => {
+  const form = e.target.closest("#editIngredientForm");
+  if (!form) return;
 
-    const form = e.target;
-    const formData = new FormData(form);
+  e.preventDefault();
+  e.stopPropagation();
 
-    const res = await fetch(form.action, {
-      method: "POST",
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-      body: formData,
-    });
+  const formData = new FormData(form);
 
-    const data = await res.json();
-
-    if (data.error) {
-      modalMessage("editIngredientModal", "error", data.message);
-      return;
-    }
-
-    closeModal("editIngredientModal");
-    refreshIngredientList(data.ingredients);
-    modalMessage("ingredientsModal", "success", "Ingredient updated!");
+  const res = await fetch(form.action, {
+    method: "POST",
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+    body: formData,
   });
+
+  const data = await res.json();
+
+  if (data.error) {
+    modalMessage("editIngredientModal", "error", data.message);
+    return;
+  }
+
+  closeModal("editIngredientModal");
+  refreshIngredientList(data.ingredients);
+  modalMessage("ingredientsModal", "success", "Ingredient updated!");
+});
+
+
 
 /* ============================================================
    INGREDIENTS — DELETE INGREDIENT
@@ -136,6 +135,21 @@ function refreshIngredientList(ingredients) {
       list.appendChild(div);
     });
 }
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open='editIngredientModal']");
+  if (!btn) return;
+
+  const id = btn.dataset.id;
+  const name = btn.dataset.name;
+
+  const form = document.getElementById("editIngredientForm");
+  form.action = `/ingredient/edit/${id}/`;
+
+  document.getElementById("editIngredientName").value = name;
+
+  openModal("editIngredientModal");
+});
+
 document.addEventListener("click", async (e) => {
   const btn = e.target.closest("[data-open='ingredientsModal']");
   if (!btn) return;
