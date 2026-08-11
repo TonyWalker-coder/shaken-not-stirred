@@ -7,6 +7,7 @@ from django.http import JsonResponse
 import os
 from django.conf import settings
 from django.contrib.staticfiles import finders
+from django.db.models import Exists, OuterRef
 
 def cocktail_list(request):
     cocktails = Cocktail.objects.all().order_by(Lower("name"))
@@ -602,6 +603,11 @@ def assign_image(request, cocktail_id, filename):
     return redirect("dashboard")
 
 def ingredient_list(request):
-    ingredients = Ingredient.objects.all().order_by("name")
-    return JsonResponse({"ingredients": list(ingredients.values())})
+    ingredients = Ingredient.objects.annotate(
+        used=Exists(
+            Cocktail.objects.filter(ingredients=OuterRef("pk"))
+        )
+    ).order_by("name").values("id", "name", "used")
+
+    return JsonResponse({"ingredients": list(ingredients)})
 

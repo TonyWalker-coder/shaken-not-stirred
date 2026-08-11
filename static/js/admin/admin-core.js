@@ -42,6 +42,10 @@ document.addEventListener("click", (e) => {
       return;
     }
 
+    // Ingredients modal is handled manually
+    if (id === "ingredientsModal") return;
+
+
     // Only parent modals get messages
     openModal(id);
 

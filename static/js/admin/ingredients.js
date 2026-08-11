@@ -1,7 +1,8 @@
 import {
   modalMessage,
   closeModal,
-  getCSRFToken
+  openModal,
+  getCSRFToken,
 } from "./admin-core.js";
 
 /* ============================================================
@@ -37,30 +38,32 @@ document.addEventListener("submit", async (e) => {
 /* ============================================================
    INGREDIENTS — EDIT EXISTING INGREDIENT
    ============================================================ */
-document.getElementById("editIngredientForm")?.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  e.stopPropagation();
+document
+  .getElementById("editIngredientForm")
+  ?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-  const form = e.target;
-  const formData = new FormData(form);
+    const form = e.target;
+    const formData = new FormData(form);
 
-  const res = await fetch(form.action, {
-    method: "POST",
-    headers: { "X-Requested-With": "XMLHttpRequest" },
-    body: formData,
+    const res = await fetch(form.action, {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      modalMessage("editIngredientModal", "error", data.message);
+      return;
+    }
+
+    closeModal("editIngredientModal");
+    refreshIngredientList(data.ingredients);
+    modalMessage("ingredientsModal", "success", "Ingredient updated!");
   });
-
-  const data = await res.json();
-
-  if (data.error) {
-    modalMessage("editIngredientModal", "error", data.message);
-    return;
-  }
-
-  closeModal("editIngredientModal");
-  refreshIngredientList(data.ingredients);
-  modalMessage("ingredientsModal", "success", "Ingredient updated!");
-});
 
 /* ============================================================
    INGREDIENTS — DELETE INGREDIENT
@@ -97,13 +100,14 @@ document.addEventListener("click", async (e) => {
    ============================================================ */
 
 function refreshIngredientList(ingredients) {
+  console.log("REFRESH LIST:", ingredients); 
   const list = document.querySelector("#ingredientsModal .modal-list");
   if (!list) return;
 
   list.innerHTML = "";
 
   ingredients
-    .filter(ing => ing.name && ing.name.trim().length > 0)   // remove null/blank
+    .filter((ing) => ing.name && ing.name.trim().length > 0) // remove null/blank
     .sort((a, b) => a.name.localeCompare(b.name))
     .forEach((ingredient) => {
       const div = document.createElement("div");
@@ -136,12 +140,22 @@ document.addEventListener("click", async (e) => {
   const btn = e.target.closest("[data-open='ingredientsModal']");
   if (!btn) return;
 
-  // Fetch fresh ingredients
+  e.preventDefault();
+  e.stopPropagation();
+
+  // Fetch fresh ingredients BEFORE opening modal
   const res = await fetch("/ingredient/list/", {
-    headers: { "X-Requested-With": "XMLHttpRequest" }
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+    
+    
   });
 
   const data = await res.json();
+  
+  
 
   refreshIngredientList(data.ingredients);
+
+  // NOW open the modal
+  openModal("ingredientsModal");
 });
