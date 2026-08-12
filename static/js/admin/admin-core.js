@@ -45,7 +45,13 @@ document.addEventListener("click", (e) => {
     // Ingredients modal is handled manually
     if (id === "ingredientsModal") return;
 
-
+    if (id === "imagesModal") {
+      // Clear any previous selection
+      const select = document.getElementById("imageCocktailSelect");
+      select.value = "";
+      // Refresh the dropdown list
+      refreshCocktailDropdown(select);
+    }
     // Only parent modals get messages
     openModal(id);
 
@@ -63,9 +69,6 @@ document.addEventListener("click", (e) => {
     closeModal(id);
   }
 });
-
-
-
 
 /* ============================================================
    NEW MESSAGE SYSTEM
