@@ -112,4 +112,10 @@ urlpatterns = [
 
     # Refresh all admin sections at once (ingredients, recipes, history, cocktails)
     path("refresh-all/", views.refresh_all, name="refresh_all"),
+
+
+    path("testdata/", views.test_data_page, name="test_data_page"),
+    path("testdata/break-bloody-mary/", views.break_bloody_mary, name="break_bloody_mary"),
+    path("testdata/fix-bloody-mary/", views.fix_bloody_mary, name="fix_bloody_mary"),
+    path("testdata/reset-db/", views.reset_db, name="reset_db"),
 ]

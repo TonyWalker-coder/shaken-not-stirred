@@ -6,8 +6,10 @@ from django.db.models import Exists, OuterRef
 from django.db.models.functions import Lower
 from django.db.models import Exists, OuterRef
 import os
+import json
 
 from .models import Cocktail, Ingredient, History, Recipe
+from cocktails.models import Cocktail, Ingredient, Recipe, History
 
 
 # ============================================================
@@ -455,3 +457,103 @@ def refresh_all(request):
             for c in Cocktail.objects.order_by(Lower("name"))
         ]
     })
+
+def test_data_page(request):
+    return render(request, "testdata.html")
+
+
+def break_bloody_mary(request):
+    base = os.path.join(settings.BASE_DIR, "cocktails", "static", "cocktails", "buttons")
+    original = os.path.join(base, "bloody-mary.jpg")
+    broken = os.path.join(base, "xbloody-mary.jpg")
+
+    # If original exists, rename it
+    if os.path.exists(original):
+        os.rename(original, broken)
+
+    return JsonResponse({"status": "ok", "message": "Bloody Mary image broken (or already broken)."})
+
+
+def fix_bloody_mary(request):
+    base = os.path.join(settings.BASE_DIR, "cocktails", "static", "cocktails", "buttons")
+    original = os.path.join(base, "bloody-mary.jpg")
+    broken = os.path.join(base, "xbloody-mary.jpg")
+
+    # If broken exists, rename it back
+    if os.path.exists(broken):
+        os.rename(broken, original)
+
+    return JsonResponse({"status": "ok", "message": "Bloody Mary image fixed (or already fixed)."})
+
+import json
+import os
+from django.http import JsonResponse
+from django.conf import settings
+from cocktails.models import Cocktail, Ingredient, Recipe, History
+
+def reset_db(request):
+    json_path = os.path.join(
+        settings.BASE_DIR,
+        "static",
+        "testdata",
+        "cocktails.json"
+    )
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    # Wipe tables
+    Cocktail.objects.all().delete()
+    Ingredient.objects.all().delete()
+    Recipe.objects.all().delete()
+    History.objects.all().delete()
+
+    # Temporary storage for cocktails so we can attach ingredients later
+    cocktail_objects = {}
+
+    # First pass: create ingredients, recipes, history, cocktails WITHOUT M2M
+    for item in data:
+        model = item.get("model")
+        fields = item.get("fields", {})
+        pk = item.get("pk")
+
+        if model == "cocktails.ingredient":
+            Ingredient.objects.create(
+                id=pk,
+                name=fields["name"]
+            )
+
+        elif model == "cocktails.recipe":
+            Recipe.objects.create(
+                id=pk,
+                cocktail_id=fields["cocktail"],
+                text=fields["text"]
+            )
+
+        elif model == "cocktails.history":
+            History.objects.create(
+                id=pk,
+                cocktail_id=fields["cocktail"],
+                text=fields["text"]
+            )
+
+        elif model == "cocktails.cocktail":
+            c = Cocktail.objects.create(
+                id=pk,
+                name=fields["name"],
+                image_url=fields.get("image_url", "")
+            )
+            cocktail_objects[pk] = (c, fields.get("ingredients", []))
+
+    # Second pass: attach ingredients to cocktails
+    for pk, (cocktail, ingredient_ids) in cocktail_objects.items():
+        for ing_id in ingredient_ids:
+            try:
+                ing = Ingredient.objects.get(id=ing_id)
+                cocktail.ingredients.add(ing)
+            except Ingredient.DoesNotExist:
+                pass
+
+    return JsonResponse({"status": "ok", "message": "Database reset and restored from JSON."})
+
+

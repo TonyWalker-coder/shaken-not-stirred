@@ -51,7 +51,7 @@
         <img src="{% static 'cocktails/buttons/delete.png' %}" alt="Delete" />
       </div>
 
-      <!-- CUSTOMISE (not wired yet) -->
+      <!-- CUSTOMISE -->
       <div class="admin-card" data-open="customiseModal">
         <img src="{% static 'cocktails/buttons/customise.png' %}" alt="Customise" />
       </div>
@@ -61,10 +61,14 @@
         <img src="{% static 'cocktails/buttons/userdata.png' %}" alt="UserData" />
       </div>
 
-      <!-- TESTDATA (not wired yet) -->
+      <!-- TESTDATA -->
       <div class="admin-card">
-        <img src="{% static 'cocktails/buttons/testdata.png' %}" alt="TestData" />
+        <a href="{% url 'test_data_page' %}" target="_blank">
+          <img src="{% static 'cocktails/buttons/testdata.png' %}" alt="TestData" />
+        </a>
       </div>
+
+
 
     </div>
 
@@ -627,7 +631,18 @@
   <script type="module" src="/static/js/admin/customise.js"></script>
   <script type="module" src="/static/js/admin/image.js"></script>
 
-  <script>
+  <!--
+IMPORTANT:
+Do NOT auto‑format this <script> block.
+
+Formatters (Prettier, VS Code, Beautify, etc.) will break Django template tags
+by changing {{ c.id }} into { { c.id } }, which causes a fatal JS syntax error.
+
+Leave spacing and braces EXACTLY as written.
+-->
+
+<script>
+    
     window.cocktails = [
       {% for c in cocktails %}
     {

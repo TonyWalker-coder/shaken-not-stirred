@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shaken!Stirred – Testdata</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-orange: #f77c24;
+            --brand-orange-hover: #e16222;
+            --box-bg: #f08665;
+            --box-border: #e6cfa8;
+            --box-title: #d45a00;
+            --content-bg: rgba(255, 255, 255, 0.85);
+            --content-bg: rgba(241, 163, 118, 0.85);
+            --title-overlay-bg: rgba(255, 255, 255, 0.25);
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+
+
+        h1 {
+            font-family: 'Henny Penny', cursive;
+        }
+
+        body {
+            background-image: url("{% static 'cocktails/images/background/sunset.png' %}");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 200px;
+        }
+
+        /* TITLE OVERLAY */
+        .title-overlay {
+            background: var(--title-overlay-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 14px;
+            backdrop-filter: blur(6px);
+            margin-left: 1rem;
+            margin-top: 1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .title {
+            font-size: clamp(2.4rem, 6vw, 4.8rem);
+            color: var(--brand-orange);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* BLANK CONTENT AREA */
+        .content {
+            width: 100%;
+            padding: 2rem;
+            box-sizing: border-box;
+            background: var(--content-bg);
+            min-height: 40vh;
+        }
+
+        .td-btn {
+            padding: 10px 18px;
+            background: var(--brand-orange);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-family: 'Englebert', sans-serif;
+        }
+
+        .td-btn:hover {
+            background: var(--brand-orange-hover);
+        }
+
+        .td-info-box,
+        .td-intro-box,
+        .td-admin-box,
+        .td-instruction-box,
+        .td-delete-box {
+            background: var(--box-bg);
+            border: 2px solid var(--box-border);
+            border-radius: 12px;
+            padding: 1.4rem 1.6rem;
+            margin-bottom: 2rem;
+            font-family: 'Englebert', sans-serif;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .td-info-box h3,
+        .td-intro-box h3,
+        .td-admin-box h3,
+        .td-instruction-box h3,
+        .td-delete-box h3 {
+            margin-top: 0;
+            color: var(--box-title);
+            font-size: 1.5rem;
+        }
+
+        .td-info-box p,
+        .td-intro-box p,
+        .td-admin-box p,
+        .td-instruction-box p,
+        .td-delete-box p {
+            margin: 0.7rem 0;
+            line-height: 1.55rem;
+        }
+
+        .td-instruction-box ul {
+            margin: 0.7rem 0 1rem 1.2rem;
+            line-height: 1.5rem;
+        }
+
+        .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #fff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .td-btn[disabled] {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="title-overlay">
+            <h1 class="title">Testdata</h1>
+        </div>
+    </div>
+
+    <!-- BLANK CONTENT AREA -->
+    <div class="content">
+        <div class="td-intro-box">
+            <h3>About This Page</h3>
+            <p>
+                This page has been designed as a testing aid. It does not restrict, alter, or
+                influence the assessment process in any way. Everything here is optional.
+            </p>
+            <p>
+                You are completely free to bypass this page and test the application manually,
+                including breaking and restoring data through your own methods. These tools
+                simply provide a safe, convenient way to explore the system without needing
+                to access the operating system or database directly.
+            </p>
+            <p>
+                Feel free to use it — or ignore it — as you see fit. The choice is yours.
+            </p>
+        </div>
+
+        <div class="td-info-box">
+            <h3>Image Fallback Test</h3>
+            <p>
+                The cocktail images in this project have a built‑in fallback system.
+                If an image cannot be found or is missing, the UI automatically displays a safe
+                placeholder instead of breaking the layout.
+            </p>
+            <p>
+                These buttons provide a simple, safe test of that functionality by temporarily
+                renaming the <strong>Bloody Mary</strong> image file.
+                This allows you to break and restore the image without needing to open the OS
+                or touch the filesystem manually.
+            </p>
+            <p>
+                Use <strong>Break Bloody Mary Image</strong> to simulate a missing image, and
+                <strong>Fix Bloody Mary Image</strong> to restore it.
+                Both actions are safe and will quietly continue even if the file is already in
+                the expected state.
+            </p>
+        </div>
+
+        <button id="breakBM" class="td-btn">Break Bloody Mary Image</button>
+        <button id="fixBM" class="td-btn">Fix Bloody Mary Image</button>
+
+        <div id="tdMessage" style="margin-top:1rem; font-family:Englebert;"></div>
+
+        <div class="td-info-box">
+            <h3>Database Reset & Restore</h3>
+            <p>
+                This tool allows you to completely wipe the cocktail database and restore it
+                from a clean JSON file stored in <strong>static/testdata/cocktails.json</strong>.
+            </p>
+            <p>
+                It safely deletes all cocktails, ingredients, recipes, and history entries,
+                then rebuilds them exactly as defined in the JSON file.
+            </p>
+            <p>
+                This provides a fast, reliable way to reset the system for testing without
+                needing to use the terminal or database tools.
+            </p>
+        </div>
+
+
+        <button id="resetDB" class="td-btn">Reset Database from JSON</button>
+        <div id="resetMessage" style="margin-top:1rem;"></div>
+
+        <div class="td-admin-box">
+            <h3>Working With the Admin Page</h3>
+            <p>
+                This section has been designed to work alongside the main admin page. When
+                opened, Testdata loads in its own browser tab so you can switch freely between
+                the two pages.
+            </p>
+            <p>
+                This makes it easy to cut, paste, compare, and test data without losing your
+                place or interrupting your workflow. You can bounce between Testdata and the
+                admin tools as needed, using whichever page best suits the task at hand.
+            </p>
+            <p>
+                Nothing here overrides or replaces the admin page — it simply provides
+                additional convenience while you explore and test the system.
+            </p>
+        </div>
+
+        <div class="td-instruction-box">
+            <h3>Adding Test Cocktails</h3>
+            <p>
+                The following steps are designed to help you test the cocktail creation process
+                in a controlled and repeatable way. These instructions work alongside the admin
+                page, allowing you to switch between tabs and copy or paste text as needed.
+            </p>
+
+            <p>
+                To begin, add a cocktail named <strong>Fall Guy</strong>. If the cocktail already
+                exists, you will receive an error message — simply skip ahead to the
+                <strong>Delete Cocktail</strong> section and remove it before continuing.
+            </p>
+
+            <p>
+                When adding <strong>Fall Guy</strong>, use the following suggested text:
+            </p>
+
+            <ul>
+                <li><strong>History:</strong> Fall Guy was created to aid in the testing of Shaken Not Stirred. He got
+                    his name from being resilient — no matter what happens, he always gets back up.</li>
+                <li><strong>Recipe:</strong> Fall Guy is made from all the things a good fall guy should have, then
+                    shaken not stirred.</li>
+            </ul>
+
+            <p>
+                Before creating the cocktail, add a new ingredient named <strong>Tap Water</strong>.
+                Then select any combination of ingredients — including Tap Water — and click
+                <strong>Create Cocktail</strong>.
+            </p>
+
+            <p>
+                Next, repeat the process by adding a second cocktail named <strong>Testy</strong>.
+                You may optionally fill in the history and recipe fields with any random text.
+                Select any ingredients for this cocktail.
+            </p>
+
+            <p>
+                Now add a third cocktail named <strong>Quickie</strong>. Again, you may fill in the
+                history and recipe fields with any random text. For this test, create a new ingredient
+                such as <strong>Mango Juice</strong>, and this time select any ingredients
+                <em>including</em> Mango Juice before creating the cocktail.
+            </p>
+
+            <p>
+                These steps help demonstrate how the system handles new data, optional fields,
+                ingredient selection, and validation behaviour.
+            </p>
+        </div>
+
+        <div class="td-delete-box">
+            <h3>Delete a Cocktail</h3>
+            <p>
+                The delete rule for this site is simple and intentionally destructive:
+                <strong>any cocktail can be deleted</strong>. This includes its name, image URL,
+                recipe, and history. Once confirmed, the deletion is permanent and the system
+                provides only a single warning before completing the action.
+            </p>
+
+            <p>
+                Ingredients, however, are <strong>never</strong> deleted automatically. If you
+                previously added an ingredient such as <strong>Mango Juice</strong>, it will
+                remain in the system even after the cocktail that used it has been removed.
+                This test demonstrates that ingredients are treated as independent entities,
+                separate from the cocktails that reference them. This allows ingredients to be
+                reused across multiple cocktails without risk of accidental loss.
+            </p>
+
+            <p>
+                Please delete the cocktail <strong>Quickie</strong> before continuing, as it was
+                added specifically to demonstrate this behaviour.
+            </p>
+
+            <p>
+                Use this section to remove test cocktails such as <strong>Fall Guy</strong> or
+                <strong>Testy</strong> before repeating creation tests or resetting the database.
+            </p>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+    <script>
+        function tdMessage(msg) {
+            document.getElementById("tdMessage").innerText = msg;
+        }
+
+        document.getElementById("breakBM").addEventListener("click", async () => {
+            const res = await fetch("{% url 'break_bloody_mary' %}", {
+                method: "POST",
+                headers: { "X-CSRFToken": "{{ csrf_token }}" }
+            });
+            const data = await res.json();
+            tdMessage(data.message);
+        });
+
+        document.getElementById("fixBM").addEventListener("click", async () => {
+            const res = await fetch("{% url 'fix_bloody_mary' %}", {
+                method: "POST",
+                headers: { "X-CSRFToken": "{{ csrf_token }}" }
+            });
+            const data = await res.json();
+            tdMessage(data.message);
+        });
+
+        const resetBtn = document.getElementById("resetDB");
+        const resetMsg = document.getElementById("resetMessage");
+
+        resetBtn.addEventListener("click", async () => {
+
+            // Lock the button visually
+            resetBtn.disabled = true;
+            resetBtn.innerHTML = `
+        <span class="spinner"></span> Working…
+        `;
+            resetMsg.innerText = "Resetting database, please wait…";
+
+            try {
+                const res = await fetch("{% url 'reset_db' %}", {
+                    method: "POST",
+                    headers: { "X-CSRFToken": "{{ csrf_token }}" }
+                });
+
+                const data = await res.json();
+                resetMsg.innerText = data.message;
+
+            } catch (err) {
+                resetMsg.innerText = "Error: Could not reset database.";
+            }
+
+            // Unlock button
+            resetBtn.disabled = false;
+            resetBtn.innerText = "Reset Database from JSON";
+        });
+
+
+    </script>
+
+</body>
+
+</html>
