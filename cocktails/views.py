@@ -193,14 +193,18 @@ def history_list_json(request):
     """Return all cocktails + history for modal refresh."""
     data = []
     for c in Cocktail.objects.order_by(Lower("name")):
-        h = getattr(c, "history_obj", None)
+        h = getattr(c, "history_obj", None)  # correct reverse relation
+
         data.append({
             "id": c.id,
             "name": c.name,
-            "history": h.text if h else None,
+            "history": h.text if h else "",
             "history_id": h.id if h else None
         })
+
     return JsonResponse({"cocktails": data})
+
+
 
 
 # ============================================================
@@ -261,14 +265,17 @@ def recipes_list_json(request):
     """Return all cocktails + recipe info."""
     data = []
     for c in Cocktail.objects.order_by(Lower("name")):
-        r = getattr(c, "recipe_obj", None)
+        r = getattr(c, "recipe_obj", None)  # correct reverse relation
+
         data.append({
             "id": c.id,
             "name": c.name,
-            "recipe": r.text if r else None,
+            "recipe": r.text if r else "",
             "recipe_id": r.id if r else None
         })
     return JsonResponse({"cocktails": data})
+
+
 
 
 # ============================================================
@@ -426,7 +433,7 @@ def assign_image(request, cocktail_id, filename):
         return JsonResponse({"error": True, "message": "Invalid request"}, status=400)
 
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)
-    cocktail.image_url = f"/static/cocktails/buttons/{filename}"
+    cocktail.image_url = f"cocktails/buttons/{filename}"
     cocktail.save()
 
     if is_ajax(request):

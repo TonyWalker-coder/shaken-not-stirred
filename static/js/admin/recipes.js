@@ -169,7 +169,7 @@ document.addEventListener("click", (e) => {
     });
 
     const fullList = await listRes.json();
-    refreshRecipesModal(fullList.cocktails);
+    await refreshRecipesModal();
 
     // 6. Unified success message
     let msg = "Recipe updated!";

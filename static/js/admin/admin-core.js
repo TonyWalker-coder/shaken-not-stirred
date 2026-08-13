@@ -1,3 +1,6 @@
+import { refreshHistoryModal } from "./history.js";
+import { refreshRecipesModal } from "./recipes.js";
+
 /* ============================================================
    UNIVERSAL MODAL ENGINE (NO INLINE JS)
    ============================================================ */
@@ -26,7 +29,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click", async (e) => {
   const openTarget = e.target.closest("[data-open]");
   const closeTarget = e.target.closest("[data-close]");
 
@@ -36,29 +39,29 @@ document.addEventListener("click", (e) => {
   if (openTarget) {
     const id = openTarget.dataset.open;
 
-    // CHILD MODALS MUST NOT TRIGGER MESSAGES
     if (openTarget.dataset.child === "true") {
       openModal(id);
       return;
     }
 
-    // Ingredients modal is handled manually
     if (id === "ingredientsModal") return;
 
     if (id === "imagesModal") {
-      // Clear any previous selection
       const select = document.getElementById("imageCocktailSelect");
       select.value = "";
-      // Refresh the dropdown list
       refreshCocktailDropdown(select);
     }
-    // Only parent modals get messages
+
+    if (id === "historyModal") {
+      await refreshHistoryModal();   // now valid
+    }
+
+    if (id === "recipesModal") {
+    await refreshRecipesModal();
+    }
+
     openModal(id);
 
-    const modal = document.getElementById(id);
-    if (modal && modal.querySelector(".modal-message.success")) {
-      modalMessage(id, "success", "Working...");
-    }
   }
 
   /* ---------------------------
@@ -69,6 +72,7 @@ document.addEventListener("click", (e) => {
     closeModal(id);
   }
 });
+
 
 /* ============================================================
    NEW MESSAGE SYSTEM

@@ -2,7 +2,7 @@ import {
   modalMessage,
   closeModal,
   openModal,
-  getCSRFToken
+  getCSRFToken,
 } from "./admin-core.js";
 
 /* ============================================================
@@ -68,7 +68,9 @@ import {
     refreshHistoryList(fullList.cocktails);
 
     // Unified success message
-    modalMessage("historyModal", "success", data.message);
+    if (data.message && data.message.trim().length > 0) {
+      modalMessage("historyModal", "success", data.message);
+    }
   });
 });
 
@@ -144,7 +146,15 @@ export function refreshHistoryList(historyData) {
     `;
   });
 }
+export async function refreshHistoryModal() {
+  const res = await fetch("/history/list/json/", {
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+  });
 
+  const data = await res.json();
+
+  refreshHistoryList(data.cocktails);
+}
 
 /* ============================================================
    HISTORY — POPULATE CHILD MODALS
