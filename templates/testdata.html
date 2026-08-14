@@ -4,18 +4,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Shaken!Stirred – Testdata</title>
+
+    <!-- Page Title -->
+    <title>Shaken!Stirred – Testdata Tools & Demo Suite</title>
+
+    <!-- Mobile + Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Basic SEO -->
+    <meta name="description" content="Shaken!Stirred Testdata Suite – tools for resetting the database, testing image fallbacks, verifying thumbnails, and validating cocktail data.">
+    <meta name="keywords" content="cocktails, testdata, development tools, image fallback, thumbnails, ShakenStirred">
+    <meta name="author" content="Tony Walker">
+
+    <!-- Theme Colour -->
+    <meta name="theme-color" content="#f77c24">
+
+
+    <!-- Performance: Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
+
+
 
     <!-- ========================================================= -->
     <!--                     GLOBAL STYLES                         -->
     <!-- ========================================================= -->
     <style>
         /* ---------------------------------------------------------
-           Root Variables (Brand Colours, Shadows, Backgrounds)
-        --------------------------------------------------------- */
+       Root Variables (Brand Colours, Shadows, Backgrounds)
+    --------------------------------------------------------- */
         :root {
             --brand-orange: #f77c24;
             --brand-orange-hover: #e16222;
@@ -28,8 +48,8 @@
         }
 
         /* ---------------------------------------------------------
-           Typography
-        --------------------------------------------------------- */
+       Typography
+    --------------------------------------------------------- */
         h1 {
             font-family: 'Henny Penny', cursive;
             margin: 0;
@@ -43,15 +63,15 @@
         }
 
         /* ---------------------------------------------------------
-           Hero Section
-        --------------------------------------------------------- */
+       Hero Section
+    --------------------------------------------------------- */
         .hero {
             min-height: 200px;
         }
 
         /* ---------------------------------------------------------
-           Title Overlay (Glass Effect)
-        --------------------------------------------------------- */
+       Title Overlay (Glass Effect)
+    --------------------------------------------------------- */
         .title-overlay {
             display: inline-block;
             width: fit-content;
@@ -77,8 +97,8 @@
         }
 
         /* ---------------------------------------------------------
-           Main Content Area
-        --------------------------------------------------------- */
+       Main Content Area
+    --------------------------------------------------------- */
         .content {
             width: 100%;
             padding: 2rem;
@@ -88,8 +108,8 @@
         }
 
         /* ---------------------------------------------------------
-           Buttons
-        --------------------------------------------------------- */
+       Buttons
+    --------------------------------------------------------- */
         .td-btn {
             padding: 10px 18px;
             background: var(--brand-orange);
@@ -129,8 +149,8 @@
         }
 
         /* ---------------------------------------------------------
-           Download Buttons
-        --------------------------------------------------------- */
+       Download Buttons
+    --------------------------------------------------------- */
         .td-download-btn {
             display: inline-block;
             background: #d45a00;
@@ -149,13 +169,14 @@
         }
 
         /* ---------------------------------------------------------
-           Info / Instruction / Delete Boxes
-        --------------------------------------------------------- */
-        .td-info-box,
+       Shared Box Styling (ALL except info-box)
+    --------------------------------------------------------- */
         .td-intro-box,
         .td-admin-box,
         .td-instruction-box,
-        .td-delete-box {
+        .td-delete-box,
+        .td-warning-box,
+        .td-fallback-box {
             background: var(--box-bg);
             border: 2px solid var(--box-border);
             border-radius: 12px;
@@ -165,21 +186,23 @@
             box-shadow: 0 4px 10px var(--shadow);
         }
 
-        .td-info-box h3,
         .td-intro-box h3,
         .td-admin-box h3,
         .td-instruction-box h3,
-        .td-delete-box h3 {
+        .td-delete-box h3,
+        .td-warning-box h3,
+        .td-fallback-box h3 {
             margin-top: 0;
             color: var(--box-title);
             font-size: 1.5rem;
         }
 
-        .td-info-box p,
         .td-intro-box p,
         .td-admin-box p,
         .td-instruction-box p,
-        .td-delete-box p {
+        .td-delete-box p,
+        .td-warning-box p,
+        .td-fallback-box p {
             margin: 0.7rem 0;
             line-height: 1.55rem;
         }
@@ -190,8 +213,32 @@
         }
 
         /* ---------------------------------------------------------
-           Final Banner
-        --------------------------------------------------------- */
+       Info Box (unique styling)
+    --------------------------------------------------------- */
+        .td-info-box {
+            background: #fffdf7;
+            border: 2px solid #e6cfa8;
+            border-radius: 12px;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Englebert', sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .td-info-box h3 {
+            margin-top: 0;
+            color: #b84a00;
+            font-size: 1.45rem;
+        }
+
+        .td-info-box p {
+            margin: 0.6rem 0;
+            line-height: 1.5rem;
+        }
+
+        /* ---------------------------------------------------------
+       Final Banner
+    --------------------------------------------------------- */
         .td-finish-banner {
             display: inline-block;
             margin-top: 2rem;
@@ -210,38 +257,8 @@
             color: #d45a00;
             white-space: nowrap;
         }
-
-        /* Shared base styling */
-        .td-info-box {
-            background: #fffdf7;
-            border: 2px solid #e6cfa8;
-            border-radius: 12px;
-            padding: 1.2rem 1.4rem;
-            margin-bottom: 1.5rem;
-            font-family: 'Englebert', sans-serif;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Warning section (Local Deployment Only) */
-
-        .td-warning-box h3 {
-            margin-top: 0;
-            color: #b84a00;
-            font-size: 1.45rem;
-        }
-
-        /* Fallback explanation section */
-        .td-fallback-box h3 {
-            margin-top: 0;
-            color: #d45a00;
-            font-size: 1.4rem;
-        }
-
-        .td-info-box p {
-            margin: 0.6rem 0;
-            line-height: 1.5rem;
-        }
     </style>
+
 </head>
 
 <body>
@@ -393,9 +410,21 @@
 
         <div class="td-delete-box">
             <h3>Images continued</h3>
-            <p>After uploading, assign the images to any cocktail.</p>
-            <p>These files demonstrate correct thumbnail generation and assignment.</p>
+
+            <p>
+                Because the Break Bloody Mary feature only works in the local environment, this
+                section provides a way to demonstrate the <code>onerror</code> fallback directly
+                on the Cocktails page. Before assigning uploaded images to <strong>Fall Guy</strong>
+                or <strong>Testy</strong>, simply view either cocktail to confirm the missing‑image
+                behaviour is working correctly.
+            </p>
+
+            <p>
+                These files also demonstrate correct thumbnail generation and image assignment.
+            </p>
         </div>
+
+
 
         <!-- ===================== FINISHED ========================= -->
         <div class="td-delete-box">
