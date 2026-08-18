@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="glass-panel">
+    <h1>Create a New Thread</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="submit-btn">Post Thread</button>
+    </form>
+
+</div>
+{% endblock %}

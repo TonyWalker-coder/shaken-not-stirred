@@ -27,4 +27,5 @@ urlpatterns = [
     path("admin-login/", views.admin_login, name="admin_login"),
     path('dashboard/', views.admin_page, name='admin_page'),  # Custom admin page
     path("", include("cocktails.urls")),
+    
 ]

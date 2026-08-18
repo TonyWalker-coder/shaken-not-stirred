@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shaken!Stirred – User Area</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Englebert', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Henny Penny', cursive;
+            margin: 0;
+        }
+
+        .title-overlay {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 14px;
+            backdrop-filter: blur(6px);
+            margin-left: 1rem;
+            margin-top: 1rem;
+            width: fit-content;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .title {
+            font-size: clamp(2.4rem, 6vw, 4.8rem);
+            color: #f77c24;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .hero {
+            background-image: url("{% static 'cocktails/images/background/user.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .tile-row {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 2rem;
+        }
+
+        .tile {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem 2.2rem;
+            background: linear-gradient(135deg, #f77c24, #e16222);
+            border-radius: 18px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+            transition: 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .tile:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.55);
+            background: linear-gradient(135deg, #ff8d3a, #f06a1c);
+        }
+
+        @media (max-width: 600px) {
+            .tile-row {
+                flex-direction: column;
+                bottom: 1.5rem;
+            }
+
+            .tile {
+                text-align: center;
+                width: 200px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+        <h1 class="title title-overlay">User Area</h1>
+
+        <div class="tile-row">
+            <a class="tile" href="{% url 'user_forum' %}">💬 Forum</a>
+        </div>
+    </div>
+
+</body>
+</html>

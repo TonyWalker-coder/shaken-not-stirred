@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from cocktails import views as cocktails_views
 
 urlpatterns = [
 
@@ -113,9 +114,22 @@ urlpatterns = [
     # Refresh all admin sections at once (ingredients, recipes, history, cocktails)
     path("refresh-all/", views.refresh_all, name="refresh_all"),
 
+    # ============================================================
+    # TEST DATA — DEVELOPMENT TOOLS
+    # ============================================================
 
     path("testdata/", views.test_data_page, name="test_data_page"),
     path("testdata/break-bloody-mary/", views.break_bloody_mary, name="break_bloody_mary"),
     path("testdata/fix-bloody-mary/", views.fix_bloody_mary, name="fix_bloody_mary"),
     path("testdata/reset-db/", views.reset_db, name="reset_db"),
+
+    # ============================================================
+    # USER AREA — DEVELOPMENT TOOLS
+    # ============================================================
+    path("user/", views.user_area, name="user_area"),
+
+    path('user/forum/', views.user_forum, name='user_forum'),
+    path('user/forum/new/', views.new_thread, name='new_thread'),
+    path('user/forum/<int:thread_id>/', views.thread_detail, name='thread_detail'),
+    path('forum/', cocktails_views.forum, name='forum'),
 ]

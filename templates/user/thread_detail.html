@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="glass-panel">
+
+    <a href="{% url 'forum' %}" class="return-btn">
+        ← Back to Message Board
+    </a>
+
+    <h1>{{ thread.title }}</h1>
+    <p>Started by <strong>{{ thread.author_name }}</strong></p>
+    <p class="date">{{ thread.created_at|date:"d M Y H:i" }}</p>
+
+    <hr>
+
+    <h2>Replies</h2>
+    {% for reply in replies %}
+        <div class="reply-card">
+            <p><strong>{{ reply.author_name }}</strong></p>
+            <p>{{ reply.message }}</p>
+            <p class="date">{{ reply.created_at|date:"d M Y H:i" }}</p>
+        </div>
+    {% endfor %}
+
+    <hr>
+
+    <h2>Write a Reply</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="submit-btn">Post Reply</button>
+    </form>
+
+</div>
+
+<script src="{% static 'js/forum.js' %}"></script>
+{% endblock %}

@@ -210,18 +210,20 @@
         <h1 class="title title-overlay">Welcome to Shaken!Stirred</h1>
 
         <div class="tile-row">
-            <a class="tile" id="cocktailTile" href="{% url 'cocktail_list' %}">
-                <span class="tile-text">🍸 Cocktails</span>
-                <span class="spinner">⏳</span>
-            </a>
+    <a class="tile" id="cocktailTile" href="{% url 'cocktail_list' %}">
+        <span class="tile-text">🍸 Cocktails</span>
+        <span class="spinner">⏳</span>
+    </a>
 
-            <a class="tile" href="#" onclick="openAdminLoginModal()">
-                <span class="tile-text">🛠️ Admin</span>
-            </a>
+    <a class="tile" href="#" onclick="openAdminLoginModal()">
+        <span class="tile-text">🛠️ Admin</span>
+    </a>
 
+    <a class="tile" href="{% url 'user_area' %}">
+        <span class="tile-text">👤 User Area</span>
+    </a>
+</div>
 
-            <a class="tile" href="#">Link2</a>
-        </div>
     </div>
 
     <!-- ADMIN LOGIN MODAL -->

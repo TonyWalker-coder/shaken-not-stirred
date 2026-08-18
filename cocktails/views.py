@@ -563,4 +563,74 @@ def reset_db(request):
 
     return JsonResponse({"status": "ok", "message": "Database reset and restored from JSON."})
 
+# ============================================================
+# USER AREA — DEVELOPMENT TOOLS
+# ============================================================
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
+from .models import Thread, Reply
+from .forms import ThreadForm, ReplyForm
 
+# USER AREA
+def user_area(request):
+    return render(request, "user.html")
+
+def user_forum(request):
+    threads = Thread.objects.order_by('-created_at')
+    return render(request, 'user/forum.html', {'threads': threads})
+
+def new_thread(request):
+    if request.method == 'POST':
+        form = ThreadForm(request.POST)
+        if form.is_valid():
+            # Create the thread
+            thread = Thread.objects.create(
+                title=form.cleaned_data['title'],
+                author_name=form.cleaned_data['author_name']
+            )
+
+            # Create the first reply (first post)
+            Reply.objects.create(
+                thread=thread,
+                author_name=form.cleaned_data['author_name'],
+                message=form.cleaned_data['message']
+            )
+
+            return redirect('forum')
+    else:
+        form = ThreadForm()
+
+    return render(request, 'user/new_thread.html', {'form': form})
+
+def thread_detail(request, thread_id):
+    thread = get_object_or_404(Thread, id=thread_id)
+    replies = thread.replies.order_by('created_at')
+
+    if request.method == 'POST':
+        form = ReplyForm(request.POST)
+        if form.is_valid():
+            reply = form.save(commit=False)
+            reply.thread = thread
+            reply.save()
+
+            # AJAX response
+            if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+                return JsonResponse({
+                    "success": True,
+                    "author_name": reply.author_name,
+                    "message": reply.message,
+                    "created_at": reply.created_at.strftime("%d %b %Y %H:%M")
+                })
+
+            return redirect('thread_detail', thread_id=thread.id)
+    else:
+        form = ReplyForm()
+
+    return render(request, 'user/thread_detail.html', {
+        'thread': thread,
+        'replies': replies,
+        'form': form
+    })
+def forum(request):
+    threads = Thread.objects.all().order_by('-created_at')
+    return render(request, 'user/forum.html', {'threads': threads})

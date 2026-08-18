@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="glass-panel">
+    <h1 class="forum-title">Message Board</h1>
+
+
+    <div style="margin-bottom: 20px;">
+        <a class="btn" href="{% url 'new_thread' %}">Start New Thread</a>
+    </div>
+
+
+    <div class="thread-list">
+        {% for thread in threads %}
+        <div class="thread-card">
+            <h2>{{ thread.title }}</h2>
+            <p>Started by <strong>{{ thread.author_name }}</strong></p>
+            <p class="date">{{ thread.created_at|date:"d M Y H:i" }}</p>
+
+            <!-- Correct: Only View Thread button -->
+            <a class="btn" href="{% url 'thread_detail' thread.id %}">View Thread</a>
+        </div>
+        {% empty %}
+        <p>No threads yet — be the first!</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
