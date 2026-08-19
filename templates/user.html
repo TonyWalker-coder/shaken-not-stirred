@@ -41,7 +41,9 @@
         }
 
         @keyframes fadeIn {
-            to { opacity: 1; }
+            to {
+                opacity: 1;
+            }
         }
 
         .hero {
@@ -98,6 +100,84 @@
                 margin: 0 auto;
             }
         }
+
+        .glass-panel {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .palm-frame {
+            position: relative;
+            padding: 2rem;
+            margin-top: 2rem;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 0.8s ease forwards;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.25), 
+            0 6px 18px rgba(0,0,0,0.35);
+        }
+
+        /* Palm leaves in the corners */
+        .palm-frame::before,
+        .palm-frame::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background-image: url("{% static 'cocktails/images/background/palm.png' %}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 1;
+        }
+
+        /* Top-left leaf */
+        .palm-frame::before {
+            top: -40px;
+            left: -40px;
+            transform: rotate(-15deg);
+        }
+
+        /* Bottom-right leaf */
+        .palm-frame::after {
+            bottom: -40px;
+            right: -40px;
+            transform: rotate(15deg);
+        }
+
+        /* Forum button inside the box */
+        .palm-frame .forum-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #f77c24, #e16222);
+            color: white;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.25s ease;
+        }
+
+        .palm-frame .forum-btn:hover {
+            background: linear-gradient(135deg, #ff8d3a, #f06a1c);
+            transform: translateY(-4px);
+        }
     </style>
 </head>
 
@@ -106,10 +186,26 @@
     <div class="hero">
         <h1 class="title title-overlay">User Area</h1>
 
-        <div class="tile-row">
-            <a class="tile" href="{% url 'user_forum' %}">💬 Forum</a>
+
+        <div class="palm-frame">
+            <h2 style="color:#f77c24; font-family:'Henny Penny', cursive;">
+                Welcome to Your User Area
+            </h2>
+
+            <p style="font-size:1.1rem; color:white; max-width:600px; margin:0 auto 20px;">
+                Shaken ! Stirred has added a brand new community forum to the User Area.
+                Share your thoughts about the site, chat with other cocktail lovers, and
+                of course submit your own cocktail creations for inclusion on the menu.
+            </p>
+
+            <a class="forum-btn" href="{% url 'user_forum' %}">💬 Enter the Forum</a>
         </div>
+
     </div>
 
+
+
+
 </body>
+
 </html>
