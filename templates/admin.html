@@ -56,9 +56,9 @@
         <img src="{% static 'cocktails/buttons/customise.png' %}" alt="Customise" />
       </div>
 
-      <!-- USERDATA (not wired yet) -->
-      <div class="admin-card">
-        <img src="{% static 'cocktails/buttons/userdata.png' %}" alt="UserData" />
+      <!-- User Forum -->
+      <div class="admin-card" onclick="openForum()">
+        <img src="{% static 'cocktails/buttons/userdata.png' %}">
       </div>
 
       <!-- TESTDATA -->
@@ -72,6 +72,17 @@
 
     </div>
 
+    <div id="forumModal" class="modal hidden">
+      <div class="modal-content">
+
+        <button class="close" data-close="forumModal">&times;</button>
+
+        <div id="forumModalContent">
+          <!-- Forum HTML will be injected here -->
+        </div>
+
+      </div>
+    </div>
 
     <!-- INGREDIENTS MODAL -->
     <div id="ingredientsModal" class="modal hidden">
@@ -445,10 +456,11 @@
           <span class="item-name">{{ cocktail.name }}</span>
 
           <div class="item-actions">
-            <button class="delete-btn" data-open="confirmDeleteCocktailModal" data-id="{{ cocktail.id }}"
+            <button class="delete-btn" data-delete="cocktail" data-id="{{ cocktail.id }}"
               data-name="{{ cocktail.name|escapejs }}" data-child="true">
               Delete
             </button>
+
           </div>
 
         </div>
@@ -618,11 +630,25 @@
       </form>
 
     </div>
+
+
+  </div>
+
+  <div id="forumModal" class="modal hidden">
+    <div class="modal-content">
+
+      <button class="close" data-close="forumModal">&times;</button>
+
+      <div id="forumModalContent">
+        <!-- Forum HTML will be injected here -->
+      </div>
+
+    </div>
   </div>
 
 
 
-  
+
   <script type="module" src="/static/js/admin/ingredients.js"></script>
   <script type="module" src="/static/js/admin/history.js"></script>
   <script type="module" src="/static/js/admin/recipes.js"></script>
@@ -642,8 +668,8 @@ by changing {{ c.id }} into { { c.id } }, which causes a fatal JS syntax error.
 Leave spacing and braces EXACTLY as written.
 -->
 
-<script>
-    
+  <script>
+
     window.cocktails = [
       {% for c in cocktails %}
     {

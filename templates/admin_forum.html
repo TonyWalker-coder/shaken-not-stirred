@@ -1,0 +1,21 @@
+{% extends "admin.html" %}
+{% block content %}
+
+<div class="glass-panel">
+    <h1>Forum Admin</h1>
+
+    {% for thread in threads %}
+        <div class="thread-card">
+            <h2>{{ thread.title }}</h2>
+            <p>By <strong>{{ thread.author.username }}</strong> — {{ thread.created_at }}</p>
+            <p>{{ thread.replies.count }} replies</p>
+
+            <a class="btn" href="{% url 'admin_forum_thread' thread.id %}">View Thread</a>
+            <a class="btn" href="{% url 'delete_thread' thread.id %}">Delete Thread</a>
+        </div>
+    {% empty %}
+        <p>No threads yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% load static %}
+<div class="forum-section">
+    <h2>User Forum</h2>
+
+    {% for thread in threads %}
+        <div class="thread-row">
+            <a href="#" onclick="loadThread({{ thread.id }})">
+                {{ thread.title }}
+            </a>
+        </div>
+    {% endfor %}
+</div>
+<script type="module" src="{% static 'cocktails/js/admin-core.js' %}"></script>

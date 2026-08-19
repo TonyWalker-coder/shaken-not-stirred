@@ -634,3 +634,46 @@ def thread_detail(request, thread_id):
 def forum(request):
     threads = Thread.objects.all().order_by('-created_at')
     return render(request, 'user/forum.html', {'threads': threads})
+
+def admin_forum(request):
+    
+    threads = Thread.objects.all().order_by('-created_at')
+    return render(request, 'admin_forum.html', {'threads': threads})
+
+def admin_forum_thread(request, thread_id):
+    thread = get_object_or_404(Thread, id=thread_id)
+    replies = Reply.objects.filter(thread=thread)
+    return render(request, 'admin_forum_thread.html', {
+        'thread': thread,
+        'replies': replies
+    })
+
+def delete_thread(request, thread_id):
+    thread = get_object_or_404(Thread, id=thread_id)
+    thread.delete()
+    return redirect('admin_forum')
+
+def delete_reply(request, reply_id):
+    reply = get_object_or_404(Reply, id=reply_id)
+    thread_id = reply.thread.id
+    reply.delete()
+    return redirect('admin_forum_thread', thread_id)
+
+def dashboard_forum(request):
+    threads = Thread.objects.all().order_by('-created_at')
+    return render(request, 'dashboard_forum_section.html', {
+        'threads': threads
+    })
+def dashboard_forum_thread(request, thread_id):
+    thread = get_object_or_404(Thread, id=thread_id)
+    replies = Reply.objects.filter(thread=thread)
+    return render(request, 'dashboard_forum_thread_section.html', {
+        'thread': thread,
+        'replies': replies
+    })
+def dashboard_delete_thread(request, thread_id):
+    thread = get_object_or_404(Thread, id=thread_id)
+    thread.delete()
+    return redirect("dashboard_forum")
+
+

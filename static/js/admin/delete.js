@@ -6,9 +6,6 @@ import {
 } from "./admin-core.js";
 console.log("DELETE.JS LOADED");
 
-document.addEventListener("click", (e) => {
-  console.log("CLICK:", e.target);
-});
 /* ============================================================
    DELETE COCKTAIL — OPEN CONFIRM MODAL
    ============================================================ */
@@ -21,7 +18,7 @@ document.addEventListener("click", (e) => {
 */
 
 document.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-open='confirmDeleteCocktailModal']");
+  const btn = e.target.closest("[data-delete='cocktail']");
   if (!btn) return;
 
   const cocktailId = btn.dataset.id;
@@ -62,7 +59,7 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener("submit", async (e) => {
   const form = e.target.closest("#deleteCocktailForm");
-  if (!form) return;   // Ignore all other forms
+  if (!form) return; // Ignore all other forms
 
   e.preventDefault();
 
@@ -92,7 +89,6 @@ document.addEventListener("submit", async (e) => {
   refreshCocktailList(data.cocktails);
   modalMessage("deleteCocktailModal", "success", "Cocktail deleted!");
 });
-
 
 /* ============================================================
    REFRESH COCKTAIL LISTS (History / Recipes / Delete Modal)
@@ -155,12 +151,13 @@ function refreshCocktailList(cocktails) {
           <span class="item-name">${c.name}</span>
           <div class="item-actions">
             <button class="delete-btn"
-                    data-open="confirmDeleteCocktailModal"
-                    data-id="${c.id}"
-                    data-name="${c.name.replace(/"/g, "&quot;")}"
+                    data-delete="cocktail"
+                    data-id="{{ cocktail.id }}"
+                    data-name="{{ cocktail.name|escapejs }}"
                     data-child="true">
               Delete
             </button>
+
           </div>
         </div>
       `;
@@ -179,7 +176,8 @@ function refreshCocktailList(cocktails) {
 */
 
 document.addEventListener("click", async (e) => {
-  const btn = e.target.closest("[data-open='deleteCocktailModal']");
+  const btn = e.target.closest("[data-delete='open-delete']");
+
   if (!btn) return;
 
   const res = await fetch("/cocktails/list/json/", {

@@ -662,3 +662,19 @@ h2 {
     font-size: 0.9rem;
     color: #333;
 }
+.admin-thread-row,
+.reply-row {
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.btn-orange {
+    background: linear-gradient(45deg, #ff8a00, #ff5e00);
+}
+
+.btn-red {
+    background: linear-gradient(45deg, #ff3b3b, #cc0000);
+}

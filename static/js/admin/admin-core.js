@@ -155,3 +155,31 @@ export async function refreshCocktailDropdown(selectEl) {
       selectEl.appendChild(opt);
     });
 }
+
+export async function loadDashboardSection(url) {
+  const res = await fetch(url, {
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
+
+  const html = await res.text();
+
+  const container = document.getElementById("dashboard-content");
+  if (container) {
+    container.innerHTML = html;
+  }
+}
+window.loadDashboardSection = loadDashboardSection;
+
+export async function openForum() {
+  const res = await fetch("/dashboard/forum/", {
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
+
+  const html = await res.text();
+
+  const container = document.getElementById("forumModalContent");
+  container.innerHTML = html;
+
+  openModal("forumModal");
+}
+window.openForum = openForum;
