@@ -697,7 +697,6 @@ h2 {
     padding-bottom: 6px;
 }
 
-.thread-title::after,
 .forum-title::after {
     content: "";
     position: absolute;
@@ -777,22 +776,30 @@ h2 {
 }
 
 .thread-row {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.14);
+    border: 2px solid rgba(255,255,255,0.35);   /* stronger, clearer border */
     backdrop-filter: blur(6px);
     padding: 12px 15px;
     border-radius: 10px;
-    transition: transform 0.15s ease, background 0.2s ease;
+
+    /* soft lift + glow */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25),
+                0 0 6px rgba(255,255,255,0.25);
+
+    transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .thread-row:hover {
     background: rgba(255,255,255,0.22);
     transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(0,0,0,0.3),
+                0 0 8px rgba(255,255,255,0.3);
 }
 
+
 .thread-title {
-    font-weight: 600;
-    color: darkorange;
+
+    color: black;
     font-size: 1.1rem;
 }
 

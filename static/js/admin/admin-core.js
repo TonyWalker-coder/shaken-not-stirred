@@ -280,14 +280,35 @@ window.getCookie = getCookie;
 function showReplyForm() {
     document.getElementById("replyForm").style.display = "block";
     document.getElementById("deleteConfirm").style.display = "none";
+
+    // Scroll the actual scrollable modal container
+    const modal = document.querySelector("#forumModal .modal-content");
+
+    if (modal) {
+        setTimeout(() => {
+            modal.scrollTop = modal.scrollHeight;
+        }, 50);
+    }
 }
+
 window.showReplyForm = showReplyForm;
 
 function showDeleteConfirm() {
     document.getElementById("deleteConfirm").style.display = "block";
     document.getElementById("replyForm").style.display = "none";
+
+    // Scroll the actual scrollable modal container
+    const modal = document.querySelector("#forumModal .modal-content");
+
+    if (modal) {
+        setTimeout(() => {
+            modal.scrollTop = modal.scrollHeight;
+        }, 50);
+    }
 }
+
 window.showDeleteConfirm = showDeleteConfirm;
+
 
 function hideDeleteConfirm() {
     document.getElementById("deleteConfirm").style.display = "none";
