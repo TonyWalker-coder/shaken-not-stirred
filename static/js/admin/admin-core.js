@@ -156,20 +156,28 @@ export async function refreshCocktailDropdown(selectEl) {
     });
 }
 
+// ===============================
+// Load a dashboard section via AJAX
+// Inserts the returned HTML into #dashboard-content
+// ===============================
 export async function loadDashboardSection(url) {
   const res = await fetch(url, {
-    headers: { "X-Requested-With": "XMLHttpRequest" }
+    headers: { "X-Requested-With": "XMLHttpRequest" } // tells Django it's an AJAX request
   });
 
   const html = await res.text();
 
   const container = document.getElementById("dashboard-content");
   if (container) {
-    container.innerHTML = html;
+    container.innerHTML = html; // replace dashboard content with server-rendered HTML
   }
 }
 window.loadDashboardSection = loadDashboardSection;
 
+
+// ===============================
+// Open the forum modal and load the forum list
+// ===============================
 export async function openForum() {
   const res = await fetch("/dashboard/forum/", {
     headers: { "X-Requested-With": "XMLHttpRequest" }
@@ -178,12 +186,16 @@ export async function openForum() {
   const html = await res.text();
 
   const container = document.getElementById("forumModalContent");
-  container.innerHTML = html;
+  container.innerHTML = html; // inject forum HTML into modal
 
-  openModal("forumModal");
+  openModal("forumModal"); // show modal
 }
 window.openForum = openForum;
 
+
+// ===============================
+// Load a specific thread into the modal
+// ===============================
 export async function loadThread(threadId) {
   const res = await fetch(`/admin/forum/thread/${threadId}/`, {
     headers: { "X-Requested-With": "XMLHttpRequest" }
@@ -191,32 +203,38 @@ export async function loadThread(threadId) {
 
   const html = await res.text();
 
-  document.getElementById("forumModalContent").innerHTML = html;
+  document.getElementById("forumModalContent").innerHTML = html; // replace modal content with thread view
 }
-
-
 window.loadThread = loadThread;
 
+
+// ===============================
+// Admin reply prompt (quick reply)
+// ===============================
 function adminReply(threadId) {
     const message = prompt("Enter your reply:");
-
-    if (!message) return;
+    if (!message) return; // cancelled or empty
 
     fetch(`/admin/forum/reply/${threadId}/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken")
+            "X-CSRFToken": getCookie("csrftoken") // Django CSRF protection
         },
-        body: JSON.stringify({ message: message })
+        body: JSON.stringify({ message })
     })
     .then(res => res.text())
     .then(html => {
+        // refresh thread view with updated replies
         document.getElementById("forumModalContent").innerHTML = html;
     });
 }
 window.adminReply = adminReply;
 
+
+// ===============================
+// Delete an entire thread (with confirmation)
+// ===============================
 function deleteThread(threadId) {
     if (!confirm("Delete this thread and all replies?")) return;
 
@@ -227,14 +245,19 @@ function deleteThread(threadId) {
         }
     })
     .then(() => {
-        closeForumModal();
-        location.reload();
+        closeForumModal(); // hide modal
+        location.reload(); // refresh admin page to update thread list
     });
 }
 window.deleteThread = deleteThread;
 
+
+// ===============================
+// Utility: Get a cookie value (used for CSRF)
+// ===============================
 function getCookie(name) {
     let cookieValue = null;
+
     if (document.cookie && document.cookie !== "") {
         const cookies = document.cookie.split(";");
         for (let cookie of cookies) {
@@ -245,15 +268,19 @@ function getCookie(name) {
             }
         }
     }
+
     return cookieValue;
 }
 window.getCookie = getCookie;
 
+
+// ===============================
+// UI Toggles for reply/delete forms
+// ===============================
 function showReplyForm() {
     document.getElementById("replyForm").style.display = "block";
     document.getElementById("deleteConfirm").style.display = "none";
 }
-
 window.showReplyForm = showReplyForm;
 
 function showDeleteConfirm() {
@@ -267,6 +294,10 @@ function hideDeleteConfirm() {
 }
 window.hideDeleteConfirm = hideDeleteConfirm;
 
+
+// ===============================
+// Submit a reply from the modal reply form
+// ===============================
 function submitReply(threadId) {
     const message = document.getElementById("replyMessage").value.trim();
     if (!message) return;
@@ -281,11 +312,16 @@ function submitReply(threadId) {
     })
     .then(res => res.text())
     .then(html => {
+        // reload thread with new reply included
         document.getElementById("forumModalContent").innerHTML = html;
     });
 }
 window.submitReply = submitReply;
 
+
+// ===============================
+// Confirm delete inside modal
+// ===============================
 function confirmDelete(threadId) {
     fetch(`/admin/forum/delete-thread/${threadId}/`, {
         method: "POST",
@@ -300,6 +336,10 @@ function confirmDelete(threadId) {
 }
 window.confirmDelete = confirmDelete;
 
+
+// ===============================
+// Close the forum modal
+// ===============================
 function closeForumModal() {
     const modal = document.getElementById("forumModal");
     if (modal) {

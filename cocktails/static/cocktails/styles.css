@@ -678,3 +678,144 @@ h2 {
 .btn-red {
     background: linear-gradient(45deg, #ff3b3b, #cc0000);
 }
+
+
+/* ============================
+   TITLE CREASE (Thread + Forum)
+   ============================ */
+.thread-title,
+.forum-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    position: relative;
+    color: #fff;
+}
+
+.forum-title {
+    margin-bottom: 15px;
+    padding-bottom: 6px;
+}
+
+.thread-title::after,
+.forum-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        rgba(255,255,255,0.4),
+        rgba(0,0,0,0.2),
+        rgba(255,255,255,0.4)
+    );
+    border-radius: 2px;
+}
+
+/* ============================
+   REPLY CARDS
+   ============================ */
+.reply-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 12px 15px;
+    margin: 12px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.reply-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+.reply-card small {
+    display: block;
+    margin-top: 6px;
+    opacity: 0.7;
+    font-size: 0.85rem;
+}
+
+/* ============================
+   FORUM PANEL + HEADER
+   ============================ */
+.forum-panel {
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 18px;
+    width: 90%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.forum-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.forum-list {
+    margin-top: 15px;
+}
+
+/* ============================
+   FORUM LINKS (List Items)
+   ============================ */
+.forum-link {
+    text-decoration: none;
+    display: block;
+    margin: 10px 0;
+    font-weight: 600;
+    color: #fff;
+}
+
+.thread-row {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(6px);
+    padding: 12px 15px;
+    border-radius: 10px;
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.thread-row:hover {
+    background: rgba(255,255,255,0.22);
+    transform: translateY(-2px);
+}
+
+.thread-title {
+    font-weight: 600;
+    color: darkorange;
+    font-size: 1.1rem;
+}
+
+/* ============================
+   BUTTONS
+   ============================ */
+.btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff8a00, #ff5e00);
+    color: white;
+    font-weight: 600;
+    margin-right: 10px;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #d9534f, #c9302c);
+}

@@ -1,13 +1,23 @@
 {% load static %}
-<div class="forum-section">
-    <h2>User Forum</h2>
+<link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
+<!-- This template is for the forum section in the dashboard. It lists all threads and allows users to click on a thread to view its details. -->
 
-    {% for thread in threads %}
-        <div class="thread-row">
-            <a href="#" onclick="loadThread({{ thread.id }})">
-                {{ thread.title }}
+<div class="forum-panel">
+
+    <div class="forum-header">
+        <h2 class="forum-title">User Forum</h2>
+    </div>
+
+    <div class="forum-list">
+        {% for thread in threads %}
+            <a class="forum-link" href="#" onclick="loadThread({{ thread.id }})">
+                <div class="thread-row">
+                    <span class="thread-title">{{ thread.title }}</span>
+                </div>
             </a>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
+
 </div>
+
 <script type="module" src="{% static 'cocktails/js/admin-core.js' %}"></script>
