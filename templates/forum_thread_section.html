@@ -1,0 +1,37 @@
+<h2>{{ thread.title }}</h2>
+<p>By {{ thread.author_name }}</p>
+
+{% if replies|length >= 1 %}
+    <h3>Message</h3>
+    <div class="reply-card">
+        <p>{{ replies.0.message }}</p>
+        <small>{{ replies.0.author_name }} — {{ replies.0.created_at }}</small>
+    </div>
+{% endif %}
+
+{% if replies|length > 1 %}
+    <h3>Replies</h3>
+
+    {% for reply in replies|slice:"1:" %}
+        <div class="reply-card">
+            <p>{{ reply.message }}</p>
+            <small>{{ reply.author_name }} — {{ reply.created_at }}</small>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<button onclick="showReplyForm({{ thread.id }})">Reply</button>
+<button onclick="showDeleteConfirm({{ thread.id }})">Delete</button>
+
+
+<div id="replyForm" style="display:none; margin-top:20px;">
+    <h3>Admin Reply</h3>
+    <textarea id="replyMessage" rows="4" style="width:100%;"></textarea>
+    <button class="btn" onclick="submitReply({{ thread.id }})">Send Reply</button>
+</div>
+<div id="deleteConfirm" style="display:none; margin-top:20px;">
+    <h3>Delete Thread?</h3>
+    <p>This will delete the thread and all replies.</p>
+    <button class="btn delete-btn" onclick="confirmDelete({{ thread.id }})">Yes, Delete</button>
+    <button class="btn" onclick="hideDeleteConfirm()">Cancel</button>
+</div>

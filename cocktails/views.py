@@ -643,10 +643,10 @@ def admin_forum(request):
 def admin_forum_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     replies = Reply.objects.filter(thread=thread)
-    return render(request, 'admin_forum_thread.html', {
-        'thread': thread,
-        'replies': replies
-    })
+    return render(request, "forum_thread_section.html", {
+    "thread": thread,
+    "replies": replies,
+})
 
 def delete_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
@@ -676,4 +676,26 @@ def dashboard_delete_thread(request, thread_id):
     thread.delete()
     return redirect("dashboard_forum")
 
+from django.http import JsonResponse
+import json
+
+def admin_reply(request, thread_id):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        message = data.get("message")
+
+        thread = Thread.objects.get(id=thread_id)
+
+        Reply.objects.create(
+            thread=thread,
+            author_name="Admin",
+            message=message
+        )
+
+        # Re-render the modal content
+        replies = thread.replies.all()
+        return render(request, "forum_thread_section.html", {
+            "thread": thread,
+            "replies": replies
+        })
 

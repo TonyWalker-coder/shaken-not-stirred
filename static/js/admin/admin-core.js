@@ -183,3 +183,127 @@ export async function openForum() {
   openModal("forumModal");
 }
 window.openForum = openForum;
+
+export async function loadThread(threadId) {
+  const res = await fetch(`/admin/forum/thread/${threadId}/`, {
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
+
+  const html = await res.text();
+
+  document.getElementById("forumModalContent").innerHTML = html;
+}
+
+
+window.loadThread = loadThread;
+
+function adminReply(threadId) {
+    const message = prompt("Enter your reply:");
+
+    if (!message) return;
+
+    fetch(`/admin/forum/reply/${threadId}/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify({ message: message })
+    })
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("forumModalContent").innerHTML = html;
+    });
+}
+window.adminReply = adminReply;
+
+function deleteThread(threadId) {
+    if (!confirm("Delete this thread and all replies?")) return;
+
+    fetch(`/admin/forum/delete-thread/${threadId}/`, {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        }
+    })
+    .then(() => {
+        closeForumModal();
+        location.reload();
+    });
+}
+window.deleteThread = deleteThread;
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + "=")) {
+                cookieValue = cookie.substring(name.length + 1);
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+window.getCookie = getCookie;
+
+function showReplyForm() {
+    document.getElementById("replyForm").style.display = "block";
+    document.getElementById("deleteConfirm").style.display = "none";
+}
+
+window.showReplyForm = showReplyForm;
+
+function showDeleteConfirm() {
+    document.getElementById("deleteConfirm").style.display = "block";
+    document.getElementById("replyForm").style.display = "none";
+}
+window.showDeleteConfirm = showDeleteConfirm;
+
+function hideDeleteConfirm() {
+    document.getElementById("deleteConfirm").style.display = "none";
+}
+window.hideDeleteConfirm = hideDeleteConfirm;
+
+function submitReply(threadId) {
+    const message = document.getElementById("replyMessage").value.trim();
+    if (!message) return;
+
+    fetch(`/admin/forum/reply/${threadId}/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify({ message })
+    })
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("forumModalContent").innerHTML = html;
+    });
+}
+window.submitReply = submitReply;
+
+function confirmDelete(threadId) {
+    fetch(`/admin/forum/delete-thread/${threadId}/`, {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        }
+    })
+    .then(() => {
+        closeForumModal();
+        location.reload();
+    });
+}
+window.confirmDelete = confirmDelete;
+
+function closeForumModal() {
+    const modal = document.getElementById("forumModal");
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+window.closeForumModal = closeForumModal;
