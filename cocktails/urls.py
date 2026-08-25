@@ -144,6 +144,9 @@ urlpatterns = [
 
     path("admin/forum/reply/<int:thread_id>/", cocktails_views.admin_reply, name="admin_reply"),
 
+    path('user/lookup/', views.ingredient_lookup, name='ingredient_lookup'),
+    path('user/lookup/cocktail/<int:pk>/', views.lookup_cocktail_detail, name='lookup_cocktail_detail'),
+
 
 
 ]

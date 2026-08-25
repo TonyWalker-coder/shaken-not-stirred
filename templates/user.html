@@ -130,8 +130,8 @@
             margin-left: auto;
             margin-right: auto;
             animation: fadeIn 0.8s ease forwards;
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.25), 
-            0 6px 18px rgba(0,0,0,0.35);
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.25),
+                0 6px 18px rgba(0, 0, 0, 0.35);
         }
 
         /* Palm leaves in the corners */
@@ -141,7 +141,7 @@
             position: absolute;
             width: 180px;
             height: 180px;
-            background-image: url("{% static 'cocktails/images/background/palm.png' %}");
+            background-image: url("{% static 'cocktails/images/background/user.png' %}");
             background-size: contain;
             background-repeat: no-repeat;
             opacity: 1;
@@ -178,6 +178,46 @@
             background: linear-gradient(135deg, #ff8d3a, #f06a1c);
             transform: translateY(-4px);
         }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            width: 80%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 14px;
+        }
     </style>
 </head>
 
@@ -199,12 +239,58 @@
             </p>
 
             <a class="forum-btn" href="{% url 'user_forum' %}">💬 Enter the Forum</a>
+
+            <a class="forum-btn" id="lookupBtn">🍍 Ingredient Lookup</a>
         </div>
 
     </div>
 
+    <div id="lookupModal" class="modal" style="display:none;">
+        <div class="modal-content glass-panel">
+            <span class="close">&times;</span>
+
+            <h2 style="color:#f77c24; font-family:'Henny Penny', cursive;">
+                Ingredient Lookup
+            </h2>
+
+            <iframe id="lookupFrame" src="{% url 'ingredient_lookup' %}"></iframe>
+
+        </div>
+    </div>
+
+    <div id="childModal" class="modal" style="display:none;">
+        <div class="modal-content glass-panel">
+            <span class="close-child">&times;</span>
+            <iframe id="childFrame" style="width:100%; height:500px; border:none;"></iframe>
+        </div>
+    </div>
 
 
+
+    <script>
+        document.getElementById("lookupBtn").onclick = function () {
+            document.getElementById("lookupModal").style.display = "flex";
+        };
+
+        document.querySelector(".close").onclick = function () {
+            document.getElementById("lookupModal").style.display = "none";
+        };
+
+
+        window.addEventListener("message", function (e) {
+            if (e.data.type === "openChild") {
+                const url = "/user/lookup/cocktail/" + e.data.id + "/";
+                document.getElementById("childFrame").src = url;
+                document.getElementById("childModal").style.display = "flex";
+            }
+        });
+
+        document.querySelector(".close-child").onclick = function () {
+            document.getElementById("childModal").style.display = "none";
+        };
+
+
+    </script>
 
 </body>
 

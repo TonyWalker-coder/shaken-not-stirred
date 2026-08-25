@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <style>
+        .dropdown {
+            padding: 0.6rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+
+        .cocktail-grid {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cocktail-card {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 14px;
+            text-align: center;
+            backdrop-filter: blur(6px);
+            cursor: pointer;
+        }
+
+        .cocktail-card img {
+            width: 100%;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h3 style="color:white;">Select an Ingredient</h3>
+
+<form method="GET">
+    <select name="ingredient" class="dropdown" onchange="this.form.submit()">
+        <option value="">-- Choose Ingredient --</option>
+        {% for ing in ingredients %}
+            <option value="{{ ing.id }}" {% if ing.id|stringformat:"s" == selected_id %}selected{% endif %}>
+                {{ ing.name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+{% if cocktails %}
+<div class="cocktail-grid">
+    {% for c in cocktails %}
+    <div class="cocktail-card" onclick="openChildModal({{ c.id }})">
+        <img src="{{ c.image.url }}">
+        <h4 style="color:white;">{{ c.name }}</h4>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+function openChildModal(id) {
+    window.parent.postMessage({type: "openChild", id: id}, "*");
+}
+</script>
+
+</body>
+</html>

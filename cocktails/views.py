@@ -723,3 +723,26 @@ def admin_reply(request, thread_id):
             "replies": replies
         })
 
+from django.shortcuts import render, get_object_or_404
+from .models import Ingredient, Cocktail
+
+def ingredient_lookup(request):
+    ingredients = Ingredient.objects.filter(cocktail__isnull=False).distinct()
+
+    selected_id = request.GET.get("ingredient")
+    cocktails = None
+
+    if selected_id:
+        ingredient = get_object_or_404(Ingredient, id=selected_id)
+        cocktails = Cocktail.objects.filter(ingredients=ingredient)
+
+    return render(request, "ingredient_lookup.html", {
+        "ingredients": ingredients,
+        "cocktails": cocktails,
+        "selected_id": selected_id,
+    })
+
+
+def lookup_cocktail_detail(request, pk):
+    cocktail = get_object_or_404(Cocktail, pk=pk)
+    return render(request, "lookup_cocktail_detail.html", {"cocktail": cocktail})

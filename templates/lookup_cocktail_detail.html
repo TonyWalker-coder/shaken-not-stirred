@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <style>
+        .card {
+            background: rgba(255,255,255,0.2);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            color: white;
+        }
+        img {
+            width: 100%;
+            border-radius: 14px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="card">
+    <img src="{{ cocktail.image.url }}">
+    <h2>{{ cocktail.name }}</h2>
+    <p>{{ cocktail.description }}</p>
+</div>
+</body>
+</html>
