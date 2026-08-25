@@ -503,13 +503,13 @@ def reset_db(request):
         settings.BASE_DIR,
         "static",
         "testdata",
-        "cocktails.json"   # your new JSON file
+        "cocktails.json"
     )
 
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # Wipe tables (forum included)
+    # Wipe tables
     Reply.objects.all().delete()
     Thread.objects.all().delete()
     History.objects.all().delete()
@@ -517,13 +517,8 @@ def reset_db(request):
     Ingredient.objects.all().delete()
     Cocktail.objects.all().delete()
 
-    # Temporary storage for cocktails (for M2M)
     cocktail_objects = {}
 
-    # Temporary storage for threads (for replies)
-    thread_objects = {}
-
-    # First pass: create everything except M2M relations
     for item in data:
         model = item.get("model")
         fields = item.get("fields", {})
@@ -563,25 +558,24 @@ def reset_db(request):
 
         # THREAD (forum)
         elif model == "cocktails.thread":
-            t = Thread.objects.create(
+            Thread.objects.create(
                 id=pk,
                 title=fields["title"],
-                author=fields.get("author", ""),
+                author_name=fields.get("author_name", ""),
                 created_at=fields.get("created_at")
             )
-            thread_objects[pk] = t
 
         # REPLY (forum)
         elif model == "cocktails.reply":
             Reply.objects.create(
                 id=pk,
                 thread_id=fields["thread"],
-                author=fields.get("author", ""),
-                text=fields["text"],
+                author_name=fields.get("author_name", ""),
+                message=fields["message"],
                 created_at=fields.get("created_at")
             )
 
-    # Second pass: attach ingredients to cocktails
+    # Attach ingredients
     for pk, (cocktail, ingredient_ids) in cocktail_objects.items():
         for ing_id in ingredient_ids:
             try:
