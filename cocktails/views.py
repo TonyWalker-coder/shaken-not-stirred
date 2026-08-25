@@ -503,33 +503,40 @@ def reset_db(request):
         settings.BASE_DIR,
         "static",
         "testdata",
-        "cocktails.json"
+        "cocktails.json"   # your new JSON file
     )
 
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # Wipe tables
-    Cocktail.objects.all().delete()
-    Ingredient.objects.all().delete()
-    Recipe.objects.all().delete()
+    # Wipe tables (forum included)
+    Reply.objects.all().delete()
+    Thread.objects.all().delete()
     History.objects.all().delete()
+    Recipe.objects.all().delete()
+    Ingredient.objects.all().delete()
+    Cocktail.objects.all().delete()
 
-    # Temporary storage for cocktails so we can attach ingredients later
+    # Temporary storage for cocktails (for M2M)
     cocktail_objects = {}
 
-    # First pass: create ingredients, recipes, history, cocktails WITHOUT M2M
+    # Temporary storage for threads (for replies)
+    thread_objects = {}
+
+    # First pass: create everything except M2M relations
     for item in data:
         model = item.get("model")
         fields = item.get("fields", {})
         pk = item.get("pk")
 
+        # INGREDIENT
         if model == "cocktails.ingredient":
             Ingredient.objects.create(
                 id=pk,
                 name=fields["name"]
             )
 
+        # RECIPE
         elif model == "cocktails.recipe":
             Recipe.objects.create(
                 id=pk,
@@ -537,6 +544,7 @@ def reset_db(request):
                 text=fields["text"]
             )
 
+        # HISTORY
         elif model == "cocktails.history":
             History.objects.create(
                 id=pk,
@@ -544,6 +552,7 @@ def reset_db(request):
                 text=fields["text"]
             )
 
+        # COCKTAIL
         elif model == "cocktails.cocktail":
             c = Cocktail.objects.create(
                 id=pk,
@@ -551,6 +560,26 @@ def reset_db(request):
                 image_url=fields.get("image_url", "")
             )
             cocktail_objects[pk] = (c, fields.get("ingredients", []))
+
+        # THREAD (forum)
+        elif model == "cocktails.thread":
+            t = Thread.objects.create(
+                id=pk,
+                title=fields["title"],
+                author=fields.get("author", ""),
+                created_at=fields.get("created_at")
+            )
+            thread_objects[pk] = t
+
+        # REPLY (forum)
+        elif model == "cocktails.reply":
+            Reply.objects.create(
+                id=pk,
+                thread_id=fields["thread"],
+                author=fields.get("author", ""),
+                text=fields["text"],
+                created_at=fields.get("created_at")
+            )
 
     # Second pass: attach ingredients to cocktails
     for pk, (cocktail, ingredient_ids) in cocktail_objects.items():
@@ -562,6 +591,7 @@ def reset_db(request):
                 pass
 
     return JsonResponse({"status": "ok", "message": "Database reset and restored from JSON."})
+
 
 # ============================================================
 # USER AREA — DEVELOPMENT TOOLS

@@ -1,5 +1,3201 @@
 [
 {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2026-04-20T12:32:53.305Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "Co-Pilot special",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2026-04-20T12:59:53.917Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "Co-Pilot special",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2026-04-20T13:04:12.315Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Bahama Mom",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2026-04-20T14:24:23.790Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Bahama Mama",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2026-04-20T14:26:07.321Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "Bloody Mary",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2026-04-20T14:27:02.412Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "Blue Hawaii",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2026-04-20T14:28:12.623Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "5",
+        "object_repr": "Blue Lagoon",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2026-04-20T14:29:02.623Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "6",
+        "object_repr": "Blue Tahoe",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2026-04-20T14:29:49.532Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Caipirinha",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2026-04-20T14:30:48.311Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Cosmopolitan",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2026-04-20T14:31:35.518Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Cosmopolitan",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2026-04-22T15:29:23.082Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "Coconut Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2026-04-22T15:29:42.644Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Dark Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2026-04-22T15:29:55.753Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "Orange Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2026-04-22T15:30:13.737Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "Pineapple Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2026-04-22T15:30:27.803Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "Grenadine",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2026-04-22T15:30:42.825Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "6",
+        "object_repr": "Crushed Ice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2026-04-22T15:34:07.664Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Recipe #1",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2026-04-22T15:35:04.290Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "History #1",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2026-04-22T15:37:53.458Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "History #2",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2026-04-22T15:38:54.059Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Recipe #1",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2026-04-22T15:39:11.699Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "6",
+        "object_repr": "Crushed Ice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2026-04-22T15:39:11.699Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "Grenadine",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2026-04-22T15:39:11.699Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "Pineapple Juice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2026-04-22T15:39:11.699Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "Orange Juice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2026-04-22T15:39:11.699Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Dark Rum",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2026-04-22T15:39:11.699Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "Coconut Rum",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2026-04-22T15:39:33.732Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "History #2",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2026-04-22T15:39:33.732Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "History #1",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2026-04-22T15:39:52.245Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "Cosmopolitan",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2026-04-22T15:39:52.245Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Caipirinha",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2026-04-22T15:39:52.245Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "6",
+        "object_repr": "Blue Tahoe",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2026-04-22T15:39:52.245Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "5",
+        "object_repr": "Blue Lagoon",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2026-04-22T15:39:52.245Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "Blue Hawaii",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2026-04-22T15:39:52.245Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "Bloody Mary",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2026-04-22T15:39:52.245Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Bahama Mama",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2026-04-22T15:41:03.518Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "History #3",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2026-04-22T15:43:05.068Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "2",
+        "object_repr": "Recipe #2",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2026-04-22T15:43:37.003Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "7",
+        "object_repr": "Coconut Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2026-04-22T15:43:56.535Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "8",
+        "object_repr": "Dark Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2026-04-22T15:44:14.394Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "9",
+        "object_repr": "Orange Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2026-04-22T15:44:32.622Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "10",
+        "object_repr": "Pineapple Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2026-04-22T15:44:51.873Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "11",
+        "object_repr": "Grenadine",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2026-04-22T15:45:09.714Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "12",
+        "object_repr": "Crushed Ice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2026-04-22T15:46:07.959Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "9",
+        "object_repr": "Bahama Mama",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2026-04-22T15:49:29.896Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "13",
+        "object_repr": "Vodka",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2026-04-22T15:49:55.189Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "14",
+        "object_repr": "Tomato Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2026-04-22T15:50:17.820Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "15",
+        "object_repr": "Lemon Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2026-04-22T15:50:43.421Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "16",
+        "object_repr": "Worcestershire Sauce",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2026-04-22T15:51:05.028Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "17",
+        "object_repr": "Tabasco",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2026-04-22T15:54:29.013Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Recipe #3",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2026-04-22T15:56:57.139Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "History #4",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+        "action_time": "2026-04-22T15:57:43.475Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "10",
+        "object_repr": "Bloody Mary",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+        "action_time": "2026-04-22T16:00:46.877Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "18",
+        "object_repr": "White Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+        "action_time": "2026-04-22T16:01:06.026Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "19",
+        "object_repr": "Blue Curaçao",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+        "action_time": "2026-04-22T16:02:27.646Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "20",
+        "object_repr": "Pineapple Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+        "action_time": "2026-04-22T16:02:53.344Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "21",
+        "object_repr": "Cream of Coconut",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+        "action_time": "2026-04-22T16:03:20.276Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "22",
+        "object_repr": "Crushed Ice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+        "action_time": "2026-04-22T16:04:47.010Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "4",
+        "object_repr": "Recipe #4",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+        "action_time": "2026-04-22T16:06:42.418Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "5",
+        "object_repr": "History #5",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "22",
+        "object_repr": "Crushed Ice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "21",
+        "object_repr": "Cream of Coconut",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "20",
+        "object_repr": "Pineapple Juice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "19",
+        "object_repr": "Blue Curaçao",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "18",
+        "object_repr": "White Rum",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "17",
+        "object_repr": "Tabasco",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "16",
+        "object_repr": "Worcestershire Sauce",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 68,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "15",
+        "object_repr": "Lemon Juice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 69,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "14",
+        "object_repr": "Tomato Juice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 70,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "13",
+        "object_repr": "Vodka",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 71,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "12",
+        "object_repr": "Crushed Ice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 72,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "11",
+        "object_repr": "Grenadine",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 73,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "10",
+        "object_repr": "Pineapple Juice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 74,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "9",
+        "object_repr": "Orange Juice",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 75,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "8",
+        "object_repr": "Dark Rum",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 76,
+    "fields": {
+        "action_time": "2026-04-22T16:18:31.815Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "7",
+        "object_repr": "Coconut Rum",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 77,
+    "fields": {
+        "action_time": "2026-04-22T16:18:55.619Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "10",
+        "object_repr": "Bloody Mary",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 78,
+    "fields": {
+        "action_time": "2026-04-22T16:18:55.619Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "9",
+        "object_repr": "Bahama Mama",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 79,
+    "fields": {
+        "action_time": "2026-04-22T16:19:12.822Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "5",
+        "object_repr": "History #5",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 80,
+    "fields": {
+        "action_time": "2026-04-22T16:19:12.822Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "History #4",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 81,
+    "fields": {
+        "action_time": "2026-04-22T16:19:12.822Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "History #3",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 82,
+    "fields": {
+        "action_time": "2026-04-22T16:19:30.947Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "4",
+        "object_repr": "Recipe #4",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 83,
+    "fields": {
+        "action_time": "2026-04-22T16:19:30.947Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Recipe #3",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 84,
+    "fields": {
+        "action_time": "2026-04-22T16:19:30.947Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "2",
+        "object_repr": "Recipe #2",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 85,
+    "fields": {
+        "action_time": "2026-04-22T16:23:11.385Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "23",
+        "object_repr": "Coconut Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 86,
+    "fields": {
+        "action_time": "2026-04-22T16:24:06.511Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "24",
+        "object_repr": "Dark Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 87,
+    "fields": {
+        "action_time": "2026-04-22T16:24:23.818Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "25",
+        "object_repr": "Orange Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 88,
+    "fields": {
+        "action_time": "2026-04-22T16:24:36.310Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "26",
+        "object_repr": "Pineapple Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 89,
+    "fields": {
+        "action_time": "2026-04-22T16:24:48.906Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "27",
+        "object_repr": "Grenadine",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 90,
+    "fields": {
+        "action_time": "2026-04-22T16:27:11.459Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "28",
+        "object_repr": "Crushed Ice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 91,
+    "fields": {
+        "action_time": "2026-04-22T16:27:23.841Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "11",
+        "object_repr": "Bahama Mama",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 92,
+    "fields": {
+        "action_time": "2026-04-22T17:23:04.781Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "5",
+        "object_repr": "Recipe #5",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 93,
+    "fields": {
+        "action_time": "2026-04-22T17:23:19.835Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "11",
+        "object_repr": "Bahama Mama",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Recipe\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 94,
+    "fields": {
+        "action_time": "2026-04-22T17:24:29.782Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "29",
+        "object_repr": "Vodka",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 95,
+    "fields": {
+        "action_time": "2026-04-22T17:24:47.392Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "30",
+        "object_repr": "Tomato Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 96,
+    "fields": {
+        "action_time": "2026-04-22T17:25:08.995Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "31",
+        "object_repr": "Lemon Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 97,
+    "fields": {
+        "action_time": "2026-04-22T17:25:30.295Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "32",
+        "object_repr": "Worcestershire Sauce",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 98,
+    "fields": {
+        "action_time": "2026-04-22T17:25:48.215Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "33",
+        "object_repr": "Tabasco",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 99,
+    "fields": {
+        "action_time": "2026-04-22T17:27:26.215Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "6",
+        "object_repr": "Recipe #6",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 100,
+    "fields": {
+        "action_time": "2026-04-22T17:27:37.890Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "12",
+        "object_repr": "Bloody Mary",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 101,
+    "fields": {
+        "action_time": "2026-04-22T17:29:07.294Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "34",
+        "object_repr": "White Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 102,
+    "fields": {
+        "action_time": "2026-04-22T17:29:23.158Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "35",
+        "object_repr": "Blue Curaçao",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 103,
+    "fields": {
+        "action_time": "2026-04-22T17:29:55.062Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "36",
+        "object_repr": "Cream of Coconut",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 104,
+    "fields": {
+        "action_time": "2026-04-22T17:31:04.127Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "7",
+        "object_repr": "Recipe #7",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 105,
+    "fields": {
+        "action_time": "2026-04-22T17:31:13.036Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "13",
+        "object_repr": "Blue Hawaii",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 106,
+    "fields": {
+        "action_time": "2026-04-22T17:33:52.797Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "37",
+        "object_repr": "Lemonade",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 107,
+    "fields": {
+        "action_time": "2026-04-22T17:34:16.848Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "38",
+        "object_repr": "Ice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 108,
+    "fields": {
+        "action_time": "2026-04-22T17:37:32.028Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "8",
+        "object_repr": "Recipe #8",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 109,
+    "fields": {
+        "action_time": "2026-04-22T17:37:36.430Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "14",
+        "object_repr": "Blue Lagoon",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 110,
+    "fields": {
+        "action_time": "2026-04-22T17:40:41.471Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "39",
+        "object_repr": "Tahoe Blue Vodka",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 111,
+    "fields": {
+        "action_time": "2026-04-22T17:43:51.632Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "9",
+        "object_repr": "Recipe #9",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 112,
+    "fields": {
+        "action_time": "2026-04-22T17:43:55.079Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "15",
+        "object_repr": "Blue Tahoe",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 113,
+    "fields": {
+        "action_time": "2026-04-22T17:46:17.632Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "40",
+        "object_repr": "Lime",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 114,
+    "fields": {
+        "action_time": "2026-04-22T17:46:31.791Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "41",
+        "object_repr": "Sugar",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 115,
+    "fields": {
+        "action_time": "2026-04-22T17:47:00.463Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "42",
+        "object_repr": "Cachaça",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 116,
+    "fields": {
+        "action_time": "2026-04-22T17:50:07.346Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "10",
+        "object_repr": "Recipe #10",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 117,
+    "fields": {
+        "action_time": "2026-04-22T17:50:13.594Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "16",
+        "object_repr": "caipirinha",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 118,
+    "fields": {
+        "action_time": "2026-04-22T17:51:35.499Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "43",
+        "object_repr": "Citrus Vodka",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 119,
+    "fields": {
+        "action_time": "2026-04-22T17:51:55.279Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "44",
+        "object_repr": "Cointreau",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 120,
+    "fields": {
+        "action_time": "2026-04-22T17:52:10.324Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "45",
+        "object_repr": "Orange Liqueur",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 121,
+    "fields": {
+        "action_time": "2026-04-22T17:52:34.092Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "46",
+        "object_repr": "Lime Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 122,
+    "fields": {
+        "action_time": "2026-04-22T17:52:49.859Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "47",
+        "object_repr": "Cranberry Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 123,
+    "fields": {
+        "action_time": "2026-04-22T17:56:04.016Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "11",
+        "object_repr": "Recipe #11",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 124,
+    "fields": {
+        "action_time": "2026-04-22T17:56:43.029Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "17",
+        "object_repr": "Cosmopolitan",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 125,
+    "fields": {
+        "action_time": "2026-04-22T17:57:04.637Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "16",
+        "object_repr": "Caipirinha",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 126,
+    "fields": {
+        "action_time": "2026-04-23T06:58:48.520Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "48",
+        "object_repr": "Gold Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 127,
+    "fields": {
+        "action_time": "2026-04-23T06:59:08.065Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "49",
+        "object_repr": "Cola",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 128,
+    "fields": {
+        "action_time": "2026-04-23T07:01:06.340Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "12",
+        "object_repr": "Recipe #12",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 129,
+    "fields": {
+        "action_time": "2026-04-23T07:01:10.537Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "18",
+        "object_repr": "Cuba Libre",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 130,
+    "fields": {
+        "action_time": "2026-04-23T07:03:11.372Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "50",
+        "object_repr": "Gin",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 131,
+    "fields": {
+        "action_time": "2026-04-23T07:03:26.528Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "51",
+        "object_repr": "Dry Vermouth",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 132,
+    "fields": {
+        "action_time": "2026-04-23T07:03:40.148Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "52",
+        "object_repr": "Olive Brine",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 133,
+    "fields": {
+        "action_time": "2026-04-23T07:05:45.488Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "13",
+        "object_repr": "Recipe #13",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 134,
+    "fields": {
+        "action_time": "2026-04-23T07:05:49.891Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "19",
+        "object_repr": "Dirty Martini",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 135,
+    "fields": {
+        "action_time": "2026-04-23T08:04:14.163Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "53",
+        "object_repr": "Sambuca",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 136,
+    "fields": {
+        "action_time": "2026-04-23T08:04:31.165Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "54",
+        "object_repr": "Irish Cream Liqueur",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 137,
+    "fields": {
+        "action_time": "2026-04-23T08:04:49.910Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "55",
+        "object_repr": "Absinthe",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 138,
+    "fields": {
+        "action_time": "2026-04-23T08:06:18.686Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "14",
+        "object_repr": "Recipe #14",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 139,
+    "fields": {
+        "action_time": "2026-04-23T08:06:23.498Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "20",
+        "object_repr": "Hiroshima",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 140,
+    "fields": {
+        "action_time": "2026-04-23T08:09:01.190Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "56",
+        "object_repr": "Triple Sec",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 141,
+    "fields": {
+        "action_time": "2026-04-23T08:10:42.885Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "15",
+        "object_repr": "Recipe #15",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 142,
+    "fields": {
+        "action_time": "2026-04-23T08:11:39.000Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "21",
+        "object_repr": "Kamikaze",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 143,
+    "fields": {
+        "action_time": "2026-04-23T08:13:49.358Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "57",
+        "object_repr": "Tequila",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 144,
+    "fields": {
+        "action_time": "2026-04-23T08:14:14.958Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "58",
+        "object_repr": "Light Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 145,
+    "fields": {
+        "action_time": "2026-04-23T08:15:13.942Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "59",
+        "object_repr": "Simple Syrup",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 146,
+    "fields": {
+        "action_time": "2026-04-23T08:17:06.003Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "16",
+        "object_repr": "Recipe #16",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 147,
+    "fields": {
+        "action_time": "2026-04-23T08:17:09.665Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "22",
+        "object_repr": "Long Island Iced Tea",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 148,
+    "fields": {
+        "action_time": "2026-04-23T08:21:00.063Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "60",
+        "object_repr": "Jamaican Rum",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 149,
+    "fields": {
+        "action_time": "2026-04-23T08:21:56.399Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "61",
+        "object_repr": "Orange Curaçao",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 150,
+    "fields": {
+        "action_time": "2026-04-23T08:22:12.776Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "62",
+        "object_repr": "Orgeat",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 151,
+    "fields": {
+        "action_time": "2026-04-23T08:24:02.346Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "17",
+        "object_repr": "Recipe #17",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 152,
+    "fields": {
+        "action_time": "2026-04-23T08:24:08.593Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "23",
+        "object_repr": "Mai Tai",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 153,
+    "fields": {
+        "action_time": "2026-04-23T08:27:25.505Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "63",
+        "object_repr": "Agave Syrup",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 154,
+    "fields": {
+        "action_time": "2026-04-23T08:27:55.218Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "64",
+        "object_repr": "Kosher salt",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 155,
+    "fields": {
+        "action_time": "2026-04-23T08:29:01.769Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "18",
+        "object_repr": "Recipe #18",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 156,
+    "fields": {
+        "action_time": "2026-04-23T08:29:07.132Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "24",
+        "object_repr": "Margarita",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 157,
+    "fields": {
+        "action_time": "2026-04-23T08:31:08.846Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "24",
+        "object_repr": "Margarita",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 158,
+    "fields": {
+        "action_time": "2026-04-23T09:13:18.181Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "65",
+        "object_repr": "Bourbon",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 159,
+    "fields": {
+        "action_time": "2026-04-23T09:13:51.665Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "66",
+        "object_repr": "Fresh Mint Leaves",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 160,
+    "fields": {
+        "action_time": "2026-04-23T09:15:32.428Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "19",
+        "object_repr": "Recipe #19",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 161,
+    "fields": {
+        "action_time": "2026-04-23T09:15:37.771Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "25",
+        "object_repr": "Mint Julep",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 162,
+    "fields": {
+        "action_time": "2026-04-23T09:17:33.884Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "67",
+        "object_repr": "Club soda",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 163,
+    "fields": {
+        "action_time": "2026-04-23T09:18:45.772Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "20",
+        "object_repr": "Recipe #20",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 164,
+    "fields": {
+        "action_time": "2026-04-23T09:18:51.301Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "26",
+        "object_repr": "Mojito",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 165,
+    "fields": {
+        "action_time": "2026-04-23T09:19:28.882Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "25",
+        "object_repr": "Mint Julep",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 166,
+    "fields": {
+        "action_time": "2026-04-23T09:19:43.006Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "26",
+        "object_repr": "Mojito",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 167,
+    "fields": {
+        "action_time": "2026-04-23T12:48:26.287Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "21",
+        "object_repr": "Recipe #21",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 168,
+    "fields": {
+        "action_time": "2026-04-23T12:48:33.864Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "27",
+        "object_repr": "Pina Colada",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 169,
+    "fields": {
+        "action_time": "2026-04-23T12:49:57.322Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "68",
+        "object_repr": "Pisco",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 170,
+    "fields": {
+        "action_time": "2026-04-23T12:50:36.490Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "69",
+        "object_repr": "Egg White",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 171,
+    "fields": {
+        "action_time": "2026-04-23T12:52:30.722Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "22",
+        "object_repr": "Recipe #22",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 172,
+    "fields": {
+        "action_time": "2026-04-23T12:52:36.940Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "28",
+        "object_repr": "Pisco Sour",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 173,
+    "fields": {
+        "action_time": "2026-04-23T12:54:28.996Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "70",
+        "object_repr": "Grapefruit Juice",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 174,
+    "fields": {
+        "action_time": "2026-04-23T12:57:59.126Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "23",
+        "object_repr": "Recipe #23",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 175,
+    "fields": {
+        "action_time": "2026-04-23T12:58:02.607Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "29",
+        "object_repr": "Salty Dog",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 176,
+    "fields": {
+        "action_time": "2026-04-23T12:58:39.806Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "27",
+        "object_repr": "Pina Colada",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 177,
+    "fields": {
+        "action_time": "2026-04-23T12:58:54.116Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "28",
+        "object_repr": "Pisco Sour",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 178,
+    "fields": {
+        "action_time": "2026-04-23T12:59:08.760Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "29",
+        "object_repr": "Salty Dog",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 179,
+    "fields": {
+        "action_time": "2026-04-23T12:59:23.813Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "26",
+        "object_repr": "Mojito",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 180,
+    "fields": {
+        "action_time": "2026-04-23T13:09:39.007Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "24",
+        "object_repr": "Recipe #24",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 181,
+    "fields": {
+        "action_time": "2026-04-23T13:09:44.805Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "30",
+        "object_repr": "Screwdriver",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 182,
+    "fields": {
+        "action_time": "2026-04-23T13:11:08.318Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "71",
+        "object_repr": "Frozen Strawberries",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 183,
+    "fields": {
+        "action_time": "2026-04-23T13:13:55.373Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "25",
+        "object_repr": "Recipe #25",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 184,
+    "fields": {
+        "action_time": "2026-04-23T13:14:02.644Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "31",
+        "object_repr": "Strawberry Daiquiri",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 185,
+    "fields": {
+        "action_time": "2026-04-23T13:15:26.716Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "72",
+        "object_repr": "Strawberries",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 186,
+    "fields": {
+        "action_time": "2026-04-23T13:16:14.129Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "73",
+        "object_repr": "Sugar syrup",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 187,
+    "fields": {
+        "action_time": "2026-04-23T13:18:03.886Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "26",
+        "object_repr": "Recipe #26",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 188,
+    "fields": {
+        "action_time": "2026-04-23T13:18:12.506Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "32",
+        "object_repr": "Strawberry Mojito",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 189,
+    "fields": {
+        "action_time": "2026-04-23T13:21:14.066Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "27",
+        "object_repr": "Recipe #27",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 190,
+    "fields": {
+        "action_time": "2026-04-23T13:21:18.369Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "33",
+        "object_repr": "Tequila Sunrise",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 191,
+    "fields": {
+        "action_time": "2026-04-23T13:22:43.361Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "74",
+        "object_repr": "Rye whiskey",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 192,
+    "fields": {
+        "action_time": "2026-04-23T13:24:48.804Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "28",
+        "object_repr": "Recipe #28",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 193,
+    "fields": {
+        "action_time": "2026-04-23T13:24:55.471Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "34",
+        "object_repr": "Whiskey Sour",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 194,
+    "fields": {
+        "action_time": "2026-04-23T13:25:32.221Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "30",
+        "object_repr": "Screwdriver",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 195,
+    "fields": {
+        "action_time": "2026-04-23T13:25:48.402Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "31",
+        "object_repr": "Strawberry Daiquiri",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 196,
+    "fields": {
+        "action_time": "2026-04-23T13:26:03.562Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "32",
+        "object_repr": "Strawberry Mojito",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 197,
+    "fields": {
+        "action_time": "2026-04-23T13:26:19.429Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "33",
+        "object_repr": "Tequila Sunrise",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 198,
+    "fields": {
+        "action_time": "2026-04-23T13:26:35.096Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "34",
+        "object_repr": "Whiskey Sour",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 199,
+    "fields": {
+        "action_time": "2026-04-23T13:29:36.758Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "6",
+        "object_repr": "History #6",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 200,
+    "fields": {
+        "action_time": "2026-04-23T13:29:41.289Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "11",
+        "object_repr": "Bahama Mama",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"History\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 201,
+    "fields": {
+        "action_time": "2026-04-23T14:25:33.943Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "6",
+        "object_repr": "Recipe #6",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 202,
+    "fields": {
+        "action_time": "2026-04-23T14:25:39.352Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "12",
+        "object_repr": "Bloody Mary",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 3,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 3,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 3,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 3,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 2,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 2,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 2,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 2,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 4,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 4,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 4,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 4,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 5,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 5,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 5,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 5,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 6,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 6,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 6,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 6,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add cocktail",
+        "content_type": 7,
+        "codename": "add_cocktail"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change cocktail",
+        "content_type": 7,
+        "codename": "change_cocktail"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete cocktail",
+        "content_type": 7,
+        "codename": "delete_cocktail"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view cocktail",
+        "content_type": 7,
+        "codename": "view_cocktail"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add history",
+        "content_type": 8,
+        "codename": "add_history"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change history",
+        "content_type": 8,
+        "codename": "change_history"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete history",
+        "content_type": 8,
+        "codename": "delete_history"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view history",
+        "content_type": 8,
+        "codename": "view_history"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add ingredient",
+        "content_type": 9,
+        "codename": "add_ingredient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change ingredient",
+        "content_type": 9,
+        "codename": "change_ingredient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete ingredient",
+        "content_type": 9,
+        "codename": "delete_ingredient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view ingredient",
+        "content_type": 9,
+        "codename": "view_ingredient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add recipe",
+        "content_type": 10,
+        "codename": "add_recipe"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change recipe",
+        "content_type": 10,
+        "codename": "change_recipe"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete recipe",
+        "content_type": 10,
+        "codename": "delete_recipe"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view recipe",
+        "content_type": 10,
+        "codename": "view_recipe"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add reply",
+        "content_type": 11,
+        "codename": "add_reply"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change reply",
+        "content_type": 11,
+        "codename": "change_reply"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete reply",
+        "content_type": 11,
+        "codename": "delete_reply"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view reply",
+        "content_type": 11,
+        "codename": "view_reply"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add thread",
+        "content_type": 12,
+        "codename": "add_thread"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change thread",
+        "content_type": 12,
+        "codename": "change_thread"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete thread",
+        "content_type": 12,
+        "codename": "delete_thread"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view thread",
+        "content_type": 12,
+        "codename": "view_thread"
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$QdLxAL9rF3tGFmHOu8LvkB$xGk4b4Z8Gd5hx6CUijDEy2NJXqvwmhWGnZgtqphbRIk=",
+        "last_login": "2026-04-17T15:10:30.615Z",
+        "is_superuser": true,
+        "username": "tony",
+        "first_name": "",
+        "last_name": "",
+        "email": "tonywalkersmail@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-04-17T15:03:33.581Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "cocktails",
+        "model": "cocktail"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "cocktails",
+        "model": "history"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "cocktails",
+        "model": "ingredient"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "cocktails",
+        "model": "recipe"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "cocktails",
+        "model": "reply"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "cocktails",
+        "model": "thread"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "if02x93rebc3cdmug3sj8gk7m7xmajco",
+    "fields": {
+        "session_data": "eyJpc19hZG1pbiI6dHJ1ZX0:1wsLCa:VzwpEtkpX8G4QgWB4hiLkawxPouE2sE6kUIp2apBya4",
+        "expire_date": "2026-08-21T14:05:36.263Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "n854bggux294uscw3yw8w3yg1n961xp1",
+    "fields": {
+        "session_data": "eyJpc19hZG1pbiI6dHJ1ZX0:1wylOz:LHDJCvUIzX8P9UwdAi6VEOCJZPM-UkFJBRAH0gU0AS8",
+        "expire_date": "2026-09-08T07:16:57.660Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "q6kdivkgryvu7apeab803tg58jmhlneq",
+    "fields": {
+        "session_data": ".eJxVjDkOwjAQAP-yNbJ8kXhT0ucN1u7axgHkSDkqxN9RpBTQzozmDZH2rcZ9zUucEgxg4PLLmOSZ2yHSg9p9VjK3bZlYHYk67arGOeXX7Wz_BpXWCgOI6N4h6r6IuMA-FCfYpQ4zeXstma23xqHRhrUvoSPjKGQUz4aRgoPPF94HN6U:1wDkpy:IQ6_r3RzHQH0b5X7uY1AHNqF10rvQxcgQUAW6lhM4kE",
+        "expire_date": "2026-05-01T15:10:30.688Z"
+    }
+},
+{
     "model": "cocktails.ingredient",
     "pk": 23,
     "fields": {
@@ -933,7 +4129,7 @@
     "pk": 12,
     "fields": {
         "cocktail": 38,
-        "text": "history"
+        "text": "The Bloody Mary was invented in the 1920s by French bartender Fernand \"Pete\" Petiot at Harry's New York Bar in Paris. He combined equal parts vodka and tomato juice. When Petiot moved to New York in the 1930s, he added salt, pepper, lemon, Worcestershire sauce, and Tabasco to enhance the flavor.\r\n\r\nInvention and Evolution\r\n\r\n1921 (Paris): Petiot mixed vodka and canned tomato juice at Harry's New York Bar, a popular spot for American expatriates.\r\n\r\n1934 (New York): Petiot brought the drink to the King Cole Bar at the St. Regis Hotel. Finding the original mix too plain for Americans, he added a heavy blend of spices and savory sauces.\r\n\r\nThe \"Red Snapper\" phase: The hotel management disliked the aggressive name \"Bloody Mary,\" so it was briefly sold as a Red Snapper.\r\n\r\nGarnish evolution: The iconic celery stalk garnish appeared by accident in the 1950s when a customer used a stalk of celery to stir their drink.\r\n\r\nName Origins\r\n\r\nQueen Mary I: Many historians link the name to Queen Mary Tudor of England and her ruthless, bloody reign.\r\n\r\nThe Bucket of Blood: Another legend claims it was named after a Chicago bar called the Bucket of Blood or a friend of celebrity entertainer George Jessel named Mary."
     }
 },
 {
@@ -941,7 +4137,7 @@
     "pk": 13,
     "fields": {
         "cocktail": 39,
-        "text": "some history"
+        "text": "The Blue Hawaii cocktail was invented in 1957 by legendary bartender Harry Yee at the Hilton Hawaiian Village (then Kaiser Hawaiian Village) in Waikiki, Hawaii.\r\n\r\nInvention and the Bols Connection\r\n\r\nA sales representative from the Dutch liqueur producer Bols asked Yee to create a new drink.\r\n\r\nThe goal was to showcase their bright blue-colored Blue Curaçao liqueur.\r\n\r\nYee mixed light rum, vodka, Blue Curaçao, pineapple juice, and sweet-and-sour mix.\r\n\r\nHe garnished the drink with a pineapple wedge and a cocktail umbrella, helping popularize the umbrella trend in tiki culture.\r\n\r\nThe Name's Real Inspiration\r\n\r\nMany people think the drink was named after the famous 1961 Elvis Presley movie Blue Hawaii.\r\n\r\nIn reality, Yee named it after the song \"Blue Hawaii,\" written by Leo Robin for the 1937 Bing Crosby film Waikiki Wedding. The Elvis film came out four years after the drink was already a hit.\r\n\r\nBlue Hawaii vs. Blue Hawaiian\r\n\r\nBlue Hawaii: The original 1957 creation containing rum, vodka, Blue Curaçao, pineapple juice, and sweet-and-sour mix.\r\n\r\nBlue Hawaiian: A later, creamier variation that drops the vodka, swaps the sour mix for cream of coconut (similar to a Piña Colada), and is usually blended."
     }
 },
 {
@@ -1110,6 +4306,45 @@
     "fields": {
         "cocktail": 26,
         "text": "The mojito originated in Havana, Wikipedia Cuba, tracing back to the 16th-century medicinal drink \"El Draque\" and evolving through local ingredients and famous fans like Ernest Hemingway.\r\n\r\nThe 16th-Century Roots: El Draque\r\n\r\nSir Francis Drake: In 1586, the English captain's crew anchored off Havana and suffered from tropical illnesses like scurvy and dysentery.\r\n\r\nThe Medicine: Crew members went ashore and returned with local remedies: mint, lime, and sugarcane juice, mixed with aguardiente de caña (a crude, harsh cane-spirit precursor to rum).\r\n\r\nThe Name: The drink was named \"El Draque\" or \"Drac\" after Drake, consumed primarily for its healing properties rather than pure leisure"
+    }
+},
+{
+    "model": "cocktails.thread",
+    "pk": 15,
+    "fields": {
+        "title": "Bloody Mary",
+        "author_name": "Tony",
+        "created_at": "2026-08-24T15:51:50.823Z"
+    }
+},
+{
+    "model": "cocktails.reply",
+    "pk": 23,
+    "fields": {
+        "thread": 15,
+        "author_name": "Tony",
+        "message": "Hi I have done some research and found an updated history for a Bloody Mary to follow in the next thread",
+        "created_at": "2026-08-24T15:51:50.886Z"
+    }
+},
+{
+    "model": "cocktails.reply",
+    "pk": 24,
+    "fields": {
+        "thread": 15,
+        "author_name": "Tony",
+        "message": "The Bloody Mary was invented in the 1920s by French bartender Fernand \"Pete\" Petiot at Harry's New York Bar in Paris. He combined equal parts vodka and tomato juice. When Petiot moved to New York in the 1930s, he added salt, pepper, lemon, Worcestershire sauce, and Tabasco to enhance the flavor.",
+        "created_at": "2026-08-25T07:18:25.719Z"
+    }
+},
+{
+    "model": "cocktails.reply",
+    "pk": 25,
+    "fields": {
+        "thread": 15,
+        "author_name": "Admin",
+        "message": "Thank you I have updated the sites history, So thank you once again for you contribution.",
+        "created_at": "2026-08-25T07:19:32.810Z"
     }
 }
 ]
