@@ -206,14 +206,31 @@
             position: relative;
         }
 
-        .close {
+        .close-lookup,
+        .close-child {
             position: absolute;
             top: 10px;
-            right: 20px;
-            font-size: 2rem;
-            color: white;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            color: #333;
             cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
         }
+
+        .close-lookup:hover,
+        .close-child:hover {
+            transform: rotate(12deg) scale(1.08);
+            background: rgba(255, 255, 255, 1);
+        }
+
 
         iframe {
             width: 100%;
@@ -269,7 +286,7 @@
 
     <div id="lookupModal" class="modal" style="display:none;">
         <div class="modal-content glass-panel">
-            <span class="close">&times;</span>
+            <span class="close-lookup">&times;</span>
 
             <h2 style="color:#f77c24; font-family:'Henny Penny', cursive;">
                 Ingredient Lookup
@@ -289,16 +306,27 @@
 
 
 
+
     <script>
-        document.getElementById("lookupBtn").onclick = function () {
+        // OPEN LOOKUP MODAL
+        document.getElementById("lookupBtn").onclick = function (e) {
+            e.stopPropagation();
+
+            const frame = document.getElementById("lookupFrame");
+
+            frame.style.visibility = "hidden";  // Hide old content instantly
+            frame.src = frame.src;              // Trigger reload
+
+            frame.onload = function () {
+                frame.style.visibility = "visible"; // Show only when fresh
+            };
+
             document.getElementById("lookupModal").style.display = "flex";
         };
 
-        document.querySelector(".close").onclick = function () {
-            document.getElementById("lookupModal").style.display = "none";
-        };
 
 
+        // OPEN CHILD MODAL FROM MESSAGE
         window.addEventListener("message", function (e) {
             if (e.data.type === "openChild") {
                 const url = "/user/lookup/cocktail/" + e.data.id + "/";
@@ -307,9 +335,45 @@
             }
         });
 
+        // CLOSE CHILD MODAL (X BUTTON)
         document.querySelector(".close-child").onclick = function () {
             document.getElementById("childModal").style.display = "none";
         };
+
+        // CLOSE LOOKUP MODAL (X BUTTON)
+        document.querySelector(".close-lookup").onclick = function () {
+            document.getElementById("lookupModal").style.display = "none";
+        };
+
+        // CLICK OUTSIDE TO CLOSE LOOKUP MODAL
+        document.addEventListener("click", function (e) {
+            const lookupModal = document.getElementById("lookupModal");
+
+            if (lookupModal.style.display === "flex" &&
+                !e.target.closest("#lookupModal .modal-content")) {
+                lookupModal.style.display = "none";
+            }
+        });
+
+
+        // CLICK OUTSIDE TO CLOSE CHILD MODAL
+        document.addEventListener("click", function (e) {
+            const childModal = document.getElementById("childModal");
+
+            if (childModal.style.display === "flex" &&
+                !e.target.closest("#childModal .modal-content")) {
+                childModal.style.display = "none";
+            }
+        });
+
+        // PREVENT INSIDE CLICKS FROM CLOSING EITHER MODAL
+        document.querySelectorAll('.modal-content').forEach(box => {
+            box.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+
+
 
 
     </script>

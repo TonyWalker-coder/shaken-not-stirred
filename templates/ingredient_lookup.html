@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
+
 <head>
     <style>
         .dropdown {
@@ -17,52 +18,103 @@
         }
 
         .cocktail-card {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.18);
             padding: 1rem;
             border-radius: 14px;
             text-align: center;
             backdrop-filter: blur(6px);
             cursor: pointer;
+            transition: transform 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
+        .cocktail-card {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+        .cocktail-card:hover {
+            transform: scale(1.05);
+        }
+        .cocktail-card:hover {
+    box-shadow: 0 0 12px rgba(247, 124, 36, 0.6);
+}
+
+
         .cocktail-card img {
-            width: 100%;
-            border-radius: 12px;
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+        }
+        .cocktail-card img {
+    border-radius: 10px;
+    background: rgba(255,255,255,0.25);
+    padding: 6px;
+}
+
+
+        .cocktail-name {
+            color: #f77c24;
+            font-family: 'Henny Penny', cursive;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
         }
     </style>
 </head>
 
 <body>
 
-<h3 style="color:white;">Select an Ingredient</h3>
-
-<form method="GET">
-    <select name="ingredient" class="dropdown" onchange="this.form.submit()">
-        <option value="">-- Choose Ingredient --</option>
-        {% for ing in ingredients %}
-            <option value="{{ ing.id }}" {% if ing.id|stringformat:"s" == selected_id %}selected{% endif %}>
+    <h3 style="color:white;">Select an Ingredient</h3>
+    <!-- 
+    DO NOT AUTO FORMAT this must say 
+    <option value="{{ ing.id }}" {% if ing.id == selected_id %}selected{% endif %}>
+    -->
+    <form method="GET">
+        <select name="ingredient" class="dropdown" onchange="this.form.submit()">
+            <option value="">-- Choose Ingredient --</option>
+            {% for ing in ingredients %}
+            <option value="{{ ing.id }}" {% if ing.id == selected_id %}selected{% endif %}>
                 {{ ing.name }}
             </option>
+
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if cocktails %}
+    <div class="cocktail-grid">
+        {% for c in cocktails %}
+        <div class="cocktail-card" onclick="openChildModal({{ c.id }})">
+            <img src="{% if c.image_url %}
+                     {% static c.image_url %}
+                  {% else %}
+                     {% static 'cocktails/buttons/no-image.png' %}
+                  {% endif %}">
+            <h4 class="cocktail-name">{{ c.name }}</h4>
+        </div>
+    
         {% endfor %}
-    </select>
-</form>
-
-{% if cocktails %}
-<div class="cocktail-grid">
-    {% for c in cocktails %}
-    <div class="cocktail-card" onclick="openChildModal({{ c.id }})">
-        <img src="{{ c.image.url }}">
-        <h4 style="color:white;">{{ c.name }}</h4>
     </div>
-    {% endfor %}
-</div>
-{% endif %}
+    {% endif %}
 
-<script>
-function openChildModal(id) {
-    window.parent.postMessage({type: "openChild", id: id}, "*");
-}
-</script>
+    <script>
+        function openChildModal(id) {
+            window.parent.postMessage({ type: "openChild", id: id }, "*");
+        }
+    </script>
 
 </body>
+
 </html>
