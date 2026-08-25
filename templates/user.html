@@ -137,14 +137,17 @@
         /* Palm leaves in the corners */
         .palm-frame::before,
         .palm-frame::after {
+
             content: "";
             position: absolute;
             width: 180px;
             height: 180px;
-            background-image: url("{% static 'cocktails/images/background/user.png' %}");
+            background-image: url("{% static 'cocktails/images/background/palm.png' %}");
             background-size: contain;
             background-repeat: no-repeat;
-            opacity: 1;
+            opacity: 0.45;
+            filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15));
+
         }
 
         /* Top-left leaf */
@@ -218,6 +221,14 @@
             border: none;
             border-radius: 14px;
         }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: white;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -232,7 +243,7 @@
                 Welcome to Your User Area
             </h2>
 
-            <p style="font-size:1.1rem; color:white; max-width:600px; margin:0 auto 20px;">
+            <p class="intro-text">
                 Shaken ! Stirred has added a brand new community forum to the User Area.
                 Share your thoughts about the site, chat with other cocktail lovers, and
                 of course submit your own cocktail creations for inclusion on the menu.
@@ -240,7 +251,18 @@
 
             <a class="forum-btn" href="{% url 'user_forum' %}">💬 Enter the Forum</a>
 
+            <p class="intro-text">
+                Ever wanted a cocktail but weren’t sure what to make?
+            </p>
+            <p class="intro-text">
+                Now you can discover exactly what you can create with the ingredients you already have.
+            </p>
+            <p class="intro-text">
+                Try our ingredient reverse lookup and see which exciting cocktail is waiting for you.
+            </p>
+
             <a class="forum-btn" id="lookupBtn">🍍 Ingredient Lookup</a>
+
         </div>
 
     </div>
