@@ -21,6 +21,10 @@
             margin: 0;
         }
 
+        h2 { color:#f77c24; 
+            font-family:'Henny Penny', cursive;
+        }
+
         .title-overlay {
             display: inline-block;
             background: rgba(255, 255, 255, 0.25);
@@ -40,11 +44,6 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
 
         .hero {
             background-image: url("{% static 'cocktails/images/background/user.png' %}");
@@ -119,10 +118,10 @@
 
         .palm-frame {
             position: relative;
+            border-radius: 20px;
             padding: 2rem;
             margin-top: 2rem;
             background: rgba(0, 0, 0, 0.25);
-            border-radius: 20px;
             backdrop-filter: blur(8px);
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
             text-align: center;
@@ -147,6 +146,7 @@
             background-repeat: no-repeat;
             opacity: 0.45;
             filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15));
+            
 
         }
 
@@ -256,7 +256,7 @@
 
 
         <div class="palm-frame">
-            <h2 style="color:#f77c24; font-family:'Henny Penny', cursive;">
+            <h2>
                 Welcome to Your User Area
             </h2>
 
@@ -284,11 +284,11 @@
 
     </div>
 
-    <div id="lookupModal" class="modal" style="display:none;">
+    <div id="lookupModal" class="modal">
         <div class="modal-content glass-panel">
             <span class="close-lookup">&times;</span>
 
-            <h2 style="color:#f77c24; font-family:'Henny Penny', cursive;">
+            <h2>
                 Ingredient Lookup
             </h2>
 
@@ -297,7 +297,7 @@
         </div>
     </div>
 
-    <div id="childModal" class="modal" style="display:none;">
+    <div id="childModal" class="modal">
         <div class="modal-content glass-panel">
             <span class="close-child">&times;</span>
             <iframe id="childFrame" style="width:100%; height:500px; border:none;"></iframe>
@@ -323,8 +323,6 @@
 
             document.getElementById("lookupModal").style.display = "flex";
         };
-
-
 
         // OPEN CHILD MODAL FROM MESSAGE
         window.addEventListener("message", function (e) {
@@ -355,7 +353,6 @@
             }
         });
 
-
         // CLICK OUTSIDE TO CLOSE CHILD MODAL
         document.addEventListener("click", function (e) {
             const childModal = document.getElementById("childModal");
@@ -372,9 +369,6 @@
                 e.stopPropagation();
             });
         });
-
-
-
 
     </script>
 
