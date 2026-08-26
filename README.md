@@ -59,7 +59,7 @@ The site should adapt smoothly from desktop to mobile without losing visual cons
 - CSS  is used where appropriate to maintain scalable spacing, typography, and layout
 - The layout remains visually consistent and functional on mobile, tablet, and desktop
 
-### Accessibility
+## Accessibility
 
 ### As the site owner _(Must Have)_
 I want the site to comply with recognised accessibility standards so that all users, regardless of ability or device, can access and use the site effectively.

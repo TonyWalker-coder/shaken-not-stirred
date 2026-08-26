@@ -118,3 +118,59 @@ This demonstrates responsible use of validation tools within a Django developmen
 ## User Story Acceptance
 
 ### Navigation bar
+
+As the site is only 1 page deep all pages point back to the index.html apart from the forum which is a contained suit✔️
+
+### Logo and Hero
+
+While the logo may not appear on each page due to overkill the theme has been maintained through out ✔️
+
+### Responsive layout
+
+The layout has been tested across different break points, with different break points for different screen, and on various devices ✔️
+
+*example screen shoots*
+
+![Index Responsive Layout](/screenshoots/responsive-index.png)
+
+![Cocktail Responsive Layout](/screenshoots/responsive-cocktail.png)
+
+![Admin Responsive Layout](/screenshoots/responsive-admin.png)
+
+### Accessibility
+
+The project follows recognised accessibility best practices, using semantic markup, high‑contrast visuals, descriptive alt text, and fully keyboard‑accessible navigation to support an inclusive user experience. ✔️
+
+### POST — Add a Cocktail
+
+To protect the integrity and consistency of the site’s content, users are encouraged to share their cocktail creations through the forum. This allows the admin to review submissions and decide which cocktails are formally added to the main database. ✔️
+
+### Administration — Manage User Cocktails
+
+A full and comprehensive admin system has been implemented to manage all cocktail data, including validation, error checking, and controlled publishing. This ensures the site remains accurate, consistent, and protected from incorrect or duplicate submissions. ✔️
+
+### Search Form — Find Cocktails by Ingredient
+
+The reverse‑lookup system allows users to choose a single ingredient and instantly see every cocktail that uses it. This provides a quick and intuitive way to explore drinks based on what the user already has available. ✔️
+
+### Cocktail Information — View Full Cocktail Details 
+
+The cocktail page displays full drink details using bold, eye‑catching imagery and a well‑structured cocktail card, making it easy for users to explore each drink in depth. ✔️
+
+### Feedback — Collect User Feedback
+
+User feedback is gathered through the integrated forum, allowing visitors to share thoughts, ideas, and cocktail submissions in an open and structured space. This provides a simple and effective way for users to communicate with the site while keeping all feedback organised and easy to review. ✔️
+
+### Contact Information
+
+As a “should‑have” requirement, contact functionality is addressed through the user forum. This provides a central, moderated space where users can post questions, share ideas, and communicate with the site, without exposing direct contact details or compromising the integrity of the platform. ✔️
+
+### Image Buttons — Open Cocktail Details
+
+The bespoke cocktail images act as interactive buttons, giving users a visually engaging way to explore each drink. These image‑driven controls make full use of responsive grids and modal windows, ensuring the experience feels smooth, modern, and intuitive across all devices. ✔️
+
+### Testing Summary  
+
+All user stories have been fully reviewed and tested to confirm that each requirement has been successfully addressed. Every feature — from cocktail management to search, feedback, and responsive design — has been validated to ensure the site behaves as intended across all devices.
+
+
