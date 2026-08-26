@@ -10,21 +10,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --brand-orange: #eb6a20;
+            --brand-orange-hover: #e16222;
+            --box-bg: #f0987d;
+            --box-border: #e6cfa8;
+            --box-title: #cc2a02;
+            --content-bg: rgba(241, 163, 118, 0.85);
+            --title-overlay-bg: rgba(255, 255, 255, 0.25);
+            --shadow: rgba(0, 0, 0, 2);
+        }
+    
         body {
             margin: 0;
             padding: 0;
             font-family: 'Englebert', sans-serif;
         }
-
+    
         h1 {
             font-family: 'Henny Penny', cursive;
             margin: 0;
         }
-
-        h2 { color:#f77c24; 
-            font-family:'Henny Penny', cursive;
+    
+        h2 {
+            color: #f77c24;
+            font-family: 'Henny Penny', cursive;
         }
-
+    
+    
+    
+        .title {
+            font-family: 'Henny Penny', cursive;
+            font-size: clamp(2.4rem, 6vw, 4.8rem);
+            color: var(--brand-orange);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+            margin: 1rem;
+        }
+    
+        .title-homepage {
+            font-size: clamp(0.9rem, 1.6vw, 1.4rem);
+            /* small, subtle */
+            font-family: inherit;
+            /* plain default */
+            color: var(--brand-orange);
+            margin: 0.25rem 1rem;
+        }
+    
+        .title a,
+        .title-homepage a {
+            color: inherit;
+            text-decoration: none;
+        }
+    
+        .title:hover,
+        .title-homepage:hover {
+            color: var(--brand-orange-hover);
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
+        }
+    
         .title-overlay {
             display: inline-block;
             background: rgba(255, 255, 255, 0.25);
@@ -37,11 +80,11 @@
             opacity: 0;
             animation: fadeIn 1s ease forwards;
         }
-
-        .title {
-            font-size: clamp(2.4rem, 6vw, 4.8rem);
-            color: #f77c24;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
+    
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
 
@@ -252,7 +295,11 @@
 <body>
 
     <div class="hero">
-        <h1 class="title title-overlay">User Area</h1>
+        <!-- Site Header -->
+        <header>
+            <h1 class="title title-overlay"><a href="/">User Area</a></h1>
+            <nav class="title-homepage title-overlay"><a href="/">Home</a></nav>
+        </header>
 
 
         <div class="palm-frame">
