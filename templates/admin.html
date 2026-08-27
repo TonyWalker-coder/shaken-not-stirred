@@ -101,7 +101,7 @@
 
 
 
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}" class="modal-banner" />
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}" class="modal-image" />
         <h2 class="modal-title">Ingredients</h2>
 
         <!-- Add Ingredient -->
@@ -141,7 +141,7 @@
       <div class="modal-content">
         <button class="close" data-close="editIngredientModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}" class="modal-banner" />
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}"  class="modal-image"/>
         <h2 class="modal-title">Edit Ingredient</h2>
 
         <form method="POST" action="" id="editIngredientForm">
@@ -160,7 +160,7 @@
         <div class="modal-message error hidden"></div>
 
         <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" />
-        <h2>Cocktail History</h2>
+        <h2 class="modal-title">Cocktail History</h2>
 
         <div class="history-list">
           {% for cocktail in cocktails %}
@@ -208,7 +208,7 @@
         <button class="close" data-close="editHistoryModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" />
-        <h2>Edit History</h2>
+        <h2 class="modal-title">Edit History</h2>
 
         <form method="POST" action="" id="editHistoryForm">
           {% csrf_token %}
@@ -224,7 +224,7 @@
         <button class="close" data-close="addHistoryModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" />
-        <h2>Add History</h2>
+        <h2 class="modal-title">Add History</h2>
 
         <form method="POST" action="" id="addHistoryForm">
           {% csrf_token %}
@@ -239,7 +239,7 @@
       <div class="modal-content">
         <button class="close" data-close="deleteHistoryModal">&times;</button>
 
-        <h2>Delete History?</h2>
+        <h2 class="modal-title">Delete History?</h2>
         <p>Are you sure you want to delete this history entry?</p>
 
         <form method="POST" action="" id="deleteHistoryForm">
@@ -257,7 +257,7 @@
         <div class="modal-message error hidden"></div>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
-        <h2>Cocktail Recipes</h2>
+        <h2 class="modal-title">Cocktail Recipes</h2>
 
         <div class="history-list">
           {% for cocktail in cocktails %}
@@ -305,7 +305,7 @@
         <button class="close" data-close="editRecipeModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
-        <h2>Edit Recipe</h2>
+        <h2 class="modal-title">Edit Recipe</h2>
 
         <form method="POST" action="" id="editRecipeForm">
           {% csrf_token %}
@@ -321,7 +321,7 @@
         <button class="close" data-close="addRecipeModal">&times;</button>
 
         <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
-        <h2>Add Recipe</h2>
+        <h2 class="modal-title">Add Recipe</h2>
 
         <form method="POST" action="" id="addRecipeForm">
           {% csrf_token %}
@@ -336,7 +336,7 @@
       <div class="modal-content">
         <button class="close" data-close="deleteRecipeModal">&times;</button>
 
-        <h2>Delete Recipe?</h2>
+        <h2 class="modal-title">Delete Recipe?</h2>
         <p>Are you sure you want to delete this recipe?</p>
 
         <form method="POST" action="" id="deleteRecipeForm">
@@ -356,7 +356,7 @@
         <div class="modal-message error hidden"></div>
 
         <img src="{% static 'cocktails/buttons/add.png' %}" class="modal-image" />
-        <h2>Add Cocktail</h2>
+        <h2 class="modal-title">Add Cocktail</h2>
 
         <form method="POST" action="{% url 'add_cocktail' %}" id="addCocktailForm">
           {% csrf_token %}
@@ -451,7 +451,7 @@
       <div class="modal-message success hidden"></div>
       <div class="modal-message error hidden"></div>
 
-      <img src="{% static 'cocktails/buttons/delete.png' %}" class="modal-banner" />
+      <img src="{% static 'cocktails/buttons/delete.png' %}" class="modal-image" />
       <h2 class="modal-title">Delete Cocktail</h2>
 
       <p>Select a cocktail to delete. This will remove its history, recipe, and image assignment.</p>
@@ -484,7 +484,7 @@
       <button class="close" data-close="confirmDeleteCocktailModal">&times;</button>
 
       <!-- Dino Warning Icon -->
-      <img src="{% static 'cocktails/icons/dino-warning.png' %}" class="modal-image" alt="Danger Dinosaur Icon"
+      <img src="{% static 'cocktails/icons/dino-warning.png' %}" class="modal-image" alt="Danger Dynamite  Icon"
         style="width:120px; margin:0 auto; display:block;" />
 
       <h2 style="margin-top:10px;">Delete Cocktail?</h2>
@@ -515,7 +515,7 @@
       <div class="modal-message success hidden"></div>
       <div class="modal-message error hidden"></div>
 
-      <img src="{% static 'cocktails/buttons/customise.png' %}" class="modal-banner" />
+      <img src="{% static 'cocktails/buttons/customise.png' %}" class="modal-image" />
       <h2 class="modal-title">Customise Cocktail</h2>
 
       <!-- Cocktail Selector -->
@@ -543,7 +543,7 @@
       <div class="modal-message success hidden"></div>
       <div class="modal-message error hidden"></div>
 
-      <img src="{% static 'cocktails/buttons/images.png' %}" class="modal-banner" />
+      <img src="{% static 'cocktails/buttons/images.png' %}" class="modal-image" />
       <h2 class="modal-title">Manage Images</h2>
 
       <!-- Upload Block -->

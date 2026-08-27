@@ -8,6 +8,18 @@
     --title-overlay-bg: rgba(255, 255, 255, 0.25);
     --shadow: rgba(0, 0, 0, 2);
 }
+/* ============================================
+   GLOBAL ANIMATIONS
+   Shared keyframes used across multiple components
+   ============================================ */
+
+@keyframes shake {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(-2px, 1px) rotate(-1deg); }
+    50%  { transform: translate(2px, -1px) rotate(1deg); }
+    75%  { transform: translate(-1px, 1px) rotate(0deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
 
 body {
     font-family: 'Arial', sans-serif;
@@ -81,24 +93,51 @@ h2 {
     
 }
 
-/* Close button — chunky, friendly, beachy */
+/* ============================================
+   CLOSE BUTTON
+   Close button for modals
+   ============================================ */
 .close {
+    /* Reset everything so we start clean */
+    all: unset;
+
+    /* Positioning */
     position: absolute;
     top: 14px;
     right: 18px;
+
+    /* Typography */
+    font-family: Arial, sans-serif;
     font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
+    font-weight: 700;
+    line-height: 1; /* matches admin button height behaviour */
+    text-align: center;
+
+    /* Button-like box model */
+    display: block;
+    box-sizing: border-box;
+    padding: 1px 6px; /* matches admin UA padding */
+    background-color: rgb(240, 240, 240); /* admin background */
+    border: 1.1px outset rgb(0, 0, 0); /* admin border */
+    border-radius: 4px; /* optional but looks nicer */
+
+    /* Colour + shadow */
     color: #d46b00;
-    /* tropical orange */
-    transition: 0.2s ease;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    /* Interaction */
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .close:hover {
-    transform: scale(1.25) rotate(5deg);
+    animation: shake 0.4s ease-in-out;
     color: #ff8c1a;
 }
+
+
+
+
 
 /* Modal image */
 .modal-image {
@@ -166,22 +205,12 @@ h2 {
     color: white;
 }
 
-.edit-btn {
-    background: #ff9933;
-}
 
-.delete-btn {
-    background: #cc3300;
-}
 
-.add-btn {
-    background: #ff9933;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-}
+
+
+
+
 
 @keyframes tikiFade {
     from {
@@ -196,25 +225,34 @@ h2 {
 }
 
 
+/* ============================================
+   LEGACY MESSAGE STYLES — MARKED FOR REMOVAL
+   These were used before modal-based messages.
+   Safe to delete once confirmed unused.
+   ============================================ */
+
+/*
 .messages {
     display: flex;
-    justify-content: center;   /* centres the message box */
+    justify-content: center;
     margin-top: 1rem;
 }
 
 .message {
     background: #ffcccb;
-    padding: 0.6rem 1rem;       /* slightly tighter */
-    border-radius: 10px;        /* smoother, more tropical */
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
     font-weight: bold;
     color: #a30000;
     box-sizing: border-box;
     width: fit-content;
-    max-width: 80%;           /* keeps it tight */
-    text-align: center;         /* looks cleaner for short messages */
+    max-width: 80%;
+    text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     font-size: 0.95rem;
 }
+*/
+
 
 .history-item {
     background: #ffe0b3;
@@ -239,12 +277,16 @@ h2 {
     height: 28px;
     margin-right: 10px;
 }
+/* ============================================
+   LEGACY MESSAGE STYLES — MARKED FOR REMOVAL
+   ============================================ */
 
+/*
 /* ================================
    SHARED MODAL ELEMENTS
-   ================================ */
+   ================================ 
 
-/* Banner image at top of modal */
+/* Banner image at top of modal 
 .modal-banner {
     width: 100%;
     height: auto;
@@ -254,14 +296,14 @@ h2 {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
-/* Main modal title */
+/* Main modal title 
 .modal-title {
     font-family: 'Henny Penny', cursive;
     color: #c45a00;
     text-align: center;
     margin-bottom: 1rem;
     font-size: 2rem;
-}
+}*/
 
 /* ================================
    ADD INGREDIENT BLOCK
@@ -348,21 +390,9 @@ h2 {
     font-size: 0.9rem;
 }
 
-.edit-btn {
-    background: #ff9933;
-}
 
-.edit-btn:hover {
-    background: #ff7f00;
-}
 
-.delete-btn {
-    background: #cc3300;
-}
 
-.delete-btn:hover {
-    background: #b30000;
-}
 
 /* Empty text */
 .empty-text {
@@ -543,13 +573,7 @@ h2 {
     -webkit-backdrop-filter: blur(10px);
 }
 
-.btn-orange {
-    background: linear-gradient(45deg, #ff8a00, #ff5e00);
-}
 
-.btn-red {
-    background: linear-gradient(45deg, #ff3b3b, #cc0000);
-}
 
 
 /* ============================
@@ -691,13 +715,41 @@ h2 {
     font-weight: 600;
     margin-right: 10px;
     transition: opacity 0.2s ease, transform 0.15s ease;
+    background: lightgreen;
 }
 
 .btn:hover {
     opacity: 0.85;
     transform: translateY(-2px);
+    background: lightgreen;
 }
 
 .delete-btn {
     background: linear-gradient(135deg, #d9534f, #c9302c);
+}
+.delete-btn:hover {
+    background: #b30000;
+}
+.edit-btn {
+    background: #ff9933;
+}
+.edit-btn:hover {
+    background: #ff7f00;
+}
+.add-btn {
+    background: #ff9933;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+.btn-orange {
+    background: linear-gradient(45deg, #ff8a00, #ff5e00);
+    background: lightgreen;
+}
+
+.btn-red {
+    background: linear-gradient(45deg, #ff3b3b, #cc0000);
+    background: lightgreen;
 }
