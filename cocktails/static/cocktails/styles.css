@@ -67,6 +67,22 @@ h2 {
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
 }
+/* Base modal fade */
+.modal {
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+}
+@keyframes tikiFade {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 .modal.hidden {
     display: none;
@@ -87,10 +103,7 @@ h2 {
 
     /* soft tropical shadow */
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25),
-        0 0 0 6px rgba(255, 200, 120, 0.4);
-
-
-    
+        0 0 0 6px rgba(255, 200, 120, 0.4);   
 }
 
 /* ============================================
@@ -212,17 +225,7 @@ h2 {
 
 
 
-@keyframes tikiFade {
-    from {
-        opacity: 0;
-        transform: translateY(-12px);
-    }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 
 /* ============================================
@@ -526,11 +529,7 @@ h2 {
     display: block;
 }
 
-/* Base modal fade */
-.modal {
-    opacity: 0;
-    transition: opacity 0.25s ease-out;
-}
+
 
 .modal:not(.hidden) {
     opacity: 1;
