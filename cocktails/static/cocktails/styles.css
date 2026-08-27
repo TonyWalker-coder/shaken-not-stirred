@@ -142,13 +142,10 @@ h2 {
     cursor: pointer;
     transition: 0.2s ease;
 }
-
 .close:hover {
     animation: shake 0.4s ease-in-out;
     color: #ff8c1a;
 }
-
-
 
 
 
@@ -163,17 +160,16 @@ h2 {
 }
 
 /* Headings — tiki style */
-.modal-content h2 {
+.modal-content h2,
+.modal-content h3 {
     font-family: 'Henny Penny', cursive;
     color: #c45a00;
     margin-bottom: 0.5rem;
 }
 
 .modal-content h3 {
-    font-family: 'Henny Penny', cursive;
     color: #d46b00;
     margin-top: 1.2rem;
-    margin-bottom: 0.4rem;
 }
 
 /* Ingredient list */
@@ -217,16 +213,6 @@ h2 {
     text-decoration: none;
     color: white;
 }
-
-
-
-
-
-
-
-
-
-
 
 /* ============================================
    LEGACY MESSAGE STYLES — MARKED FOR REMOVAL
@@ -340,23 +326,7 @@ h2 {
     box-sizing: border-box;
 }
 
-/* Add button */
-.modal-button,
-.add-btn {
-    background: #ff9933;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s ease;
-}
 
-.modal-button:hover,
-.add-btn:hover {
-    background: #ff7f00;
-}
 
 /* ================================
    INGREDIENT LIST
@@ -392,10 +362,6 @@ h2 {
     color: white;
     font-size: 0.9rem;
 }
-
-
-
-
 
 /* Empty text */
 .empty-text {
@@ -701,9 +667,11 @@ h2 {
     font-size: 1.1rem;
 }
 
-/* ============================
-   BUTTONS
-   ============================ */
+
+/* ============================================
+   LEGACY MESSAGE STYLES — MARKED FOR REMOVAL
+   ============================================ */
+   /*
 .btn {
     padding: 10px 16px;
     border-radius: 8px;
@@ -716,32 +684,10 @@ h2 {
     transition: opacity 0.2s ease, transform 0.15s ease;
     background: lightgreen;
 }
-
 .btn:hover {
     opacity: 0.85;
     transform: translateY(-2px);
     background: lightgreen;
-}
-
-.delete-btn {
-    background: linear-gradient(135deg, #d9534f, #c9302c);
-}
-.delete-btn:hover {
-    background: #b30000;
-}
-.edit-btn {
-    background: #ff9933;
-}
-.edit-btn:hover {
-    background: #ff7f00;
-}
-.add-btn {
-    background: #ff9933;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
 }
 .btn-orange {
     background: linear-gradient(45deg, #ff8a00, #ff5e00);
@@ -752,3 +698,51 @@ h2 {
     background: linear-gradient(45deg, #ff3b3b, #cc0000);
     background: lightgreen;
 }
+*/
+/* ============================
+   BUTTONS
+   ============================ */
+.modal-button {
+    background: var(--brand-orange);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s ease;
+
+}
+.modal-button:hover {
+    background: var(--brand-orange-hover);
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #d9534f, #c9302c);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+.delete-btn:hover {
+    background: #b30000;
+}
+.edit-btn,
+.add-btn {
+    background: var(--brand-orange);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+.edit-btn:hover,
+.add-btn:hover {
+    background: var(--brand-orange-hover);
+}
+
