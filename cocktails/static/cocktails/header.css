@@ -1,0 +1,109 @@
+/* ============================
+   HEADER LAYOUT
+   Flex column so title + subtitle
+   stack naturally at the top-left
+   ============================ */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* keeps both titles aligned left */
+}
+
+
+/* ============================
+   MAIN TITLE (site name)
+   Big, decorative, brand-coloured
+   ============================ */
+.title {
+    font-family: 'Henny Penny', cursive; /* your signature font */
+    font-size: clamp(2.4rem, 6vw, 4.8rem); /* responsive scaling */
+    color: var(--brand-orange); /* brand colour */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1); /* strong readable shadow */
+    margin: 1rem; /* spacing from edges */
+}
+
+
+/* ============================
+   SUBTITLE / PAGE LABEL
+   Smaller, subtle, inherits font
+   ============================ */
+.title-homepage {
+    font-size: clamp(0.9rem, 1.6vw, 1.4rem); /* responsive but gentle */
+    font-family: inherit; /* keeps it simple */
+    color: var(--brand-orange);
+    margin: 0.25rem 1rem; /* sits neatly under main title */
+}
+
+
+/* ============================
+   LINKS INSIDE TITLES
+   Remove default link styling
+   ============================ */
+.title a,
+.title-homepage a {
+    color: inherit; /* keeps brand colour */
+    text-decoration: none; /* removes underline */
+}
+
+
+/* ============================
+   HOVER EFFECTS
+   Shared behaviour for both titles
+   ============================ */
+.title:hover,
+.title-homepage:hover {
+    color: var(--brand-orange-hover); /* subtle colour shift */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 1); /* stronger glow */
+}
+
+
+/* ============================
+   OVERLAY STYLES
+   Glassmorphism blocks behind titles
+   Each variant gives a different mood
+   ============================ */
+
+/* Default white glass overlay */
+.title-overlay {
+    display: inline-block; /* shrink-wrap to content */
+    background: rgba(255, 255, 255, 0.25); /* frosted glass */
+    padding: 0.5rem 1rem;
+    border-radius: 14px;
+    backdrop-filter: blur(14px); /* strong blur */
+    -webkit-backdrop-filter: blur(14px); /* Safari support */
+    margin-left: 1rem;
+    margin-top: 1rem;
+    width: fit-content; /* prevents stretching */
+    opacity: 0; /* for fade-in animation */
+    animation: fadeIn 1s ease forwards;
+}
+
+/* Warm brown overlay (forum / rustic pages) */
+.brown-overlay {
+    display: inline-block;
+    background: rgba(80, 40, 20, 0.35); /* warm brown glass */
+    padding: 0.5rem 1rem;
+    border-radius: 14px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    margin-left: 1rem;
+    margin-top: 1rem;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+/* Soft sunset overlay (cocktail / tropical pages) */
+.sunset-overlay {
+    display: inline-block;
+    background: rgba(255, 240, 220, 0.45); /* soft sunset cream */
+    padding: 0.5rem 1rem;
+    border-radius: 14px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    margin-left: 1rem;
+    margin-top: 1rem;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}

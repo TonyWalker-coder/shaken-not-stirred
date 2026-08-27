@@ -1,0 +1,94 @@
+/* ============================================
+   ADMIN GRID LAYOUT
+   3-column responsive grid for admin buttons
+   ============================================ */
+.admin-grid {
+    display: grid;                 /* grid layout engine */
+    gap: 1.5rem;                   /* spacing between cards */
+    padding: 1rem;                 /* breathing room around grid */
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns on desktop */
+}
+
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   Medium screens → 2 columns
+   ============================================ */
+@media (max-width: 1200px) {
+    .admin-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* ============================================
+   Small screens → 1 column
+   Full-width stacked cards
+   ============================================ */
+@media (max-width: 700px) {
+    .admin-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+/* ============================================
+   ADMIN CARD COMPONENT
+   Clickable block with tropical styling
+   ============================================ */
+.admin-card {
+    cursor: pointer;               /* makes entire card feel interactive */
+    width: 100%;                   /* fills its grid cell */
+    box-sizing: border-box;        /* predictable padding + width */
+    overflow: hidden;              /* prevents image overflow */
+    display: flex;                 /* vertical layout */
+    flex-direction: column;
+    align-items: center;           /* center image + text */
+
+    /* Visual polish */
+    background: #d67616;           /* warm tropical orange */
+    border-radius: 18px;           /* soft rounded corners */
+    padding: 1rem;
+
+    /* Soft tropical shadow */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+
+    /* Smooth animations */
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                filter 0.25s ease;
+}
+
+
+/* ============================================
+   CARD IMAGE
+   Full-width responsive image
+   ============================================ */
+.admin-card img {
+    width: 100%;
+    height: auto;
+    display: block;                /* removes inline spacing */
+}
+
+
+/* ============================================
+   HOVER EFFECTS
+   Lift + glow for interactive feedback
+   ============================================ */
+.admin-card:hover {
+    transform: translateY(-6px);   /* subtle lift */
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18); /* deeper shadow */
+
+    /* Slight glow to match tropical theme */
+    filter: brightness(1.08);
+}
+
+
+/* ============================================
+   CARD TITLE
+   Pushes text to bottom of card
+   ============================================ */
+.admin-card h2 {
+    margin-top: auto;              /* pushes title to bottom */
+    text-align: center;
+}
