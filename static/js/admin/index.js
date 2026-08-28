@@ -2,8 +2,6 @@
 // COCKTAIL TILE LOADING SPINNER
 // Page complete – Tony, 28/08/2026
 // ===============================
-// When the user clicks the Cocktails tile, hide the text and show the spinner.
-// Gives a visual cue that navigation is happening.
 document.getElementById("cocktailTile").addEventListener("click", function () {
   this.querySelector(".tile-text").style.display = "none";
   this.querySelector(".spinner").style.display = "inline";
@@ -13,12 +11,17 @@ document.getElementById("cocktailTile").addEventListener("click", function () {
 // ===============================
 // ADMIN LOGIN MODAL — OPEN
 // ===============================
-// Reveals the admin login modal by removing the 'hidden' class.
 function openAdminLoginModal() {
-  document.getElementById("adminLoginModal").classList.remove("hidden");
+  const modal = document.getElementById("adminLoginModal");
+  modal.classList.remove("hidden");
+
+  // Move keyboard focus into the modal (accessibility)
+  const firstFocusable = modal.querySelector("input, button, [tabindex]:not([tabindex='-1'])");
+  if (firstFocusable) firstFocusable.focus();
+
+  trapFocus(modal);
 }
 
-// Attach open behaviour to the Admin tile button.
 document.getElementById("adminLoginBtn")
   .addEventListener("click", openAdminLoginModal);
 
@@ -26,12 +29,14 @@ document.getElementById("adminLoginBtn")
 // ===============================
 // ADMIN LOGIN MODAL — CLOSE
 // ===============================
-// Hides the admin login modal by adding the 'hidden' class.
 function closeAdminLoginModal() {
-  document.getElementById("adminLoginModal").classList.add("hidden");
+  const modal = document.getElementById("adminLoginModal");
+  modal.classList.add("hidden");
+
+  // Return focus to the Admin tile (accessibility)
+  document.getElementById("adminLoginBtn").focus();
 }
 
-// Attach close behaviour to the X button inside the modal.
 document.getElementById("adminLoginClose")
   .addEventListener("click", closeAdminLoginModal);
 
@@ -39,27 +44,67 @@ document.getElementById("adminLoginClose")
 // ===============================
 // CLICK OUTSIDE TO CLOSE MODAL
 // ===============================
-// If the user clicks anywhere outside the modal-content area,
-// close the modal. Clicking inside the modal-content should NOT close it.
-document
-  .getElementById("adminLoginModal")
+document.getElementById("adminLoginModal")
   .addEventListener("click", function (e) {
     const content = document.querySelector("#adminLoginModal .modal-content");
 
-    // If the click target is NOT inside the modal-content, close the modal.
     if (!content.contains(e.target)) {
       closeAdminLoginModal();
     }
   });
 
-
-// ===============================
-// PREVENT MODAL FROM CLOSING WHEN CLICKING INSIDE CONTENT
-// ===============================
-// Stops click events inside the modal-content from bubbling up
-// to the modal backdrop listener above.
-document
-  .querySelector("#adminLoginModal .modal-content")
+document.querySelector("#adminLoginModal .modal-content")
   .addEventListener("click", function (e) {
     e.stopPropagation();
   });
+
+
+// ===============================
+// ESC KEY CLOSE BEHAVIOUR
+// ===============================
+// Allows users to press ESC to close the modal.
+document.addEventListener("keydown", function (e) {
+  const modal = document.getElementById("adminLoginModal");
+  if (!modal.classList.contains("hidden") && e.key === "Escape") {
+    closeAdminLoginModal();
+  }
+});
+
+
+// ===============================
+// FOCUS TRAP LOGIC (ACCESSIBILITY)
+// ===============================
+// Prevents keyboard users from tabbing out of the modal.
+function trapFocus(modal) {
+  const focusableSelectors = [
+    "button",
+    "input",
+    "select",
+    "textarea",
+    "a[href]",
+    "[tabindex]:not([tabindex='-1'])"
+  ];
+
+  const focusableElements = modal.querySelectorAll(focusableSelectors.join(","));
+  const first = focusableElements[0];
+  const last = focusableElements[focusableElements.length - 1];
+
+  modal.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab") return;
+
+    // SHIFT + TAB (reverse)
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    }
+    // TAB (forward)
+    else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+}
