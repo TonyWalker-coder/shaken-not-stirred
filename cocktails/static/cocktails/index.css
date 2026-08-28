@@ -1,0 +1,101 @@
+p,
+body,
+.tagline {
+    font-family: 'Englebert', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.title:hover {
+    color: #e16222;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 1.0);
+}
+
+/* Individual tiles */
+.tile-row {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2rem;
+}
+
+.tile {
+    font-family: 'Englebert', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem 2.2rem;
+    background: linear-gradient(135deg, #f77c24, #e16222);
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+    transition: 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    /* space between icon + text */
+}
+
+.tile:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.55);
+    background: linear-gradient(135deg, #ff8d3a, #f06a1c);
+}
+
+/* Responsive stacking */
+@media (max-width: 600px) {
+    .tile-row {
+        flex-direction: column;
+        bottom: 1.5rem;
+    }
+
+    .tile {
+        text-align: center;
+        width: 200px;
+        margin: 0 auto;
+    }
+}
+
+.hero {
+    background-image: url("../cocktails/images/background/hero.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    /* full screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+}
+
+.spinner {
+    font-size: 1.5rem;
+    animation: pulse 0.8s infinite ease-in-out;
+    display: none;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+

@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 {% load static %}
+<link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
+<link rel="stylesheet" href="{% static 'cocktails/index.css' %}">
+<link rel="stylesheet" href="{% static 'cocktails/header.css' %}">
+<link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Shaken!Stirred – Tropical Cocktail Explorer</title>
-    <meta name="description" content="Discover cocktails, ingredients, recipes, and tropical drink history with Shaken!Stirred — a vibrant mixology experience.">
+    <meta name="description"
+        content="Discover cocktails, ingredients, recipes, and tropical drink history with Shaken!Stirred — a vibrant mixology experience.">
     <meta name="keywords" content="cocktails, mixology, recipes, tropical drinks, ingredients, shaken stirred">
     <meta name="author" content="Tony Walker">
 
@@ -13,216 +19,33 @@
     <!--link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Playwrite+GB&display=swap" rel="stylesheet"-->
     <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
 
-    <style>
-        h1 {
-            font-family: 'Henny Penny', cursive;
-        }
-
-        p,
-        body,
-        .tagline {
-            font-family: 'Englebert', sans-serif;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        .title-overlay {
-            display: inline-block;
-            /* makes overlay wrap the text */
-            background: rgba(255, 255, 255, 0.25);
-            /* soft glassy white */
-            padding: 0.5rem 1rem;
-            /* comfortable spacing */
-            border-radius: 14px;
-            /* tropical rounded corners */
-            backdrop-filter: blur(6px);
-            /* glass effect */
-            margin-left: 1rem;
-            margin-top: 1rem;
-            width: fit-content;
-        }
-
-        /* improved clamp for smoother scaling */
-        .title {
-            font-size: clamp(2.4rem, 6vw, 4.8rem);
-            color: #f77c24;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.0);
-        }
-
-        .title-overlay {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-
-        .title a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .title:hover {
-            color: #e16222;
-            text-shadow: 4px 4px 8px rgba(0, 0, 0, 1.0);
-        }
-
-        /* Individual tiles */
-        .tile-row {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 2rem;
-        }
-
-        .tile {
-            font-family: 'Englebert', sans-serif;
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            color: #fff;
-            text-decoration: none;
-            padding: 1rem 2.2rem;
-            background: linear-gradient(135deg, #f77c24, #e16222);
-            border-radius: 18px;
-            backdrop-filter: blur(6px);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
-            transition: 0.25s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            /* space between icon + text */
-        }
-
-        .tile:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.55);
-            background: linear-gradient(135deg, #ff8d3a, #f06a1c);
-        }
-
-        /* Responsive stacking */
-        @media (max-width: 600px) {
-            .tile-row {
-                flex-direction: column;
-                bottom: 1.5rem;
-            }
-
-            .tile {
-                text-align: center;
-                width: 200px;
-                margin: 0 auto;
-            }
-        }
-
-        .hero {
-            background-image: url("{% static 'cocktails/images/background/hero.webp' %}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
-            /* full screen height */
-            display: flex;
-            flex-direction: column;
-            justify-content: left;
-            align-items: left;
-        }
-
-        .spinner {
-            font-size: 1.5rem;
-            animation: pulse 0.8s infinite ease-in-out;
-            display: none;
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 0.3;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0.3;
-            }
-        }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-
-        .modal.hidden {
-            display: none;
-        }
-
-        .modal-content {
-            background: #fff8e6;
-            padding: 20px;
-            border-radius: 14px;
-            width: 90%;
-            max-width: 420px;
-            text-align: center;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-        }
-
-        .modal-image {
-            width: 100%;
-            margin-bottom: 12px;
-            border-radius: 12px;
-        }
-
-        .close {
-            font-size: 40px;
-            font-weight: 700;
-            cursor: pointer;
-            color: #d46b00;
-            /* tropical orange */
-        }
-
-        .modal-content input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #d46b00;
-            box-sizing: border-box;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="hero">
-        <h1 class="title title-overlay">Welcome to Shaken!Stirred</h1>
+    <!-- Page Header -->
+    <header class="hero">
+        <h1 class="title sunset-overlay">Welcome to Shaken!Stirred</h1>
+    </header>
+    <div>
+
 
         <div class="tile-row">
-    <a class="tile" id="cocktailTile" href="{% url 'cocktail_list' %}">
-        <span class="tile-text">🍸 Cocktails</span>
-        <span class="spinner">⏳</span>
-    </a>
+            <a class="tile" id="cocktailTile" href="{% url 'cocktail_list' %}">
+                <span class="tile-text">🍸 Cocktails</span>
+                <span class="spinner">⏳</span>
+            </a>
 
-    <a class="tile" href="#" onclick="openAdminLoginModal()">
-        <span class="tile-text">🛠️ Admin</span>
-    </a>
 
-    <a class="tile" href="{% url 'user_area' %}">
-        <span class="tile-text">👤 User Area</span>
-    </a>
-</div>
+            <a id="adminLoginBtn" class="tile">
+                <span class="tile-text">🛠️ Admin</span>
+            </a>
+
+
+
+            <a class="tile" href="{% url 'user_area' %}">
+                <span class="tile-text">👤 User Area</span>
+            </a>
+        </div>
 
     </div>
 
@@ -230,17 +53,17 @@
     <div id="adminLoginModal" class="modal hidden">
         <div class="modal-content">
 
-            <span class="close" onclick="closeAdminLoginModal()">&times;</span>
+            <span class="close" id="adminLoginClose">&times;</span>
 
             <!-- Tropical admin artwork -->
             <img src="{% static 'cocktails/buttons/admin.png' %}" alt="Admin" class="modal-image">
 
-            <h2>Admin Access</h2>
-            <p style="color:#5a3b00;">Enter the admin password to continue.</p>
+            <h2 class="modal-title">Admin Access</h2>
+            <p>Enter the admin password to continue.</p>
 
             <form method="POST" action="{% url 'admin_login' %}">
                 {% csrf_token %}
-                <input type="password" name="password" placeholder="Password" required
+                <input type="password" name="password" placeholder="Password" required autocomplete="current-password"
                     style="width:100%; padding:10px; border-radius:8px; border:1px solid #d46b00;">
 
                 <button type="submit" class="add-btn" style="margin-top:12px;">
@@ -254,35 +77,6 @@
 
 
 </body>
-<script>
-    document.getElementById("cocktailTile").addEventListener("click", function () {
-        this.querySelector(".tile-text").style.display = "none";
-        this.querySelector(".spinner").style.display = "inline";
-    });
-
-    function openAdminLoginModal() {
-        document.getElementById("adminLoginModal").classList.remove("hidden");
-    }
-
-    function closeAdminLoginModal() {
-        document.getElementById("adminLoginModal").classList.add("hidden");
-    }
-
-    // Close when clicking outside modal-content
-    document.getElementById("adminLoginModal").addEventListener("click", function (e) {
-        const content = document.querySelector("#adminLoginModal .modal-content");
-
-        // If the click is NOT inside the modal-content, close it
-        if (!content.contains(e.target)) {
-            closeAdminLoginModal();
-        }
-    });
-
-    document.querySelector("#adminLoginModal .modal-content")
-        .addEventListener("click", function (e) {
-            e.stopPropagation();
-        });
-
-</script>
+<script type="module" src="/static/js/admin/index.js"></script>
 
 </html>
