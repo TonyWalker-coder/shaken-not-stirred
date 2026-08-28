@@ -2,7 +2,7 @@
 ## Table of Contents
 - [Use of Validators in a Django Project](#validators)
 - [User Story Acceptance](#user-story-acceptance)
-- [2](#user-stories)
+- [Navigation](#navigation)
 - [3](#github-projects)
 
 
@@ -172,5 +172,28 @@ The bespoke cocktail images act as interactive buttons, giving users a visually 
 ### Testing Summary  
 
 All user stories have been fully reviewed and tested to confirm that each requirement has been successfully addressed. Every feature — from cocktail management to search, feedback, and responsive design — has been validated to ensure the site behaves as intended across all devices.
+
+## Navigation
+
+### Index Page
+- ➡️ Cocktails.html ✔️
+- ➡️ Admin.html ✔️
+- ➡️ User.Html ✔️
+
+### Cocktail Page
+- ➡️ Index.html ✔️
+
+### Admin Page
+- ➡️ Index.html ✔️
+- ➡️ ( New Tab ) Testdata.html ✔️
+
+### User Page
+- ➡️ Index.html ✔️
+- ➡️ User Forum.html ✔️
+
+### User Forum Page
+- ➡️ User.html ✔️
+
+
 
 
