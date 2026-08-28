@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static 'cocktails/admingrid.css' %}">
 <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet" >
 <html lang="en">
 <body class="admin-body">
 
@@ -31,31 +31,31 @@
     <div class="admin-grid">
       <!-- INGREDIENTS -->
       <div class="admin-card" data-open="ingredientsModal">
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients" />
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients">
       </div>
       <!-- IMAGES -->
       <div class="admin-card" data-open="imagesModal">
-        <img src="{% static 'cocktails/buttons/images.png' %}" alt="Images" />
+        <img src="{% static 'cocktails/buttons/images.png' %}" alt="Images" >
       </div>
       <!-- HISTORY -->
       <div class="admin-card" data-open="historyModal">
-        <img src="{% static 'cocktails/buttons/history.png' %}" alt="History" />
+        <img src="{% static 'cocktails/buttons/history.png' %}" alt="History" >
       </div>
       <!-- RECIPES -->
       <div class="admin-card" data-open="recipesModal">
-        <img src="{% static 'cocktails/buttons/recipes.png' %}" alt="Recipes" />
+        <img src="{% static 'cocktails/buttons/recipes.png' %}" alt="Recipes" >
       </div>
       <!-- ADD -->
       <div class="admin-card" data-open="addCocktailModal">
-        <img src="{% static 'cocktails/buttons/add.png' %}" alt="Add" />
+        <img src="{% static 'cocktails/buttons/add.png' %}" alt="Add" >
       </div>
       <!-- DELETE -->
       <div class="admin-card" data-open="deleteCocktailModal">
-        <img src="{% static 'cocktails/buttons/delete.png' %}" alt="Delete" />
+        <img src="{% static 'cocktails/buttons/delete.png' %}" alt="Delete" >
       </div>
       <!-- CUSTOMISE -->
       <div class="admin-card" data-open="customiseModal">
-        <img src="{% static 'cocktails/buttons/customise.png' %}" alt="Customise" />
+        <img src="{% static 'cocktails/buttons/customise.png' %}" alt="Customise" >
       </div>
       <!-- User Forum -->
       <div class="admin-card" onclick="openForum()">
@@ -64,7 +64,7 @@
       <!-- TESTDATA -->
       <div class="admin-card">
         <a href="{% url 'test_data_page' %}" target="_blank">
-          <img src="{% static 'cocktails/buttons/testdata.png' %}" alt="TestData" />
+          <img src="{% static 'cocktails/buttons/testdata.png' %}" alt="TestData" >
         </a>
       </div>
     </div>
@@ -92,7 +92,7 @@
 
 
 
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}" class="modal-image" />
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}" class="modal-image" >
         <h2 class="modal-title">Ingredients</h2>
 
         <!-- Add Ingredient -->
@@ -100,7 +100,7 @@
           <h3>Add Ingredient</h3>
           <form method="POST" action="{% url 'add_ingredient' %}">
             {% csrf_token %}
-            <input type="text" name="name" class="modal-input" placeholder="Ingredient name" required />
+            <input type="text" name="name" class="modal-input" placeholder="Ingredient name" required >
             <button type="submit" class="modal-button">Add</button>
           </form>
         </div>
@@ -132,12 +132,12 @@
       <div class="modal-content">
         <button class="close" data-close="editIngredientModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}"  class="modal-image"/>
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}"  class="modal-image">
         <h2 class="modal-title">Edit Ingredient</h2>
 
         <form method="POST" action="" id="editIngredientForm">
           {% csrf_token %}
-          <input type="text" name="name" id="editIngredientName" class="modal-input" required />
+          <input type="text" name="name" id="editIngredientName" class="modal-input" required >
           <button type="submit" class="modal-button">Save</button>
         </form>
       </div>
@@ -150,7 +150,7 @@
         <div class="modal-message success hidden"></div>
         <div class="modal-message error hidden"></div>
 
-        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" />
+        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" >
         <h2 class="modal-title">Cocktail History</h2>
 
         <div class="history-list">
@@ -198,7 +198,7 @@
       <div class="modal-content">
         <button class="close" data-close="editHistoryModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" />
+        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" >
         <h2 class="modal-title">Edit History</h2>
 
         <form method="POST" action="" id="editHistoryForm">
@@ -214,7 +214,7 @@
       <div class="modal-content">
         <button class="close" data-close="addHistoryModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" />
+        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" >
         <h2 class="modal-title">Add History</h2>
 
         <form method="POST" action="" id="addHistoryForm">
@@ -247,7 +247,7 @@
         <div class="modal-message success hidden"></div>
         <div class="modal-message error hidden"></div>
 
-        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
+        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" >
         <h2 class="modal-title">Cocktail Recipes</h2>
 
         <div class="history-list">
@@ -295,7 +295,7 @@
       <div class="modal-content">
         <button class="close" data-close="editRecipeModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
+        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" >
         <h2 class="modal-title">Edit Recipe</h2>
 
         <form method="POST" action="" id="editRecipeForm">
@@ -311,7 +311,7 @@
       <div class="modal-content">
         <button class="close" data-close="addRecipeModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" />
+        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" >
         <h2 class="modal-title">Add Recipe</h2>
 
         <form method="POST" action="" id="addRecipeForm">
@@ -346,7 +346,7 @@
         <div class="modal-message success hidden"></div>
         <div class="modal-message error hidden"></div>
 
-        <img src="{% static 'cocktails/buttons/add.png' %}" class="modal-image" />
+        <img src="{% static 'cocktails/buttons/add.png' %}" class="modal-image" >
         <h2 class="modal-title">Add Cocktail</h2>
 
         <form method="POST" action="{% url 'add_cocktail' %}" id="addCocktailForm">
@@ -356,7 +356,7 @@
           <div class="modal-add-block">
             <h3>Cocktail Name</h3>
             <input type="text" name="name" id="newCocktailName" class="modal-input" placeholder="Enter cocktail name"
-              required />
+              required >
 
             <p id="nameValidationMsg" class="empty-text" style="color:red; display:none;">
               Name already exists.
@@ -383,7 +383,7 @@
               {% for ingredient in ingredients %}
               <div class="modal-item">
                 <label class="ingredient-select">
-                  <input type="checkbox" name="ingredients" value="{{ ingredient.id }}" />
+                  <input type="checkbox" name="ingredients" value="{{ ingredient.id }}" >
                   <span>{{ ingredient.name }}</span>
                 </label>
               </div>
@@ -395,7 +395,7 @@
             <div class="modal-add-block">
               <h3>Add New Ingredient</h3>
 
-              <input type="text" id="newIngredientName" class="modal-input" placeholder="Enter ingredient name" />
+              <input type="text" id="newIngredientName" class="modal-input" placeholder="Enter ingredient name" >
 
               <button type="button" id="addIngredientInlineBtn" class="modal-button">
                 Add Ingredient
@@ -424,7 +424,7 @@
       <h3>Cocktail Created</h3>
 
       <!-- Big paint brush icon -->
-      <img src="{% static 'cocktails/icons/paintbrush.png' %}" class="reminder-icon" alt="Paint Brush Icon" />
+      <img src="{% static 'cocktails/icons/paintbrush.png' %}" class="reminder-icon" alt="Paint Brush Icon" >
 
 
       <p>Please add an image manually.</p>
@@ -442,7 +442,7 @@
       <div class="modal-message success hidden"></div>
       <div class="modal-message error hidden"></div>
 
-      <img src="{% static 'cocktails/buttons/delete.png' %}" class="modal-image" />
+      <img src="{% static 'cocktails/buttons/delete.png' %}" class="modal-image" >
       <h2 class="modal-title">Delete Cocktail</h2>
 
       <p>Select a cocktail to delete. This will remove its history, recipe, and image assignment.</p>
@@ -475,16 +475,16 @@
       <button class="close" data-close="confirmDeleteCocktailModal">&times;</button>
 
       <!-- Dino Warning Icon -->
-      <img src="{% static 'cocktails/icons/dino-warning.png' %}" class="modal-image" alt="Danger Dynamite  Icon"
-        style="width:120px; margin:0 auto; display:block;" />
+      <img src="{% static 'cocktails/icons/dino-warning.png' %}" class="modal-image  dynamite" alt="Danger Dynamite  Icon"
+         >
 
-      <h2 style="margin-top:10px;">Delete Cocktail?</h2>
+      <h2 class="modal-title">Delete Cocktail?</h2>
 
       <p id="confirmDeleteCocktailText" style="font-size:1.1rem; margin-bottom:10px;">
         Are you sure you want to delete this cocktail?
       </p>
 
-      <p style="color:#b30000; font-weight:bold; margin-bottom:20px;">
+      <p class="warning" >
         ⚠ This action is permanent and cannot be undone.
       </p>
 
@@ -506,7 +506,7 @@
       <div class="modal-message success hidden"></div>
       <div class="modal-message error hidden"></div>
 
-      <img src="{% static 'cocktails/buttons/customise.png' %}" class="modal-image" />
+      <img src="{% static 'cocktails/buttons/customise.png' %}" class="modal-image" >
       <h2 class="modal-title">Customise Cocktail</h2>
 
       <!-- Cocktail Selector -->
@@ -534,7 +534,7 @@
       <div class="modal-message success hidden"></div>
       <div class="modal-message error hidden"></div>
 
-      <img src="{% static 'cocktails/buttons/images.png' %}" class="modal-image" />
+      <img src="{% static 'cocktails/buttons/images.png' %}" class="modal-image" >
       <h2 class="modal-title">Manage Images</h2>
 
       <!-- Upload Block -->
@@ -543,7 +543,7 @@
 
         <form id="imageUploadForm" method="POST" action="{% url 'upload_image' %}" enctype="multipart/form-data">
           {% csrf_token %}
-          <input type="file" name="image" accept=".png,.jpg,.jpeg" class="modal-input" required />
+          <input type="file" name="image" accept=".png,.jpg,.jpeg" class="modal-input" required >
           <button type="submit" class="modal-button">Upload</button>
         </form>
 
@@ -573,7 +573,7 @@
           <div class="modal-item">
 
 
-            <img src="{% static 'cocktails/buttons/' %}{{ img }}" class="item-thumb" />
+            <img src="{% static 'cocktails/buttons/' %}{{ img }}" class="item-thumb" >
 
             <p class="assign-image-filename">{{ img }}</p>
 
