@@ -1,10 +1,6 @@
-p,
-body,
-.tagline {
-    font-family: 'Englebert', sans-serif;
-}
-
+/* Completed: 28/08/2026 – Tony */
 body {
+    font-family: 'Englebert', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -43,13 +39,17 @@ body {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    /* space between icon + text */
+    margin-bottom: 1rem;
 }
 
 .tile:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.55);
     background: linear-gradient(135deg, #ff8d3a, #f06a1c);
+}
+.tile:focus {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
 }
 
 /* Responsive stacking */
@@ -68,6 +68,7 @@ body {
 
 .hero {
     background-image: url("../cocktails/images/background/hero.webp");
+    background-color: #f77c24;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -81,7 +82,7 @@ body {
 
 .spinner {
     font-size: 1.5rem;
-    animation: pulse 0.8s infinite ease-in-out;
+    animation: pulse 1.2s infinite ease-in-out;
     display: none;
 }
 

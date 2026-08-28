@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<!-- Page complete – Tony, 28/08/2026 -->
 {% load static %}
+
+
 <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
 <link rel="stylesheet" href="{% static 'cocktails/index.css' %}">
 <link rel="stylesheet" href="{% static 'cocktails/header.css' %}">
@@ -10,10 +13,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Shaken!Stirred – Tropical Cocktail Explorer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Discover cocktails, ingredients, recipes, and tropical drink history with Shaken!Stirred — a vibrant mixology experience.">
-    <meta name="keywords" content="cocktails, mixology, recipes, tropical drinks, ingredients, shaken stirred">
     <meta name="author" content="Tony Walker">
+
+    <meta property="og:title" content="Shaken!Stirred – Tropical Cocktail Explorer">
+    <meta property="og:description" content="Discover cocktails, ingredients, recipes, and tropical drink history.">
+    <meta property="og:image" content="{% static 'images/social-preview.png' %}">
+    <meta property="og:type" content="website">
+
 
     <!-- Google Fonts -->
     <!--link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Playwrite+GB&display=swap" rel="stylesheet"-->
@@ -29,7 +38,7 @@
     <div>
 
 
-        <div class="tile-row">
+        <nav class="tile-row">
             <a class="tile" id="cocktailTile" href="{% url 'cocktail_list' %}">
                 <span class="tile-text">🍸 Cocktails</span>
                 <span class="spinner">⏳</span>
@@ -45,26 +54,31 @@
             <a class="tile" href="{% url 'user_area' %}">
                 <span class="tile-text">👤 User Area</span>
             </a>
-        </div>
+        </nav>
 
     </div>
 
     <!-- ADMIN LOGIN MODAL -->
-    <div id="adminLoginModal" class="modal hidden">
+    <div id="adminLoginModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle">
+
         <div class="modal-content">
 
-            <span class="close" id="adminLoginClose">&times;</span>
+            <button class="close" id="adminLoginClose" aria-label="Close admin login modal">
+                &times;
+            </button>
 
             <!-- Tropical admin artwork -->
-            <img src="{% static 'cocktails/buttons/admin.png' %}" alt="Admin" class="modal-image">
+            <img src="{% static 'cocktails/buttons/admin.png' %}" alt="Tropical admin icon" class="modal-image">
 
-            <h2 class="modal-title">Admin Access</h2>
+            <h2 id="adminLoginTitle" class="modal-title">Admin Access</h2>
             <p>Enter the admin password to continue.</p>
 
             <form method="POST" action="{% url 'admin_login' %}">
                 {% csrf_token %}
-                <input type="password" name="password" placeholder="Password" required autocomplete="current-password"
-                    style="width:100%; padding:10px; border-radius:8px; border:1px solid #d46b00;">
+                <label for="adminPassword" class="sr-only">Admin Password</label>
+                <input id="adminPassword" type="password" name="password" placeholder="Password" required
+                    autocomplete="current-password">
+
 
                 <button type="submit" class="add-btn" style="margin-top:12px;">
                     Enter
