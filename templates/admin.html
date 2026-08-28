@@ -2,10 +2,13 @@
 <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
 <link rel="stylesheet" href="{% static 'cocktails/header.css' %}">
 <link rel="stylesheet" href="{% static 'cocktails/admingrid.css' %}">
+<link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet" />
 <html lang="en">
 <body class="admin-body">
+
+<!--
   {% if messages %}
   <div class="messages">
     {% for message in messages %}
@@ -13,6 +16,8 @@
     {% endfor %}
   </div>
   {% endif %}
+-->
+
   <div class="admin-wrapper">
     <div class="hero">
 
@@ -22,60 +27,46 @@
         <nav class="title-homepage brown-overlay"><a href="/">Home</a></nav>
       </header>
     </div>
-    <div class="admin-grid">
 
+    <div class="admin-grid">
       <!-- INGREDIENTS -->
       <div class="admin-card" data-open="ingredientsModal">
         <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients" />
       </div>
-
       <!-- IMAGES -->
       <div class="admin-card" data-open="imagesModal">
         <img src="{% static 'cocktails/buttons/images.png' %}" alt="Images" />
       </div>
-
-
       <!-- HISTORY -->
       <div class="admin-card" data-open="historyModal">
         <img src="{% static 'cocktails/buttons/history.png' %}" alt="History" />
       </div>
-
       <!-- RECIPES -->
       <div class="admin-card" data-open="recipesModal">
         <img src="{% static 'cocktails/buttons/recipes.png' %}" alt="Recipes" />
       </div>
-
-
-
       <!-- ADD -->
       <div class="admin-card" data-open="addCocktailModal">
         <img src="{% static 'cocktails/buttons/add.png' %}" alt="Add" />
       </div>
-
       <!-- DELETE -->
       <div class="admin-card" data-open="deleteCocktailModal">
         <img src="{% static 'cocktails/buttons/delete.png' %}" alt="Delete" />
       </div>
-
       <!-- CUSTOMISE -->
       <div class="admin-card" data-open="customiseModal">
         <img src="{% static 'cocktails/buttons/customise.png' %}" alt="Customise" />
       </div>
-
       <!-- User Forum -->
       <div class="admin-card" onclick="openForum()">
         <img src="{% static 'cocktails/buttons/userdata.png' %}">
       </div>
-
       <!-- TESTDATA -->
       <div class="admin-card">
         <a href="{% url 'test_data_page' %}" target="_blank">
           <img src="{% static 'cocktails/buttons/testdata.png' %}" alt="TestData" />
         </a>
       </div>
-
-
-
     </div>
 
     <div id="forumModal" class="modal hidden">
