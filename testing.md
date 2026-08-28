@@ -196,4 +196,11 @@ All user stories have been fully reviewed and tested to confirm that each requir
 
 
 
+## Validator
+
+
+### cocktail_list.html
+
+The modal heading (`<h2 id="modal-name">`) is intentionally empty in the static HTML because its content is injected dynamically. This follows standard accessible modal patterns: the heading acts as a placeholder and is updated at runtime, with aria-live="polite" ensuring screen readers announce the change. Since the heading is populated immediately upon modal activation, it does not create any accessibility issues, and the validator warning can be safely ignored.
+
 

@@ -3,14 +3,15 @@
 {% load static %}
 
 
-<link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
-<link rel="stylesheet" href="{% static 'cocktails/index.css' %}">
-<link rel="stylesheet" href="{% static 'cocktails/header.css' %}">
-<link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
+
 
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'cocktails/index.css' %}">
+    <link rel="stylesheet" href="{% static 'cocktails/header.css' %}">
+    <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
     <meta charset="UTF-8">
     <title>Shaken!Stirred – Tropical Cocktail Explorer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,7 +79,7 @@
                 <div>
                     <label for="adminPassword" class="sr-only">Admin Password</label>
                     <input id="adminPassword" type="password" name="password" placeholder="Password" required
-                    autocomplete="current-password">
+                        autocomplete="current-password">
                 </div>
 
 
@@ -91,8 +92,8 @@
     </div>
 
 
-
+    <script type="module" src="/static/js/admin/index.js"></script>
 </body>
-<script type="module" src="/static/js/admin/index.js"></script>
+
 
 </html>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Page complete – Tony, 28/08/2026 -->
 {% load static %}
 
 
@@ -29,20 +30,23 @@
   <!-- Cocktail Grid -->
   <section class="cocktail-grid" aria-label="Cocktail list">
     {% for cocktail in cocktails %}
-    <div class="cocktail-card" tabindex="0" aria-label="View details for {{ cocktail.name }}"
-      data-name="{{ cocktail.name }}" data-ingredients="{% for ing in cocktail.ingredients.all %}
-          {{ ing.name }}{% if not forloop.last %}, {% endif %}
-        {% endfor %}" data-recipe="{{ cocktail.recipe_obj.text }}" data-history="{{ cocktail.history_obj.text }}"
-      data-image="{{ cocktail.image_url }}">
-
-
-
-      <img class="cocktail-image" src="{% if cocktail.image_url %}
-             {% static cocktail.image_url %}
-          {% else %}
-             {% static 'cocktails/buttons/no-image.png' %}
-          {% endif %}" alt="{{ cocktail.name }}" onerror="this.src='{% static 'cocktails/buttons/no-image.png' %}'">
-
+    <div>
+      <div class="cocktail-card" role="button" tabindex="0" aria-label="View details for {{ cocktail.name }}"
+        data-name="{{ cocktail.name }}" data-ingredients="{% for ing in cocktail.ingredients.all %}
+            {{ ing.name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}" data-recipe="{{ cocktail.recipe_obj.text }}" data-history="{{ cocktail.history_obj.text }}"
+        data-image="{{ cocktail.image_url }}">
+  
+  
+  
+        <img class="cocktail-image" src="{% if cocktail.image_url %}
+               {% static cocktail.image_url %}
+            {% else %}
+               {% static 'cocktails/buttons/no-image.png' %}
+            {% endif %}" alt="{{ cocktail.name }}" onerror="this.src='{% static 'cocktails/buttons/no-image.png' %}'">
+  
+  
+      </div>
       <h2>{{ cocktail.name }}</h2>
     </div>
     {% endfor %}
