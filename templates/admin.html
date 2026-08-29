@@ -9,16 +9,6 @@
 
 <body class="admin-body">
 
-<!--
-  {% if messages %}
-  <div class="messages">
-    {% for message in messages %}
-    <p class="message">{{ message }}</p>
-    {% endfor %}
-  </div>
-  {% endif %}
--->
-
   <div class="admin-wrapper">
     <div class="hero">
 
@@ -32,40 +22,40 @@
     <div class="admin-grid">
       <!-- INGREDIENTS -->
       <div class="admin-card" data-open="ingredientsModal">
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients">
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}" alt="Ingredients used for a cocktail">
       </div>
       <!-- IMAGES -->
       <div class="admin-card" data-open="imagesModal">
-        <img src="{% static 'cocktails/buttons/images.png' %}" alt="Images" >
+        <img src="{% static 'cocktails/buttons/images.png' %}" alt="paintbrush and images" >
       </div>
       <!-- HISTORY -->
       <div class="admin-card" data-open="historyModal">
-        <img src="{% static 'cocktails/buttons/history.png' %}" alt="History" >
+        <img src="{% static 'cocktails/buttons/history.png' %}" alt="Old wooden egg timer" >
       </div>
       <!-- RECIPES -->
       <div class="admin-card" data-open="recipesModal">
-        <img src="{% static 'cocktails/buttons/recipes.png' %}" alt="Recipes" >
+        <img src="{% static 'cocktails/buttons/recipes.png' %}" alt="open book of recipes" >
       </div>
       <!-- ADD -->
       <div class="admin-card" data-open="addCocktailModal">
-        <img src="{% static 'cocktails/buttons/add.png' %}" alt="Add" >
+        <img src="{% static 'cocktails/buttons/add.png' %}" alt="cocktails next to a plus sign" >
       </div>
       <!-- DELETE -->
       <div class="admin-card" data-open="deleteCocktailModal">
-        <img src="{% static 'cocktails/buttons/delete.png' %}" alt="Delete" >
+        <img src="{% static 'cocktails/buttons/delete.png' %}" alt="cocktails next to a minus sign" >
       </div>
       <!-- CUSTOMISE -->
       <div class="admin-card" data-open="customiseModal">
-        <img src="{% static 'cocktails/buttons/customise.png' %}" alt="Customise" >
+        <img src="{% static 'cocktails/buttons/customise.png' %}" alt="Big bowl of ingredients" >
       </div>
       <!-- User Forum -->
       <div class="admin-card" onclick="openForum()">
-        <img src="{% static 'cocktails/buttons/userdata.png' %}">
+        <img src="{% static 'cocktails/buttons/userdata.png' %}" alt="Tropical character using a type writer">
       </div>
       <!-- TESTDATA -->
       <div class="admin-card">
         <a href="{% url 'test_data_page' %}" target="_blank">
-          <img src="{% static 'cocktails/buttons/testdata.png' %}" alt="TestData" >
+          <img src="{% static 'cocktails/buttons/testdata.png' %}" alt="Character holding a clipboard" >
         </a>
       </div>
     </div>
@@ -93,7 +83,7 @@
 
 
 
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}" class="modal-image" >
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}" class="modal-image" alt="Ingredients used for a cocktail" >
         <h2 class="modal-title">Ingredients</h2>
 
         <!-- Add Ingredient -->
@@ -133,7 +123,7 @@
       <div class="modal-content">
         <button class="close" data-close="editIngredientModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/ingredients.png' %}"  class="modal-image">
+        <img src="{% static 'cocktails/buttons/ingredients.png' %}"  class="modal-image" alt="Ingredients used for a cocktail">
         <h2 class="modal-title">Edit Ingredient</h2>
 
         <form method="POST" action="" id="editIngredientForm">
@@ -151,7 +141,7 @@
         <div class="modal-message success hidden"></div>
         <div class="modal-message error hidden"></div>
 
-        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" >
+        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" alt="Old wooden egg timer">
         <h2 class="modal-title">Cocktail History</h2>
 
         <div class="history-list">
@@ -162,7 +152,7 @@
             <div class="history-actions">
               {% with h=cocktail.history_obj %}
               {% if h %}
-              <img src="{% static 'cocktails/icons/history-ok.png' %}" class="history-icon">
+              <img src="{% static 'cocktails/icons/history-ok.png' %}" class="history-icon" alt="Open scroll">
 
               <button class="edit-btn" data-open="editHistoryModal" data-id="{{ h.id }}"
                 data-text="{{ h.text|escapejs }}" data-child="true">
@@ -174,7 +164,7 @@
               </button>
 
               {% else %}
-              <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon">
+              <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" alt="Large red X">
 
               <button class="add-btn" data-open="addHistoryModal" data-id="{{ cocktail.id }}" data-child="true">
                 Add
@@ -199,7 +189,7 @@
       <div class="modal-content">
         <button class="close" data-close="editHistoryModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" >
+        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" alt="Old wooden egg timer">
         <h2 class="modal-title">Edit History</h2>
 
         <form method="POST" action="" id="editHistoryForm">
@@ -215,7 +205,7 @@
       <div class="modal-content">
         <button class="close" data-close="addHistoryModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" >
+        <img src="{% static 'cocktails/buttons/history.png' %}" class="modal-image" alt="Old wooden egg timer">
         <h2 class="modal-title">Add History</h2>
 
         <form method="POST" action="" id="addHistoryForm">
@@ -248,7 +238,7 @@
         <div class="modal-message success hidden"></div>
         <div class="modal-message error hidden"></div>
 
-        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" >
+        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" alt="open book of recipes">
         <h2 class="modal-title">Cocktail Recipes</h2>
 
         <div class="history-list">
@@ -259,7 +249,7 @@
             <div class="history-actions">
               {% with r=cocktail.recipe_obj %}
               {% if r %}
-              <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon">
+              <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon" alt="Open book">
 
               <button class="edit-btn" data-open="editRecipeModal" data-id="{{ r.id }}"
                 data-text="{{ r.text|escapejs }}" data-child="true">
@@ -271,7 +261,7 @@
               </button>
 
               {% else %}
-              <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon">
+              <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" alt="Large red X">
 
               <button class="add-btn" data-open="addRecipeModal" data-id="{{ cocktail.id }}" data-child="true">
                 Add
@@ -296,7 +286,7 @@
       <div class="modal-content">
         <button class="close" data-close="editRecipeModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" >
+        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" alt="open book of recipes">
         <h2 class="modal-title">Edit Recipe</h2>
 
         <form method="POST" action="" id="editRecipeForm">
@@ -312,7 +302,7 @@
       <div class="modal-content">
         <button class="close" data-close="addRecipeModal">&times;</button>
 
-        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" >
+        <img src="{% static 'cocktails/buttons/recipes.png' %}" class="modal-image" alt="open book of recipes">
         <h2 class="modal-title">Add Recipe</h2>
 
         <form method="POST" action="" id="addRecipeForm">
@@ -347,7 +337,7 @@
         <div class="modal-message success hidden"></div>
         <div class="modal-message error hidden"></div>
 
-        <img src="{% static 'cocktails/buttons/add.png' %}" class="modal-image" >
+        <img src="{% static 'cocktails/buttons/add.png' %}" class="modal-image" alt="cocktails next to a plus sign">
         <h2 class="modal-title">Add Cocktail</h2>
 
         <form method="POST" action="{% url 'add_cocktail' %}" id="addCocktailForm">
@@ -443,7 +433,7 @@
       <div class="modal-message success hidden"></div>
       <div class="modal-message error hidden"></div>
 
-      <img src="{% static 'cocktails/buttons/delete.png' %}" class="modal-image" >
+      <img src="{% static 'cocktails/buttons/delete.png' %}" class="modal-image" alt="cocktails next to a minus sign">
       <h2 class="modal-title">Delete Cocktail</h2>
 
       <p>Select a cocktail to delete. This will remove its history, recipe, and image assignment.</p>
@@ -507,7 +497,7 @@
       <div class="modal-message success hidden"></div>
       <div class="modal-message error hidden"></div>
 
-      <img src="{% static 'cocktails/buttons/customise.png' %}" class="modal-image" >
+      <img src="{% static 'cocktails/buttons/customise.png' %}" class="modal-image" alt="Big bowl of ingredients">
       <h2 class="modal-title">Customise Cocktail</h2>
 
       <!-- Cocktail Selector -->
@@ -535,7 +525,7 @@
       <div class="modal-message success hidden"></div>
       <div class="modal-message error hidden"></div>
 
-      <img src="{% static 'cocktails/buttons/images.png' %}" class="modal-image" >
+      <img src="{% static 'cocktails/buttons/images.png' %}" class="modal-image" alt="paintbrush and images">
       <h2 class="modal-title">Manage Images</h2>
 
       <!-- Upload Block -->
