@@ -1,11 +1,17 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
+
 <!-- This template is for the forum section in the dashboard. It lists all threads and allows users to click on a thread to view its details. -->
 
 <div class="forum-panel">
 
     <div class="forum-header">
-        <h2 class="forum-title">User Forum</h2>
+        <div>
+            <img src="{% static 'cocktails/buttons/userpost.png' %}" alt="typewriter surrounded by user letters"
+                class="modal-image">
+        </div>
+        <div>
+            <h2 class="forum-title">User Forum</h2>
+        </div>
     </div>
 
     <div class="forum-list">
