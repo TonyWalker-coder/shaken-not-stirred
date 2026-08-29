@@ -34,6 +34,7 @@ body {
     background: linear-gradient(135deg, #f77c24, #e16222);
     border-radius: 18px;
     backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
     transition: 0.25s ease;
     display: flex;
@@ -77,7 +78,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    align-items: left;
 }
 
 .spinner {
@@ -99,4 +99,3 @@ body {
         opacity: 0.3;
     }
 }
-
