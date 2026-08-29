@@ -672,10 +672,12 @@ def admin_forum_thread(request, thread_id):
     "replies": replies,
 })
 
+from django.http import HttpResponse
+
 def delete_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     thread.delete()
-    return redirect('admin_forum')
+    return HttpResponse(status=204)
 
 def delete_reply(request, reply_id):
     reply = get_object_or_404(Reply, id=reply_id)

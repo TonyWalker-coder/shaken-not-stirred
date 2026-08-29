@@ -20,8 +20,8 @@
     {% endfor %}
 {% endif %}
 
-<button onclick="showReplyForm({{ thread.id }})">Reply</button>
-<button onclick="showDeleteConfirm({{ thread.id }})">Delete</button>
+<button class="btn" onclick="showReplyForm({{ thread.id }})">Reply</button>
+<button class="btn delete-btn" onclick="showDeleteConfirm({{ thread.id }})">Delete</button>
 
 
 <div id="replyForm" style="display:none; margin-top:20px;">

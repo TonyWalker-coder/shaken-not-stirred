@@ -66,6 +66,15 @@ h2 {
     margin: 0;
     padding: 0;
 }
+
+
+/* ============================================
+   LEGACY STYLES — MARKED FOR REMOVAL
+   Safe to delete once confirmed unused.
+   ============================================ */
+
+/*
+
 .admin-thread-row,
 .reply-row {
     background: rgba(255,255,255,0.15);
@@ -76,139 +85,9 @@ h2 {
     -webkit-backdrop-filter: blur(10px);
 }
 
-/* ============================
-   TITLE CREASE (Thread + Forum)
-   ============================ */
-.thread-title,
-.forum-title {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    position: relative;
-    color: #fff;
-}
-
-.forum-title {
-    margin-bottom: 15px;
-    padding-bottom: 6px;
-}
-
-.forum-title::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(
-        to right,
-        rgba(255,255,255,0.4),
-        rgba(0,0,0,0.2),
-        rgba(255,255,255,0.4)
-    );
-    border-radius: 2px;
-}
-
-/* ============================
-   REPLY CARDS
-   ============================ */
-.reply-card {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 12px 15px;
-    margin: 12px 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.reply-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-}
-
-.reply-card small {
-    display: block;
-    margin-top: 6px;
-    opacity: 0.7;
-    font-size: 0.85rem;
-}
-
-/* ============================
-   FORUM PANEL + HEADER
-   ============================ */
-.forum-panel {
-    background: rgba(255,255,255,0.15);
-    border: 2px solid rgba(255,255,255,0.25);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 10px;
-    border-radius: 18px;
-    width: 90%;
-    max-width: 450px;
-    margin: 0 auto;
-}
-
-.forum-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-bottom: 10px;
-}
-
-.forum-list {
-    margin-top: 15px;
-}
-
-/* ============================
-   FORUM LINKS (List Items)
-   ============================ */
-.forum-link {
-    text-decoration: none;
-    display: block;
-    margin: 10px 0;
-    font-weight: 600;
-    color: #fff;
-}
-
-.thread-row {
-    background: rgba(255,255,255,0.14);
-    border: 2px solid rgba(255,255,255,0.35);   /* stronger, clearer border */
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    padding: 12px 15px;
-    border-radius: 10px;
-
-    /* soft lift + glow */
-    box-shadow: 0 3px 10px rgba(0,0,0,0.25),
-                0 0 6px rgba(255,255,255,0.25);
-
-    transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.thread-row:hover {
-    background: rgba(255,255,255,0.22);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 14px rgba(0,0,0,0.3),
-                0 0 8px rgba(255,255,255,0.3);
-}
 
 
-.thread-title {
 
-    color: black;
-    font-size: 1.1rem;
-}
-
-/* ============================================
-   LEGACY MESSAGE STYLES — MARKED FOR REMOVAL
-   These were used before modal-based messages.
-   Safe to delete once confirmed unused.
-   ============================================ */
-
-/*
 .messages {
     display: flex;
     justify-content: center;
@@ -233,23 +112,7 @@ h2 {
    LEGACY MESSAGE STYLES — MARKED FOR REMOVAL
    ============================================ */
    /*
-.btn {
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(135deg, #ff8a00, #ff5e00);
-    color: white;
-    font-weight: 600;
-    margin-right: 10px;
-    transition: opacity 0.2s ease, transform 0.15s ease;
-    background: lightgreen;
-}
-.btn:hover {
-    opacity: 0.85;
-    transform: translateY(-2px);
-    background: lightgreen;
-}
+
 .btn-orange {
     background: linear-gradient(45deg, #ff8a00, #ff5e00);
     background: lightgreen;
