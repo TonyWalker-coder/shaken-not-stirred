@@ -1,0 +1,190 @@
+        /* ---------------------------------------------------------
+           Typography
+        --------------------------------------------------------- */
+        h1 {
+            margin: 0;
+        }
+    
+        body {
+            background-image: url("../cocktails/images/background/sunset.png");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+    
+        /* ---------------------------------------------------------
+           Hero Section
+        --------------------------------------------------------- */
+        .hero {
+            min-height: 200px;
+        }
+ 
+        /* ---------------------------------------------------------
+           Main Content Area
+        --------------------------------------------------------- */
+        .content {
+            width: 100%;
+            padding: 2rem;
+            box-sizing: border-box;
+            background: var(--content-bg);
+            min-height: 40vh;
+        }
+    
+        /* ---------------------------------------------------------
+           Buttons
+        --------------------------------------------------------- */
+        .td-btn {
+            padding: 10px 18px;
+            background: var(--brand-orange);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-family: 'Englebert', sans-serif;
+        }
+    
+        .td-btn:hover {
+            background: var(--brand-orange-hover);
+        }
+    
+        .td-btn[disabled] {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    
+        /* Spinner animation for DB reset */
+        .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #fff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            animation: spin 0.8s linear infinite;
+        }
+    
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    
+        /* ---------------------------------------------------------
+           Download Buttons
+        --------------------------------------------------------- */
+        .td-download-btn {
+            display: inline-block;
+            background: #d45a00;
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            font-family: 'Englebert', sans-serif;
+            box-shadow: 0 3px 6px var(--shadow);
+        }
+    
+        .td-download-btn:hover {
+            background: #b94d00;
+        }
+    
+        /* ---------------------------------------------------------
+           Shared Box Styling (ALL except info-box)
+        --------------------------------------------------------- */
+        .td-intro-box,
+        .td-admin-box,
+        .td-instruction-box,
+        .td-delete-box,
+        .td-warning-box,
+        .td-fallback-box {
+            background: var(--box-bg);
+            border: 2px solid var(--box-border);
+            border-radius: 12px;
+            padding: 1.4rem 1.6rem;
+            margin-bottom: 2rem;
+            font-family: 'Englebert', sans-serif;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+    
+        .td-intro-box h3,
+        .td-admin-box h3,
+        .td-instruction-box h3,
+        .td-delete-box h3,
+        .td-warning-box h3,
+        .td-fallback-box h3 {
+            margin-top: 0;
+            color: var(--box-title);
+            font-size: 1.5rem;
+        }
+    
+        .td-intro-box p,
+        .td-admin-box p,
+        .td-instruction-box p,
+        .td-delete-box p,
+        .td-warning-box p,
+        .td-fallback-box p {
+            margin: 0.7rem 0;
+            line-height: 1.55rem;
+        }
+    
+        .td-instruction-box ul {
+            margin: 0.7rem 0 1rem 1.2rem;
+            line-height: 1.5rem;
+        }
+    
+        /* ---------------------------------------------------------
+           Info Box (unique styling)
+        --------------------------------------------------------- */
+        .td-info-box {
+            background: #fffdf7;
+            border: 2px solid #e6cfa8;
+            border-radius: 12px;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Englebert', sans-serif;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+    
+        .td-info-box h3 {
+            margin-top: 0;
+            color: #b84a00;
+            font-size: 1.45rem;
+        }
+    
+        .td-info-box p {
+            margin: 0.6rem 0;
+            line-height: 1.5rem;
+        }
+    
+        /* ---------------------------------------------------------
+           Final Banner
+        --------------------------------------------------------- */
+        .td-finish-banner {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.2rem;
+            background: #fff7e8;
+            border: 2px solid #e6cfa8;
+            border-radius: 12px;
+            text-align: center;
+            font-family: 'Englebert', sans-serif;
+            box-shadow: 0 3px 8px var(--shadow);
+        }
+    
+        .td-finish-banner p {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #d45a00;
+            white-space: nowrap;
+        }
+    
+        /* ---------------------------------------------------------
+           Removed Inline Styles 
+        --------------------------------------------------------- */
+        .tdMessage {
+            margin-top: 1rem;
+            font-family: Englebert;
+        }

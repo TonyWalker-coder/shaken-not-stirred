@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Page complete – Tony, 1/09/2026 user.html -->
 {% load static %}
 <html lang="en">
 
@@ -6,59 +7,90 @@
     <meta charset="UTF-8">
     <title>Shaken!Stirred – User Area</title>
 
+    <!-- Mobile + Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Basic SEO -->
+    <meta name="description"
+        content="Shaken!Stirred Testdata Suite – tools for resetting the database, testing image fallbacks, verifying thumbnails, and validating cocktail data.">
+    <meta name="keywords" content="cocktails, testdata, development tools, image fallback, thumbnails, ShakenStirred">
+    <meta name="author" content="Tony Walker">
+    <meta name="theme-color" content="#f77c24">
+
+    <link rel="canonical" href="https://tonywalker.pythonanywhere.com/user-area">
+
+    <!-- Performance: Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
+
+
     <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
     <link rel="stylesheet" href="{% static 'cocktails/header.css' %}">
-    
+
     <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
     <link rel="stylesheet" href="{% static 'cocktails/user.css' %}">
 
-<style>
-        
-</style>
 </head>
 
 <body>
 
     <div class="hero">
-        <!-- Site Header -->
-        <header>
+        <header aria-label="Site header">
             <h1 class="title title-overlay"><a href="/">User Area</a></h1>
-            <nav class="title-homepage title-overlay"><a href="/">Home</a></nav>
+            <nav class="title-homepage title-overlay" aria-label="Main navigation"><a href="/">Home</a></nav>
         </header>
+        <main id="main-content">
 
 
-        <div class="palm-frame">
-            <h2>
-                Welcome to Your User Area
-            </h2>
 
-            <p class="intro-text">
-                Shaken ! Stirred has added a brand new community forum to the User Area.
-                Share your thoughts about the site, chat with other cocktail lovers, and
-                of course submit your own cocktail creations for inclusion on the menu.
-            </p>
 
-            <a class="forum-btn" href="{% url 'user_forum' %}">💬 Enter the Forum</a>
 
-            <p class="intro-text">
-                Ever wanted a cocktail but weren’t sure what to make?
-            </p>
-            <p class="intro-text">
-                Now you can discover exactly what you can create with the ingredients you already have.
-            </p>
-            <p class="intro-text">
-                Try our ingredient reverse lookup and see which exciting cocktail is waiting for you.
-            </p>
 
-            <a class="forum-btn" id="lookupBtn">🍍 Ingredient Lookup</a>
 
-        </div>
+            <div class="palm-frame">
+                <section aria-labelledby="userAreaWelcome">
+                    <h2>
+                        Welcome to Your User Area
+                    </h2>
 
+                    <p class="intro-text">
+                        Shaken ! Stirred has added a brand new community forum to the User Area.
+                        Share your thoughts about the site, chat with other cocktail lovers, and
+                        of course submit your own cocktail creations for inclusion on the menu.
+                    </p>
+
+                    <a class="forum-btn" href="{% url 'user_forum' %}" aria-label="Enter the community forum">
+                        💬 Enter the Forum
+                    </a>
+
+                    <p class="intro-text">
+                        Ever wanted a cocktail but weren’t sure what to make?
+                    </p>
+                    <p class="intro-text">
+                        Now you can discover exactly what you can create with the ingredients you already have.
+                    </p>
+                    <p class="intro-text">
+                        Try our ingredient reverse lookup and see which exciting cocktail is waiting for you.
+                    </p>
+
+                    <button class="forum-btn" id="lookupBtn" aria-label="Open ingredient lookup tool">
+                        🍍 Ingredient Lookup
+                    </button>
+                </section>
+
+            </div>
+
+
+        </main>
+        <footer aria-hidden="true">
+            Footer
+        </footer>
     </div>
 
-    <div id="lookupModal" class="modal">
+    <div id="lookupModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="lookupIngredients">
         <div class="modal-content glass-panel">
             <span class="close">&times;</span>
 
@@ -66,17 +98,25 @@
                 Ingredient Lookup
             </h2>
 
-            <iframe id="lookupFrame" src="{% url 'ingredient_lookup' %}"></iframe>
+            <iframe id="lookupFrame" src="{% url 'ingredient_lookup' %}" title="Ingredient lookup tool"></iframe>
+
 
         </div>
     </div>
 
-    <div id="childModal" class="modal">
+    <div id="childModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="lookupCocktails">
         <div class="modal-content glass-panel">
-            <span class="close">&times;</span>
-            <iframe id="childFrame" style="width:100%; height:500px; border:none;"></iframe>
+            <button class="close" aria-label="Close modal">&times;</button>
+
+            <h2 id="lookupTitle">Ingredient Lookup</h2>
+            <!-- <iframe id="lookupFrame" src="{% url 'ingredient_lookup' %}" title="Ingredient lookup tool"></iframe> -->
+            <iframe id="childFrame" style="width:100%; height:500px; border:none;" title="Additional content"></iframe>
+
         </div>
     </div>
+
+
+
     <script type="module" src="/static/js/admin/user.js"></script>
 
 </body>
