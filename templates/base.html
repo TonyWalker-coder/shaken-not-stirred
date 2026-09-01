@@ -103,19 +103,7 @@
 
 <body style="
     background: url('{% static 'cocktails/images/background/sunset.png' %}') center/cover fixed no-repeat;
-    font-family: 'Englebert', sans-serif;
-">
-<!--
-    <nav style="
-    background: rgba(0, 0, 0, 0.4);
-    padding: 10px 20px;
-    backdrop-filter: blur(6px);
-">
-        <a class="btn" href="{% url 'index' %}">🏠 Home</a>
-        <a class="btn" href="{% url 'user_area' %}">🏝️ User Area</a>
-        <a class="btn" href="{% url 'cocktail_list' %}">🍸 Cocktails</a>
-    </nav>
--->
+    font-family: 'Englebert', sans-serif;">
 
     {% block content %}
     {% endblock %}
