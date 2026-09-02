@@ -1,3 +1,6 @@
+<!-- Page complete – Tony, 2/09/2026 forum reply section -->
+{% load static %}
+
 <h2>{{ thread.title }}</h2>
 <p>By {{ thread.author_name }}</p>
 
@@ -20,18 +23,18 @@
     {% endfor %}
 {% endif %}
 
-<button class="btn" onclick="showReplyForm({{ thread.id }})">Reply</button>
-<button class="btn delete-btn" onclick="showDeleteConfirm({{ thread.id }})">Delete</button>
+<button type="button" class="btn" onclick="showReplyForm({{ thread.id }})">Reply</button>
+<button type="button" class="btn delete-btn" onclick="showDeleteConfirm({{ thread.id }})">Delete</button>
 
 
-<div id="replyForm" style="display:none; margin-top:20px;">
+<div id="replyForm" style="display: none; margin-top:20px;">
     <h3>Admin Reply</h3>
-    <textarea id="replyMessage" rows="4" style="width:100%;"></textarea>
-    <button class="btn" onclick="submitReply({{ thread.id }})">Send Reply</button>
+    <textarea  title="Reply Message" id="replyMessage" rows="4" style="width: 100%;"></textarea>
+    <button type="button" class="btn" onclick="submitReply({{ thread.id }})">Send Reply</button>
 </div>
-<div id="deleteConfirm" style="display:none; margin-top:20px;">
+<div id="deleteConfirm" style="display: none; margin-top:20px;">
     <h3>Delete Thread?</h3>
     <p>This will delete the thread and all replies.</p>
-    <button class="btn delete-btn" onclick="confirmDelete({{ thread.id }})">Yes, Delete</button>
-    <button class="btn" onclick="hideDeleteConfirm()">Cancel</button>
+    <button type="button" class="btn delete-btn" onclick="confirmDelete({{ thread.id }})">Yes, Delete</button>
+    <button type="button" class="btn" onclick="hideDeleteConfirm()">Cancel</button>
 </div>
