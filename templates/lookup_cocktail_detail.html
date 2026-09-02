@@ -1,8 +1,11 @@
 <!DOCTYPE html>
+<!-- Page complete – Tony, 2/09/2026 iframe cocktail lookup -->
 {% load static %}
-<html>
+<html lang="en">
 
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
+
     <style>
 
         img {
@@ -15,6 +18,7 @@
             padding: 2rem;
             border-radius: 20px;
             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
             color: white;
             max-width: 420px;
             margin: auto;
@@ -93,11 +97,15 @@
 
 <body>
     <div class="card">
-        <img src="{% if cocktail.image_url %}
-                 {% static cocktail.image_url %}
-              {% else %}
-                 {% static 'cocktails/buttons/no-image.png' %}
-              {% endif %}">
+        <img 
+    src="{% if cocktail.image_url %}
+            {% static cocktail.image_url %}
+         {% else %}
+            {% static 'cocktails/buttons/no-image.png' %}
+         {% endif %}"
+    alt="{% if cocktail.image_url %}{{ cocktail.name }} image{% else %}No image available for {{ cocktail.name }}{% endif %}"
+>
+
 
         <h2>{{ cocktail.name }}</h2>
 

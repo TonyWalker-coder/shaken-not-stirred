@@ -204,18 +204,44 @@ This demonstrates responsible use of validation tools within a Django developmen
 
 ### index.html
 
-![Admin Responsive Layout](/screenshoots/validate-index.html.png)
+![index.html](/screenshoots/validate-index.html.png)
 
 ### cocktail_list.html
 
-![Admin Responsive Layout](/screenshoots/validate-cocktail_list.html.png)
+**<p style="color:green;">✔️ No warnings</p>**
 
-<p style="color:red;">⚠️ Warning</p>
+![cocktail_list.html](/screenshoots/validate-cocktail_list.html.png)
+
+**<p style="color:red;">⚠️ Warning</p>**
 
 The modal heading (`<h2 id="modal-name">`) is intentionally empty in the static HTML because its content is injected dynamically. This follows standard accessible modal patterns: the heading acts as a placeholder and is updated at runtime, with aria-live="polite" ensuring screen readers announce the change. 
 
-<p style="color:green;">📌 Conclusion</p>
+**<p style="color:green;">📌 Conclusion</p>**
 
 Since the heading is populated immediately upon modal activation, it does not create any accessibility issues, and the validator warning can be safely ignored.
+
+### iframe ingredients lookup
+
+![ingredients lookup](/screenshoots/validate-iframe-ingredients-lookup.html.png)
+
+**<p style="color:red;">⚠️ Warning</p>**
+
+Some HTML validator warnings were intentionally ignored because the pages are rendered inside an iframe and are not standalone documents. The iframe content acts as a UI component rather than a full webpage, so requirements such as a `<title>` element or top‑level `<h1>` heading do not apply.
+
+<p style="color:green;">📌 Conclusion</p>
+These warnings do not affect functionality or accessibility, as the parent document provides the overall page structure.
+
+### iframe cocktail lookup
+
+![cocktail lookup](/screenshoots/validate-iframe-cocktail-lookup.html.png)
+
+**<p style="color:red;">⚠️ Warning</p>**
+
+Validator Warnings (Iframe Child Page)
+The HTML validator reports missing `<title>` and missing `<h1>` heading for the iframe child page. These warnings were intentionally ignored because the iframe content is not a standalone webpage. It is embedded inside the parent document, which already provides the required page‑level metadata and heading structure.
+
+**<p style="color:green;">📌 Conclusion</p>**
+
+The iframe acts only as a UI component, so document‑level requirements do not apply and the warnings have no impact on functionality or accessibility.
 
 

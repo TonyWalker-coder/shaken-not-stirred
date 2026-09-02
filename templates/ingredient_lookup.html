@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+<!-- Page complete – Tony, 2/09/2026 iframe ingredients lookup -->
 {% load static %}
-<html>
+<html lang="en">
 
 <head>
+
     <style>
         .dropdown {
             padding: 0.6rem;
@@ -23,6 +25,7 @@
             border-radius: 14px;
             text-align: center;
             backdrop-filter: blur(6px);
+             -webkit-backdrop-filter: blur(6px);
             cursor: pointer;
             transition: transform 0.15s ease;
             display: flex;
@@ -71,37 +74,49 @@
             margin-top: 0.5rem;
             font-size: 1.1rem;
         }
+
+        label {
+            color: white;
+        }
+        h3 {
+            color: white;
+        }
     </style>
 </head>
 
 <body>
 
-    <h3 style="color:white;">Select an Ingredient</h3>
+    <h3>Select an Ingredient</h3>
     <!-- 
     DO NOT AUTO FORMAT this must stay 
     <option value="{{ ing.id }}" {% if ing.id == selected_id %}selected{% endif %}>
     -->
     <form method="GET">
-        <select name="ingredient" class="dropdown" onchange="this.form.submit()">
-            <option value="">-- Choose Ingredient --</option>
-            {% for ing in ingredients %}
-            <option value="{{ ing.id }}" {% if ing.id == selected_id %}selected{% endif %}>
-                {{ ing.name }}
-            </option>
+    <label for="ingredient-select" >Select an Ingredient</label>
 
-            {% endfor %}
-        </select>
+    <select id="ingredient-select" name="ingredient" class="dropdown" onchange="this.form.submit()">
+        <option value="">-- Choose Ingredient --</option>
+        {% for ing in ingredients %}
+        <option value="{{ ing.id }}" {% if ing.id == selected_id %}selected{% endif %}>
+            {{ ing.name }}
+        </option>
+        {% endfor %}
+    </select>
     </form>
+
 
     {% if cocktails %}
     <div class="cocktail-grid">
         {% for c in cocktails %}
         <div class="cocktail-card" onclick="openChildModal({{ c.id }})">
-            <img src="{% if c.image_url %}
-                     {% static c.image_url %}
-                  {% else %}
-                     {% static 'cocktails/buttons/no-image.png' %}
-                  {% endif %}">
+            <img 
+    src="{% if c.image_url %}
+            {% static c.image_url %}
+         {% else %}
+            {% static 'cocktails/buttons/no-image.png' %}
+         {% endif %}"
+    alt="{% if c.image_url %}{{ c.name }} image{% else %}No image available for {{ c.name }}{% endif %}">
+
             <h4 class="cocktail-name">{{ c.name }}</h4>
         </div>
     
