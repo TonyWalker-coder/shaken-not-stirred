@@ -540,3 +540,12 @@ height: 1.5rem;
 font-size: 1rem;
 width: 50%;
 }
+
+.forum-headerblock{
+    margin-bottom: 20px;
+}
+
+.thread-list li {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}

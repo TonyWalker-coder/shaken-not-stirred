@@ -1,35 +1,43 @@
+<!-- Page complete – Tony, 3/09/2026 forum.html -->
 {% extends 'base.html' %}
 
 {% block content %}
 
-  <!-- Page Header -->
-  <header class="hero">
-    <h1 class="title sunset-overlay"><a href="/user/">User Forum</a></h1>
-    <nav class="title-homepage sunset-overlay"><a href="/user/">User Area</a></nav>
-  </header>
-
-<div class="glass-panel">
-    <h1 class="forum-title">Message Board</h1>
-
-
-    <div style="margin-bottom: 20px;">
-        <a class="btn" href="{% url 'new_thread' %}">Start New Thread</a>
-    </div>
+<!-- Page Header -->
+<header class="hero">
+    <h1 class="title sunset-overlay"><a href="/user/" aria-label="Go to User Forum homepage">User Forum</a></h1>
+    <nav class="title-homepage sunset-overlay" aria-label="User area navigation"><a href="/user/">User
+            Area</a></nav>
+</header>
+<main id="main-content">
+    <div class="glass-panel">
+        <h2 class="forum-title" aria-label="Forum message board">Message Board</h2>
 
 
-    <div class="thread-list">
-        {% for thread in threads %}
-        <div class="thread-card">
-            <h2>{{ thread.title }}</h2>
-            <p>Started by <strong>{{ thread.author_name }}</strong></p>
-            <p class="date">{{ thread.created_at|date:"d M Y H:i" }}</p>
-
-            <!-- Correct: Only View Thread button -->
-            <a class="btn" href="{% url 'thread_detail' thread.id %}">View Thread</a>
+        <div class="forum-headerblock">
+            <a class="btn" href="{% url 'new_thread' %}" aria-label="Create a new discussion thread">Start New
+                Thread</a>
         </div>
-        {% empty %}
-        <p>No threads yet — be the first!</p>
-        {% endfor %}
+
+
+        <ul class="thread-list">
+            {% for thread in threads %}
+            <li class="thread-card" aria-labelledby="thread-{{ thread.id }}">
+                <article>
+                    <h3 id="thread-{{ thread.id }}">{{ thread.title }}</h3>
+                    <p>Started by <strong>{{ thread.author_name }}</strong></p>
+                    <p class="date">{{ thread.created_at|date:"d M Y H:i" }}</p>
+
+                    <a class="btn" href="{% url 'thread_detail' thread.id %}"
+                        aria-label="View thread titled {{ thread.title }}">
+                        View Thread
+                    </a>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+
+
     </div>
-</div>
+</main>
 {% endblock %}

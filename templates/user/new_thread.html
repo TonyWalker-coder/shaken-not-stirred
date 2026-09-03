@@ -1,4 +1,5 @@
-{% extends 'base.html' %}
+<!-- Page complete – Tony, 3/09/2026 new_thread.html -->
+ {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
@@ -12,7 +13,7 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="submit-btn">Post Thread</button>
+        <button type="submit" class="submit-btn">Post Thread</button>
     </form>
 
 </div>

@@ -206,9 +206,9 @@ This demonstrates responsible use of validation tools within a Django developmen
 
 ![index.html](/screenshoots/validate-index.html.png)
 
-### cocktail_list.html
-
 **<p style="color:green;">✔️ No warnings</p>**
+
+### cocktail_list.html
 
 ![cocktail_list.html](/screenshoots/validate-cocktail_list.html.png)
 
@@ -243,5 +243,36 @@ The HTML validator reports missing `<title>` and missing `<h1>` heading for the 
 **<p style="color:green;">📌 Conclusion</p>**
 
 The iframe acts only as a UI component, so document‑level requirements do not apply and the warnings have no impact on functionality or accessibility.
+
+### forum.html
+
+![forum.html](/screenshoots/validate-forum.html.png)
+
+**<p style="color:green;">✔️ No warnings</p>**
+
+### thread_detail.html
+
+![thread_detail.html](/screenshoots/validate-thread_detail.html.png)
+
+**<p style="color:green;">✔️ No warnings</p>**
+
+### new_thread.html
+
+![new_thread.html](/screenshoots/validate-new_thread.html.png)
+
+**<p style="color:green;">✔️ No warnings</p>**
+
+### user.html
+
+![user.html](/screenshoots/validate-user.html.png)
+
+**<p style="color:green;">✔️ No warnings</p>**
+
+### testdata.html
+
+![testdata.html](/screenshoots/validate-testdata.html.png)
+
+**<p style="color:green;">✔️ No warnings</p>**
+
 
 
