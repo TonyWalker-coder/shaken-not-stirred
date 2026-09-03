@@ -64,3 +64,16 @@ h2 {
     margin: 0;
     padding: 0;
 }
+
+/* ============================================
+   ADMIN inline styles moved to styles.css
+   ============================================ */
+
+   #nameValidationMsg {
+       color: red;
+       display: none;
+   }
+
+   #imagesModal p {
+    margin-top:10px;
+   }

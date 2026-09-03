@@ -274,5 +274,9 @@ The iframe acts only as a UI component, so document‑level requirements do not 
 
 **<p style="color:green;">✔️ No warnings</p>**
 
+### admin.html
 
+![admin.html](/screenshoots/validate-admin.html.png)
+
+**<p style="color:green;">✔️ No warnings</p>**
 
