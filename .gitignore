@@ -7,3 +7,6 @@ READ
 staticfiles/
 db.sqlite3
 *.json
+# ESLint
+eslint-output.txt
+.eslintcache

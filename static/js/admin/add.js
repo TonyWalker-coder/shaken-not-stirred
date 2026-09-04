@@ -1,7 +1,5 @@
 import {
   modalMessage,
-  closeModal,
-  openModal,
   getCSRFToken
 } from "./admin-core.js";
 

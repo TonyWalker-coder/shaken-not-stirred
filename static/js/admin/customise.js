@@ -1,6 +1,5 @@
 import {
   modalMessage,
-  closeModal,
   openModal,
   getCSRFToken,
   refreshCocktailDropdown

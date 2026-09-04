@@ -1,8 +1,7 @@
 import {
   modalMessage,
   closeModal,
-  openModal,
-  getCSRFToken
+  openModal
 } from "./admin-core.js";
 
 /* ============================================================
@@ -163,12 +162,6 @@ document.addEventListener("click", (e) => {
       return;
     }
 
-    // 5. Refresh list after DB operation
-    const listRes = await fetch("/recipes/list/json/", {
-      headers: { "X-Requested-With": "XMLHttpRequest" }
-    });
-
-    const fullList = await listRes.json();
     await refreshRecipesModal();
 
     // 6. Unified success message

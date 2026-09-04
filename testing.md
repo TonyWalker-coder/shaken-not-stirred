@@ -5,6 +5,7 @@
 - [Navigation](#navigation)
 - [Use of Validators in a Django Project](#validators)
 - [Validator](#validator)
+- [ESLint](#eslint)
 
 
 
@@ -280,3 +281,46 @@ The iframe acts only as a UI component, so document‑level requirements do not 
 
 **<p style="color:green;">✔️ No warnings</p>**
 
+<a id="eslint"></a>
+
+## JavaScript Validation (ESLint v9+)
+
+- Installed and configured ESLint using the new eslint.config.js format
+
+- Added ignore rules for Django admin JS, vendor scripts, jQuery, and virtual environment
+
+- Enabled ES2021 syntax and browser globals
+
+- Ran ESLint across all project JavaScript files
+
+- Result: 0 errors, 6 warnings
+
+- Warnings related only to unused imports and unused variables
+
+- No functional issues detected
+
+- Confirms that the JavaScript codebase is clean, modern, and stable
+
+### ESLint output
+
+C:\projects\shaken-not-stirred\static\js\admin\add.js
+  3:3  warning  'closeModal' is defined but never used  no-unused-vars
+  4:3  warning  'openModal' is defined but never used   no-unused-vars
+
+C:\projects\shaken-not-stirred\static\js\admin\customise.js
+  3:3  warning  'closeModal' is defined but never used  no-unused-vars
+
+C:\projects\shaken-not-stirred\static\js\admin\history.js
+  5:3  warning  'getCSRFToken' is defined but never used  no-unused-vars
+
+C:\projects\shaken-not-stirred\static\js\admin\recipes.js
+    5:3   warning  'getCSRFToken' is defined but never used       no-unused-vars
+  171:11  warning  'fullList' is assigned a value but never used  no-unused-vars
+
+Ô£û 6 problems (0 errors, 6 warnings)
+
+**<p style="color:green;">📌 Conclusion</p>**
+
+ I reviewed each warning, removed the redundant code, and re‑ran the validator. ESLint now reports no errors and no warnings, confirming that the JavaScript codebase is clean, modern, and fully compliant with ES2021 standards.
+
+**<p style="color:green;">✔️ No warnings</p>**
