@@ -53,7 +53,7 @@ document.addEventListener("click", async (e) => {
     }
 
     if (id === "historyModal") {
-      await refreshHistoryModal();   // now valid
+      await refreshHistoryModal();   
     }
 
     if (id === "recipesModal") {
@@ -368,3 +368,12 @@ function closeForumModal() {
     }
 }
 window.closeForumModal = closeForumModal;
+
+document.querySelectorAll('.admin-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();   // stops spacebar scrolling
+            card.click();
+        }
+    });
+});
