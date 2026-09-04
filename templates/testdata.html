@@ -29,7 +29,17 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
 
-
+    <style>
+        .pa-warning {
+            color: #b30000;
+            font-weight: bold;
+            margin-top: 1rem;
+            padding: 10px 14px;
+            background: rgba(255, 0, 0, 0.08);
+            border-left: 5px solid #b30000;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 
 <body>
@@ -250,28 +260,22 @@
             }
 
             /* ---------------------------------------------------------
-               Break Bloody Mary Image
+               PA-safe override: Break / Fix buttons
             --------------------------------------------------------- */
-            document.getElementById("breakBM").addEventListener("click", async () => {
-                const res = await fetch("{% url 'break_bloody_mary' %}", {
-                    method: "POST",
-                    headers: { "X-CSRFToken": "{{ csrf_token }}" }
-                });
-                const data = await res.json();
-                tdMessage(data.message);
+            function paNotAvailable() {
+                const box = document.getElementById("tdMessage");
+                box.classList.add("pa-warning");
+                box.innerText = "NOT AVAILABLE ON PA";
+            }
+
+            document.getElementById("breakBM").addEventListener("click", () => {
+                paNotAvailable();
             });
 
-            /* ---------------------------------------------------------
-               Fix Bloody Mary Image
-            --------------------------------------------------------- */
-            document.getElementById("fixBM").addEventListener("click", async () => {
-                const res = await fetch("{% url 'fix_bloody_mary' %}", {
-                    method: "POST",
-                    headers: { "X-CSRFToken": "{{ csrf_token }}" }
-                });
-                const data = await res.json();
-                tdMessage(data.message);
+            document.getElementById("fixBM").addEventListener("click", () => {
+                paNotAvailable();
             });
+
 
             /* ---------------------------------------------------------
                Reset Database

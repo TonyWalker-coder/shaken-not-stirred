@@ -1,3 +1,8 @@
+/* ============================================
+   ROOT VARIABLES
+   Brand colours, overlays, shadows, and shared
+   theme values used across the entire site.
+   ============================================ */
 :root {
     --brand-orange: #eb6a20;
     --brand-orange-hover: #e16222;
@@ -8,6 +13,8 @@
     --title-overlay-bg: rgba(255, 255, 255, 0.25);
     --shadow: rgba(0, 0, 0, 2);
 }
+
+/* Screen-reader only text (accessibility helper) */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -18,11 +25,13 @@
     clip: rect(0,0,0,0);
     border: 0;
 }
+
 /* ============================================
    GLOBAL ANIMATIONS
    Shared keyframes used across multiple components
    ============================================ */
 
+/* Shake animation (used for error feedback / playful UI) and cocktail buttons*/
 @keyframes shake {
     0%   { transform: translate(0, 0) rotate(0deg); }
     25%  { transform: translate(-2px, 1px) rotate(-1deg); }
@@ -30,10 +39,16 @@
     75%  { transform: translate(-1px, 1px) rotate(0deg); }
     100% { transform: translate(0, 0) rotate(0deg); }
 }
+
+/* Fade-in animation for overlays, frames, modals */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.98); }
-    to { opacity: 1; transform: scale(1); }
+    to   { opacity: 1; transform: scale(1); }
 }
+
+/* ============================================
+   GLOBAL PAGE STYLING
+   ============================================ */
 
 body {
     font-family: 'Arial', sans-serif;
@@ -42,22 +57,25 @@ body {
     padding: 0;
 }
 
+/* Prevent horizontal scrollbars caused by wide elements */
 html,
 body {
     overflow-x: hidden;
 }
 
+/* Decorative headings */
 h1,
 h2 {
     font-family: 'Henny Penny', cursive;
 }
 
+/* Wrapper for admin pages (centres content) */
 .admin-wrapper {
     max-width: 1600px;
     margin: 0 auto;
-
 }
 
+/* Admin body background + reset */
 .admin-body {
     background-color: #ba621e;
     font-family: 'Arial', sans-serif;
@@ -65,83 +83,88 @@ h2 {
     padding: 0;
 }
 
-/* ============================
+/* ============================================
    HEADER LAYOUT
-   Flex column so title + subtitle
-   stack naturally at the top-left
-   ============================ */
+   Flex column so title + subtitle stack neatly
+   ============================================ */
 header {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* keeps both titles aligned left */
+    align-items: flex-start; /* left-aligned titles */
 }
-/* ============================
+
+/* ============================================
    MAIN TITLE (site name)
-   Big, decorative, brand-coloured
-   ============================ */
+   Large decorative brand-coloured heading
+   ============================================ */
 .title {
-    font-family: 'Henny Penny', cursive; 
-    font-size: clamp(2.4rem, 6vw, 4.8rem); 
-    color: var(--brand-orange); 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1); /* strong readable shadow */
-    margin: 1rem; /* spacing from edges */
+    font-family: 'Henny Penny', cursive;
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    color: var(--brand-orange);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    margin: 1rem;
 }
-/* improved clamp for smoother scaling */
+
+/* Duplicate clamp kept for smoother scaling */
 .title {
     font-size: clamp(2.4rem, 6vw, 4.8rem);
 }
-/* ============================
+
+/* ============================================
    SUBTITLE / PAGE LABEL
-   Smaller, subtle, inherits font
-   ============================ */
+   Smaller, subtle, inherits main font
+   ============================================ */
 .title-homepage {
-    font-size: clamp(0.9rem, 1.6vw, 1.4rem); 
-    font-family: inherit; 
+    font-size: clamp(0.9rem, 1.6vw, 1.4rem);
+    font-family: inherit;
     color: var(--brand-orange);
-    margin: 0.25rem 1rem; /* sits neatly under main title */
+    margin: 0.25rem 1rem;
 }
-/* ============================
-   LINKS INSIDE TITLES
+
+/* ============================================
+   TITLE LINKS
    Remove default link styling
-   ============================ */
+   ============================================ */
 .title a,
 .title-homepage a {
-    color: inherit; 
-    text-decoration: none; /* removes underline */
+    color: inherit;
+    text-decoration: none;
 }
-/* ============================
-   HOVER EFFECTS
-   Shared behaviour for both titles
-   ============================ */
+
+/* ============================================
+   TITLE HOVER EFFECTS
+   Shared behaviour for both title elements
+   ============================================ */
 .title:hover,
 .title-homepage:hover {
-    color: var(--brand-orange-hover); 
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 1); 
+    color: var(--brand-orange-hover);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
 }
-/* ============================
+
+/* ============================================
    OVERLAY STYLES
-   Glass overlay blocks behind titles
-   Each variant gives a different mood
-   ============================ */
+   Glassy background blocks behind titles
+   ============================================ */
 
 /* Default white glass overlay */
 .title-overlay {
-    display: inline-block; /* shrink-wrap to content */
-    background: rgba(255, 255, 255, 0.25); 
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
     padding: 0.5rem 1rem;
     border-radius: 14px;
-    backdrop-filter: blur(14px); 
-    -webkit-backdrop-filter: blur(14px); /* Safari support */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     margin-left: 1rem;
     margin-top: 1rem;
-    width: fit-content; 
-    opacity: 0; 
+    width: fit-content;
+    opacity: 0;
     animation: fadeIn 1s ease forwards;
 }
+
 /* Warm brown overlay (forum / rustic pages) */
 .brown-overlay {
     display: inline-block;
-    background: rgba(80, 40, 20, 0.35); /* warm brown glass */
+    background: rgba(80, 40, 20, 0.35);
     padding: 0.5rem 1rem;
     border-radius: 14px;
     backdrop-filter: blur(6px);
@@ -152,10 +175,11 @@ header {
     opacity: 0;
     animation: fadeIn 1s ease forwards;
 }
+
 /* Soft sunset overlay (cocktail / tropical pages) */
 .sunset-overlay {
     display: inline-block;
-    background: rgba(255, 240, 220, 0.45); /* soft sunset cream */
+    background: rgba(255, 240, 220, 0.45);
     padding: 0.5rem 1rem;
     border-radius: 14px;
     backdrop-filter: blur(8px);
@@ -168,14 +192,16 @@ header {
 }
 
 /* ============================================
-   ADMIN inline styles moved to styles.css
+   ADMIN INLINE STYLES (moved from templates)
    ============================================ */
 
-   #nameValidationMsg {
-       color: red;
-       display: none;
-   }
+/* Ingredient validation message */
+#nameValidationMsg {
+    color: red;
+    display: none;
+}
 
-   #imagesModal p {
-    margin-top:10px;
-   }
+/* Spacing inside image modal */
+#imagesModal p {
+    margin-top: 10px;
+}

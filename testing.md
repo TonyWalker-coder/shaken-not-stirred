@@ -1,4 +1,14 @@
+<style>
+ h1,h2 {
+  color:skyblue;
+  font-weight:bold;
+ }
+  h3 {
+  color:white;
+ }
+</style>
 # Testing Document
+
 ## Table of Contents
 
 - [User Story Acceptance](#user-story-acceptance)

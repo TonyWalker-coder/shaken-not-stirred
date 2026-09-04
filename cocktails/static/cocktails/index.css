@@ -1,59 +1,79 @@
 /* Completed: 28/08/2026 – Tony */
+
+/* ============================================
+   GLOBAL RESET + BASE FONT
+   ============================================ */
 body {
     font-family: 'Englebert', sans-serif;
     margin: 0;
     padding: 0;
 }
+
+/* ============================================
+   HERO SECTION
+   Full‑screen background with flex layout
+   ============================================ */
 .hero {
     background-image: url("../cocktails/images/background/hero.webp");
-    background-color: #f77c24;
+    background-color: #f77c24; /* fallback colour before image loads */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
-    /* full screen height */
+    height: 100vh; /* full viewport height */
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: left; /* content aligned at top-left */
 }
+
 /* ============================================
-   Navigation tiles
+   NAVIGATION TILES
+   Positioned at bottom centre of hero section
    ============================================ */
 .tile-row {
     position: absolute;
     bottom: 2rem;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* perfect horizontal centering */
     display: flex;
-    gap: 2rem;
+    gap: 2rem; /* spacing between tiles */
 }
+
+/* Individual tile buttons */
 .tile {
     font-family: 'Englebert', sans-serif;
-    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem); /* responsive scaling */
     color: #fff;
     text-decoration: none;
     padding: 1rem 2.2rem;
     background: linear-gradient(135deg, #f77c24, #e16222);
     border-radius: 18px;
     backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px); /* Safari support */
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
     transition: 0.25s ease;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 1rem;
+    gap: 0.6rem; /* space between icon + text */
+    margin-bottom: 1rem; /* spacing for mobile stacking */
 }
+
+/* Hover animation */
 .tile:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.55);
     background: linear-gradient(135deg, #ff8d3a, #f06a1c);
 }
+
+/* Keyboard accessibility */
 .tile:focus {
     outline: 3px solid #fff;
     outline-offset: 4px;
 }
-/* Responsive stacking */
+
+/* ============================================
+   RESPONSIVE STACKING (mobile)
+   Tiles stack vertically on small screens
+   ============================================ */
 @media (max-width: 600px) {
     .tile-row {
         flex-direction: column;
@@ -66,22 +86,20 @@ body {
         margin: 0 auto;
     }
 }
+
+/* ============================================
+   LOADING SPINNER
+   Used when tile content is loading
+   ============================================ */
 .spinner {
     font-size: 1.5rem;
     animation: pulse 1.2s infinite ease-in-out;
-    display: none;
+    display: none; /* shown dynamically via JS */
 }
 
+/* Pulse animation for spinner */
 @keyframes pulse {
-    0% {
-        opacity: 0.3;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.3;
-    }
+    0%   { opacity: 0.3; }
+    50%  { opacity: 1; }
+    100% { opacity: 0.3; }
 }

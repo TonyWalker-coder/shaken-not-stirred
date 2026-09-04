@@ -1,11 +1,14 @@
-/* Backdrop */
+/* ============================================
+   MODAL BACKDROP
+   Full‑screen overlay behind modal content
+   ============================================ */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.45); /* darkened backdrop */
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -16,14 +19,21 @@
     opacity: 0;
     transition: opacity 0.25s ease-out;
 }
+
+/* Hidden modal state */
 .modal.hidden {
     display: none;
 }
+
+/* Visible modal state */
 .modal:not(.hidden) {
     opacity: 1;
 }
 
-/* Modal box — tropical menu card */
+/* ============================================
+   MODAL CONTENT BOX
+   Tropical menu-style card with soft glow
+   ============================================ */
 .modal-content {
     background: #fff8e6;
     background-image: radial-gradient(circle at top left, #fff3d4, #ffe9b8);
@@ -35,67 +45,64 @@
     padding: 24px;
     position: relative;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25),
-        0 0 0 6px rgba(255, 200, 120, 0.4);   
+                0 0 0 6px rgba(255, 200, 120, 0.4);
 }
-/* Smooth fade-in */
+
+/* Fade-in animation */
 .modal-content {
     animation: tikiFade 0.25s ease-out;
 }
 .modal-content {
     animation: fadeIn 0.2s ease-out;
 }
+
 @keyframes tikiFade {
     from {
         opacity: 0;
         transform: translateY(-12px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
 /* ============================================
    CLOSE BUTTON
-   Close button for modals
+   Custom styled “X” button
    ============================================ */
 .close {
-    /* Reset everything so we start clean */
-    all: unset;
-
-    /* Positioning */
+    all: unset; /* reset all inherited styles */
     position: absolute;
     top: 14px;
     right: 18px;
 
-    /* Typography */
     font-family: Arial, sans-serif;
     font-size: 40px;
     font-weight: 700;
     line-height: 1;
     text-align: center;
 
-    /* Button-like box model */
     display: block;
     box-sizing: border-box;
-    padding: 1px 6px; 
-    background-color: rgb(240, 240, 240); 
+    padding: 1px 6px;
+    background-color: rgb(240, 240, 240);
     border: 1.1px outset rgb(0, 0, 0);
-    border-radius: 4px; 
+    border-radius: 4px;
 
-    /* Colour + shadow */
     color: #d46b00;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
-    /* Interaction */
     cursor: pointer;
     transition: 0.2s ease;
 }
+
 .close:hover {
     animation: shake 0.4s ease-in-out;
     color: #ff8c1a;
 }
-/* Modal image */
+
+/* Modal image preview */
 .modal-image {
     width: 100%;
     height: auto;
@@ -103,9 +110,11 @@
     margin-bottom: 1.2rem;
     margin-top: 1.5rem;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
 }
-/* Headings — tiki style */
+
+/* ============================================
+   MODAL HEADINGS
+   ============================================ */
 .modal-content h2,
 .modal-content h3 {
     font-family: 'Henny Penny', cursive;
@@ -117,19 +126,26 @@
     margin-top: 1.2rem;
 }
 
+/* ============================================
+   MODAL TEXTAREA (Recipe / History editing)
+   ============================================ */
 .modal-content textarea {
-    width: 100%;               
-    box-sizing: border-box;    
-    padding: 12px;            
-    border-radius: 10px;      
-    border: 1px solid #d46b00; 
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #d46b00;
     font-family: 'Englebert', sans-serif;
     font-size: 1rem;
-    resize: vertical;         
-    background: #fff3d4;      
-    color: #5a3b00;         
-    margin-bottom: 1rem;    
+    resize: vertical;
+    background: #fff3d4;
+    color: #5a3b00;
+    margin-bottom: 1rem;
 }
+
+/* ============================================
+   MODAL STATUS MESSAGES (Success / Error)
+   ============================================ */
 .modal-message {
     padding: 12px 16px;
     margin: 20px 0 14px 0;
@@ -155,7 +171,8 @@
 .modal-message.show {
     display: block;
 }
-/* Main modal title*/ 
+
+/* Main modal title */
 .modal-title {
     font-family: 'Henny Penny', cursive;
     color: var(--brand-orange);
@@ -163,10 +180,10 @@
     margin-bottom: 1rem;
     font-size: 2rem;
 }
-/* ================================
-   ADD INGREDIENT BLOCK
-   ================================ */
 
+/* ============================================
+   ADD INGREDIENT BLOCK
+   ============================================ */
 .modal-add-block {
     background: #ffe0b3;
     padding: 14px;
@@ -181,7 +198,7 @@
     margin-bottom: 0.6rem;
 }
 
-/* Input field */
+/* Input fields */
 .modal-input,
 .modal-add-block input[type="text"] {
     width: 100%;
@@ -194,9 +211,10 @@
     margin-bottom: 10px;
     box-sizing: border-box;
 }
-/* ============================
-   BUTTONS
-   ============================ */
+
+/* ============================================
+   BUTTONS (Add / Edit / Delete)
+   ============================================ */
 .modal-button {
     background: var(--brand-orange);
     border: none;
@@ -206,8 +224,8 @@
     cursor: pointer;
     font-weight: bold;
     transition: 0.2s ease;
-
 }
+
 .modal-button:hover {
     background: var(--brand-orange-hover);
 }
@@ -215,7 +233,6 @@
 .delete-btn {
     all: unset;
     background: linear-gradient(135deg, #d9534f, #c9302c);
-    border: none;
     padding: 8px 14px;
     border-radius: 6px;
     color: white;
@@ -223,9 +240,11 @@
     font-weight: bold;
     transition: 0.2s ease;
 }
+
 .delete-btn:hover {
     background: #b30000;
 }
+
 .edit-btn,
 .add-btn {
     background: var(--brand-orange);
@@ -237,14 +256,15 @@
     font-weight: bold;
     transition: 0.2s ease;
 }
+
 .edit-btn:hover,
 .add-btn:hover {
     background: var(--brand-orange-hover);
 }
-/* ================================
-   INGREDIENT LIST
-   ================================ */
 
+/* ============================================
+   INGREDIENT LIST (Inside modal)
+   ============================================ */
 .modal-list {
     margin-top: 1rem;
 }
@@ -266,7 +286,7 @@
     font-weight: bold;
 }
 
-/* Edit/Delete buttons */
+/* Edit/Delete buttons inside list */
 .item-actions a {
     margin-left: 10px;
     padding: 6px 10px;
@@ -276,7 +296,7 @@
     font-size: 0.9rem;
 }
 
-/* Empty text */
+/* Empty list message */
 .empty-text {
     text-align: center;
     color: #5a3b00;
@@ -284,12 +304,15 @@
     margin-top: 1rem;
 }
 
+/* Ingredient status icons */
 .ingredient-status-icon {
     width: 28px;
     height: 28px;
     margin-right: 10px;
     flex-shrink: 0;
 }
+
+/* History actions */
 .history-actions a {
     margin-left: 10px;
     padding: 6px 10px;
@@ -313,36 +336,48 @@
     justify-content: space-between;
     align-items: center;
 }
+
+/* Small modal variant */
 .small-modal {
-  max-width: 300px;
-  text-align: center;
-  border-radius: 14px;
+    max-width: 300px;
+    text-align: center;
+    border-radius: 14px;
 }
+
+/* Reminder icon */
 .reminder-icon {
-  width: 140px;
-  height: auto;
-  display: block;
-  margin: 0 auto 20px auto;
-  opacity: 0.95;
-  filter: drop-shadow(0 0 6px rgba(0,0,0,0.3));
+    width: 140px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px rgba(0,0,0,0.3));
 }
+
+/* Dynamite icon (delete warning) */
 .dynamite {
-    width:120px;
-    margin:0 auto;
-    display:block;
+    width: 120px;
+    margin: 0 auto;
+    display: block;
 }
+
 .warning {
-    color:#b30000;
-    font-weight:bold; 
-    margin-bottom:20px;
+    color: #b30000;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
+
+/* Filename label in assign-image modal */
 .assign-image-filename {
-    order: -1;       /* move filename to the left */
+    order: -1;
     min-width: 120px;
     font-size: 0.9rem;
     color: #333;
 }
-/* Confirmation Modal Layout */
+
+/* ============================================
+   ASSIGN IMAGE PREVIEW (Side-by-side comparison)
+   ============================================ */
 .assign-preview {
     display: flex;
     justify-content: space-between;
@@ -360,6 +395,8 @@
     font-size: 1rem;
     font-weight: 600;
 }
+
+/* Divider line */
 .assign-preview::after {
     content: "";
     width: 1px;
@@ -369,6 +406,8 @@
     top: 10px;
     bottom: 10px;
 }
+
+/* Thumbnail previews */
 .assign-thumb {
     width: 96px;
     height: 96px;
@@ -378,12 +417,14 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     background: #f8f8f8;
 }
+
 .assign-text {
     margin: 15px 0;
     font-size: 1rem;
     text-align: center;
     font-weight: 500;
 }
+
 .item-thumb {
     width: 96px;
     height: 96px;
@@ -393,26 +434,28 @@
     box-shadow: 0 0 4px rgba(0,0,0,0.2);
 }
 
+/* Delete confirmation modals */
 #deleteCocktailModal p,
 #deleteRecipeModal p,
 #deleteHistoryModal p,
 #adminLoginModal p {
-    color:#ff3b3b;
-    font-size:1.2rem;
-    font-weight:700;
-    background:rgba(255, 0, 0, 0.08);
-    padding:10px 14px;
-    border-left:5px solid #ff3b3b;
-    border-radius:4px;
+    color: #ff3b3b;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: rgba(255, 0, 0, 0.08);
+    padding: 10px 14px;
+    border-left: 5px solid #ff3b3b;
+    border-radius: 4px;
     margin: 1rem 0;
 }
 
 #adminLoginModal .modal-content {
     max-width: 420px;
 }
-/* ============================
-   TITLE CREASE (Thread + Forum)
-   ============================ */
+
+/* ============================================
+   THREAD + FORUM TITLES
+   ============================================ */
 .thread-title,
 .forum-title {
     font-size: 1.8rem;
@@ -421,15 +464,19 @@
     position: relative;
     color: #fff;
 }
-.thread-title {
 
+/* Thread title override */
+.thread-title {
     color: black;
     font-size: 1.1rem;
 }
+
 .forum-title {
     margin-bottom: 15px;
     padding-bottom: 6px;
 }
+
+/* Decorative underline */
 .forum-title::after {
     content: "";
     position: absolute;
@@ -446,9 +493,9 @@
     border-radius: 2px;
 }
 
-/* ============================
+/* ============================================
    REPLY CARDS
-   ============================ */
+   ============================================ */
 .reply-card {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(6px);
@@ -473,8 +520,7 @@
     font-size: 0.85rem;
 }
 
-
-
+/* Modal header block */
 .modal-header {
     display: flex;
     flex-direction: column;
@@ -486,9 +532,9 @@
     margin-top: 15px;
 }
 
-/* ============================
-   FORUM LINKS (List Items)
-   ============================ */
+/* ============================================
+   FORUM LINKS (Thread list items)
+   ============================================ */
 .forum-link {
     text-decoration: none;
     display: block;
@@ -497,15 +543,15 @@
     color: #fff;
 }
 
+/* Thread row styling */
 .thread-row {
     background: rgba(255,255,255,0.14);
-    border: 2px solid rgba(255,255,255,0.35);   /* stronger, clearer border */
+    border: 2px solid rgba(255,255,255,0.35);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     padding: 12px 15px;
     border-radius: 10px;
 
-    /* soft lift + glow */
     box-shadow: 0 3px 10px rgba(0,0,0,0.25),
                 0 0 6px rgba(255,255,255,0.25);
 
@@ -519,6 +565,7 @@
                 0 0 8px rgba(255,255,255,0.3);
 }
 
+/* Generic button */
 .btn {
     padding: 10px 16px;
     border-radius: 8px;
@@ -530,21 +577,25 @@
     margin-right: 10px;
     transition: opacity 0.2s ease, transform 0.15s ease;
 }
+
 .btn:hover {
     opacity: 0.85;
     transform: translateY(-2px);
 }
 
+/* Password input */
 .password-input {
-height: 1.5rem;
-font-size: 1rem;
-width: 50%;
+    height: 1.5rem;
+    font-size: 1rem;
+    width: 50%;
 }
 
-.forum-headerblock{
+/* Forum header block */
+.forum-headerblock {
     margin-bottom: 20px;
 }
 
+/* Thread list spacing */
 .thread-list li {
     list-style: none;
     margin-bottom: 1.5rem;
