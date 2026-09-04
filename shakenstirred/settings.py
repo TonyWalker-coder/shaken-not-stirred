@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+
 import dj_database_url
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
@@ -82,7 +83,6 @@ WSGI_APPLICATION = 'shakenstirred.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-import dj_database_url
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
@@ -104,7 +104,10 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        ),
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',

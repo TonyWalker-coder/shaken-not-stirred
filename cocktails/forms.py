@@ -1,8 +1,7 @@
 from django import forms
-from .models import Thread, Reply
 
-from django import forms
-from .models import Thread
+from .models import Reply, Thread
+
 
 class ThreadForm(forms.ModelForm):
     message = forms.CharField(

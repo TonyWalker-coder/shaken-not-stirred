@@ -6,6 +6,7 @@
 - [Use of Validators in a Django Project](#validators)
 - [Validator](#validator)
 - [ESLint](#eslint)
+- [Ruff](#ruff)
 
 
 
@@ -324,3 +325,60 @@ C:\projects\shaken-not-stirred\static\js\admin\recipes.js
  I reviewed each warning, removed the redundant code, and re‑ran the validator. ESLint now reports no errors and no warnings, confirming that the JavaScript codebase is clean, modern, and fully compliant with ES2021 standards.
 
 **<p style="color:green;">✔️ No warnings</p>**
+
+<a id="ruff"></a>
+
+## 🐍 Python Validation (Ruff)
+
+To ensure the Python codebase met modern linting and formatting standards, I validated the entire Django project using Ruff, a fast, all‑in‑one Python linter and formatter. Ruff combines checks from tools such as Pyflakes, pycodestyle, isort, and Flake8, making it ideal for maintaining a clean and consistent codebase.
+
+### Installation
+
+Ruff was installed inside the project’s virtual environment:
+
+`pip install ruff`
+
+### Configuration
+
+I added a ruff.toml configuration file at the project root to define the linting rules and exclusions:
+
+Line length set to 88 (matching Black and PEP8)
+
+Target version set to Python 3.11
+
+Enabled recommended rule sets: `E, F, W, B, I`
+
+Excluded Django migration files
+
+Added per‑file ignores for long‑line warnings (E501) in files where Django naturally produces long expressions (e.g., `urls.py, views.py, settings.py`)
+
+This allowed Ruff to focus on meaningful issues without generating noise from unavoidable long lines.
+
+### Fixes Applied
+
+Running Ruff across the project identified several genuine issues, all of which were corrected:
+
+Duplicate imports (e.g., models imported twice in `views.py`)
+
+Unused imports (e.g., `timezone in models.py`)
+
+Mid‑file imports moved to the top of the file (E402)
+
+Unused variables renamed or removed (e.g., `_pk` in a loop)
+
+Old development scripts removed (e.g., `static/testdata/del-views.py`)
+
+Import blocks sorted and cleaned across the project
+
+`ruff check . --fix`
+
+For issues requiring manual intervention (such as removing duplicate functions or cleaning dev-only files), I updated the code directly.
+
+## Result
+
+After applying fixes and configuring exceptions, Ruff reports:
+
+(.venv) PS C:\projects\shaken-not-stirred> ruff check .                   
+All checks passed!
+
+**<p style="color:green;">✔️ All checks passed!</p>**

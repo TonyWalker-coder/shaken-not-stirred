@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -45,7 +45,8 @@ class History(models.Model):
         return f"History for {self.cocktail.name}"
 
 
-from django.db import models
+
+
 
 class Thread(models.Model):
     title = models.CharField(max_length=200)

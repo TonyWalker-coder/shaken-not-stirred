@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views
+
 from cocktails import views as cocktails_views
+
+from . import views
 
 urlpatterns = [
 

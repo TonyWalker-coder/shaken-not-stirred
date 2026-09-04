@@ -14,11 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+
 from cocktails.views import cocktail_list
-from shakenstirred import views 
-from django.urls import path, include
+from shakenstirred import views
 
 urlpatterns = [
     path("", views.index, name="index"),      # Homepage
@@ -26,5 +25,5 @@ urlpatterns = [
     path("admin-login/", views.admin_login, name="admin_login"),
     path('dashboard/', views.admin_page, name='admin_page'),  # Custom admin page
     path("", include("cocktails.urls")),
-    
+
 ]

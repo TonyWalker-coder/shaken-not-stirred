@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
-from cocktails.models import Ingredient, Cocktail
-from django.db.models.functions import Lower
-from django.contrib import messages
 from django.conf import settings
+from django.contrib import messages
+from django.db.models.functions import Lower
+from django.shortcuts import redirect, render
+
+from cocktails.models import Cocktail, Ingredient
+
 
 def index(request):
     return render(request, "index.html")
@@ -14,7 +16,12 @@ def admin_page(request):
         return redirect("index")
 
     ingredients = Ingredient.objects.all().order_by(Lower("name"))
-    cocktails = Cocktail.objects.all().select_related("history_obj").order_by(Lower("name"))
+    cocktails = (
+        Cocktail.objects
+        .all()
+        .select_related("history_obj")
+        .order_by(Lower("name"))
+    )
 
     # Mark each ingredient as used or unused
     for ing in ingredients:

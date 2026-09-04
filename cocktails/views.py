@@ -1,16 +1,17 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
-from django.http import JsonResponse
+import json
+import os
+
 from django.conf import settings
+from django.contrib import messages
 from django.db.models import Exists, OuterRef
 from django.db.models.functions import Lower
-from django.db.models import Exists, OuterRef
-import os
-import json
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import Cocktail, Ingredient, History, Recipe
-from cocktails.models import Cocktail, Ingredient, Recipe, History
+from cocktails.models import Cocktail, History, Ingredient, Recipe
 
+from .forms import ReplyForm, ThreadForm
+from .models import Reply, Thread
 
 # ============================================================
 # HELPER FUNCTIONS
@@ -458,8 +459,8 @@ def refresh_all(request):
             {
                 "id": c.id,
                 "name": c.name,
-                "history": getattr(c, "history_obj").text if getattr(c, "history_obj", None) else None,
-                "history_id": getattr(c, "history_obj").id if getattr(c, "history_obj", None) else None,
+                "history": c.history_obj.text if getattr(c, "history_obj", None) else None,
+                "history_id": c.history_obj.id if getattr(c, "history_obj", None) else None,
             }
             for c in Cocktail.objects.order_by(Lower("name"))
         ]
@@ -492,11 +493,6 @@ def fix_bloody_mary(request):
 
     return JsonResponse({"status": "ok", "message": "Bloody Mary image fixed (or already fixed)."})
 
-import json
-import os
-from django.http import JsonResponse
-from django.conf import settings
-from cocktails.models import Cocktail, Ingredient, Recipe, History
 
 def reset_db(request):
     json_path = os.path.join(
@@ -576,7 +572,7 @@ def reset_db(request):
             )
 
     # Attach ingredients
-    for pk, (cocktail, ingredient_ids) in cocktail_objects.items():
+    for _pk, (cocktail, ingredient_ids) in cocktail_objects.items():
         for ing_id in ingredient_ids:
             try:
                 ing = Ingredient.objects.get(id=ing_id)
@@ -590,10 +586,8 @@ def reset_db(request):
 # ============================================================
 # USER AREA — DEVELOPMENT TOOLS
 # ============================================================
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
-from .models import Thread, Reply
-from .forms import ThreadForm, ReplyForm
+
+
 
 # USER AREA
 def user_area(request):
@@ -660,7 +654,7 @@ def forum(request):
     return render(request, 'user/forum.html', {'threads': threads})
 
 def admin_forum(request):
-    
+
     threads = Thread.objects.all().order_by('-created_at')
     return render(request, 'admin_forum.html', {'threads': threads})
 
@@ -672,7 +666,8 @@ def admin_forum_thread(request, thread_id):
     "replies": replies,
 })
 
-from django.http import HttpResponse
+
+
 
 def delete_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
@@ -702,8 +697,6 @@ def dashboard_delete_thread(request, thread_id):
     thread.delete()
     return redirect("dashboard_forum")
 
-from django.http import JsonResponse
-import json
 
 def admin_reply(request, thread_id):
     if request.method == "POST":
@@ -725,8 +718,7 @@ def admin_reply(request, thread_id):
             "replies": replies
         })
 
-from django.shortcuts import render, get_object_or_404
-from .models import Ingredient, Cocktail
+
 
 def ingredient_lookup(request):
     ingredients = Ingredient.objects.filter(cocktail__isnull=False).distinct()

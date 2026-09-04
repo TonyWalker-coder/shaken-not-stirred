@@ -10,3 +10,4 @@ db.sqlite3
 # ESLint
 eslint-output.txt
 .eslintcache
+ruff-output.txt

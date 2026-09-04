@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Cocktail, Ingredient, Recipe, History
+
+from .models import Cocktail, History, Ingredient, Recipe
 
 
 @admin.register(Ingredient)
@@ -20,5 +21,6 @@ class HistoryAdmin(admin.ModelAdmin):
 @admin.register(Cocktail)
 class CocktailAdmin(admin.ModelAdmin):
     search_fields = ['name']
-    filter_horizontal = ['ingredients']  # <- This adds a nice interface for managing many-to-many relationships in the admin
+    # <- This adds a nice interface for managing many-to-many relationships in the admin
+    filter_horizontal = ['ingredients']
 
