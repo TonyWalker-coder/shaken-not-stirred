@@ -31,6 +31,10 @@
 - [ESLint](#eslint)
 - [Ruff](#ruff)
 - [CSS Validator](#css)
+- [Admin Workflow UI Validation](#admin)
+- [Bug Report](#bugs)
+
+
 
 
 
@@ -454,6 +458,7 @@ These notices simply indicate that the validator is acknowledging the dynamic na
 ### styles.css
 
 <img src="screenshoots/validate-styles.css.png" class="screenshot">
+
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
 <img src="screenshoots/validate-styles1.css.png" class="screenshot">
@@ -475,6 +480,7 @@ validator warning is therefore expected and does not indicate a functional or ac
 ### modal.css
 
 <img src="screenshoots/validate-modal.css.png" class="screenshot">
+
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
 <img src="screenshoots/validate-modal1.css.png" class="screenshot">
@@ -488,6 +494,7 @@ CSS Variables
 ### user.css
 
 <img src="screenshoots/validate-user.css.png" class="screenshot">
+
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
 <img src="screenshoots/validate-user1.css.png" class="screenshot">
@@ -498,6 +505,7 @@ Use of `-webkit-backdrop-filter`
 ### base.css
 
 <img src="screenshoots/validate-base.css.png" class="screenshot">
+
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
 <img src="screenshoots/validate-base1.css.png" class="screenshot">
@@ -508,6 +516,7 @@ Use of `-webkit-backdrop-filter`
 ### ingredients_lookup.css
 
 <img src="screenshoots/validate-ingredients_lookup.css.png" class="screenshot">
+
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
 <img src="screenshoots/validate-ingredients_lookup1.css.png" class="screenshot">
@@ -518,9 +527,218 @@ Use of `-webkit-backdrop-filter`
 ### lookup_cocktail_detail.css
 
 <img src="screenshoots/validate-lookup_cocktail_detail.css.png" class="screenshot">
+
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
 <img src="screenshoots/validate-lookup_cocktail_detail1.css.png" class="screenshot">
 
 Use of `-webkit-backdrop-filter`
 [Previously explained here](#webkit)
+
+<a id="admin"></a>
+
+## Admin Workflow UI Validation
+
+### Introduction
+The admin suite for this project has been built with the same level of care, polish, and user‑experience focus as the public‑facing UI. Rather than relying on a basic, functional back‑office, the goal was to create an admin environment that feels modern, consistent, and genuinely pleasant to use. This meant designing tables, modals, forms, and feedback messages that behave predictably, update live, and present data clearly at every stage of the workflow.
+
+- A significant amount of work has gone into ensuring the admin UI meets a high standard:
+
+- Live data rendering across tables, lists, and modal content
+
+- Accurate state updates after every CRUD action
+
+- Full validation and error‑checking throughout all admin interactions
+
+- Consistent visual behaviour (no flicker, no stale data, no broken layouts)
+
+- Unified message system for success, error, and working states
+
+- Responsive, clean, and intuitive modals that match the design system used across the site
+
+Because of this, the expectations for the admin suite are intentionally high. Each test in this section is designed not only to confirm functionality, but to verify that the UI behaves exactly as intended — clean, stable, and reflective of real‑time data. The admin is treated as a first‑class user interface, and the testing reflects that standard.
+
+## Add Cocktail
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the cocktail‑creation workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Add Cocktail” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- All fields are empty.
+
+- Ingredient list shows current ingredients.
+
+- UI displays informational messages explaining the workflow.
+
+### 2. Attempt to Create a Cocktail With a Null Name
+Action: Leave the name field empty and click `Create Cocktail`.
+
+Expected Result:
+
+- Modal remains open.
+
+- No cocktail is created.
+
+- No error message is shown — the UI stays silent and simply waits for valid input.
+
+- All other fields remain unchanged.
+
+- No ingredients are affected.
+
+- User is expected to enter a valid name before the action can proceed.
+
+### 3. Attempt to Create a Cocktail With a Duplicate Name
+Action: Enter a cocktail name that already exists.
+
+Expected Result:
+
+- Modal remains open.
+
+- Clear validation message: “Name already exists.”
+
+- No data is saved.
+
+- No ingredients are affected.
+
+- User is expected to enter a valid name before the action can proceed.
+
+### 4. Enter a Valid Cocktail Name
+Action: Enter a unique name (e.g., “Fall Guy”).
+
+Expected Result:
+
+- Name field accepts the value.
+
+- No validation errors appear.
+
+### 5. Add Optional History
+Action: Enter any text into the `History field`.
+
+Expected Result:
+
+- Field accepts text.
+
+- No validation message is shown.
+
+- UI behaves silently because the field is optional.
+
+- If text is entered, the cocktail history should be created with the entered history.
+
+### 6. Add Optional Recipe
+Action: Enter any text into the `Recipe field`.
+
+Expected Result:
+
+- Field accepts text.
+
+- No validation message is shown.
+
+- UI behaves silently because the field is optional.
+
+- If text is entered, the cocktail recipe should be created with the entered history.
+
+### 7. Add Ingredients (Optional)
+Action: Select any number of existing ingredients.
+
+Expected Result:
+
+- All available ingredients should appear in the modal’s ingredients list.
+
+- If any ingredients are selected, the cocktail should later show them in the cocktails ingredients list.
+
+### 8. Add a New Ingredient (Optional)
+Action: Use the `Add Ingredient` option to create a new ingredient.
+
+Expected Result:
+
+- New ingredient are added to the Ingredients table immediately (live update).
+
+- New ingredient are added to the modals available ingredients immediately (live update).
+
+- Ingredient may or may not be selected for this cocktail.
+
+- UI displays a message explaining that adding a new ingredient clears previously selected ingredients (destructive behaviour).
+
+### 9. Create the Cocktail
+Action: Click `Create Cocktail` with valid data.
+
+Expected Result:
+
+A modal message appears: “Working”
+
+A success modal message appears: “Cocktail added”
+
+Modal remains open.
+
+All fields are cleared.
+
+Ingredient list remains populated with all ingredients, including any newly added ones.
+
+### 10. Close the Modal
+Action:  
+Close the modal using the `close button` or `clicking outside the modal` at any time before creating a cocktail.
+
+Expected Result:
+
+Modal closes cleanly.
+
+No cocktail is created.
+
+No partial data is saved.
+
+No ingredients are added or removed.
+
+No layout shift or stale data remains.
+
+The admin suite returns to its previous state exactly as it was before the modal was opened.
+
+### 11. Post testing
+The following modals should be updated without the need for a page refresh.
+
+1. History, cocktail list should be up to date with the new cocktail and an icon showing the state of the new cocktail history.
+
+1. Recipe, cocktail list should be up to date with the new cocktail and an icon showing the state of the new cocktail recipe.
+
+1. Customise cocktail, the cocktail list should be up to date with the new cocktail.
+
+1. Delete cocktail, the cocktail list should be up to date with the new cocktail.
+
+1. Add image, the cocktail list should be up to date with the new cocktail.
+
+1. Ingredients, the ingredients list should contain any new ingredients added and ingredients used should display the right icon.
+
+1. Cocktail page, should display any new cocktail and associated data.
+
+Testing Table
+
+| Test Step | Action | Pass/Fail | Comments |
+|-----------|--------|-----------|-----------------|
+| 1 | Open Add Cocktail modal |:  |
+| 2 | Attempt to create with empty name |: |
+| 3 | Attempt to Create a Cocktail With a Duplicate Name |:  |
+| 4 | Enter a Valid Cocktail Name |:<span class="tick">✔️</span>|
+| 5 | Add Optional History |:<span class="tick">❌</span> | <span class="tick">🐞</span>Bug001
+| 6 | Add Optional Recipe |:  |
+| 7 | Add Ingredients (Optional) |:  |
+| 8 | Add a New Ingredient (Optional) |:  |
+| 9 | Create the Cocktail |:  |
+| 10 | Close the Modal |:  |
+| 11 | Post testing |:  |
+| 11-1 | History |:  |
+| 11-2 | Recipe |:  |
+| 11-3 | Customize |:  |
+| 11-4 | Delete cocktail |:  |
+| 11-5 | Add Image |:  |
+| 11-6 | Ingredients |:  |
+| 11-7 | Cocktail page |:  |
+
+
+<a id="bugs"></a>
+## Bug Report
