@@ -19,6 +19,11 @@
     width: 100%;
     cursor: zoom-out;
   }
+
+  .error{
+    color:red;
+    font-weight:bold;
+  }
 </style>
 # Testing Document
 
@@ -720,25 +725,46 @@ Testing Table
 
 | Test Step | Action | Pass/Fail | Comments |
 |-----------|--------|-----------|-----------------|
-| 1 | Open Add Cocktail modal |:  |
-| 2 | Attempt to create with empty name |: |
-| 3 | Attempt to Create a Cocktail With a Duplicate Name |:  |
+| 1 | Open Add Cocktail modal |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.
+| 2 | Attempt to create with empty name |:<span class="tick">✔️</span> |
+| 3 | Attempt to Create a Cocktail With a Duplicate Name |:<span class="tick">✔️</span>  |
 | 4 | Enter a Valid Cocktail Name |:<span class="tick">✔️</span>|
-| 5 | Add Optional History |:<span class="tick">❌</span> | <span class="tick">🐞</span>Bug001
-| 6 | Add Optional Recipe |:  |
-| 7 | Add Ingredients (Optional) |:  |
-| 8 | Add a New Ingredient (Optional) |:  |
-| 9 | Create the Cocktail |:  |
-| 10 | Close the Modal |:  |
+| 5 | Add Optional History |:<span class="tick">✔️</span> | 
+| 6 | Add Optional Recipe |:<span class="tick">✔️</span>  |
+| 7 | Add Ingredients (Optional) |:<span class="tick">✔️</span>  |
+| 8 | Add a New Ingredient (Optional) |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug002 No message showing (destructive behaviour)
+| 9 | Create the Cocktail |:<span class="tick">✔️</span>  |
+| 10 | Close the Modal |:<span class="tick">✔️</span>  |
 | 11 | Post testing |:  |
-| 11-1 | History |:  |
-| 11-2 | Recipe |:  |
-| 11-3 | Customize |:  |
-| 11-4 | Delete cocktail |:  |
-| 11-5 | Add Image |:  |
-| 11-6 | Ingredients |:  |
-| 11-7 | Cocktail page |:  |
+| 11-1 | History |:<span class="tick">✔️</span>  |
+| 11-2 | Recipe |:<span class="tick">✔️</span>  |
+| 11-3 | Customize |:<span class="tick">✔️</span>  |
+| 11-4 | Delete cocktail |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug003 data needs a page refresh
+| 11-5 | Add Image |:<span class="tick">✔️</span>  |
+| 11-6 | Ingredients |:<span class="tick">✔️</span>  |
+| 11-7 | Cocktail page |:<span class="tick">✔️</span>  |
 
 
 <a id="bugs"></a>
+
 ## Bug Report
+
+<span class="tick">🐞</span>Bug001
+
+<p class="error">Stale data</p>
+Closing the add cocktail modal while there is data in the fields, leaves stale data on the next open
+
+<span class="tick">🐞</span>Bug002
+
+<p class="error">No message</p>
+Add an ingredient should display destructive behaviour
+
+<span class="tick">🐞</span>Bug003
+
+<p class="error">Data not live</p>
+Delete cocktail data needs a page refresh to show live data
+
+<span class="tick">🐞</span>Bug003
+
+<p class="error">Abnormal behaviour</p>
+Add cocktail creates an invalid JSON file, believe this is created by not clearing down an invalid ingredient before create cocktail
