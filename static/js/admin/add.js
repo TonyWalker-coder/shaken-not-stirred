@@ -49,6 +49,10 @@ document.getElementById("addCocktailForm")?.addEventListener("submit", async (e)
   e.stopPropagation();
   if (!nameIsValid) return;
 
+  // ⭐ BUG FIX: Clear stray inline ingredient data bug004
+  inlineInput.value = "";
+  inlineMsg.style.display = "none";
+
   const form = e.target;
 
   /* ---------------------------
@@ -199,4 +203,48 @@ function refreshIngredientCheckboxList(ingredients) {
     list.appendChild(div);
   });
 }
+/* ============================================================
+   CLEAR ALL FIELDS ON LOAD bug001
+   ============================================================ */
 
+export function resetAddCocktailFields() {
+  const form = document.getElementById("addCocktailForm");
+  if (!form) return;
+
+  // Reset form fields
+  form.reset();
+
+  // Clear validation state
+  nameIsValid = false;
+  createBtn.disabled = true;
+  nameMsg.style.display = "none";
+
+  // Explicitly clear optional fields
+  const historyField = document.getElementById("newCocktailHistory");
+  const recipeField = document.getElementById("newCocktailRecipe");
+  if (historyField) historyField.value = "";
+  if (recipeField) recipeField.value = "";
+
+  // Clear ingredient checkboxes
+  document
+    .querySelectorAll("#addCocktailModal input[type='checkbox']")
+    .forEach((cb) => (cb.checked = false));
+
+  // Clear inline ingredient UI
+  inlineMsg.style.display = "none";
+  inlineInput.value = "";
+}
+/* ============================================================
+   DISPLAY DESTRUCTIVE MESSAGE  bug002
+   ============================================================ */
+inlineInput?.addEventListener("input", () => {
+  const value = inlineInput.value.trim();
+
+  if (value) {
+    inlineMsg.textContent = "Adding a new ingredient will clear any selected ingredients.";
+    inlineMsg.style.display = "block";
+  } else {
+    inlineMsg.textContent = "";
+    inlineMsg.style.display = "none";
+  }
+});

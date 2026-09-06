@@ -1,5 +1,0 @@
-.venv/
-**/site-packages/
-**/django/**/static/admin/
-**/vendor/
-**/jquery/

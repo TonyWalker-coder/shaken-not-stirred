@@ -102,7 +102,7 @@ document.addEventListener("submit", async (e) => {
    This ensures all modals stay in sync after a deletion.
 */
 
-function refreshCocktailList(cocktails) {
+export function refreshCocktailList(cocktails) {
   /* HISTORY MODAL */
   const historyBlock = document.querySelector("#historyModal .history-list");
   if (historyBlock) {
@@ -151,12 +151,13 @@ function refreshCocktailList(cocktails) {
           <span class="item-name">${c.name}</span>
           <div class="item-actions">
             <button class="delete-btn"
-                    data-delete="cocktail"
-                    data-id="{{ cocktail.id }}"
-                    data-name="{{ cocktail.name|escapejs }}"
-                    data-child="true">
+              data-delete="cocktail"
+              data-id="${c.id}"
+              data-name="${c.name.replace(/"/g, '&quot;')}"
+              data-child="true">
               Delete
             </button>
+
 
           </div>
         </div>

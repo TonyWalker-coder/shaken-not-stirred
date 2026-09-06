@@ -24,6 +24,10 @@
     color:red;
     font-weight:bold;
   }
+    .fix{
+    color:green;
+    font-weight:bold;
+  }
 </style>
 # Testing Document
 
@@ -38,6 +42,8 @@
 - [CSS Validator](#css)
 - [Admin Workflow UI Validation](#admin)
 - [Bug Report](#bugs)
+- [Post‑Fix Verification](#postfixes)
+
 
 
 
@@ -358,6 +364,8 @@ C:\projects\shaken-not-stirred\static\js\admin\recipes.js
  I reviewed each warning, removed the redundant code, and re‑ran the validator. ESLint now reports no errors and no warnings, confirming that the JavaScript codebase is clean, modern, and fully compliant with ES2021 standards.
 
 **<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
+
+
 
 <a id="ruff"></a>
 
@@ -723,23 +731,23 @@ The following modals should be updated without the need for a page refresh.
 
 Testing Table
 
-| Test Step | Action | Pass/Fail | Comments |
-|-----------|--------|-----------|-----------------|
-| 1 | Open Add Cocktail modal |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.
-| 2 | Attempt to create with empty name |:<span class="tick">✔️</span> |
-| 3 | Attempt to Create a Cocktail With a Duplicate Name |:<span class="tick">✔️</span>  |
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open Add Cocktail modal |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.| :<span class="tick">⛑️</span> Fixed
+| 2 | Attempt to create with empty name |:<span class="tick">✔️</span> ||
+| 3 | Attempt to Create a Cocktail With a Duplicate Name |:<span class="tick">✔️</span>  ||
 | 4 | Enter a Valid Cocktail Name |:<span class="tick">✔️</span>|
-| 5 | Add Optional History |:<span class="tick">✔️</span> | 
-| 6 | Add Optional Recipe |:<span class="tick">✔️</span>  |
-| 7 | Add Ingredients (Optional) |:<span class="tick">✔️</span>  |
-| 8 | Add a New Ingredient (Optional) |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug002 No message showing (destructive behaviour)
+| 5 | Add Optional History |:<span class="tick">✔️</span> | |
+| 6 | Add Optional Recipe |:<span class="tick">✔️</span>  ||
+| 7 | Add Ingredients (Optional) |:<span class="tick">✔️</span>  ||
+| 8 | Add a New Ingredient (Optional) |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug002 No message showing (destructive behaviour).| :<span class="tick">⛑️</span> Fixed
 | 9 | Create the Cocktail |:<span class="tick">✔️</span>  |
 | 10 | Close the Modal |:<span class="tick">✔️</span>  |
 | 11 | Post testing |:  |
 | 11-1 | History |:<span class="tick">✔️</span>  |
 | 11-2 | Recipe |:<span class="tick">✔️</span>  |
 | 11-3 | Customize |:<span class="tick">✔️</span>  |
-| 11-4 | Delete cocktail |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug003 data needs a page refresh
+| 11-4 | Delete cocktail |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug003 data needs a page refresh.| :<span class="tick">⛑️</span> Fixed
 | 11-5 | Add Image |:<span class="tick">✔️</span>  |
 | 11-6 | Ingredients |:<span class="tick">✔️</span>  |
 | 11-7 | Cocktail page |:<span class="tick">✔️</span>  |
@@ -754,17 +762,53 @@ Testing Table
 <p class="error">Stale data</p>
 Closing the add cocktail modal while there is data in the fields, leaves stale data on the next open
 
+<span class="tick">🛠️</span>FIX
+
+<span class="fix">Added a proper reset function and hooked it into the modal engine.</span>
+
 <span class="tick">🐞</span>Bug002
 
 <p class="error">No message</p>
 Add an ingredient should display destructive behaviour
+
+<span class="tick">🛠️</span>FIX
+
+<span class="fix">Added a reactive UX message.</span>
 
 <span class="tick">🐞</span>Bug003
 
 <p class="error">Data not live</p>
 Delete cocktail data needs a page refresh to show live data
 
-<span class="tick">🐞</span>Bug003
+<span class="tick">🛠️</span>FIX
+
+<span class="fix">Added a refresh hook into the universal modal engine.</span>
+
+<span class="tick">🐞</span>Bug004
 
 <p class="error">Abnormal behaviour</p>
 Add cocktail creates an invalid JSON file, believe this is created by not clearing down an invalid ingredient before create cocktail
+
+<span class="tick">🛠️</span>FIX
+
+<span class="fix">Added a clean pre‑submit sanitiser.</span>
+
+<a id="postfixes"></a>
+
+## Post‑Fix Verification
+
+Following each bug fix or code change, I carried out a full post‑update validation pass to ensure the entire project remained stable, standards‑compliant, and free from regressions. This included re‑running all four validators used throughout development:
+
+### HTML Validation  
+All templates were re‑checked using the W3C HTML Validator to confirm that structural integrity, accessibility attributes, and semantic correctness were maintained after the fixes.
+
+### CSS Validation  
+Stylesheets were re‑validated using the W3C CSS Validator to ensure no new warnings or errors were introduced and that modern CSS features continued to behave as expected across browsers.
+
+### JavaScript Validation (ESLint)  
+After updating or refactoring any JavaScript modules, I re‑ran ESLint (`npx eslint .`) to verify that the codebase remained clean, consistent, and free from syntax issues, unused variables, or structural problems.
+
+### Python Validation (Ruff)  
+Backend changes were checked again using Ruff to confirm that the Django views, utilities, and JSON endpoints continued to meet linting standards and remained error‑free.
+
+Each fix was followed by targeted re‑testing of the affected feature, ensuring the behaviour was correct, the UI remained synchronised, and no regressions were introduced elsewhere. This post‑fix cycle demonstrates that testing was treated as an ongoing quality process rather than a simple top‑down checklist.

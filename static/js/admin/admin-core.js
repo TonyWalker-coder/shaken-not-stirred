@@ -1,5 +1,7 @@
 import { refreshHistoryModal } from "./history.js";
 import { refreshRecipesModal } from "./recipes.js";
+import { resetAddCocktailFields } from "./add.js";
+import { refreshCocktailList } from "./delete.js";
 
 /* ============================================================
    UNIVERSAL MODAL ENGINE (NO INLINE JS)
@@ -33,36 +35,51 @@ document.addEventListener("click", async (e) => {
   const openTarget = e.target.closest("[data-open]");
   const closeTarget = e.target.closest("[data-close]");
 
-  /* ---------------------------
-     OPEN MODAL
-     --------------------------- */
-  if (openTarget) {
-    const id = openTarget.dataset.open;
+/* ---------------------------
+   OPEN MODAL
+   --------------------------- */
+if (openTarget) {
+  const id = openTarget.dataset.open;
 
-    if (openTarget.dataset.child === "true") {
-      openModal(id);
-      return;
-    }
-
-    if (id === "ingredientsModal") return;
-
-    if (id === "imagesModal") {
-      const select = document.getElementById("imageCocktailSelect");
-      select.value = "";
-      refreshCocktailDropdown(select);
-    }
-
-    if (id === "historyModal") {
-      await refreshHistoryModal();   
-    }
-
-    if (id === "recipesModal") {
-    await refreshRecipesModal();
-    }
-
+  if (openTarget.dataset.child === "true") {
     openModal(id);
-
+    return;
   }
+
+  if (id === "ingredientsModal") return;
+
+  if (id === "imagesModal") {
+    const select = document.getElementById("imageCocktailSelect");
+    select.value = "";
+    refreshCocktailDropdown(select);
+  }
+
+  if (id === "historyModal") {
+    await refreshHistoryModal();   
+  }
+
+  if (id === "recipesModal") {
+    await refreshRecipesModal();
+  }
+
+  // ⭐ FIX: Reset fields when opening Add Cocktail modal
+  if (id === "addCocktailModal") {
+    resetAddCocktailFields();
+  }
+
+  // ⭐ FIX: Refresh delete modal on open
+  if (id === "deleteCocktailModal") {
+    const res = await fetch("/cocktails/list/json/", {
+      headers: { "X-Requested-With": "XMLHttpRequest" }
+    });
+
+    const data = await res.json();
+    refreshCocktailList(data.cocktails);
+  }
+
+  openModal(id);
+}
+
 
   /* ---------------------------
      CLOSE MODAL
