@@ -233,7 +233,9 @@ export function resetAddCocktailFields() {
   // Clear inline ingredient UI
   inlineMsg.style.display = "none";
   inlineInput.value = "";
+
 }
+
 /* ============================================================
    DISPLAY DESTRUCTIVE MESSAGE  bug002
    ============================================================ */

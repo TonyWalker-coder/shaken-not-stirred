@@ -176,11 +176,14 @@ document.addEventListener("click", (e) => {
 
 /* Populate add history modal */
 document.addEventListener("click", (e) => {
+
   const btn = e.target.closest("[data-open='addHistoryModal']");
   if (!btn) return;
 
   document.getElementById("addHistoryForm").action =
     `/history/add/${btn.dataset.id}/`;
+
+  document.getElementById("addHistoryText").value = "";
 });
 
 /* Populate delete history modal */

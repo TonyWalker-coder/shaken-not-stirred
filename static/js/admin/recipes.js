@@ -98,6 +98,7 @@ document.addEventListener("click", (e) => {
 
   document.getElementById("addRecipeForm").action =
     `/recipes/add/${btn.dataset.id}/`;
+  document.getElementById("addRecipeText").value = "";
 });
 
 /* Populate delete recipe modal */

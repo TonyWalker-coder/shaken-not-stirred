@@ -28,7 +28,12 @@
     color:green;
     font-weight:bold;
   }
+  .icon{
+    height:24px;
+  }
 </style>
+
+
 # Testing Document
 
 ## Table of Contents
@@ -733,7 +738,7 @@ Testing Table
 
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
-| 1 | Open Add Cocktail modal |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.| :<span class="tick">⛑️</span> Fixed
+| 1 | Open Add Cocktail modal |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug001 Close with data fails; All data fields remain stale.| :<span class="tick">⛑️</span> Fixed
 | 2 | Attempt to create with empty name |:<span class="tick">✔️</span> ||
 | 3 | Attempt to Create a Cocktail With a Duplicate Name |:<span class="tick">✔️</span>  ||
 | 4 | Enter a Valid Cocktail Name |:<span class="tick">✔️</span>|
@@ -747,11 +752,187 @@ Testing Table
 | 11-1 | History |:<span class="tick">✔️</span>  |
 | 11-2 | Recipe |:<span class="tick">✔️</span>  |
 | 11-3 | Customize |:<span class="tick">✔️</span>  |
-| 11-4 | Delete cocktail |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug003 data needs a page refresh.| :<span class="tick">⛑️</span> Fixed
+| 11-4 | Delete cocktail |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug003 live data needs a page refresh.| :<span class="tick">⛑️</span> Fixed
 | 11-5 | Add Image |:<span class="tick">✔️</span>  |
 | 11-6 | Ingredients |:<span class="tick">✔️</span>  |
 | 11-7 | Cocktail page |:<span class="tick">✔️</span>  |
 
+## History
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the history workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “History” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- All cocktails are listed.
+
+- Icons show the current state for each cocktail.
+
+- UI displays informational messages explaining the workflow.
+
+- Each cocktail will have one of the following icons
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> when there is no history associated with the cocktail.
+  - <img src="cocktails/static/cocktails/icons/history-ok.png" class="icon"> when the cocktail has a history.
+
+Missing icons will have an associated action of `Add` or where there is a history icon then an option of `Edit` both actions are followed by a `Delete` option.
+
+<img src="screenshoots/history.png">
+
+### 2. Attempt to Delete a missing history
+Action: Click the delete button when there is an <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> for the selected cocktail.
+
+Expected Result:
+
+- Modal remains open.
+
+- The UI will sit silent with no error or action.
+
+- The modal will wait for a valid action.
+
+- All cocktails will remain unchanged.
+
+### 3. Add a history to a cocktail
+Action: Add a history to a cocktail that has no history.
+
+Expected Result:
+
+- A child modal will open with a blank textarea.
+
+- The textarea will except text and keyboard icons.
+
+### 4. Aborting an add action
+Action: To abort or cancel a history during editing click the close button.
+
+Expected Result:
+
+- The child modal will close and the history modal will remain open.
+
+- The cocktail list and associated icons will remain unchanged.
+
+- There will be no error.
+
+- **If the user clicks outside the modal to abort both modals will close, this is the expected behaviour.**
+
+### 5. Saving an add action
+Action: To save a new history click the save button.
+
+Expected Result:
+
+- The child modal will close.
+
+- The modal message system will display **"Working"**.
+
+- The main modal will remain open.
+
+- The cocktail icon will update to reflect the cocktail now has a history.
+
+### 6. Edit a cocktail history
+Action: Edit an existing cocktail history.
+
+Expected Result:
+
+- A child modal will open with a textarea containing the current history.
+
+- The textarea will except text edits and keyboard icons.
+
+### 7. Aborting an edit action
+Action: To abort or cancel an edited history session, click the close button.
+
+Expected Result:
+
+- The child modal will close and the history modal will remain open.
+
+- The cocktail list and associated icons will remain unchanged.
+
+- The history will not be saved.
+
+- There will be no error.
+
+- **If the user clicks outside the modal to abort both modals will close, this is the expected behaviour.**
+
+### 8. Saving an edit action
+Action: To save an edited history click the save button.
+
+Expected Result:
+
+- The child modal will close.
+
+- The modal message system will display **"Working"**.
+
+- The main modal will remain open.
+
+- The cocktail icon will remain unchanged showing the cocktail to have a history.
+
+### 9. Delete a history
+Action: Delete an existing history.
+
+Expected Result:
+
+- The confirmation modal will open.
+
+- To cancel click the close button.
+  - This will close the confirmation modal.
+  - The main modal will remain open.
+  - There will be no change to the cocktail list.
+
+- The delete is completed by clicking the `Yes delete`
+
+### 10. After a successful Add or Delete action 
+Action: Modal action after an Add or Delete.
+
+Expected Result:
+
+- Cocktail list will update to reflect the action. 
+
+- An `add` action will change the associated <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to a <img src="cocktails/static/cocktails/icons/history-ok.png" class="icon"> 
+
+- The reverse for a confirmed `delete`. 
+
+Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “History” Modal |:  || :
+| 2 |  |:<span class="tick">✔️</span> ||
+| 3 |  |:<span class="tick">✔️</span>  ||
+| 4 |  |:<span class="tick">✔️</span>|
+| 5 |  |:<span class="tick">✔️</span>|
+| 6 |  |:<span class="tick">✔️</span>|
+| 7 |  |:<span class="tick">✔️</span>|
+| 8 |  |:<span class="tick">✔️</span>|
+| 9 |  |:<span class="tick">✔️</span>|
+| 10 |  |:<span class="tick">✔️</span>|
+
+
+
+<span class="tick">❌</span>
+
+<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.
+
+<span class="tick">⛑️</span> Fixed
+
+## Recipe
+
+
+
+
+
+
+
+
+Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.| :<span class="tick">⛑️</span> Fixed
+| 2 |  |:<span class="tick">✔️</span> ||
+| 3 |  |:<span class="tick">✔️</span>  ||
 
 <a id="bugs"></a>
 
