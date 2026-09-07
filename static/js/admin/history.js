@@ -34,7 +34,7 @@ import {
     const formData = new FormData(form);
     const childModalId = form.closest(".modal").id;
 
-    // Close the child modal (edit/add/delete)
+    // Close the child modal
     closeModal(childModalId);
 
     // Open the parent history modal
@@ -63,13 +63,14 @@ import {
     });
 
     const fullList = await listRes.json();
-
     refreshHistoryList(fullList.cocktails);
 
-    // Unified success message
-    if (data.message && data.message.trim().length > 0) {
-      modalMessage("historyModal", "success", data.message);
-    }
+    // Unified success message (mirrors recipe.js)
+    let msg = "History updated!";
+    if (id === "addHistoryForm") msg = "History added!";
+    if (id === "deleteHistoryForm") msg = "History deleted!";
+
+    modalMessage("historyModal", "success", msg);
   });
 });
 

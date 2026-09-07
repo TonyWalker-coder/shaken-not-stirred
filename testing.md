@@ -817,7 +817,6 @@ Expected Result:
 
 - There will be no error.
 
-- **If the user clicks outside the modal to abort both modals will close, this is the expected behaviour.**
 
 ### 5. Saving an add action
 Action: To save a new history click the save button.
@@ -826,9 +825,11 @@ Expected Result:
 
 - The child modal will close.
 
+- The main modal will remain open.
+
 - The modal message system will display **"Working"**.
 
-- The main modal will remain open.
+- The modal message system will display **"History added"**.
 
 - The cocktail icon will update to reflect the cocktail now has a history.
 
@@ -854,7 +855,6 @@ Expected Result:
 
 - There will be no error.
 
-- **If the user clicks outside the modal to abort both modals will close, this is the expected behaviour.**
 
 ### 8. Saving an edit action
 Action: To save an edited history click the save button.
@@ -863,9 +863,12 @@ Expected Result:
 
 - The child modal will close.
 
-- The modal message system will display **"Working"**.
 
 - The main modal will remain open.
+
+- The modal message system will display **"Working"**.
+
+- The modal message system will display **"History updated"**.
 
 - The cocktail icon will remain unchanged showing the cocktail to have a history.
 
@@ -884,6 +887,8 @@ Expected Result:
 - The delete is completed by clicking the `Yes delete`
   - This will close the confirmation modal.
   - The main modal will remain open.
+  - The modal message system will display **"Working"**.
+  - The modal message system will display **"History deleted"**.
 
 ### 10. After a successful Add or Delete action 
 Action: Modal action after an Add or Delete.
@@ -911,13 +916,6 @@ Testing Table
 | 9 | Delete a history |:<span class="tick">✔️</span>|| :
 | 10 | After a successful Add or Delete action |:<span class="tick">✔️</span>|| :
 
-
-
-<span class="tick">❌</span>
-
-<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.
-
-<span class="tick">⛑️</span> Fixed
 
 ## Recipe
 
@@ -979,7 +977,6 @@ Expected Result:
 
 - There will be no error.
 
-- **If the user clicks outside the modal to abort both modals will close, this is the expected behaviour.**
 
 ### 5. Saving an add action
 Action: To save a new recipe click the save button.
@@ -1018,7 +1015,6 @@ Expected Result:
 
 - There will be no error.
 
-- **If the user clicks outside the modal to abort both modals will close, this is the expected behaviour.**
 
 ### 8. Saving an edit action
 Action: To save an edited recipe click the save button.
@@ -1079,19 +1075,7 @@ Testing Table
 | 9 | Delete a recipe |:<span class="tick">✔️</span>|| :
 | 10 | After a successful Add or Delete action |:<span class="tick">✔️</span>|| :
 
-
-<span class="tick">❌</span>
-
-<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.
-
-<span class="tick">⛑️</span> Fixed
-
-
-
-
-
-
-
+## Customise Cocktail
 
 Testing Table
 
