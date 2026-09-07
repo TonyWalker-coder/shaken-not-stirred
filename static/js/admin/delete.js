@@ -4,7 +4,6 @@ import {
   openModal,
   getCSRFToken,
 } from "./admin-core.js";
-console.log("DELETE.JS LOADED");
 
 /* ============================================================
    DELETE COCKTAIL — OPEN CONFIRM MODAL

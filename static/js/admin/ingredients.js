@@ -99,7 +99,7 @@ document.addEventListener("click", async (e) => {
    ============================================================ */
 
 function refreshIngredientList(ingredients) {
-  console.log("REFRESH LIST:", ingredients); 
+
   const list = document.querySelector("#ingredientsModal .modal-list");
   if (!list) return;
 

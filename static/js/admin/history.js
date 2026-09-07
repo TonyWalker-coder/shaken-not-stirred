@@ -4,7 +4,6 @@ import {
   openModal
 } from "./admin-core.js";
 
-/*version: 2024-06-05*/
 
 /* ============================================================
    HISTORY — ADD / EDIT / DELETE (Unified Handler)
