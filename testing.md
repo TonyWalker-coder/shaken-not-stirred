@@ -882,6 +882,8 @@ Expected Result:
   - There will be no change to the cocktail list.
 
 - The delete is completed by clicking the `Yes delete`
+  - This will close the confirmation modal.
+  - The main modal will remain open.
 
 ### 10. After a successful Add or Delete action 
 Action: Modal action after an Add or Delete.
@@ -898,16 +900,16 @@ Testing Table
 
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
-| 1 | Open the “History” Modal |:  || :
-| 2 |  |:<span class="tick">✔️</span> ||
-| 3 |  |:<span class="tick">✔️</span>  ||
-| 4 |  |:<span class="tick">✔️</span>|
-| 5 |  |:<span class="tick">✔️</span>|
-| 6 |  |:<span class="tick">✔️</span>|
-| 7 |  |:<span class="tick">✔️</span>|
-| 8 |  |:<span class="tick">✔️</span>|
-| 9 |  |:<span class="tick">✔️</span>|
-| 10 |  |:<span class="tick">✔️</span>|
+| 1 | Open the “History” Modal |:<span class="tick">✔️</span>   || :
+| 2 | Attempt to Delete a missing history |:<span class="tick">✔️</span> || :
+| 3 | Add a history to a cocktail |:<span class="tick">✔️</span>  || :
+| 4 | Aborting an add action |:<span class="tick">✔️</span>|| :
+| 5 | Saving an add action |:<span class="tick">✔️</span>|| :
+| 6 | Edit a cocktail history |:<span class="tick">✔️</span>|| :
+| 7 | Aborting an edit action |:<span class="tick">✔️</span>|| :
+| 8 | Saving an edit action |:<span class="tick">✔️</span>|| :
+| 9 | Delete a history |:<span class="tick">✔️</span>|| :
+| 10 | After a successful Add or Delete action |:<span class="tick">✔️</span>|| :
 
 
 
@@ -918,6 +920,171 @@ Testing Table
 <span class="tick">⛑️</span> Fixed
 
 ## Recipe
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the recipe workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Recipe” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- All cocktails are listed.
+
+- Icons show the current state for each cocktail.
+
+- UI displays informational messages explaining the workflow.
+
+- Each cocktail will have one of the following icons
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> when there is no recipe associated with the cocktail.
+  - <img src="cocktails/static/cocktails/icons/recipe-ok.png" class="icon"> when the cocktail has a recipe.
+
+Missing icons will have an associated action of `Add` or where there is a recipe icon then an option of `Edit` both actions are followed by a `Delete` option.
+
+<img src="screenshoots/recipe.png">
+
+### 2. Attempt to Delete a missing recipe
+Action: Click the delete button when there is an <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> for the selected cocktail.
+
+Expected Result:
+
+- Modal remains open.
+
+- The UI will sit silent with no error or action.
+
+- The modal will wait for a valid action.
+
+- All cocktails will remain unchanged.
+
+### 3. Add a recipe to a cocktail
+Action: Add a recipe to a cocktail that has no recipe.
+
+Expected Result:
+
+- A child modal will open with a blank textarea.
+
+- The textarea will except text and keyboard icons.
+
+### 4. Aborting an add action
+Action: To abort or cancel a recipe during editing click the close button.
+
+Expected Result:
+
+- The child modal will close and the recipe modal will remain open.
+
+- The cocktail list and associated icons will remain unchanged.
+
+- There will be no error.
+
+- **If the user clicks outside the modal to abort both modals will close, this is the expected behaviour.**
+
+### 5. Saving an add action
+Action: To save a new recipe click the save button.
+
+Expected Result:
+
+- The child modal will close.
+
+- The modal message system will display **"Working"**.
+
+- The modal message system will display **"Recipe added"**.
+
+- The main modal will remain open.
+
+- The cocktail icon will update to reflect the cocktail now has a recipe.
+
+### 6. Edit a cocktail recipe
+Action: Edit an existing cocktail recipe.
+
+Expected Result:
+
+- A child modal will open with a textarea containing the current recipe.
+
+- The textarea will except text edits and keyboard icons.
+
+### 7. Aborting an edit action
+Action: To abort or cancel an edited recipe session, click the close button.
+
+Expected Result:
+
+- The child modal will close and the recipe modal will remain open.
+
+- The cocktail list and associated icons will remain unchanged.
+
+- The recipe will not be saved.
+
+- There will be no error.
+
+- **If the user clicks outside the modal to abort both modals will close, this is the expected behaviour.**
+
+### 8. Saving an edit action
+Action: To save an edited recipe click the save button.
+
+Expected Result:
+
+- The child modal will close.
+
+- The modal message system will display **"Working"**.
+
+- The modal message system will display **"Recipe updated"**.
+
+- The main modal will remain open.
+
+- The cocktail icon will remain unchanged showing the cocktail to have a recipe.
+
+### 9. Delete a recipe
+Action: Delete an existing recipe.
+
+Expected Result:
+
+- The confirmation modal will open.
+
+- To cancel click the close button.
+  - This will close the confirmation modal.
+  - The main modal will remain open.
+  - There will be no change to the cocktail list.
+
+- The delete is completed by clicking the `Yes delete`
+  - This will close the confirmation modal.
+  - The main modal will remain open.
+  - The modal message system will display **"Working"**.
+  - The modal message system will display **"Recipe deleted"**.
+
+### 10. After a successful Add or Delete action 
+Action: Modal action after an Add or Delete.
+
+Expected Result:
+
+- Cocktail list will update to reflect the action. 
+
+- An `add` action will change the associated <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to a <img src="cocktails/static/cocktails/icons/recipe-ok.png" class="icon"> 
+
+- The reverse for a confirmed `delete`. 
+
+Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the recipe Modal |:<span class="tick">✔️</span>   || :
+| 2 | Attempt to delete a missing recipe |:<span class="tick">✔️</span> || :
+| 3 | Add a history to a cocktail |:<span class="tick">✔️</span>  || :
+| 4 | Aborting an add action |:<span class="tick">✔️</span>|| :
+| 5 | Saving an add action |:<span class="tick">✔️</span>|| :
+| 6 | Edit a cocktail recipe |:<span class="tick">✔️</span>|| :
+| 7 | Aborting an edit action |:<span class="tick">✔️</span>|| :
+| 8 | Saving an edit action |:<span class="tick">✔️</span>|| :
+| 9 | Delete a recipe |:<span class="tick">✔️</span>|| :
+| 10 | After a successful Add or Delete action |:<span class="tick">✔️</span>|| :
+
+
+<span class="tick">❌</span>
+
+<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.
+
+<span class="tick">⛑️</span> Fixed
 
 
 
@@ -930,9 +1097,15 @@ Testing Table
 
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
-| 1 | |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.| :<span class="tick">⛑️</span> Fixed
-| 2 |  |:<span class="tick">✔️</span> ||
-| 3 |  |:<span class="tick">✔️</span>  ||
+| 1 | |:<span class="tick">✔️</span>  ||:
+| 2 | |:<span class="tick">✔️</span>  ||:
+| 3 | |:<span class="tick">✔️</span>  ||:
+
+<span class="tick">❌</span>
+
+<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.
+
+<span class="tick">⛑️</span> Fixed
 
 <a id="bugs"></a>
 
