@@ -31,6 +31,13 @@
   .icon{
     height:24px;
   }
+  .button{
+    padding:5px 10px; 
+    border:1px solid #555; 
+    border-radius:4px; 
+    font-weight:500
+  }
+
 </style>
 
 
@@ -579,7 +586,7 @@ Because of this, the expectations for the admin suite are intentionally high. Ea
 ## Add Cocktail
 
 ### Test Overview
-This test ensures the admin UI behaves consistently and cleanly throughout the cocktail‑creation workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+This test ensures the admin UI behaves consistently and cleanly throughout the **Add Cocktail** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
 
 ### Test Steps & Expected Results
 
@@ -596,7 +603,7 @@ Expected Result:
 - UI displays informational messages explaining the workflow.
 
 ### 2. Attempt to Create a Cocktail With a Null Name
-Action: Leave the name field empty and click `Create Cocktail`.
+Action: Leave the name field empty and click <span class="button">Create Cocktail</span>.
 
 Expected Result:
 
@@ -685,7 +692,7 @@ Expected Result:
 - UI displays a message explaining that adding a new ingredient clears previously selected ingredients (destructive behaviour).
 
 ### 9. Create the Cocktail
-Action: Click `Create Cocktail` with valid data.
+Action: Click <span class="button">Create Cocktail</span> with valid data.
 
 Expected Result:
 
@@ -701,7 +708,7 @@ Ingredient list remains populated with all ingredients, including any newly adde
 
 ### 10. Close the Modal
 Action:  
-Close the modal using the `close button` or `clicking outside the modal` at any time before creating a cocktail.
+Close the modal using the <span class="button">close button</span> or `clicking outside the modal` at any time before creating a cocktail.
 
 Expected Result:
 
@@ -734,7 +741,7 @@ The following modals should be updated without the need for a page refresh.
 
 1. Cocktail page, should display any new cocktail and associated data.
 
-Testing Table
+### Testing Table
 
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
@@ -760,7 +767,7 @@ Testing Table
 ## History
 
 ### Test Overview
-This test ensures the admin UI behaves consistently and cleanly throughout the history workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+This test ensures the admin UI behaves consistently and cleanly throughout the **History** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
 
 ### Test Steps & Expected Results
 
@@ -780,7 +787,7 @@ Expected Result:
   - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> when there is no history associated with the cocktail.
   - <img src="cocktails/static/cocktails/icons/history-ok.png" class="icon"> when the cocktail has a history.
 
-Missing icons will have an associated action of `Add` or where there is a history icon then an option of `Edit` both actions are followed by a `Delete` option.
+Missing icons will have an associated action of <span class="button">Add</span> or where there is a history icon then an option of <span class="button">Edit</span> both actions are followed by a <span class="button">Delete</span> option.
 
 <img src="screenshoots/history.png">
 
@@ -884,7 +891,7 @@ Expected Result:
   - The main modal will remain open.
   - There will be no change to the cocktail list.
 
-- The delete is completed by clicking the `Yes delete`
+- The delete is completed by clicking the <span class="button">Yes delete</span>
   - This will close the confirmation modal.
   - The main modal will remain open.
   - The modal message system will display **"Working"**.
@@ -897,11 +904,11 @@ Expected Result:
 
 - Cocktail list will update to reflect the action. 
 
-- An `add` action will change the associated <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to a <img src="cocktails/static/cocktails/icons/history-ok.png" class="icon"> 
+- An <span class="button">add</span> action will change the associated <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to a <img src="cocktails/static/cocktails/icons/history-ok.png" class="icon"> 
 
-- The reverse for a confirmed `delete`. 
+- The reverse for a confirmed <span class="button">delete</span>. 
 
-Testing Table
+### Testing Table
 
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
@@ -920,7 +927,7 @@ Testing Table
 ## Recipe
 
 ### Test Overview
-This test ensures the admin UI behaves consistently and cleanly throughout the recipe workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+This test ensures the admin UI behaves consistently and cleanly throughout the **Recipe** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
 
 ### Test Steps & Expected Results
 
@@ -940,12 +947,12 @@ Expected Result:
   - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> when there is no recipe associated with the cocktail.
   - <img src="cocktails/static/cocktails/icons/recipe-ok.png" class="icon"> when the cocktail has a recipe.
 
-Missing icons will have an associated action of `Add` or where there is a recipe icon then an option of `Edit` both actions are followed by a `Delete` option.
+Missing icons will have an associated action of <span class="button">Add</span> or where there is a recipe icon then an option of <span class="button">Edit</span> both actions are followed by a <span class="button">Delete</span> option.
 
 <img src="screenshoots/recipe.png">
 
 ### 2. Attempt to Delete a missing recipe
-Action: Click the delete button when there is an <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> for the selected cocktail.
+Action: Click the <span class="button">delete button</span> when there is an <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> for the selected cocktail.
 
 Expected Result:
 
@@ -1043,7 +1050,7 @@ Expected Result:
   - The main modal will remain open.
   - There will be no change to the cocktail list.
 
-- The delete is completed by clicking the `Yes delete`
+- The delete is completed by clicking the <span class="button">Yes delete</span>
   - This will close the confirmation modal.
   - The main modal will remain open.
   - The modal message system will display **"Working"**.
@@ -1056,11 +1063,11 @@ Expected Result:
 
 - Cocktail list will update to reflect the action. 
 
-- An `add` action will change the associated <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to a <img src="cocktails/static/cocktails/icons/recipe-ok.png" class="icon"> 
+- An <span class="button">add</span> action will change the associated <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to a <img src="cocktails/static/cocktails/icons/recipe-ok.png" class="icon"> 
 
-- The reverse for a confirmed `delete`. 
+- The reverse for a confirmed <span class="button">delete</span>. 
 
-Testing Table
+### Testing Table
 
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
@@ -1077,7 +1084,82 @@ Testing Table
 
 ## Customise Cocktail
 
-Testing Table
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Customise Cocktail** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Customise Cocktail” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- The dropdown menu will list all available cocktails and ingredients.
+
+- UI displays informational messages explaining the workflow.
+
+### 2. Select a cocktail
+Select a cocktail from the drop down menu.
+
+Expected Result:
+
+- Modal messaging system will display "Working".
+
+- The modal will expand to show the list of ingredients.
+
+- The ingredient list will indicate via an icon which ingredient are used in the selected cocktail.
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> Indicates that ingredient is not used in the selected cocktail.
+  - <img src="cocktails/static/cocktails/icons/ingredient-ok.png" class="icon"> Indicates that ingredient **is used** in the selected cocktail.
+- Depending on whether the ingredient is being used by the cocktail or not, the user will have the option to <span class="button">Add</span> or <span class="button">Remove</span> an ingredient.
+
+<img src="screenshoots/customise.png">
+
+### 3. Select the **Add** option
+Click the <span class="button">Add</span> button next to any ingredient.
+
+Expected Result:
+
+- The <span class="button">Add</span> or <span class="button">Remove</span> options while destructive are also a toggle action so no warning or confirmation messages are displayed, This is the expected behaviour.
+
+- Modal messaging system will display "Working".
+
+- The ingredient list will update to show new status.
+
+- The ingredient state will change to present in the cocktail.
+  - <img src="cocktails/static/cocktails/icons/ingredient-ok.png" class="icon"> icon.
+  - and a <span class="button">Remove</span> button.
+
+### 4. Select the **Remove** option
+Click the <span class="button">Remove</span> button next to any ingredient.
+
+Expected Result:
+
+- The <span class="button">Add</span> or <span class="button">Remove</span> options while destructive are also a toggle action so no warning or confirmation messages are displayed, This is the expected behaviour.
+
+- Modal messaging system will display "Working".
+
+- The ingredient list will update to show new status.
+
+- The ingredient state will change to present in the cocktail.
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> icon.
+  - and a <span class="button">Add</span> button.
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “Customise Cocktail” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Select a cocktail|:<span class="tick">✔️</span>  ||:
+| 3 | Select the `Add` option|:<span class="tick">✔️</span>  ||:
+| 4 | Select the `Remove` option|:<span class="tick">✔️</span>  ||:
+
+## Ingredients
+
+
+
+
+### Testing Table
 
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
