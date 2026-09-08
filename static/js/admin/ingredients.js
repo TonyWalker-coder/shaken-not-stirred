@@ -26,7 +26,8 @@ document.addEventListener("submit", async (e) => {
   const data = await res.json();
 
   if (data.error) {
-    modalMessage("ingredientsModal", "error", data.message);
+    modalMessage("ingredientsModal", "error", data.message) 
+         form.reset();
     return;
   }
 
@@ -54,12 +55,17 @@ document.addEventListener("submit", async (e) => {
 
   if (data.error) {
     modalMessage("editIngredientModal", "error", data.message);
+
+
+    
     return;
   }
 
+
+
   closeModal("editIngredientModal");
   refreshIngredientList(data.ingredients);
-  modalMessage("ingredientsModal", "success", "Ingredient updated!");
+  modalMessage("ingredientsModal", "success", "Ingredient updated!.....");
 });
 
 

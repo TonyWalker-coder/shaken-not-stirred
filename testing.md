@@ -9,6 +9,11 @@
  .tick{
   font-size:1.5rem;
  }
+    .screenshot-s {
+    width: 600px;
+    transition: width 0.3s ease;
+    cursor: zoom-in;
+  }
    .screenshot {
     width: 600px;
     transition: width 0.3s ease;
@@ -78,11 +83,11 @@ The layout has been tested across different break points, with different break p
 
 *example screen shoots*
 
-<img src="screenshoots/responsive-index.png" class="screenshot">
+<img src="screenshoots/responsive-index.png" class="screenshot-s">
 
-<img src="screenshoots/responsive-cocktail.png" class="screenshot">
+<img src="screenshoots/responsive-cocktail.png" class="screenshot-s">
 
-<img src="screenshoots/responsive-admin.png" class="screenshot">
+<img src="screenshoots/responsive-admin.png" class="screenshot-s">
 
 ### Accessibility
 
@@ -1151,10 +1156,142 @@ Expected Result:
 |-----------|--------|-----------|-----------------|--------|
 | 1 | Open the “Customise Cocktail” Modal|:<span class="tick">✔️</span>  ||:
 | 2 | Select a cocktail|:<span class="tick">✔️</span>  ||:
-| 3 | Select the `Add` option|:<span class="tick">✔️</span>  ||:
-| 4 | Select the `Remove` option|:<span class="tick">✔️</span>  ||:
+| 3 | Select the **Add** option|:<span class="tick">✔️</span>  ||:
+| 4 | Select the **Remove** option|:<span class="tick">✔️</span>  ||:
 
 ## Ingredients
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Ingredients** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Ingredients” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- Live data: The list of ingredients will include any ingredients added via **add cocktail** in this session.
+
+- UI displays informational messages and buttons explaining the workflow.
+
+### 2. Modal view
+
+Expected Result:
+
+- Modal show the full list of ingredients available.
+
+- The list will include any newly created ingredients.
+
+- This modal will allow you add a new ingredient via the add option.
+
+- This modal will also allow you edit/delete existing ingredient.
+
+- Ingredients will have 1 of 2 icons.
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to show the ingredient has not been used in a cocktail yet.
+  - <img src="cocktails/static/cocktails/icons/ingredient-ok.png" class="icon"> to show the ingredient is used in 1 or more cocktails.
+
+
+### 3. Add a duplicate ingredient in any case
+
+Expected Result:
+
+- Modal message system will display a warning <span class="error">"Ingredient '?' already exists"</span>.
+
+- No new ingredient will be added.
+
+- The modal will remain open.
+
+### 4. Add a new ingredient
+
+Expected Result:
+
+- Modal message system will display a **"Ingredient added!"**.
+
+- The ingredients list will update to include the new ingredient.
+
+- The new ingredient will have a <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> icon as it will not yet be used in a cocktail.
+
+### 5. Delete an unused ingredient
+
+Expected Result:
+
+- If the ingredient has a <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> icon it is unused and can be deleted.
+
+- The modal message system will display **"Ingredient deleted!"**
+  
+- The ingredient will be removed from the List and the list updated live.
+  
+- The modal will remain open
+
+### 6. Delete an ingredient that is being used
+
+Expected Result:
+
+- If the ingredient has a <img src="cocktails/static/cocktails/icons/ingredient-ok.png" class="icon"> icon it is in used and can not be deleted.
+
+- The modal message system will display <span class="error">Cannot delete: ingredient is used.<span>
+  
+- No ingredient will be deleted.
+  
+- The modal will remain open
+
+### 7. Edit an ingredient
+
+Ingredient names can be edited via the <span class="button">Edit</span>
+
+Expected Result:
+
+- A child edit modal will open displaying the ingredient name in an edit field.
+
+- The edit is actioned via the <span class="button">Save</span> button.
+
+- The child modal will close.
+
+- The modal message system will display **"Ingredient updated!"**.
+
+- The ingredients list will be updated with the newly named ingredient.
+
+- **NOTE:** Case‑only edits do not change the displayed value because ingredient names are normalised to lowercase by design. The modal will still show "Ingredient updated!", which is the expected behaviour.
+
+- The modal will remain open.
+
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “Ingredients” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Modal view|:<span class="tick">✔️</span>  ||:
+| 3 | Add a duplicate ingredient in any case|:<span class="tick">✔️</span>  ||:
+| 4 | Add a new ingredient|:<span class="tick">✔️</span>  ||:
+| 5 | Delete an unused ingredient|:<span class="tick">✔️</span>  ||:
+| 6 | Delete an ingredient that is being used|:<span class="tick">✔️</span>  ||:
+| 7 | Edit an ingredient|:<span class="tick">✔️</span>  ||:
+
+
+## Images
+
+
+
+
+
+
+- The ingredients list will update to include the new ingredient.
+
+- The new ingredient will have a <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> icon as it will not yet be used in a cocktail.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
