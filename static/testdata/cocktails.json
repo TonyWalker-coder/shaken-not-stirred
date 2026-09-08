@@ -1836,7 +1836,7 @@
     "model": "admin.logentry",
     "pk": 142,
     "fields": {
-        "action_time": "2026-04-23T08:11:39.000Z",
+        "action_time": "2026-04-23T08:11:39Z",
         "user": 1,
         "content_type": 7,
         "object_id": "21",
@@ -3183,8 +3183,8 @@
     "model": "sessions.session",
     "pk": "n854bggux294uscw3yw8w3yg1n961xp1",
     "fields": {
-        "session_data": "eyJpc19hZG1pbiI6dHJ1ZX0:1wylOz:LHDJCvUIzX8P9UwdAi6VEOCJZPM-UkFJBRAH0gU0AS8",
-        "expire_date": "2026-09-08T07:16:57.660Z"
+        "session_data": "eyJpc19hZG1pbiI6dHJ1ZX0:1x3rni:fVQpangNGDCHU3uKuq6felPexPeSXO5QNg04flumAF8",
+        "expire_date": "2026-09-22T09:07:34.310Z"
     }
 },
 {
@@ -3199,224 +3199,224 @@
     "model": "cocktails.ingredient",
     "pk": 23,
     "fields": {
-        "name": "Coconut Rum"
+        "name": "coconut rum"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 24,
     "fields": {
-        "name": "Dark Rum"
+        "name": "dark rum"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 25,
     "fields": {
-        "name": "Orange Juice"
+        "name": "orange juice"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 26,
     "fields": {
-        "name": "Pineapple Juice"
+        "name": "pineapple juice"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 27,
     "fields": {
-        "name": "Grenadine"
+        "name": "grenadine"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 28,
     "fields": {
-        "name": "Crushed Ice"
+        "name": "crushed ice"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 29,
     "fields": {
-        "name": "Vodka"
+        "name": "vodka"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 30,
     "fields": {
-        "name": "Tomato Juice"
+        "name": "tomato juice"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 31,
     "fields": {
-        "name": "Lemon Juice"
+        "name": "lemon juice"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 32,
     "fields": {
-        "name": "Worcestershire Sauce"
+        "name": "worcestershire sauce"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 33,
     "fields": {
-        "name": "Tabasco"
+        "name": "tabasco"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 34,
     "fields": {
-        "name": "White Rum"
+        "name": "white rum"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 35,
     "fields": {
-        "name": "Blue Curaçao"
+        "name": "blue curaçao"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 36,
     "fields": {
-        "name": "Cream of Coconut"
+        "name": "cream of coconut"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 37,
     "fields": {
-        "name": "Lemonade"
+        "name": "lemonade"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 38,
     "fields": {
-        "name": "Ice"
+        "name": "ice"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 39,
     "fields": {
-        "name": "Tahoe Blue Vodka"
+        "name": "tahoe blue vodka"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 40,
     "fields": {
-        "name": "Lime"
+        "name": "lime"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 41,
     "fields": {
-        "name": "Sugar"
+        "name": "sugar"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 42,
     "fields": {
-        "name": "Cachaça"
+        "name": "cachaça"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 43,
     "fields": {
-        "name": "Citrus Vodka"
+        "name": "citrus vodka"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 44,
     "fields": {
-        "name": "Cointreau"
+        "name": "cointreau"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 45,
     "fields": {
-        "name": "Orange Liqueur"
+        "name": "orange liqueur"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 46,
     "fields": {
-        "name": "Lime Juice"
+        "name": "lime juice"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 47,
     "fields": {
-        "name": "Cranberry Juice"
+        "name": "cranberry juice"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 48,
     "fields": {
-        "name": "Gold Rum"
+        "name": "gold rum"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 49,
     "fields": {
-        "name": "Cola"
+        "name": "cola"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 50,
     "fields": {
-        "name": "Gin"
+        "name": "gin"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 51,
     "fields": {
-        "name": "Dry Vermouth"
+        "name": "dry vermouth"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 52,
     "fields": {
-        "name": "Olive Brine"
+        "name": "olive brine"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 53,
     "fields": {
-        "name": "Sambuca"
+        "name": "sambuca"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 54,
     "fields": {
-        "name": "Irish Cream Liqueur"
+        "name": "irish cream liqueur"
     }
 },
 {
@@ -3430,133 +3430,133 @@
     "model": "cocktails.ingredient",
     "pk": 56,
     "fields": {
-        "name": "Triple Sec"
+        "name": "triple sec"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 57,
     "fields": {
-        "name": "Tequila"
+        "name": "tequila"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 58,
     "fields": {
-        "name": "Light Rum"
+        "name": "light rum"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 59,
     "fields": {
-        "name": "Simple Syrup"
+        "name": "simple syrup"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 60,
     "fields": {
-        "name": "Jamaican Rum"
+        "name": "jamaican rum"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 61,
     "fields": {
-        "name": "Orange Curaçao"
+        "name": "orange curaçao"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 62,
     "fields": {
-        "name": "Orgeat"
+        "name": "orgeat"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 63,
     "fields": {
-        "name": "Agave Syrup"
+        "name": "agave syrup"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 64,
     "fields": {
-        "name": "Kosher salt"
+        "name": "kosher salt"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 65,
     "fields": {
-        "name": "Bourbon"
+        "name": "bourbon"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 66,
     "fields": {
-        "name": "Fresh Mint Leaves"
+        "name": "fresh mint leaves"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 67,
     "fields": {
-        "name": "Club soda"
+        "name": "club soda"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 68,
     "fields": {
-        "name": "Pisco"
+        "name": "pisco"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 69,
     "fields": {
-        "name": "Egg White"
+        "name": "egg white"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 70,
     "fields": {
-        "name": "Grapefruit Juice"
+        "name": "grapefruit juice"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 71,
     "fields": {
-        "name": "Frozen Strawberries"
+        "name": "frozen strawberries"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 72,
     "fields": {
-        "name": "Strawberries"
+        "name": "strawberries"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 73,
     "fields": {
-        "name": "Sugar syrup"
+        "name": "sugar syrup"
     }
 },
 {
     "model": "cocktails.ingredient",
     "pk": 74,
     "fields": {
-        "name": "Rye whiskey"
+        "name": "rye whiskey"
     }
 },
 {
@@ -3669,9 +3669,9 @@
         "name": "Kamikaze",
         "image_url": "cocktails/buttons/kamikaze.jpg",
         "ingredients": [
+            56,
             29,
-            46,
-            56
+            46
         ]
     }
 },
@@ -3682,15 +3682,15 @@
         "name": "Long Island Iced Tea",
         "image_url": "cocktails/buttons/long-island-iced-tea.jpg",
         "ingredients": [
+            56,
+            57,
+            58,
+            59,
             29,
             31,
             38,
             49,
-            50,
-            56,
-            57,
-            58,
-            59
+            50
         ]
     }
 },
@@ -3701,14 +3701,14 @@
         "name": "Mai Tai",
         "image_url": "cocktails/buttons/mai-tai.jpg",
         "ingredients": [
+            59,
+            60,
+            61,
             24,
             28,
             34,
             40,
             46,
-            59,
-            60,
-            61,
             62
         ]
     }
@@ -3720,11 +3720,11 @@
         "name": "Margarita",
         "image_url": "cocktails/buttons/margarita.jpg",
         "ingredients": [
-            38,
-            46,
             56,
             57,
             61,
+            38,
+            46,
             63,
             64
         ]
@@ -3737,8 +3737,8 @@
         "name": "Mint Julep",
         "image_url": "cocktails/buttons/mint-julep.jpg",
         "ingredients": [
-            28,
             59,
+            28,
             65,
             66
         ]
@@ -3751,10 +3751,10 @@
         "name": "Mojito",
         "image_url": "cocktails/buttons/mojito.jpg",
         "ingredients": [
+            59,
             28,
             34,
             46,
-            59,
             66,
             67
         ]
@@ -3781,9 +3781,9 @@
         "name": "Pisco Sour",
         "image_url": "cocktails/buttons/pisco-sour.jpg",
         "ingredients": [
+            59,
             38,
             46,
-            59,
             68,
             69
         ]
@@ -3824,10 +3824,10 @@
         "name": "Strawberry Daiquiri",
         "image_url": "cocktails/buttons/strawberry-daiquiri.jpg",
         "ingredients": [
+            59,
             34,
             38,
             46,
-            59,
             71
         ]
     }
@@ -4314,7 +4314,7 @@
     "fields": {
         "title": "Bloody Mary",
         "author_name": "Tony",
-        "created_at": "2026-08-24T15:51:50.823Z"
+        "created_at": "2026-09-08T09:02:49.754Z"
     }
 },
 {
@@ -4324,7 +4324,7 @@
         "thread": 15,
         "author_name": "Tony",
         "message": "Hi I have done some research and found an updated history for a Bloody Mary to follow in the next thread",
-        "created_at": "2026-08-24T15:51:50.886Z"
+        "created_at": "2026-09-08T09:02:49.787Z"
     }
 },
 {
@@ -4334,7 +4334,7 @@
         "thread": 15,
         "author_name": "Tony",
         "message": "The Bloody Mary was invented in the 1920s by French bartender Fernand \"Pete\" Petiot at Harry's New York Bar in Paris. He combined equal parts vodka and tomato juice. When Petiot moved to New York in the 1930s, he added salt, pepper, lemon, Worcestershire sauce, and Tabasco to enhance the flavor.",
-        "created_at": "2026-08-25T07:18:25.719Z"
+        "created_at": "2026-09-08T09:02:49.822Z"
     }
 },
 {
@@ -4344,7 +4344,7 @@
         "thread": 15,
         "author_name": "Admin",
         "message": "Thank you I have updated the sites history, So thank you once again for you contribution.",
-        "created_at": "2026-08-25T07:19:32.810Z"
+        "created_at": "2026-09-08T09:02:49.853Z"
     }
 }
 ]

@@ -42,6 +42,11 @@
     border-radius:4px; 
     font-weight:500
   }
+ hr{
+  border: 1px solid #ccc;
+ }
+
+
 
 </style>
 
@@ -1323,6 +1328,8 @@ Closing the add cocktail modal while there is data in the fields, leaves stale d
 
 <span class="fix">Added a proper reset function and hooked it into the modal engine.</span>
 
+`--------------------------------------------------------------`
+
 <span class="tick">🐞</span>Bug002
 
 <p class="error">No message</p>
@@ -1332,6 +1339,8 @@ Add an ingredient should display destructive behaviour
 
 <span class="fix">Added a reactive UX message.</span>
 
+`--------------------------------------------------------------`
+
 <span class="tick">🐞</span>Bug003
 
 <p class="error">Data not live</p>
@@ -1340,6 +1349,8 @@ Delete cocktail data needs a page refresh to show live data
 <span class="tick">🛠️</span>FIX
 
 <span class="fix">Added a refresh hook into the universal modal engine.</span>
+
+`--------------------------------------------------------------`
 
 <span class="tick">🐞</span>Bug004
 
@@ -1351,6 +1362,16 @@ Add cocktail creates an invalid JSON file, believe this is created by not cleari
 <span class="fix">Added a clean pre‑submit sanitiser.</span>
 
 <a id="postfixes"></a>
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature001</span>
+
+### Database Normalisation Update (Ingredients)
+
+As part of preparing the new JSON dataset, I performed a one‑time database normalisation step to ensure all ingredient names were stored in lowercase. This was done to maintain consistency across the UI, prevent duplicate entries caused by case variations (e.g., “Mint” vs “mint”), and align with the system’s existing behaviour where ingredient names are normalised to lowercase on save. A batch update was executed to convert all existing ingredient records to lowercase, and this change is reflected in the commit history.
+
+<hr style="border: 1px solid #ccc;">
 
 ## Post‑Fix Verification
 
