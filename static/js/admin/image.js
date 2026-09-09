@@ -135,7 +135,7 @@ document.addEventListener("submit", async (e) => {
   }
 
   closeModal("assignImageConfirmModal");
-  resetImageCocktailSelect();
+  resetAssignState();
   modalMessage("imagesModal", "success", "Image assigned!");
 
   await refreshImageList();   // unified refresh
@@ -195,3 +195,14 @@ function updateAssignButtons(enabled) {
       btn.classList.toggle("disabled-btn", !enabled);
     });
 }
+function resetAssignState() {
+  resetImageCocktailSelect();
+  updateAssignButtons(false);
+}
+
+document.addEventListener("modalClosed", (e) => {
+  if (e.detail.modalId !== "assignImageConfirmModal") return;
+
+  resetImageCocktailSelect();
+  updateAssignButtons(false);
+});

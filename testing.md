@@ -1300,9 +1300,97 @@ Expected Result:
 
 - Modal opens cleanly with no layout shift.
 
-- Live data: The list of ingredients will include any ingredients added via **add cocktail** in this session.
-
 - UI displays informational messages and buttons explaining the workflow.
+
+- the <span class="button">Assign</span> Buttons remain under an opaque filler while inactive.
+
+
+
+### 2. Upload a new image
+
+The option will allow a use to upload new cocktail images vis the OS file manger
+
+Expected Result:
+
+- Clicking <span class="button">Choose File</span> will open the OS file manger.
+
+- After file selection the edit area will contain the selected filename.
+
+- Clicking <span class="button">Upload</span> will copy the selected file to the cocktail images area.
+
+- The modal message system will display **Image uploaded!**
+
+- Live data the list of available images will be refreshed to include the new image.
+
+- Errors are handled by the browser.
+
+- The file selection will be cleared.
+
+### 3. Aborting the Upload of a new image
+
+The user can back out of the file upload at any time before clicking <span class="button">Upload</span>
+
+Expected Result:
+
+- The file selection area may keep the selected filename depending on when the operation was aborted, this is an unavoidable consequence of aborting before the upload.
+
+- The modal will remain open waiting for the next attempt or any other valid action.
+
+### 4. Uploading an image that has already been uploaded
+
+Uploading the same file more then once
+
+Expected Result:
+
+- The file system treats each file selection and upload as a new file silently.
+
+- The upload function treats each upload as a new file action silently.
+
+- No errors are displayed
+
+- The original file will be overwritten.
+
+- the modal will remain open waiting for the next valid option.
+
+
+### 5. Select a cocktail
+
+Select a cocktail from the drop down menu of available cocktails.
+
+Expected Result:
+
+- The <span class="button">Assign</span> buttons will be made available to click
+
+### 6. Assigning an image
+
+Click the <span class="button">Assign</span> next to any image.
+
+Expected Result:
+
+- The child confirmation modal will open.
+
+- The modal will display the current image and the newly selected image.
+
+- The process is completed by clicking <span class="button">Assign Image"</span>
+
+- The child modal will close.
+
+- The modal message system will display **Image assigned!**
+
+- The file selection area will clear.
+
+- The <span class="button">Assign"</span> buttons will become unavailable once again.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

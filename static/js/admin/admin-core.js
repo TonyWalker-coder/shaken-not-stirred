@@ -14,13 +14,22 @@ export function openModal(id) {
 
 export function closeModal(id) {
   const modal = document.getElementById(id);
-  if (modal) modal.classList.add("hidden");
+
+  if (modal) {
+    modal.classList.add("hidden");
+
+    document.dispatchEvent(
+      new CustomEvent("modalClosed", {
+        detail: { modalId: id }
+      })
+    );
+  }
 }
 
 /* Backdrop click closes modal */
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("modal")) {
-    e.target.classList.add("hidden");
+    closeModal(e.target.id);
   }
 });
 
