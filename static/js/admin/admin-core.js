@@ -90,6 +90,22 @@ if (openTarget) {
   }
 });
 
+export function resetImageCocktailSelect() {
+  const select = document.getElementById("imageCocktailSelect");
+
+  if (!select) return;
+
+  select.value = "";
+
+  document
+    .querySelectorAll("[data-open='assignImageConfirmModal']")
+    .forEach(btn => {
+      btn.disabled = true;
+      btn.setAttribute("aria-disabled", "true");
+      btn.classList.add("disabled-btn");
+    });
+}
+
 
 /* ============================================================
    NEW MESSAGE SYSTEM

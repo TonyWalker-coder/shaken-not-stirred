@@ -2,7 +2,8 @@ import {
   modalMessage,
   closeModal,
   openModal,
-  getCSRFToken
+  getCSRFToken,
+  resetImageCocktailSelect
 } from "./admin-core.js";
 
 /* ============================================================
@@ -134,6 +135,7 @@ document.addEventListener("submit", async (e) => {
   }
 
   closeModal("assignImageConfirmModal");
+  resetImageCocktailSelect();
   modalMessage("imagesModal", "success", "Image assigned!");
 
   await refreshImageList();   // unified refresh
@@ -165,11 +167,31 @@ async function refreshImageList() {
     item.innerHTML = `
       <img src="/static/cocktails/buttons/${img}?v=${Date.now()}" class="item-thumb" />
       <p class="assign-image-filename">${img}</p>
-      <button class="add-btn" data-open="assignImageConfirmModal" data-image="${img}">
+      <button class="add-btn disabled-btn" data-open="assignImageConfirmModal" data-image="${img}" disabled aria-disabled="true">
         Assign
       </button>
     `;
 
     container.appendChild(item);
   });
+
+  const select = document.getElementById("imageCocktailSelect");
+  updateAssignButtons(select && select.value !== "");
+  ``
+}
+
+document.addEventListener("change", (e) => {
+  if (e.target.id !== "imageCocktailSelect") return;
+
+  updateAssignButtons(e.target.value !== "");
+});
+
+function updateAssignButtons(enabled) {
+  document
+    .querySelectorAll("[data-open='assignImageConfirmModal']")
+    .forEach(btn => {
+      btn.disabled = !enabled;
+      btn.setAttribute("aria-disabled", String(!enabled));
+      btn.classList.toggle("disabled-btn", !enabled);
+    });
 }

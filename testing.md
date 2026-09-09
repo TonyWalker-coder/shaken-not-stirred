@@ -1262,6 +1262,16 @@ Expected Result:
 
 - The modal will remain open.
 
+### 8. Aborting an edit or add
+
+Closing a child add/edit modal before committing
+
+Expected Result:
+
+- The child modal will close with no error.
+
+- No data will be changed and the ingredients list remains the same.
+
 
 ### Testing Table
 
@@ -1274,11 +1284,25 @@ Expected Result:
 | 5 | Delete an unused ingredient|:<span class="tick">✔️</span>  ||:
 | 6 | Delete an ingredient that is being used|:<span class="tick">✔️</span>  ||:
 | 7 | Edit an ingredient|:<span class="tick">✔️</span>  ||:
+| 8 | Aborting an edit or add|:<span class="tick">✔️</span>  ||:
 
 
 ## Images
 
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Images** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
 
+### Test Steps & Expected Results
+
+### 1. Open the “Images” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- Live data: The list of ingredients will include any ingredients added via **add cocktail** in this session.
+
+- UI displays informational messages and buttons explaining the workflow.
 
 
 
@@ -1370,6 +1394,50 @@ Add cocktail creates an invalid JSON file, believe this is created by not cleari
 ### Database Normalisation Update (Ingredients)
 
 As part of preparing the new JSON dataset, I performed a one‑time database normalisation step to ensure all ingredient names were stored in lowercase. This was done to maintain consistency across the UI, prevent duplicate entries caused by case variations (e.g., “Mint” vs “mint”), and align with the system’s existing behaviour where ingredient names are normalised to lowercase on save. A batch update was executed to convert all existing ingredient records to lowercase, and this change is reflected in the commit history.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature002</span>
+
+### Bug Fix / UX Improvement – Image Assignment Modal State
+
+ 
+**Issue**
+
+The Assign Image workflow allowed users to select a cocktail, assign an image, and return to the Images modal with the previously selected cocktail still active in the dropdown. This could lead to accidental assignments to the same cocktail without explicitly making a new selection.
+ 
+Additionally, Assign buttons remained visually enabled even when no cocktail was selected, providing limited feedback regarding the required workflow.
+
+ 
+**Solution**
+
+ 
+Implemented a complete reset and button-state management process for image assignment.
+
+ 
+Changes made:
+ 
+- Added a default empty value (`""`) to the image assignment cocktail dropdown.
+- Introduced a reusable `resetImageCocktailSelect()` helper in `admin-core.js`.
+- Reset the cocktail dropdown back to its default state after a successful image assignment.
+- Added automatic enabling/disabling of all Assign buttons based on dropdown selection.
+- Added `disabled` and `aria-disabled` attributes for accessibility.
+- Added `.disabled-btn` CSS class to provide visual feedback when buttons are unavailable.
+- Synced button state whenever:
+- A cocktail is selected.
+- A cocktail selection is cleared.
+- The image list is refreshed.
+- An image assignment is successfully completed.
+
+ 
+**Result**
+ 
+- Assign buttons are disabled until a cocktail is selected.
+- Users receive immediate visual feedback that a cocktail must be chosen first.
+- Successful image assignments reset the workflow to a clean state.
+- Prevents accidental repeated assignments to the previously selected cocktail.
+- Improves accessibility and overall user experience.
+
 
 <hr style="border: 1px solid #ccc;">
 

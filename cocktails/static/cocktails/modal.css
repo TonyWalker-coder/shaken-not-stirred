@@ -434,6 +434,11 @@
     box-shadow: 0 0 4px rgba(0,0,0,0.2);
 }
 
+.item-thumb:hover {
+    transform: scale(3.0);
+    transition: transform 0.2s ease;
+}
+
 /* Delete confirmation modals */
 #deleteCocktailModal p,
 #deleteRecipeModal p,
@@ -599,4 +604,9 @@
 .thread-list li {
     list-style: none;
     margin-bottom: 1.5rem;
+}
+/* Generic disable button */
+.disabled-btn {
+  opacity: 0.5;
+  pointer-events: none;
 }
