@@ -423,6 +423,8 @@ def image_list(request):
 
     try:
         images = sorted(os.listdir(folder))
+
+        print("SORTED IMAGES:", images)
     except Exception:
         images = []
 

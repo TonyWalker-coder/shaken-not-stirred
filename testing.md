@@ -1363,7 +1363,7 @@ Expected Result:
 
 ### 6. Assigning an image
 
-Click the <span class="button">Assign</span> next to any image.
+Click the <span class="button">Assign Image</span> next to any image.
 
 Expected Result:
 
@@ -1380,6 +1380,30 @@ Expected Result:
 - The file selection area will clear.
 
 - The <span class="button">Assign"</span> buttons will become unavailable once again.
+
+### 7. Aborting the image assignment
+
+Closing the child modal before clicking <span class="button">Assign Image</span>.
+
+Expected Result:
+
+- The child modal will close.
+
+- The main modal will remain open.
+
+- No data is saved.
+
+- No error message is displayed.
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | |:<span class="tick">✔️</span>  ||:
+| 2 | |:<span class="tick">✔️</span>  ||:
+| 3 | |:<span class="tick">✔️</span>  ||:
+
+
 
 
 
