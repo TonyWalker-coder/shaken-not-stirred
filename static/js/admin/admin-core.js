@@ -2,6 +2,7 @@ import { refreshHistoryModal } from "./history.js";
 import { refreshRecipesModal } from "./recipes.js";
 import { resetAddCocktailFields } from "./add.js";
 import { refreshCocktailList } from "./delete.js";
+import { refreshImageList } from "./image.js";
 
 /* ============================================================
    UNIVERSAL MODAL ENGINE (NO INLINE JS)
@@ -61,6 +62,7 @@ if (openTarget) {
     const select = document.getElementById("imageCocktailSelect");
     select.value = "";
     refreshCocktailDropdown(select);
+    await refreshImageList();
   }
 
   if (id === "historyModal") {
