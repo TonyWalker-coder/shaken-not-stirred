@@ -144,7 +144,7 @@ document.addEventListener("submit", async (e) => {
    UNIVERSAL — REFRESH IMAGE LIST
    ============================================================ */
 
-export async function refreshImageList() {
+async function refreshImageList() {
   const res = await fetch("/images/list/", {
     headers: { "X-Requested-With": "XMLHttpRequest" },
   });

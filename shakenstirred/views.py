@@ -37,10 +37,13 @@ def admin_page(request):
         "buttons"
     )
 
-    images = [
-        f for f in os.listdir(buttons_dir)
-        if f.lower().endswith((".png", ".jpg", ".jpeg"))
-    ]
+    images = sorted(
+        (
+            f for f in os.listdir(buttons_dir)
+            if f.lower().endswith((".png", ".jpg", ".jpeg"))
+        ),
+        key=str.lower
+    )
 
     return render(request, "admin.html", {
         "ingredients": ingredients,
