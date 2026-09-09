@@ -10,6 +10,15 @@ import { refreshCocktailList } from "./delete.js";
 export function openModal(id) {
   const modal = document.getElementById(id);
   if (modal) modal.classList.remove("hidden");
+
+  const content = modal.querySelector(".modal-content");
+
+  if (content) {
+    content.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
 }
 
 export function closeModal(id) {

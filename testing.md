@@ -1342,6 +1342,8 @@ Uploading the same file more then once
 
 Expected Result:
 
+- The modal message system will display **Image uploaded!**
+
 - The file system treats each file selection and upload as a new file silently.
 
 - The upload function treats each upload as a new file action silently.
@@ -1399,12 +1401,23 @@ Expected Result:
 
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
-| 1 | |:<span class="tick">✔️</span>  ||:
-| 2 | |:<span class="tick">✔️</span>  ||:
-| 3 | |:<span class="tick">✔️</span>  ||:
+| 1 | Open the “Images” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Upload a new image|:<span class="tick">✔️</span>  ||:
+| 3 | Aborting the Upload of a new image|:<span class="tick">✔️</span>  ||:
+| 4 | Uploading an image that has already been uploaded|:<span class="tick">✔️</span>  ||:
+| 5 | Select a cocktail|:<span class="tick">✔️</span>  ||:
+| 6 | Assigning an image|:<span class="tick">✔️</span>  ||:
+| 7 | Aborting the image assignment|:<span class="tick">✔️</span>  ||:
 
 
+## Delete Cocktail
 
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Images** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Images” Modal
 
 
 
@@ -1549,6 +1562,28 @@ Changes made:
 - Successful image assignments reset the workflow to a clean state.
 - Prevents accidental repeated assignments to the previously selected cocktail.
 - Improves accessibility and overall user experience.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature003</span>
+
+### Stale modal scroll state
+
+**Issue**
+
+after opening a modal if the user scrolled down and closed the modal, the focus remained where the user left it, in all most all case this ment scrolling back to the top every time.
+
+**Solution**
+
+ 
+On open of a modal scroll back to the top.
+
+Changes made:
+
+Added a `content.scrollTo` in the open modal function.
+
+
+
 
 
 <hr style="border: 1px solid #ccc;">
