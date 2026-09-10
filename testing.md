@@ -1417,26 +1417,164 @@ This test ensures the admin UI behaves consistently and cleanly throughout the *
 
 ### Test Steps & Expected Results
 
-### 1. Open the “Images” Modal
+### 1. Open the “Delete Cocktail” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- UI displays informational messages and buttons explaining the workflow.
+
+- The list will show all cocktails, including any cocktails created in this session.
+
+- The modal will display the destructive nature of of this modal.
+
+### 2. Delete a cocktail
+
+Clicking on <span class="button">Delete</span> button next to any cocktail.
+
+Expected Result:
+
+- The child warning modal will open.
 
 
+### 3. Aborting the delete cocktail cocktail action
+
+Clicking the <span class="button">X</span> or outside the modal.
+
+Expected Result:
+
+- The child warning modal will close.
+
+- The delete modal will remain open waiting for a valid command.
+
+- No data will be deleted.
+
+- No messages will be displayed.
+
+### 4. Deleting a selected cocktail
+
+Clicking the <span class="button">Yes, delete forever</span> button.
+
+Expected Result:
+
+- The child modal will close.
+
+- the modal message system will display **Working** then **Cocktail deleted!**.
+
+- The cocktail list will refresh to show the new list of available cocktails.
+
+- No ingredients will be deleted as they have their own CRUD
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “Delete Cocktail” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Delete a cocktail|:<span class="tick">✔️</span>  ||:
+| 3 | Aborting the delete cocktail cocktail action|:<span class="tick">✔️</span>  ||:
+| 4 | Deleting a selected cocktail|:<span class="tick">✔️</span>  ||:
 
 
+## User Post
 
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **User Post** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
 
+### Test Steps & Expected Results
 
+### 1. Open the “User Post” Modal
 
+Expected Result:
 
+- Modal opens cleanly with no layout shift.
 
+- UI displays informational messages and buttons explaining the workflow.
 
+- The list will show all threads from the user forum.
 
+### 2. Clicking on any post **heading**.
 
+Expected Result:
 
-- The ingredients list will update to include the new ingredient.
+- The modal contents will change to show the thread and any *replies* related to that thread.
 
-- The new ingredient will have a <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> icon as it will not yet be used in a cocktail.
+### 3. Deleting the thread.
 
+Clinking on <span class="button">Delete</span>
 
+Expected Result:
+
+- The modal will explain *"This will delete the thread and all replies."*.
+
+- Two new buttons will be made available <span class="button">Yes, Delete</span> and <span class="button">Cancel</span>
+
+- Clicking <span class="button">Yes, Delete</span> will delete the thread and the modal will close
+
+### 4. Aborting the delete action.
+
+Clinking on <span class="button">Cancel</span>
+
+Expected Result:
+
+- The users can abort by clicking <span class="button">Cancel</span>.
+  - The modal and thread will remain open.
+  - No data will be deleted.
+
+- The users can abort by clicking <span class="button">X</span> or outside the modal.
+  - The modal will close.
+  - No data will be deleted.
+
+### 5. Replying to a thread.
+
+Clicking on <span class="button">Reply</span>
+
+Expected Result:
+
+- The modal will expand to display a text area for the reply.
+
+- After editing Click <span class="button">Send Reply</span> to save the replay.
+  - the modal will stay open revealing the thread, previous replies and the new reply.
+
+### 6. Aborting a reply.
+
+Aborting a reply.
+
+Expected Result:
+
+- Clicking on <span class="button">X</span> or outside the modal before selecting <span class="button">Send Reply</span>
+
+- The modal will close.
+
+- No data will be saved.
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “User Post” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Clicking on any post **heading**|:<span class="tick">✔️</span>  ||:
+| 3 | Deleting the thread|:<span class="tick">✔️</span>  ||:
+| 4 | Aborting the delete action|:<span class="tick">✔️</span>  ||:
+| 5 | Replying to a thread|:<span class="tick">✔️</span>  ||:
+| 6 | Aborting a reply|:<span class="tick">✔️</span>  ||:
+
+## Test Data
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Test Data** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Clicking on **Test Data**
+
+Expected Result:
+
+- The browser will open the **Test Data** page in a separate tab.
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Clicking on **Test Data**|:<span class="tick">✔️</span>  ||:
 
 
 
