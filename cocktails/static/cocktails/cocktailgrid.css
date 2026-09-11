@@ -27,6 +27,7 @@
 @media (max-width: 1400px) {
     .cocktail-grid {
         grid-template-columns: repeat(3, 1fr);
+        background: red;
     }
 }
 
@@ -37,6 +38,7 @@
 @media (max-width: 900px) {
     .cocktail-grid {
         grid-template-columns: repeat(2, 1fr);
+        background: green;
     }
 }
 
