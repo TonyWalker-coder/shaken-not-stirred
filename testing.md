@@ -19,7 +19,6 @@
     transition: width 0.3s ease;
     cursor: zoom-in;
   }
-
   .screenshot:hover {
     width: 100%;
     cursor: zoom-out;
@@ -57,12 +56,16 @@
 
 - [User Story Acceptance](#user-story-acceptance)
 - [Navigation](#navigation)
+- [Browser Support](#browsersupport)
 - [Use of Validators in a Django Project](#validators)
 - [MarkUp Validator](#validator)
 - [ESLint](#eslint)
 - [Ruff](#ruff)
 - [CSS Validator](#css)
+- [Homepage Workflow UI Validation](#index)
 - [Admin Workflow UI Validation](#admin)
+- [Cocktail Page UI Validation](#cocktail)
+- [User Area Workflow UI Validation](#user)
 - [Bug Report](#bugs)
 - [Post‑Fix Verification](#postfixes)
 
@@ -93,6 +96,9 @@ The layout has been tested across different break points, with different break p
 <img src="screenshoots/responsive-cocktail.png" class="screenshot-s">
 
 <img src="screenshoots/responsive-admin.png" class="screenshot-s">
+
+
+
 
 ### Accessibility
 
@@ -150,6 +156,18 @@ All user stories have been fully reviewed and tested to confirm that each requir
 
 ### User Forum Page
 - <span class="tick">➡️</span> User.html <span class="tick">✔️</span>
+
+<a id="browsersupport"></a>
+
+## Browser Compatibility
+ 
+Shaken!Stirred has been tested across modern desktop browsers to ensure a consistent user experience.
+ 
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+
+<img src="screenshoots/browsersupport.png" class="screenshot">
 
 
 <a id="validators"></a>
@@ -569,6 +587,71 @@ Use of `-webkit-backdrop-filter`
 
 Use of `-webkit-backdrop-filter`
 [Previously explained here](#webkit)
+
+<a id="index"></a>
+
+## Homepage Workflow UI Validation
+
+### Introduction
+
+The Homepage is the landing page for this project and is the portal to the different areas of the site, the UI ensures that sensitive areas are password protected.
+
+### Test Overview
+This test ensures the admin page is password protected and that the whole entry process is enclosed in the site UI.
+
+### Test Steps & Expected Results
+
+### 1. Click on **Admin**
+
+Expected Results
+
+- The password modal will open and request a *password*.
+
+### 2. Closing the password modal
+
+Clicking on <span class="button">X</span> or outside the modal.
+
+Expected Results
+
+- The password modal will close.
+
+- The user will remain on the Homepage
+
+
+### 3. Enter an invalid password
+
+Enter a wrong password followed by <span class="button">Enter</span>.
+
+Expected Results
+
+- The password modal will close.
+
+- The user will remain on the Homepage
+
+### 4. Enter a valid password
+
+Enter the correct password followed by <span class="button">Enter</span>.
+
+Expected Results
+
+- The password modal will close.
+
+- The Admin page will become the current open page.
+
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Click on **Admin**|:<span class="tick">✔️</span>  ||:
+| 2 | Closing the password modal|:<span class="tick">✔️</span>  ||:
+| 3 | Enter an invalid password|:<span class="tick">✔️</span>  ||:
+| 4 | Enter a valid password|:<span class="tick">✔️</span>  ||:
+
+
+
+
+
 
 <a id="admin"></a>
 
@@ -1572,11 +1655,60 @@ Expected Result:
 
 - The browser will open the **Test Data** page in a separate tab.
 
+### Testing Table
+
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
 | 1 | Clicking on **Test Data**|:<span class="tick">✔️</span>  ||:
 
+<a id="cocktail"></a>
 
+## Cocktail Page Workflow UI Validation
+
+### Introduction
+The cocktail page is designed to present the user with visually appealing cocktail images that act as buttons for the cocktail modal.
+
+### Test Overview
+This test ensures cocktail page behaves consistently and cleanly throughout the workflow.
+
+### 1 Cocktail page load
+
+Expected Result:
+
+- The page shall display all the current cocktails
+
+- Clicking on any cocktail shall display that cocktail and its related data
+
+### 2 Broken or missing images
+
+If the cocktail image is missing or damaged
+
+Expected Result:
+
+- If any image is broken the cocktail image will fall back to the default missing image
+
+<img src="screenshoots/cocktails.png">
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Cocktail page load|:<span class="tick">✔️</span>  ||:
+| 1 | Broken or missing images|:<span class="tick">✔️</span>  ||:
+
+<a id="user"></a>
+
+## User Area Workflow UI Validation
+
+### Introduction
+The cocktail page is designed to present the user with visually appealing cocktail images that act as buttons for the cocktail modal.
+
+### Test Overview
+This test ensures cocktail page behaves consistently and cleanly throughout the workflow.
+
+### 1 Cocktail page load
+
+Expected Result:
 
 
 
