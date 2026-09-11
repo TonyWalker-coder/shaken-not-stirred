@@ -29,7 +29,10 @@
 
 
   <!-- Cocktail Grid -->
+<p>cocktail list</p>
+<p id="test1">test 1</p> 
   <section class="cocktail-grid" aria-label="Cocktail list">
+<p id="test2">test 2</p>
     {% for cocktail in cocktails %}
     <div>
       <div class="cocktail-card" role="button" tabindex="0" aria-label="View details for {{ cocktail.name }}"
@@ -137,6 +140,32 @@
         }
       })
 
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+const grid =
+document.querySelector('.admin-grid') ||
+document.querySelector('.cocktail-grid');
+const width = window.innerWidth;
+let breakpoint;
+if (width <= 600) {
+breakpoint = "1 COLUMN BREAKPOINT";
+} else if (width <= 900) {
+breakpoint = "2 COLUMN BREAKPOINT";
+} else {
+breakpoint = "DESKTOP BREAKPOINT";
+}
+
+document.getElementById('test1').innerHTML =
+`innerWidth: ${window.innerWidth}px<br>
+outerWidth: ${window.outerWidth}px`;
+
+document.getElementById('test2').innerHTML =
+`grid-template-columns: ${getComputedStyle(grid).gridTemplateColumns}<br>
+scrollWidth: ${document.documentElement.scrollWidth}px<br>
+${breakpoint}`;
+});
     </script>
   </body>
 </html>
