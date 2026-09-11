@@ -13,7 +13,7 @@
    RESPONSIVE BREAKPOINTS
    Medium screens → 2 columns
    ============================================ */
-@media (max-width: 1200px) {
+@media (max-width: 1800px) {
     .admin-grid {
         grid-template-columns: repeat(2, 1fr);
     }
