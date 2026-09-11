@@ -7,10 +7,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shaken!Stirred - Admin Page</title>
-  <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}?v=4">
-  <link rel="stylesheet" href="{% static 'cocktails/admingrid.css' %}?v=4">
-  <link rel="stylesheet" href="{% static 'cocktails/cocktailgrid.css' %}?v=4">
-  <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}?v=4">
+  <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}?v=5">
+  <link rel="stylesheet" href="{% static 'cocktails/admingrid.css' %}?v=5">
+  <link rel="stylesheet" href="{% static 'cocktails/cocktailgrid.css' %}?v=5">
+  <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}?v=5">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
 
@@ -33,8 +33,8 @@
     <div class="admin-wrapper">
       <div>
         <!-----------------------------------
-    Page Header
-  ------------------------------------>
+      Page Header
+    ------------------------------------>
         <header class="hero">
           <h1 class="title brown-overlay"><a href="/">Admin Page v3</a></h1>
           <nav class="title-homepage brown-overlay"><a href="/">Home</a></nav>
@@ -42,12 +42,9 @@
       </div>
     </div>
     <!-----------------------------------
-    Admin grid of buttons
-  ------------------------------------>
-  <p>admin grid</p>
-  <p id="test1">test 1</p>
+      Admin grid of buttons
+    ------------------------------------>
     <div class="admin-grid">
-  <p id="test2">test 2</p>
       <!-- INGREDIENTS -->
       <button type="button" class="admin-card" data-open="ingredientsModal" tabindex="0"
         aria-label="Open Ingredients Manager">
@@ -90,13 +87,13 @@
     </div>
   
     <!-----------------------------------
-    Admin Modals
-  ------------------------------------>
+      Admin Modals
+    ------------------------------------>
   
   
     <!-----------------------------------
-    Forum Modal
-  ------------------------------------>
+      Forum Modal
+    ------------------------------------>
   
     <div id="forumModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="forumModalTitle">
       <div class="modal-content">
@@ -112,8 +109,8 @@
   
   
     <!-----------------------------------
-    Ingredients Modal
-  ------------------------------------>
+      Ingredients Modal
+    ------------------------------------>
     <div id="ingredientsModal" class="modal hidden" role="dialog" aria-modal="true"
       aria-labelledby="ingredientsModalTitle">
       <div class="modal-content">
@@ -178,8 +175,8 @@
       </div>
     </div>
     <!-----------------------------------
-    History Modal
-  ------------------------------------>
+      History Modal
+    ------------------------------------>
     <div id="historyModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle">
       <div class="modal-content">
         <button type="button" class="close" data-close="historyModal" aria-label="Close History Modal">&times;</button>
@@ -284,8 +281,8 @@
       </div>
     </div>
     <!-----------------------------------
-    Recipes Modal
-  ------------------------------------>
+      Recipes Modal
+    ------------------------------------>
     <div id="recipesModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="recipesModalTitle">
       <div class="modal-content">
         <button type="button" class="close" data-close="recipesModal" aria-label="Close Recipes Modal">&times;</button>
@@ -390,8 +387,8 @@
       </div>
     </div>
     <!-----------------------------------
-    Add Cocktail Modal
-  ------------------------------------>
+      Add Cocktail Modal
+    ------------------------------------>
     <div id="addCocktailModal" class="modal hidden" role="dialog" aria-modal="true"
       aria-labelledby="addCocktailModalTitle">
   
@@ -497,8 +494,8 @@
       </div>
     </div>
     <!-----------------------------------
-    Delete Cocktail Modal
-  ------------------------------------>
+      Delete Cocktail Modal
+    ------------------------------------>
     <div id="deleteCocktailModal" class="modal hidden" role="dialog" aria-modal="true"
       aria-labelledby="deleteCocktailModalTitle">
       <div class="modal-content">
@@ -566,8 +563,8 @@
     </div>
   
     <!-----------------------------------
-    Customise Cocktail Modal
-  ------------------------------------>
+      Customise Cocktail Modal
+    ------------------------------------>
     <div id="customiseModal" class="modal hidden">
       <div class="modal-content">
         <button type="button" class="close" data-close="customiseModal"
@@ -597,8 +594,8 @@
       </div>
     </div>
     <!-----------------------------------
-    Images Modal
-  ------------------------------------>
+      Images Modal
+    ------------------------------------>
     <div id="imagesModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="imagesModalTitle">
       <div class="modal-content">
         <button type="button" class="close" data-close="imagesModal"
@@ -707,6 +704,8 @@
   
       </div>
   
+    </div>
+  
   
   </main>
 
@@ -730,31 +729,6 @@ Leave spacing and braces EXACTLY as written.
 -->
 
   <script>
-
-document.addEventListener("DOMContentLoaded", () => {
-const grid =
-document.querySelector('.admin-grid') ||
-document.querySelector('.cocktail-grid');
-const width = window.innerWidth;
-let breakpoint;
-if (width <= 600) {
-breakpoint = "1 COLUMN BREAKPOINT";
-} else if (width <= 900) {
-breakpoint = "2 COLUMN BREAKPOINT";
-} else {
-breakpoint = "DESKTOP BREAKPOINT";
-}
-
-document.getElementById('test1').innerHTML =
-`innerWidth: ${window.innerWidth}px<br>
-outerWidth: ${window.outerWidth}px`;
-
-document.getElementById('test2').innerHTML =
-`grid-template-columns: ${getComputedStyle(grid).gridTemplateColumns}<br>
-scrollWidth: ${document.documentElement.scrollWidth}px<br>
-${breakpoint}`;
-});
-
 
 
     window.cocktails = [

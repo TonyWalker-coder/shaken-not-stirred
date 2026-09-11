@@ -17,7 +17,6 @@
 @media (max-width: 900px) {
     .admin-grid {
         grid-template-columns: repeat(2, 1fr);
-        background: red;
     }
 }
 
@@ -29,7 +28,6 @@
 @media (max-width: 600px) {
     .admin-grid {
         grid-template-columns: repeat(1, 1fr);
-        background: green;
     }
 }
 
