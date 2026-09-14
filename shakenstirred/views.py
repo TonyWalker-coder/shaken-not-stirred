@@ -1,4 +1,5 @@
 import os
+from urllib import request
 
 from django.conf import settings
 from django.contrib import messages
@@ -6,6 +7,9 @@ from django.db.models.functions import Lower
 from django.shortcuts import redirect, render
 
 from cocktails.models import Cocktail, Ingredient
+
+
+
 
 
 def index(request):
@@ -60,10 +64,10 @@ def admin_login(request):
     if request.method == "POST":
         password = request.POST.get("password")
 
-        if password == ADMIN_PASSWORD:
+        if password == settings.ADMIN_PASSWORD:
             request.session["is_admin"] = True
             return redirect("admin_page")
-
+    
         messages.error(request, "Incorrect password.")
         return redirect("index")
 

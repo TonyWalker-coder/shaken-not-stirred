@@ -13,6 +13,7 @@ from cocktails.models import Cocktail, History, Ingredient, Recipe
 from .forms import ReplyForm, ThreadForm
 from .models import Reply, Thread
 
+
 # ============================================================
 # HELPER FUNCTIONS
 # ============================================================
