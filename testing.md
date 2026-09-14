@@ -14,6 +14,11 @@
     transition: width 0.3s ease;
     cursor: zoom-in;
   }
+  .screenshot-w50 {
+    max-width: 50px;
+    transition: width 0.3s ease;
+    cursor: zoom-in;
+  }
    .screenshot {
     width: 600px;
     transition: width 0.3s ease;
@@ -57,11 +62,13 @@
 - [User Story Acceptance](#user-story-acceptance)
 - [Navigation](#navigation)
 - [Browser Support](#browsersupport)
+- [Mobile Support](#mobilesupport)
 - [Use of Validators in a Django Project](#validators)
 - [MarkUp Validator](#validator)
 - [ESLint](#eslint)
 - [Ruff](#ruff)
 - [CSS Validator](#css)
+- [UI Validation](#ui)
 - [Homepage Workflow UI Validation](#index)
 - [Admin Workflow UI Validation](#admin)
 - [Cocktail Page UI Validation](#cocktail)
@@ -91,11 +98,11 @@ The layout has been tested across different break points, with different break p
 
 *example screen shoots*
 
-<img src="screenshoots/responsive-index.png" class="screenshot-s">
+<img src="screenshots/responsive-index.png" class="screenshot-s">
 
-<img src="screenshoots/responsive-cocktail.png" class="screenshot-s">
+<img src="screenshots/responsive-cocktail.png" class="screenshot-s">
 
-<img src="screenshoots/responsive-admin.png" class="screenshot-s">
+<img src="screenshots/responsive-admin.png" class="screenshot-s">
 
 
 
@@ -167,7 +174,38 @@ Shaken!Stirred has been tested across modern desktop browsers to ensure a consis
 - Mozilla Firefox
 - Microsoft Edge
 
-<img src="screenshoots/browsersupport.png" class="screenshot">
+<img src="screenshots/browsersupport.png" class="screenshot">
+
+<a id="mobilesupport"></a>
+
+## Mobile Responsiveness Testing
+
+The application was tested on a Samsung mobile device using Microsoft Edge. The screenshots below demonstrate successful rendering and operation of key application areas including the homepage, cocktail catalogue, administration dashboard, and user area.
+
+### *Homepage*
+
+<img src="screenshots/mobile-homepage.jpg" style="max-width:400px">
+
+### *Cocktail List*
+
+<img src="screenshots/mobil-cocktaillist.jpg" style="max-width:400px">
+
+### *Cocktail*
+
+<img src="screenshots/mobile-cocktail.jpg" style="max-width:400px">
+
+### *Admin*
+
+<img src="screenshots/mobil-admin.jpg" style="max-width:400px">
+
+### *CRUD*
+
+<img src="screenshots/mobile-crud.jpg" style="max-width:400px">
+
+### *UserArea*
+
+<img src="screenshots/mobil-userarea.jpg" style="max-width:400px">
+
 
 
 <a id="validators"></a>
@@ -285,13 +323,13 @@ This demonstrates responsible use of validation tools within a Django developmen
 
 ### index.html
 
-<img src="screenshoots/validate-index.html.png" class="screenshot">
+<img src="screenshots/validate-index.html.png" class="screenshot">
 
 **<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
 
 ### cocktail_list.html
 
-<img src="screenshoots/validate-cocktail_list.html.png" class="screenshot">
+<img src="screenshots/validate-cocktail_list.html.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warning</p>**
 
@@ -303,7 +341,7 @@ Since the heading is populated immediately upon modal activation, it does not cr
 
 ### iframe ingredients lookup
 
-<img src="screenshoots/validate-iframe-ingredients-lookup.html.png" class="screenshot">
+<img src="screenshots/validate-iframe-ingredients-lookup.html.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warning</p>**
 
@@ -314,7 +352,7 @@ These warnings do not affect functionality or accessibility, as the parent docum
 
 ### iframe cocktail lookup
 
-<img src="screenshoots/validate-iframe-cocktail-lookup.html.png" class="screenshot">
+<img src="screenshots/validate-iframe-cocktail-lookup.html.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warning</p>**
 
@@ -327,37 +365,37 @@ The iframe acts only as a UI component, so document‑level requirements do not 
 
 ### forum.html
 
-<img src="screenshoots/validate-forum.html.png" class="screenshot">
+<img src="screenshots/validate-forum.html.png" class="screenshot">
 
 **<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
 
 ### thread_detail.html
 
-<img src="screenshoots/validate-thread_detail.html.png" class="screenshot">
+<img src="screenshots/validate-thread_detail.html.png" class="screenshot">
 
 **<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
 
 ### new_thread.html
 
-<img src="screenshoots/validate-new_thread.html.png" class="screenshot">
+<img src="screenshots/validate-new_thread.html.png" class="screenshot">
 
 **<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
 
 ### user.html
 
-<img src="screenshoots/validate-user.html.png" class="screenshot">
+<img src="screenshots/validate-user.html.png" class="screenshot">
 
 **<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
 
 ### testdata.html
 
-<img src="screenshoots/validate-testdata.html.png" class="screenshot">
+<img src="screenshots/validate-testdata.html.png" class="screenshot">
 
 **<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
 
 ### admin.html
 
-<img src="screenshoots/validate-admin.html.png" class="screenshot">
+<img src="screenshots/validate-admin.html.png" class="screenshot">
 
 **<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
 
@@ -470,11 +508,11 @@ All checks passed!
 
 ### index.css
 
-<img src="screenshoots/validate-index.css.png" class="screenshot">
+<img src="screenshots/validate-index.css.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
-<img src="screenshoots/validate-index1.css.png" class="screenshot">
+<img src="screenshots/validate-index1.css.png" class="screenshot">
 
 
 
@@ -491,11 +529,11 @@ This is not an error. It is a necessary vendor extension to ensure consistent be
 
 ### testdata.css
 
-<img src="screenshoots/validate-testdata.css.png" class="screenshot">
+<img src="screenshots/validate-testdata.css.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
-<img src="screenshoots/validate-testdata1.css.png" class="screenshot">
+<img src="screenshots/validate-testdata1.css.png" class="screenshot">
 
 
 
@@ -510,11 +548,11 @@ These notices simply indicate that the validator is acknowledging the dynamic na
 
 ### styles.css
 
-<img src="screenshoots/validate-styles.css.png" class="screenshot">
+<img src="screenshots/validate-styles.css.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
-<img src="screenshoots/validate-styles1.css.png" class="screenshot">
+<img src="screenshots/validate-styles1.css.png" class="screenshot">
 
 
 
@@ -532,11 +570,11 @@ validator warning is therefore expected and does not indicate a functional or ac
 
 ### modal.css
 
-<img src="screenshoots/validate-modal.css.png" class="screenshot">
+<img src="screenshots/validate-modal.css.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
-<img src="screenshoots/validate-modal1.css.png" class="screenshot">
+<img src="screenshots/validate-modal1.css.png" class="screenshot">
 
 Use of `-webkit-backdrop-filter`
 [Previously explained here](#webkit)
@@ -546,47 +584,53 @@ CSS Variables
 
 ### user.css
 
-<img src="screenshoots/validate-user.css.png" class="screenshot">
+<img src="screenshots/validate-user.css.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
-<img src="screenshoots/validate-user1.css.png" class="screenshot">
+<img src="screenshots/validate-user1.css.png" class="screenshot">
 
 Use of `-webkit-backdrop-filter`
 [Previously explained here](#webkit)
 
 ### base.css
 
-<img src="screenshoots/validate-base.css.png" class="screenshot">
+<img src="screenshots/validate-base.css.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
-<img src="screenshoots/validate-base1.css.png" class="screenshot">
+<img src="screenshots/validate-base1.css.png" class="screenshot">
 
 Use of `-webkit-backdrop-filter`
 [Previously explained here](#webkit)
 
 ### ingredients_lookup.css
 
-<img src="screenshoots/validate-ingredients_lookup.css.png" class="screenshot">
+<img src="screenshots/validate-ingredients_lookup.css.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
-<img src="screenshoots/validate-ingredients_lookup1.css.png" class="screenshot">
+<img src="screenshots/validate-ingredients_lookup1.css.png" class="screenshot">
 
 Use of `-webkit-backdrop-filter`
 [Previously explained here](#webkit)
 
 ### lookup_cocktail_detail.css
 
-<img src="screenshoots/validate-lookup_cocktail_detail.css.png" class="screenshot">
+<img src="screenshots/validate-lookup_cocktail_detail.css.png" class="screenshot">
 
 **<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
 
-<img src="screenshoots/validate-lookup_cocktail_detail1.css.png" class="screenshot">
+<img src="screenshots/validate-lookup_cocktail_detail1.css.png" class="screenshot">
 
 Use of `-webkit-backdrop-filter`
 [Previously explained here](#webkit)
+
+<a id="ui"></a>
+
+## UI Validation
+
+User Interface (UI) validation was carried out on the live application deployed to PythonAnywhere to ensure the production version accurately reflected the final user experience. Testing included page layout, responsiveness, navigation, forms, CRUD functionality, styling, and overall usability across different screen sizes and browsers. Any issues identified during testing were corrected within the local development environment, where changes could be safely implemented and verified. Once fixes had been completed and tested locally, the updated code was deployed to PythonAnywhere and the affected functionality was retested on the live site. This process was repeated throughout development to ensure that all corrections were successfully deployed and that the live application remained stable, consistent, and fully functional.
 
 <a id="index"></a>
 
@@ -882,7 +926,7 @@ Expected Result:
 
 Missing icons will have an associated action of <span class="button">Add</span> or where there is a history icon then an option of <span class="button">Edit</span> both actions are followed by a <span class="button">Delete</span> option.
 
-<img src="screenshoots/history.png">
+<img src="screenshots/history.png">
 
 ### 2. Attempt to Delete a missing history
 Action: Click the delete button when there is an <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> for the selected cocktail.
@@ -1042,7 +1086,7 @@ Expected Result:
 
 Missing icons will have an associated action of <span class="button">Add</span> or where there is a recipe icon then an option of <span class="button">Edit</span> both actions are followed by a <span class="button">Delete</span> option.
 
-<img src="screenshoots/recipe.png">
+<img src="screenshots/recipe.png">
 
 ### 2. Attempt to Delete a missing recipe
 Action: Click the <span class="button">delete button</span> when there is an <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> for the selected cocktail.
@@ -1206,7 +1250,7 @@ Expected Result:
   - <img src="cocktails/static/cocktails/icons/ingredient-ok.png" class="icon"> Indicates that ingredient **is used** in the selected cocktail.
 - Depending on whether the ingredient is being used by the cocktail or not, the user will have the option to <span class="button">Add</span> or <span class="button">Remove</span> an ingredient.
 
-<img src="screenshoots/customise.png">
+<img src="screenshots/customise.png">
 
 ### 3. Select the **Add** option
 Click the <span class="button">Add</span> button next to any ingredient.
@@ -1687,7 +1731,7 @@ Expected Result:
 
 - If any image is broken the cocktail image will fall back to the default missing image
 
-<img src="screenshoots/cocktails.png">
+<img src="screenshots/cocktails.png">
 
 ### Testing Table
 

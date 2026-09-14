@@ -175,7 +175,7 @@ Each cocktail displayed on the site should use its image as an interactive eleme
 
 This project is managed using GitHub Projects to mirror real‑world development practices. Even as a solo developer, the Kanban board provides a clear workflow for organising tasks, tracking progress, and maintaining momentum. Issues, milestones, and a structured board layout keep the work transparent, predictable, and easy to extend as the project grows.
 
-![Kanban board](screenshoots/projects.png)
+![Kanban board](screenshots/projects.png)
 
 <a id="db"></a>
 ## Database Schema (ERD)
@@ -280,7 +280,7 @@ Provides a simple way for users to send comments, suggestions, or issues.
 
 ## ERD
 
-![](screenshoots/ERD2.png)
+![](screenshots/ERD2.png)
 
 ## Tech Stack
 
@@ -306,24 +306,88 @@ Provides a simple way for users to send comments, suggestions, or issues.
 
 ```text
 
-└── 📁shaken-not-stirred
-    └── 📁assets
-        └── 📁css
-            ├── tokens.css
-            └── style.css
-        └── 📁favicon
-        └── 📁fonts
-        └── 📁images
-        └── 📁js
-            └── script.js
-    └── 📁docs
-        ├── Changelog.md
-        ├── Design.md
-        └── wireframe.pdf
-    └── 📁screenshots
-        └── wireframe.pdf
-    └── 📁testing
-    ├── .gitignore
-    └── index.html
+shaken-not-stirred/ 
+├── 📁cocktails/
+│   ├── 📁management/ 
+│   ├── 📁migrations/ 
+│   ├── 📁static/ 
+│   │     └── 📁cocktails/ 
+│   │         ├── 📁admin/ 
+│   │         ├── 📁buttons/ 
+│   │         ├── 📁icons/ 
+│   │         ├── 📁images/ 
+│   │         │ ├── 📁background/ 
+│   │         │ └── 📁favicon/ 
+│   │         ├── admingrid.css 
+│   │         ├── cocktailgrid.css 
+│   │         ├── index.css 
+│   │         ├── modal.css 
+│   │         ├── styles.css 
+│   │         ├── testdata.css 
+│   │         └── user.css 
+│   │
+│   ├── 📁templates/ 
+│   ├── admin.py 
+│   ├── forms.py 
+│   ├── models.py 
+│   ├── urls.py 
+│   └── views.py 
+│
+├── 📁screenshots/ 
+│   ├── ERD.png 
+│   ├── browsersupport.png 
+│   ├── mobile.png 
+│   ├── responsive-admin.png 
+│   ├── responsive-cocktail.png 
+│   ├── responsive-index.png 
+│   └── validation screenshots 
+│
+├── 📁shakenstirred/ 
+│   ├── settings.py 
+│   ├── urls.py 
+│   ├── views.py 
+│   ├── asgi.py 
+│   └── wsgi.py
+│
+├── 📁static/ 
+│       │
+│       ├── 📁js/ 
+│       │    └── 📁admin/ 
+│       │        ├── add.js 
+│       │        ├── admin-core.js 
+│       │        ├── customise.js 
+│       │        ├── delete.js 
+│       │        ├── history.js 
+│       │        ├── image.js 
+│       │        ├── ingredients.js 
+│       │        ├── recipes.js 
+│       │        └── user.js 
+│       │
+│       └── 📁testdata/ 
+│       ├── cocktails.json 
+│       └── test assets 
+│
+├── 📁templates/ 
+│   ├── 📁cocktails/ 
+│   │   └── cocktail_list.html 
+│   ├── 📁user/ 
+│   │   ├── forum.html 
+│   │   ├── new_thread.html 
+│   │   └── thread_detail.html 
+│   ├── admin.html 
+│   ├── base.html 
+│   ├── index.html 
+│   ├── ingredient_lookup.html 
+│   ├── lookup_cocktail_detail.html 
+│   ├── testdata.html 
+│   └── user.html 
+│
+├── .env 
+├── .gitignore 
+├── manage.py 
+├── package.json 
+├── README.md 
+├── requirements.txt 
+└── testing.md
 
 ```
