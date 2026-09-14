@@ -1,3 +1,5 @@
+import os
+
 from django.conf import settings
 from django.contrib import messages
 from django.db.models.functions import Lower
@@ -9,7 +11,7 @@ from cocktails.models import Cocktail, Ingredient
 def index(request):
     return render(request, "index.html")
 
-ADMIN_PASSWORD = "ice"
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 
 def admin_page(request):
     if not request.session.get("is_admin"):
