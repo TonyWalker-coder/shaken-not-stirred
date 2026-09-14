@@ -2,12 +2,16 @@
 
 Table of Contents
 - [Project Overview](#project-overview)
+- [Project Evolution](#direction)
+- [Security and Access Control](#pass)
 - [User Stories](#user-stories)
 - [GitHub Projects](#github-projects)
 - [Database Schema (ERD)](#db)
 - [Tech Stack](#tech-stack)
 - [Folder Structure](#folder-structure)
-- [](#)
+- [Acknowledgement ](#acknowledgement )
+- [Colour Theme](#colourtheme)
+- [Typography](#Typography)
 
 ## Project Overview
 Shaken!Stirred is a modern, visually‑driven cocktail discovery platform designed to combine style, usability, and scalable architecture. The project aims to deliver an engaging user experience through clean design, intuitive navigation, and a structured database capable of supporting future growth.
@@ -21,6 +25,25 @@ Because future advertising potential depends heavily on an active userbase, the 
 ## Objective
 The goal of this project is to develop a website that delivers a high‑quality visual user experience supported by a robust, well‑structured database backend. The site will be built using modern coding techniques, follow best practices in Django development, and include comprehensive documentation throughout.
 The final product should feel clean, responsive, and intentional — combining strong UX design with reliable, scalable architecture.
+
+<a id="direction"></a>
+
+## Project Evolution
+
+Shaken Not Stirred was originally conceived as a user-focused cocktail browsing application, providing visitors with an engaging way to explore cocktail recipes, ingredients, and related information. However, as development progressed and the application's requirements became clearer, it became apparent that the most frequent and demanding user would be the site administrator responsible for managing the cocktail database.
+
+This realisation fundamentally changed the direction of the project. Rather than relying on Django's default administration interface and standard browser-generated feedback, the project evolved to prioritise the creation of a dedicated administrative experience. What began as a relatively straightforward content browsing application expanded into a comprehensive CRUD system designed specifically around the needs of the administrator.
+
+As a result, significant additional functionality was introduced, including custom management interfaces, modal-based forms, validation systems, user-friendly feedback mechanisms, and streamlined navigation workflows. This shift accounted for a substantial portion of the overall development effort and greatly increased the scope of the project beyond its original objectives.
+
+While the initial development estimate was approximately four weeks, the decision to create a bespoke administration experience extended the project timeline considerably. Despite the additional complexity and development time, this evolution resulted in a more complete and practical application that not only serves end users but also provides an efficient and intuitive environment for managing site content.
+
+<a id="pass"></a>
+
+## Security and Access Control
+
+During development, the administrative interface gained the ability to perform full CRUD operations against the live database. As the application was intended for public deployment, it was considered essential to restrict access to these functions through authentication. Allowing unrestricted access would have exposed the application's data to accidental or malicious modification, making access control a necessary security measure rather than an optional feature.
+
 
 ## User Stories
 
@@ -189,7 +212,6 @@ Fields:
 - id (PK) — Unique identifier for each cocktail
 - name (Text) — The cocktail’s display name
 - method_id (FK → Method.id) — How the cocktail is prepared
-- glass_id (FK → Glass.id) — The type of glass it is served in
 - history_id (FK → History.id) — Optional historical background
 
 Purpose:
@@ -224,14 +246,6 @@ Fields:
 Purpose:
 Ensures consistent method naming across cocktails.
 
-### Glass
-Lookup table describing glass types.
-Fields:
-- id (PK) — Unique identifier
-- glass (Text) — e.g., “Highball”, “Martini”, “Rocks”
-
-Purpose:
-Standardises glassware references.
 
 ### History
 Lookup table containing optional historical notes for official cocktails.
@@ -254,18 +268,6 @@ Fields:
 Purpose:
 Represents all users in a single unified table, with admin status controlled by a Boolean flag.
 
-### UserCocktail
-Stores free‑form cocktail submissions created by users.
-These do not follow the structured format of official cocktails.
-Fields:
-- id (PK) — Unique identifier
-- user_id (FK → User.id) — The user who submitted the cocktail
-- usercocktail (Text) — Free‑form cocktail description
-- created_at (DateTime) — Submission timestamp
-
-Purpose:
-Allows users to submit creative cocktail ideas without enforcing structure.
-These may later be reviewed and adopted into the official Cocktail table.
 
 ### Feedback
 Stores general feedback messages submitted by users.
@@ -284,23 +286,24 @@ Provides a simple way for users to send comments, suggestions, or issues.
 
 ## Tech Stack
 
-- HTML5
-- CSS3
+- Python
+- Django
+- SQLite
+- HTML
+- CSS
+- JavaScript
+- PythonAnywhere (hosting/deployment)
 - canva.com (image editing)
+- squoosh.app (image editing)
 - Balsamiq.com (wireframes)
 - Googlefonts
-
-- JavaScript
-- JQuery
+- Visual Studio (file edit and organisation)
 - GitHub Pages (deployment)
 - GitHub Project (user stories)
-- Balsamiq.com (wireframes)
-- Copilot (website text articles)
-- fontawesome
-- w3.org (validators)
-- 7timer.info (weather API)
-- adobe.com (colour contrast analyzer)
-- google.com (google maps)
+- Copilot (website text articles, technical assistance with Django file structure)
+- w3.org ( CSS + HTML validators)
+- ESlint (javascript)
+- ruff (python validation)
 
 ## Folder Structure
 
@@ -391,3 +394,41 @@ shaken-not-stirred/
 └── testing.md
 
 ```
+
+## Acknowledgement
+
+## Adobe Firefly
+
+Shaken Not Stirred was always intended to be a highly visual application, using custom graphics to enhance both the user experience and the overall presentation of the site. Due to the limited availability of suitable copyright-free stock imagery and the specific visual requirements of the project, the majority of the graphics were created from scratch using Adobe Firefly through its free public platform. These custom-generated assets helped establish a consistent visual identity throughout the application while supporting its cocktail-themed design.
+
+## Microsoft Copilot
+
+Microsoft Copilot was used throughout the development process as a learning and support tool. It assisted with understanding Django best practices, identifying industry-standard approaches to application structure and development, and helping to ensure a consistent, predictable, and efficient user experience. Copilot also provided guidance during the planning phase, including support in designing and refining the Entity Relationship Diagram (ERD) used for the project's database structure.
+
+## Icons8
+
+Icons8 provided many of the icons used throughout Shaken Not Stirred. Their extensive library of high-quality icons helped support the site's visual design, improve user navigation, and create a more intuitive user experience. Icons were sourced from Icons8 and incorporated across various features of the application to maintain a consistent and professional appearance.
+
+## Colour Theme
+
+The colour palette for Shaken Not Stirred was inspired by the warm tones commonly associated with cocktails, tropical fruits, and sunset skies. The design centres around vibrant shades of orange, coral, and peach, creating a welcoming and energetic atmosphere that reflects the social and enjoyable nature of cocktail culture.
+
+The primary brand colour (#eb6a20) is used for key interactive elements, helping to draw attention to buttons, navigation controls, and important user actions. Complementary shades of soft peach and coral are used throughout content containers and backgrounds to provide warmth and depth without overwhelming the user. Darker orange-red accents are used for headings and titles, creating visual hierarchy and ensuring important information stands out.
+
+Semi-transparent content panels (rgba(241, 163, 118, 0.85)) were incorporated to soften the interface and maintain readability while allowing background imagery and visual elements to remain visible. Together, these colours create a cohesive, vibrant, and approachable user experience that reinforces the cocktail-inspired theme of the application.
+
+## Typography
+
+The typography for Shaken Not Stirred was chosen to balance personality with readability. The decorative Henny Penny font is used for prominent titles, headings, and branding elements, giving the application a playful and distinctive character that complements the fun and social nature of cocktail culture. Its handcrafted appearance helps create a sense of individuality and reinforces the site's themed design.
+
+To provide contrast and maintain readability, Englebert is used for supporting content and interface elements. Its cleaner and more approachable style ensures that information remains easy to read while still fitting naturally within the site's overall aesthetic.
+
+Together, these typefaces create a visual hierarchy that separates decorative elements from functional content, helping users navigate the application while maintaining a consistent and engaging personality throughout the site.
+
+### Fonts Used
+
+| Font | Purpose |
+|-----------|--------|
+|Henny Penny|Branding, headings, cocktail names, and feature titles|
+|Englebert|General content, interface text, labels, and supporting information|
+	
