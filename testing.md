@@ -1994,6 +1994,23 @@ Changes made:
 
 <span class="tick">🛠️</span><span class="fix">Feature003</span>
 
+### Ingredients lookup list is nonalphabetical
+
+ 
+**Issue**
+
+Finding an ingredient is quite challenging in the ingredients lookup list as it is not in alphabetic order.
+ 
+
+**Solution**
+
+ 
+Added a sort order to the django view.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature003</span>
+
 ### Stale modal scroll state
 
 **Issue**

@@ -723,7 +723,12 @@ def admin_reply(request, thread_id):
 
 
 def ingredient_lookup(request):
-    ingredients = Ingredient.objects.filter(cocktail__isnull=False).distinct()
+    ingredients = (
+        Ingredient.objects
+        .filter(cocktail__isnull=False)
+        .distinct()
+        .order_by(Lower('name'))
+    )
 
     selected_id = request.GET.get("ingredient")
     cocktails = None
