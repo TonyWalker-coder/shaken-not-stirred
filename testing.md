@@ -1745,40 +1745,153 @@ Expected Result:
 ## User Area Workflow UI Validation
 
 ### Introduction
-The cocktail page is designed to present the user with visually appealing cocktail images that act as buttons for the cocktail modal.
+The user area is designed to present the user access to the user forum and a reverse lookup for cocktail ingredients.
 
 ### Test Overview
-This test ensures cocktail page behaves consistently and cleanly throughout the workflow.
+This test ensures user area page behaves consistently and cleanly throughout the workflow.
 
-### 1 Cocktail page load
+### 1 User Area page load
+
+The page will open cleanly and responsively dependent on screen size.
 
 Expected Result:
 
+- The User Area will have two options.
+  - <span class="button">Enter the forum"</span>.
+  - <span class="button">Ingredient Lookup</span>.
+
+### 2 Ingredients Lookup
+
+Clicking on the <span class="button">Ingredient Lookup</span> button.
+
+Expected Result:
+
+- The ingredients lookup modal will open cleanly with no layout shift.
+
+- The drop down menu will list all available ingredients that are currently being used in a cocktail.
+
+### 3 Selecting an Ingredient
+
+Clicking on any listed ingredient.
+
+Expected Result:
+
+- The modal will display a graphic button for any cocktail using the selected ingredient.
 
 
+### 4 Selecting another Ingredient
+
+Clicking on another ingredient while cocktails are being displayed.
+
+Expected Result:
+
+- The modal will display a fresh set of graphic button for any cocktail using the newly selected ingredient.
 
 
+### 5 Selecting a cocktail
 
+Clicking on one of the graphic cocktail buttons.
 
+Expected Result:
 
+- The cocktail modal will open allowing that cocktail to be inspected.
 
+### 6 Closing the modal
+
+Expected Result:
+
+- Each modal can be closed by clicking the <span class="button">X</span>
+  - The modal will close cleaning returning to the previous state.
+
+- Clicking outside any modal will close the whole modal chain, this is the expected result.
 
 
 ### Testing Table
 
 | Test Step | Action | Pass/Fail | Comments | Current State |
 |-----------|--------|-----------|-----------------|--------|
-| 1 | |:<span class="tick">✔️</span>  ||:
-| 2 | |:<span class="tick">✔️</span>  ||:
-| 3 | |:<span class="tick">✔️</span>  ||:
+| 1 | User Area page load|:<span class="tick">✔️</span>  ||:
+| 2 | Ingredients Lookup|:<span class="tick">✔️</span>  ||:
+| 3 | Selecting an Ingredient|:<span class="tick">✔️</span>  ||:
+| 4 | Selecting another Ingredient|:<span class="tick">✔️</span>  ||:
+| 5 | Selecting a cocktail|:<span class="tick">✔️</span>  ||:
+| 6 | Closing the modal|:<span class="tick">✔️</span>  ||:
 
-<span class="tick">❌</span>
 
-<span class="tick">🐞</span>Bug001 Close with data fails; All fields are empty.
+### 1 User Area page load *cont...*
 
-<span class="tick">⛑️</span> Fixed
+### 2 Enter the forum
 
-<a id="bugs"></a>
+Clicking the <span class="button">Enter the forum</span> button.
+
+Expected Result:
+
+- The user forum will open a new page in the same tab.
+
+- A list of all current threads titles will be displayed.
+
+- The page will present two options.
+
+  - <span class="button">Start new thread</span> button
+  - <span class="button">View thread</span> option next to any visible threads.
+
+### 3 Creating a new thread
+
+Clicking <span class="button">Start new thread</span> button
+
+Expected Result:
+
+- The page will change to a *Create new thread form*
+
+- All fields are required.
+
+- On completion the <span class="button">Post Thread</span> button is used to save the thread.
+  - Posting the thread will return the user to the previous menu.
+
+- Attempting to leave a field blank will result in an error message and the process halted.
+
+- The user can abort the process at any time by clicking <span class="button">Back to message board</span> button.
+  - If the user aborts no data will be saved
+  - The screen will return to the previous menu.
+
+### 4 View Thread
+
+Clicking <span class="button">View thread</span> button
+
+Expected Result:
+
+- The screen will change to display all replies associated to the selected thread.
+
+- The user may add the own reply to the thread or return to the previous menu by clicking <span class="button">Back to message board</span> button.
+
+### 5 Reply to a Thread
+
+Users my post a reply by filling in the text fields
+
+Expected Result:
+
+- All fields are required to *Post Reply*.
+  - If ant fields are left blank the system will display an error message.
+  - The process will halt waiting for relevant data.
+
+- When complete the reply is posted by clicking the <span class="button">Post Reply</span> button.
+  - The data will be saved and the screen return to the previous menu.
+
+- The user can abort the process at any time by clicking <span class="button">Back to message board</span> button.
+  - If the user aborts no data will be saved
+  - The screen will return to the previous menu.
+
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | User Area page load *cont...*|:<span class="tick">✔️</span>  ||:
+| 2 | Enter the forum|:<span class="tick">✔️</span>  ||:
+| 3 | Creating a new thread|:<span class="tick">✔️</span>  ||:
+| 4 | View Thread|:<span class="tick">✔️</span>  ||:
+| 5 | Reply to a Thread|:<span class="tick">✔️</span>  ||:
+
 
 ## Bug Report
 
