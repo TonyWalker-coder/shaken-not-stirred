@@ -32,7 +32,7 @@ ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'tonywalker.pythonanywhere.com',
