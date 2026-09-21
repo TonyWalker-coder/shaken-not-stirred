@@ -11,7 +11,8 @@ Table of Contents
 - [Folder Structure](#folder-structure)
 - [Acknowledgement ](#acknowledgement )
 - [Colour Theme](#colourtheme)
-- [Typography](#Typography)
+- [Typography](#typography)
+- [Deployment](#deployment)
 
 ## Project Overview
 Shaken!Stirred is a modern, visually‑driven cocktail discovery platform designed to combine style, usability, and scalable architecture. The project aims to deliver an engaging user experience through clean design, intuitive navigation, and a structured database capable of supporting future growth.
@@ -431,4 +432,36 @@ Together, these typefaces create a visual hierarchy that separates decorative el
 |-----------|--------|
 |Henny Penny|Branding, headings, cocktail names, and feature titles|
 |Englebert|General content, interface text, labels, and supporting information|
+
+## Deployment
+
+### Local deployment
+
+Clone the repository:
+
+git clone https://github.com/TonyWalker-coder/shaken-not-stirred
+
+cd shaken-not-stirred
+
+python -m venv .venv
+
+use **pip install -r requirements.txt** to install any dependencies.
+
+this project uses .env to install environment variables you will need to update this to match your requirements.
+
+use **python manage.py runserver** to run the development server.
+
+### Deployment to a web service
+
+Create a new application via the hosting provider dashboard.
+
+Apply database migrations:
+
+python manage.py migrate
+
+Configure all required environment variables, including any secret keys and database configuration settings, through your hosting provider's environment variable management system.
+
+Ensure DEBUG is set to False in the deployed environment.
+
+use **pip install -r requirements.txt** to install any dependencies.
 	
