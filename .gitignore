@@ -13,3 +13,4 @@ eslint-output.txt
 ruff-output.txt
 testdata
 templates/testdata.html
+extract.py

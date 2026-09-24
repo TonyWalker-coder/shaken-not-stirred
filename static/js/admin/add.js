@@ -186,7 +186,7 @@ function refreshIngredientCheckboxList(ingredients) {
 
   list.innerHTML = "";
 
-  // ⭐ SORT HERE
+  
   ingredients.sort((a, b) => a.name.localeCompare(b.name));
 
   ingredients.forEach((ing) => {

@@ -21,6 +21,5 @@ class HistoryAdmin(admin.ModelAdmin):
 @admin.register(Cocktail)
 class CocktailAdmin(admin.ModelAdmin):
     search_fields = ['name']
-    # <- This adds a nice interface for managing many-to-many relationships in the admin
     filter_horizontal = ['ingredients']
 

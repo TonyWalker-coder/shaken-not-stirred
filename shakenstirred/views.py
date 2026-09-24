@@ -33,8 +33,8 @@ def admin_page(request):
     for ing in ingredients:
         ing.used = Cocktail.objects.filter(ingredients=ing).exists()
 
-    # ⭐ ADD THIS BLOCK ⭐
-    import os
+
+    
     buttons_dir = os.path.join(
         settings.BASE_DIR,
         "cocktails",
@@ -54,7 +54,7 @@ def admin_page(request):
     return render(request, "admin.html", {
         "ingredients": ingredients,
         "cocktails": cocktails,
-        "images": images,   # ⭐ THIS WAS MISSING ⭐
+        "images": images,
         "messages": messages.get_messages(request)
     })
 
