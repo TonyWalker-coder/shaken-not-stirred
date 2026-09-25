@@ -2,7 +2,7 @@
 <!-- Page complete – Tony, 3/09/2026 admin.html -->
 {% load static %}
 <html lang="en">
-
+<!--⭐ do not auto format page contains template variables {{}} ⭐  -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -316,8 +316,8 @@
                 {% else %}
                 <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" alt="Large red X">
   
-                <button type="button" class="add-btn" data-open="addRecipeModal" data-id="{{ cocktail.id }}"
-                  data-child="true" aria-label="Add recipe">
+                <button type="button" class="add-btn" data-open="addRecipeModal" data-id="{{ cocktail.id }}" data-child="true"
+                  aria-label="Add recipe">
                   Add
                 </button>
   
@@ -740,7 +740,7 @@ Leave spacing and braces EXACTLY as written.
         image_url: "{{ c.image_url|default:'' }}"
     },
     {% endfor %}
-  ];
+    ];
 
 
 
