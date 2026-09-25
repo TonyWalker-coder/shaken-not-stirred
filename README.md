@@ -53,21 +53,20 @@ During development, the administrative interface gained the ability to perform f
 ### As a first‑time user _(Must Have)_
 I want to be able to navigate straight to the cocktails so I can start exploring the site immediately.
 ### Description
-The site should include a clear, fixed navigation bar that provides access to all main pages. Users should be able to move around the site easily without confusion.
+The site should include a clear, Users should be able to move around the site easily without confusion.
 ### Acceptance Criteria
-- A fixed navigation bar is present on every page
-- Navigation links are clearly labelled and easy to understand
-- The “Cocktails” page is accessible directly from the navigation bar
-- Navigation remains visible and functional on mobile and desktop
+- Navigation is from the home page which can be reached by clicking the logo
+- The main sections can all be accessed from the homepage
 
 ## Logo and Hero
 
 ### As the site owner _(Must Have)_
 I want the site logo to appear on every page, and I want the landing page to feature a meaningful hero image so the site feels visually engaging from the first interaction.
 ### Description
-The logo should be integrated into the navigation bar to ensure consistent branding across the entire site. The homepage (index.html) should include a prominent hero section with a meaningful, high‑quality image that reflects the theme and purpose of Shaken!Stirred.
+The homepage (index.html) should include a prominent hero section with a meaningful, high‑quality image that reflects the theme and purpose of Shaken!Stirred.
 ### Acceptance Criteria
-- The logo is displayed within the navigation bar on all pages
+- The site logo is the text **Shaken!Stirred**
+- The logo is displayed on the index and cocktail pages.
 - The landing page includes a hero section with a visually relevant image
 - The hero image loads correctly on mobile and desktop
 - The hero section contributes to a strong first impression and clear brand identity
@@ -93,7 +92,6 @@ The site should meet the requirements of WCAG 2.1 Level AA, ensuring that all co
 Accessibility must be considered from the very beginning of development rather than added retroactively.
 ### Acceptance Criteria
 - A consistent colour theme is used across all pages
-- Both light and dark themes are available
 - Colour palette meets WCAG 2.1 AA contrast ratios:
 - Minimum 4.5:1 for normal text
 - Minimum 3:1 for large text
@@ -103,7 +101,6 @@ Accessibility must be considered from the very beginning of development rather t
 - Meaningful alt text for images
 - ARIA labels where appropriate
 - Focus states are visible, clear, and consistent
-- Text can be resized up to 200% without breaking layout or hiding content
 - Navigation remains predictable and consistent across the site
 - No content flashes more than three times per second (to avoid seizure risk)
 

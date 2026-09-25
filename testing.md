@@ -84,15 +84,38 @@
 
 ## User Story Acceptance
 
-### Navigation bar
+## Navigation bar
 
-As the site is only 1 page deep all pages point back to the index.html apart from the forum which is a contained suit<span class="tick"><span class="tick">✔️</span></span>
+### Acceptance Criteria
+- Navigation is from the home page which can be reached by clicking the logo
+- The main sections can all be accessed from the homepage
 
-### Logo and Hero
+<img  width=500px height=100% src="./screenshots/nav1.png"><img  width=200px height=100% src="./screenshots/mobile-homepage.jpg">
 
-While the logo may not appear on each page due to overkill the theme has been maintained through out <span class="tick">✔️</span>
 
-### Responsive layout
+
+As the site is only 1 page deep all pages point back to the index.html via the clickable logo, apart from the forum which is a contained suit<span class="tick"><span class="tick">✔️</span></span>
+
+## Logo and Hero
+
+### Acceptance Criteria
+- The site logo is the text **Shaken!Stirred**
+- The logo is displayed on the index and cocktail pages.
+- The landing page includes a hero section with a visually relevant image
+- The hero image loads correctly on mobile and desktop
+- The hero section contributes to a strong first impression and clear brand identity
+
+<img  width=500px height=100% src="./screenshots/nav2.png">
+
+While the logo appears in the form of the site name on the index and cocktail pages the theme has been maintained through out and the index page has a full cover hero image<span class="tick">✔️</span>
+
+## Responsive layout
+
+### Acceptance Criteria
+- A responsive CSS grid layout is implemented across all pages
+- Grid columns adjust through breakpoints at 6 → 4 → 2 → 1
+- CSS  is used where appropriate to maintain scalable spacing, typography, and layout
+- The layout remains visually consistent and functional on mobile, tablet, and desktop
 
 The layout has been tested across different break points, with different break points for different screen, and on various devices <span class="tick">✔️</span>
 
@@ -105,9 +128,35 @@ The layout has been tested across different break points, with different break p
 <img src="screenshots/responsive-admin.png" class="screenshot-s">
 
 
+## Accessibility
+
+### Acceptance Criteria
+- A consistent colour theme is used across all pages
+- Colour palette meets WCAG 2.1 AA contrast ratios:
+- Minimum 4.5:1 for normal text
+- Minimum 3:1 for large text
+- All interactive elements (links, buttons, menus, cards) are fully operable using keyboard input alone
+- Screen reader support is ensured through:
+- Semantic HTML structure
+- Meaningful alt text for images
+- ARIA labels where appropriate
+- Focus states are visible, clear, and consistent
+- Navigation remains predictable and consistent across the site
+- No content flashes more than three times per second (to avoid seizure risk)
+
+## Index 
+
+| Feature                      | Test                                                               | Result |
+| ---------------------------- | ------------------------------------------------------------------ | ------ |
+| Keyboard navigation          | Navigated page using Tab and Shift+Tab                             | Pass   |
+| Admin modal focus            | Opened modal and verified keyboard focus remained within the modal | Pass   |
+| Modal close button           | Activated close button using keyboard                              | Pass   |
+| Escape key                   | Pressed Escape to close modal                                      | Pass   |
+| Password field accessibility | Screen-reader label associated with password input                 | Pass   |
 
 
-### Accessibility
+
+
 
 The project follows recognised accessibility best practices, using semantic markup, high‑contrast visuals, descriptive alt text, and fully keyboard‑accessible navigation to support an inclusive user experience. <span class="tick">✔️</span>
 
