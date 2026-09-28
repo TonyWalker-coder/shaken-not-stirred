@@ -3,13 +3,86 @@ import { refreshRecipesModal } from "./recipes.js";
 import { resetAddCocktailFields } from "./add.js";
 import { refreshCocktailList } from "./delete.js";
 
+
+function trapFocus(modal) {
+    const focusable = modal.querySelectorAll(
+      "button, input, select, textarea, a[href]"
+    );
+
+
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+
+    modal.addEventListener("keydown", (e) => {
+
+
+
+        if (e.key !== "Tab") return;
+
+        modal.addEventListener("keydown", (e) => {
+
+    if (e.key !== "Tab") return;
+
+    if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+    }
+
+    if (e.shiftKey && document.activeElement === first) {
+
+        e.preventDefault();
+        last.focus();
+    }
+});
+
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        }
+
+        if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    });
+}
+document.addEventListener("keydown", (e) => {
+
+
+    if (e.key !== "Escape") return;
+
+    const modals = document.querySelectorAll(".modal:not(.hidden)");
+    const topModal = modals[modals.length - 1];
+
+    if (topModal) {
+        closeModal(topModal.id);
+    }
+
+});
 /* ============================================================
    UNIVERSAL MODAL ENGINE (NO INLINE JS)
    ============================================================ */
+let lastFocusedElement = null;
 
 export function openModal(id) {
+  lastFocusedElement = document.activeElement;
+
   const modal = document.getElementById(id);
   if (modal) modal.classList.remove("hidden");
+
+  const firstFocusable = modal.querySelector(
+    "button, input, select, textarea, a[href]"
+  );
+
+  if (firstFocusable) {
+    firstFocusable.focus();
+  }
+
+  trapFocus(modal);
+
 
   const content = modal.querySelector(".modal-content");
 
@@ -26,6 +99,10 @@ export function closeModal(id) {
 
   if (modal) {
     modal.classList.add("hidden");
+
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+    }
 
     document.dispatchEvent(
       new CustomEvent("modalClosed", {
@@ -422,6 +499,7 @@ window.closeForumModal = closeForumModal;
 
 document.querySelectorAll('.admin-card').forEach(card => {
     card.addEventListener('keydown', e => {
+
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();   // stops spacebar scrolling
             card.click();

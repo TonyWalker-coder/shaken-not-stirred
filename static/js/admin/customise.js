@@ -93,6 +93,10 @@ document.addEventListener("change", async (e) => {
       `;
 
       list.appendChild(div);
+
+      
+
+
     });
 });
 

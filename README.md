@@ -109,37 +109,34 @@ Accessibility must be considered from the very beginning of development rather t
 ### As a regular user _(Should Have)_
 I want to be able to add my own cocktail so I can contribute to the collection and share my creations with others.
 ### Description
-Users should be able to submit their own cocktails through a dedicated form. The form must be linked to the database and follow the site’s validation rules to ensure consistency and quality across all cocktail entries.
+Users should be able to submit their own cocktails through a dedicated user form.
 ### Acceptance Criteria
-- A form exists that allows users to add a new cocktail
-- The form includes validation to ensure all required fields meet site standards
-- Successfully submitted cocktails are stored in the site database
-- Users receive clear feedback if the form is incomplete or invalid
+- A user form exists that allows users to add a new cocktail
+- Submission of user cocktails is done via admin access to protect the integrity of teh site.
 
 ## Administration — Manage User Cocktails
 
 ### As a site owner _(Should Have)_
 I want to be able to edit, amend, and delete user‑submitted cocktails so I can maintain the quality and accuracy of the site’s content.
 ### Description
-The site must include a secure administration area where authorised users can manage cocktail entries. This includes viewing, editing, and deleting cocktails submitted by regular users. Access should be restricted to approved administrators only.
+The site must include a secure administration area where authorised users can manage cocktail entries. This includes viewing, editing, and deleting cocktails submitted users. Access should be restricted to approved administrators only.
 ### Acceptance Criteria
 - A password‑protected administration page is available only to authorised users
 - Administrators can view all user‑submitted cocktails
-- A form exists that allows administrators to edit cocktail details
+- A modal based system exists that allows administrators to edit cocktail details
 - Administrators can delete cocktails from the database
-- A database table exists to store administrator user accounts
 
 ## Search Form — Find Cocktails by Ingredient
 
 ### As a user _(Could Have)_
 I want to be able to search the cocktails so I can quickly find drinks that match the ingredients I have or prefer.
 ### Description
-The site should include a search form that allows users to filter cocktails based on selected ingredients. Ingredient options should be validated and presented in a clear, structured way to support accurate and efficient searching.
+The site should include a search form that allows users to filter cocktails based on a selected ingredient. Ingredient options should be validated and presented in a clear, structured way to support accurate and efficient searching.
 ### Acceptance Criteria
-- A search form is available for users to search cocktails by ingredient
+- A search modal is available for users to search cocktails by ingredient
 - Ingredient options are provided through validated dropdown selections
 - The search returns cocktails that match the selected ingredient(s)
-- Users receive clear feedback if no cocktails match their search
+- Only ingredients used in cocktails can be searched
 
 ## Cocktail Information — View Full Cocktail Details
 
@@ -159,25 +156,13 @@ When a user selects a cocktail, the site should display clear and structured inf
 ### As the site owner _(Could Have)_
 I want to receive feedback from my users so I can understand their experience and improve the site over time.
 ### Description
-The site should include a simple and accessible way for users to leave feedback. This should be handled through a clear call‑to‑action and a modal form, with confirmation shown once feedback has been successfully submitted.
+The site should include a simple and accessible way for users to leave feedback. This should be handled by a user user forum.
 ### Acceptance Criteria
-- A feedback button is available on the site
-- Clicking the button opens a modal where users can submit feedback
+- A user forum is available in the user area
+- Clicking the forum button opens a modal where users can submit feedback
 - The modal includes validated fields to ensure meaningful submissions
-- After submitting, users see a confirmation modal indicating successful feedback submission
-- Feedback entries are stored in the database for review
+- Forum entries are stored in the database for review by users or admin
 
-## Contact Information
-
-### As the site owner _(Should Have)_
-I want my contact information to be easily accessible so users can reach out if they need support or want to connect.
-### Description
-The site should provide a clear and visible link to the owner’s contact details. It should also include links to the site’s social media pages to help users stay connected and follow updates.
-### Acceptance Criteria
-- A clearly visible link to contact details is available on the site
-- Links to the site’s social media pages are included and easy to find
-- Contact information is presented in a clean, accessible format
-- All links function correctly on mobile and desktop
 
 ## Image Buttons — Open Cocktail Details
 
@@ -191,6 +176,7 @@ Each cocktail displayed on the site should use its image as an interactive eleme
 - The modal includes ingredients, method, and optional history
 - Images have appropriate hover/focus states for accessibility
 - The interaction works consistently on mobile and desktop
+- Cocktails should have a missing image to avoid broken links
 
 ## GitHub Projects
 
@@ -401,7 +387,10 @@ Shaken Not Stirred was always intended to be a highly visual application, using 
 
 ## Microsoft Copilot
 
-Microsoft Copilot was used throughout the development process as a learning and support tool. It assisted with understanding Django best practices, identifying industry-standard approaches to application structure and development, and helping to ensure a consistent, predictable, and efficient user experience. Copilot also provided guidance during the planning phase, including support in designing and refining the Entity Relationship Diagram (ERD) used for the project's database structure.
+Microsoft Copilot was used throughout the development process as a learning and support tool. It assisted with understanding Django best practices, identifying industry-standard approaches to application structure and development, and helping to ensure a consistent, predictable, and efficient user experience. Copilot also provided guidance during the planning phase, including support in designing and refining the Entity Relationship Diagram (ERD) used for the project's database structure in particular the many to many relationship modal for cocktail <> ingredient.
+
+* Keyboard accessibility 
+proved really problematic so Microsoft Copilot was used to coded traps to retain modal focus with keyboard operations, so i take no credit for the code just the relentless testing and identifying the pit falls, there are no complete code clocks to comment as most of the rewrites are adding and changing existing lines inside the modal open and close functions.
 
 ## Icons8
 

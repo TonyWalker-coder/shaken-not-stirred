@@ -154,6 +154,69 @@ The layout has been tested across different break points, with different break p
 | Escape key                   | Pressed Escape to close modal                                      | Pass   |
 | Password field accessibility | Screen-reader label associated with password input                 | Pass   |
 
+<img  width=300px height=100% src="./screenshots/accessibility1.png">
+
+## cocktail_list
+
+### Keyboard Navigation Testing
+ 
+| Feature | Test Performed | Result |
+|----------|----------|----------|
+| Home navigation link | Navigated to the Home link using the Tab key and activated it using Enter | Pass |
+| Cocktail cards | Navigated to cocktail cards using the Tab key | Pass |
+| Open modal | Opened cocktail detail modal using Enter on a selected cocktail card | Pass |
+| Focus management | Keyboard focus remained within modal controls while the modal was open | Pass |
+| Close modal (Escape) | Pressed Escape key to close the modal | Pass |
+| Close modal (Enter) | Pressed Enter on the close control to close the modal | Pass |
+| Close modal (Space) | Pressed Space on the close control to close the modal | Pass |
+| Return to page | After closing the modal, keyboard navigation returned to the page content | Pass |
+ 
+**Bug found and fixed:** During testing, the modal allowed keyboard navigation to move to elements behind the modal while it was open. Focus management was updated so keyboard users remain within the modal interface until it is closed.
+
+<img  width=300px height=100% src="./screenshots/accessibility2.png">
+
+## Admin
+
+### Keyboard Accessibility Testing
+
+| Test Area | Notes | Result |
+|-----------|-------|--------|
+| Tab navigation| All primary admin controls and modal controls can be reached using the keyboard. | Pass |
+| Enter key activation| Buttons, links and modal actions can be activated using Enter. | Pass |
+| Modal opening| Modals open correctly from keyboard interaction. | Pass |
+| Modal closing (Close button)| Modals can be closed using the keyboard. | Pass |
+| ESC key close| Open modals close when ESC is pressed. | Pass |
+| Focus on modal open| Focus moves into the modal when opened. | Pass |
+| Focus return on modal close| Focus returns to the originating control after the modal is closed. | Pass |
+| CRUD operations| Create, Read, Update and Delete actions were successfully completed using keyboard navigation. | Pass |
+| Images modal | When no cocktail is selected, Assign buttons remain disabled and focus may leave the modal after the final available control. This is expected behaviour. | Pass* |
+| Add Cocktail modal | When used only for ingredient creation and no cocktail name is entered, the Create Cocktail button remains disabled and focus may leave the modal after the final available control. This is expected behaviour. | Pass* |
+| Customise Cocktail modal | Ingredient buttons are generated dynamically after the modal opens. Focus trapping currently initialises before these controls exist. | Known limitation |
+| User Forum modal | Forum content is dynamically replaced when loading a thread, which can disrupt the existing focus map. | Known limitation |
+
+### Bug Identified
+
+| Issue | Status |
+|---------|---------|
+| Visible keyboard focus indicator is not consistently displayed on some modal controls (for example, the close button). | Fixed Bug006. |
+| Nested modal ESC handling, When a child confirmation modal is open, pressing ESC closes the parent modal instead of the active child modal, leaving the child modal orphaned. | Fixed Bug007. |
+
+
+
+
+**Note:**
+
+- Keyboard focus trap tested across admin modals. Images modal initially exited the focus loop when no cocktail was selected because all Assign buttons were disabled and removed from the tab order. Once a cocktail was selected, focus trapping behaved as expected.
+
+- Known behaviour: When the Add Cocktail modal is used only for ingredient creation and no cocktail name is entered, focus is released after the final available control because the Create Cocktail action remains disabled.
+
+- Keyboard focus trapping was successfully implemented across administrative modals. Testing identified two dynamic-content edge cases. The Customise Cocktail modal generates additional controls after initialisation, and the User Forum replaces modal content when loading threads. Both cases would require dynamic regeneration of the focus map and have been recorded as future accessibility enhancements.
+
+Images modal tab leak, workaround added Feature005
+
+<img  width=300px height=100% src="./screenshots/accessibility3.png">
+
+
 
 
 
@@ -2058,7 +2121,7 @@ Added a sort order to the django view.
 
 `--------------------------------------------------------------`
 
-<span class="tick">🛠️</span><span class="fix">Feature003</span>
+<span class="tick">🛠️</span><span class="fix">Feature004</span>
 
 ### Stale modal scroll state
 
@@ -2075,9 +2138,57 @@ Changes made:
 
 Added a `content.scrollTo` in the open modal function.
 
+`--------------------------------------------------------------`
 
+<span class="tick">🐞</span>Bug005
 
+**Issue**
 
+Lighthouse reported insufficient colour contrast on page title and home navigation linksText colour was darkened while preserving the site theme. Lighthouse accessibility check subsequently passed.
+
+**Solution**
+
+Text colour was darkened while preserving the site theme. Lighthouse accessibility check subsequently passed.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🐞</span>Bug006
+
+**Issue:**  
+Certain buttons in the admin modals lacked visible focus.
+
+**Fix:**  
+Accessibility styles added to the modal style sheet.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🐞</span>Bug007
+
+**Issue:**  
+Pressing the `ESC` key while a child confirmation modal was open closed the parent modal instead, leaving the child modal visible and orphaned on screen.
+
+**Fix:**  
+The ESC handler was updated to identify and close the most recently opened visible modal, ensuring child confirmation modals close before their parent modal.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature005</span>
+
+### Modal leaking `Tab key`
+
+**Issue**
+
+Image modal and some others that require a user input allow the tab to escape if there is no input.
+
+**Solution**
+
+Image Modal Focus Guard Enhancement
+
+A focus guard was added to the image modal to prevent keyboard users from accidentally tabbing out of the modal when no dropdown option has been selected. Previously, opening the modal and tabbing through the available controls could result in focus escaping the modal and moving into the browser's native tab order, creating a confusing user experience. The focus guard keeps keyboard focus within the modal.
+
+This approach provides a far better user experience than allowing focus to escape into browser. While the user may briefly cycle back to an existing control, they remain within the application's context rather than becoming lost outside the interface. An additional benefit is that once valid data is entered and Django generates the updated content, the modal's focus correctly refreshes and returns users to the newly available elements. This results in **Focus remains within the application context instead of escaping to the browser's tab sequence, reducing the risk of keyboard users becoming disoriented**.
+
+`--------------------------------------------------------------`
 
 <hr style="border: 1px solid #ccc;">
 

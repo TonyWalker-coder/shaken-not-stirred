@@ -102,6 +102,14 @@
     color: #ff8c1a;
 }
 
+/* Keyboard focus */
+/* ⭐ Bug006 Fix*/
+.close:focus,
+.close:focus-visible {
+    outline: 4px solid #005fcc;
+    outline-offset: 3px;
+    color: #ff8c1a;
+}
 /* Modal image preview */
 .modal-image {
     width: 100%;
@@ -243,6 +251,12 @@
 
 .delete-btn:hover {
     background: #b30000;
+}
+/* ⭐ Bug006 Fix*/
+.delete-btn:focus,
+.delete-btn:focus-visible {
+outline: 4px solid blue;
+outline-offset: 3px;
 }
 
 .edit-btn,
