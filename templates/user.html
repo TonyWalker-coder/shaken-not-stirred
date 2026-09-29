@@ -3,6 +3,115 @@
 {% load static %}
 <html lang="en">
 
+<style>/*
+    .cocktail-card{
+        width: 200px;
+        height: auto;
+        
+    }
+    .cocktail-card img {
+max-width: 100%;
+height: auto;
+display: block;
+}*/
+
+    /* ============================================
+       DROPDOWN FILTER
+       Used to select an ingredient category
+       ============================================ */
+    .dropdown {
+        padding: 0.6rem;
+        border-radius: 10px;
+        font-size: 1.1rem;
+    }
+
+    /* ============================================
+       COCKTAIL GRID
+       Responsive grid layout for lookup results
+       ============================================ */
+    .cocktail-grid {
+        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1.5rem; /* spacing between cards */
+    }
+
+    /* ============================================
+       COCKTAIL CARD
+       Frosted‑glass tile with hover animation
+       ============================================ */
+    .cocktail-card {
+        background: rgba(255, 255, 255, 0.18);
+        padding: 1rem;
+        border-radius: 14px;
+        text-align: center;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px); /* Safari support */
+        cursor: pointer;
+        transition: transform 0.15s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Fade‑in animation for each card */
+    .cocktail-card {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Hover lift effect */
+    .cocktail-card:hover {
+        transform: scale(1.05);
+    }
+
+    /* Glow on hover */
+    .cocktail-card:hover {
+        box-shadow: 0 0 12px rgba(247, 124, 36, 0.6);
+    }
+
+    /* Cocktail image inside card */
+    .cocktail-card img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain; 
+        margin-bottom: 0.5rem;
+    }
+
+    /* Image frame styling */
+    .cocktail-card img {
+        border-radius: 10px;
+        background: rgba(255,255,255,0.25);
+        padding: 6px;
+    }
+
+    /* Cocktail name text */
+    .cocktail-name {
+        color: #f77c24;
+        font-family: 'Henny Penny', cursive;
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    /* Form labels */
+    label {
+        color: white;
+    }
+
+    /* Section headings */
+    h3 {
+        color: white;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <title>Shaken!Stirred – User Area</title>
@@ -26,11 +135,12 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="{% static 'cocktails/user.css' %}">
     <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
 
     <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
-    <link rel="stylesheet" href="{% static 'cocktails/user.css' %}">
+    
+    
     <link rel="icon" type="image/png" href="{% static 'cocktails/images/favicon/faviconcocktail.png' %}">
 
 </head>
@@ -51,7 +161,7 @@
                     </h2>
 
                     <p class="intro-text">
-                        Shaken ! Stirred has added a brand new community forum to the User Area.
+                        Shaken ! Stirred has added a community forum to the User Area.
                         Share your thoughts about the site, chat with other cocktail lovers, and
                         of course submit your own cocktail creations for inclusion on the menu.
                     </p>
@@ -70,9 +180,10 @@
                         Try our ingredient reverse lookup and see which exciting cocktail is waiting for you.
                     </p>
 
-                    <button class="forum-btn" id="lookupBtn" aria-label="Open ingredient lookup tool">
+                    <button class="forum-btn" data-open="lookupModal" aria-label="Open ingredient lookup tool">
                         🍍 Ingredient Lookup
                     </button>
+                    
                 </section>
 
             </div>
@@ -84,33 +195,185 @@
         </footer>
     </div>
 
-    <div id="lookupModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="lookupIngredients">
-        <div class="modal-content glass-panel">
-            <span class="close">&times;</span>
+    <div id="lookupModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="lookupModalTitle">
 
-            <h2>
-                Ingredient Lookup
-            </h2>
+    <div class="modal-content glass-panel">
+    
+        <button type="button" class="close" data-close="lookupModal" aria-label="Close ingredient lookup">
+            &times;
+        </button>
+    
+        <h2 id="lookupModalTitle">
+            Ingredient Lookup
+        </h2>
 
-            <iframe id="lookupFrame" src="{% url 'ingredient_lookup' %}" title="Ingredient lookup tool"></iframe>
+        <p>Selected: {{ selected_id }}</p>
 
 
+    
+        <div class="modal-add-block">
+        
+            <form method="GET">
+        
+                <label for="ingredientSelect">
+                    Select Ingredient
+                </label>
+        
+                <select id="ingredientSelect" name="ingredient" class="modal-input">
+                
+                    <option value="">
+                        -- Choose Ingredient --
+                    </option>
+                
+                    {% for ingredient in ingredients %}
+                    <option value="{{ ingredient.id }}">
+                        {{ ingredient.name }}
+                    </option>
+                    {% endfor %}
+                
+                </select>
+
+        
+                <button type="submit" class="add-btn" onclick="console.log('submit button clicked')">
+                    Find Cocktails
+                </button>
+
+
+        
+            </form>
+            <p>Selected: {{ selected_id }}</p>
+
+
+        
         </div>
+    
+        <div class="modal-add-block">
+    
+            
+    
+        </div>
+    
+        <div class="modal-add-block">
+        
+            <h3>Matching Cocktails</h3>
+        
+            {% if cocktails %}
+        
+            <div class="cocktail-grid">
+        
+                {% for c in cocktails %}
+        
+                <button type="button" class="cocktail-card" data-cocktail="{{ c.id }}" data-name="{{ c.name }}" data-image="{% if c.image_url %}{{ c.image_url }}{% endif %}">
+
+                
+        
+                    <img src="{% if c.image_url %}
+                             {% static c.image_url %}
+                          {% else %}
+                             {% static 'cocktails/buttons/no-image.png' %}
+                          {% endif %}" class="cocktail-name" 
+                          alt="{% if c.image_url %}{{ c.name }} image{% else %}No image available for {{ c.name }}{% endif %}">
+
+                    <h4 class="cocktail-name">{{ c.name }}</h4>
+
+                    <button type="button" onclick="openChildModal({{ c.id }})">
+                        Test Child
+                    </button>
+        
+                </button>
+        
+                {% endfor %}
+        
+            </div>
+        
+            {% else %}
+        
+            <p class="empty-text">
+                Select an ingredient to begin.
+            </p>
+        
+            {% endif %}
+        
+        </div>
+    
     </div>
 
-    <div id="childModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="lookupCocktails">
-        <div class="modal-content glass-panel">
-            <button class="close" aria-label="Close modal">&times;</button>
+    <button class="focus-end" aria-hidden="true"></button>
 
-            <h2 id="lookupTitle">Ingredient Lookup</h2>
-            <iframe id="childFrame" style="width:100%; height:500px; border:none;" title="Additional content"></iframe>
+    </div>
 
+    <div id="childModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="childTitle">
+    
+        <div class="modal-content">
+    
+            <button class="close" data-close="childModal">
+                &times;
+            </button>
+
+            
+    
+            <h2 id="childTitle"></h2>
+            
+    
+            <img id="childImage" src="" alt="">
+    
+            <div id="childContent">
+                Loading...
+            </div>
+    
         </div>
+    
     </div>
 
 
 
-    <script type="module" src="/static/js/admin/user.js"></script>
+
+    <script type="module" src="/static/js/admin/admin-core.js"></script>
+    <!--script type="module" src="/static/js/admin/user.js"></script-->
+    <script>
+
+        function openChildModal(id) {
+            window.parent.postMessage({ type: "openChild", id: id }, "*");
+        }
+
+
+        window.addEventListener("message", function (e) {
+
+            console.log("MESSAGE RECEIVED:", e.data);
+
+            if (e.data.type === "openChild") {
+
+                console.log("OPEN CHILD REQUESTED");
+
+                document.getElementById("childTitle").textContent =
+"Loading...";
+
+fetch("/user/lookup/cocktail/" + e.data.id + "/")
+    .then(response => response.text())
+    .then(html => {
+
+        document.getElementById("childContent").innerHTML = html;
+
+    });
+                document.getElementById("childModal")
+                    .classList.remove("hidden");
+            }
+        });
+
+
+    </script>
+
+    {% if selected_id %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.querySelector('[data-open="lookupModal"]');
+
+    if (btn) {
+        btn.click();
+    }
+});
+</script>
+{% endif %}
 
 </body>
 

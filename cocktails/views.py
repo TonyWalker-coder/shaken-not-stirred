@@ -594,7 +594,41 @@ def reset_db(request):
 
 # USER AREA
 def user_area(request):
-    return render(request, "user.html")
+
+    ingredients = (
+        Ingredient.objects
+        .filter(cocktail__isnull=False)
+        .distinct()
+        .order_by(Lower("name"))
+    )
+
+    selected_id = request.GET.get("ingredient")
+    cocktails = None
+
+    print("GET:", request.GET)
+
+    if selected_id:
+        ingredient = get_object_or_404(
+            Ingredient,
+            id=selected_id
+        )
+
+        cocktails = Cocktail.objects.filter(
+            ingredients=ingredient
+        )
+
+        print("Ingredient:", ingredient.name)
+        print("Cocktails found:", cocktails.count())
+
+    return render(
+        request,
+        "user.html",
+        {
+            "ingredients": ingredients,
+            "selected_id": selected_id,
+            "cocktails": cocktails,
+        }
+    )
 
 def user_forum(request):
     threads = Thread.objects.order_by('-created_at')

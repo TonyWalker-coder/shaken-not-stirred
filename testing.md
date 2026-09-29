@@ -216,9 +216,24 @@ Images modal tab leak, workaround added Feature005
 
 <img  width=300px height=100% src="./screenshots/accessibility3.png">
 
+## User Area
+
+### Keyboard Accessibility Testing
+
+| Test Area | Notes | Result |
+|-----------|-------|--------|
+| Tab navigation| All primary admin controls and modal controls can be reached using the keyboard. | Pass |
+| Enter key activation| Buttons, links and modal actions can be activated using Enter. | Pass |
+| Ingredients lookup modal opening| Modal open correctly from keyboard interaction. | Pass |
+| User Forum| Forum page open correctly from keyboard interaction. | Pass |
+| ESC key close| Open modal close when ESC is pressed. | Fail |
+| Focus on modal open| Focus moves into the modal when opened. | Pass |
+| Modal retains focus| Focus moves around the modal buttons. | Fail |
+| Focus return on modal close| Focus returns to the originating control after the modal is closed. | Pass |
+| Search operations| Search and select action was successfully completed using keyboard navigation. | Pass |
 
 
-
+<img  width=300px height=100% src="./screenshots/accessibility4.png">
 
 
 The project follows recognised accessibility best practices, using semantic markup, high‑contrast visuals, descriptive alt text, and fully keyboard‑accessible navigation to support an inclusive user experience. <span class="tick">✔️</span>

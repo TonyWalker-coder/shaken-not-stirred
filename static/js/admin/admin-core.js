@@ -70,7 +70,13 @@ let lastFocusedElement = null;
 export function openModal(id) {
   lastFocusedElement = document.activeElement;
 
+  console.log("openModal called:", id);
+
   const modal = document.getElementById(id);
+
+  console.log("modal found:", modal);
+
+  
   if (modal) modal.classList.remove("hidden");
 
   const firstFocusable = modal.querySelector(
@@ -96,6 +102,12 @@ export function openModal(id) {
 
 export function closeModal(id) {
   const modal = document.getElementById(id);
+
+  window.history.replaceState(
+    {},
+    document.title,
+    window.location.pathname
+  );
 
   if (modal) {
     modal.classList.add("hidden");
@@ -127,6 +139,8 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("click", async (e) => {
+
+console.log("click detected");  
   const openTarget = e.target.closest("[data-open]");
   const closeTarget = e.target.closest("[data-close]");
 
@@ -134,6 +148,8 @@ document.addEventListener("click", async (e) => {
    OPEN MODAL
    --------------------------- */
 if (openTarget) {
+
+  console.log("opening", openTarget.dataset.open);
   const id = openTarget.dataset.open;
 
   if (openTarget.dataset.child === "true") {

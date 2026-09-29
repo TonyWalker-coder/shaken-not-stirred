@@ -172,7 +172,7 @@ footer {
     transform: translateY(-4px);
 }
 
-/* Modal overlay for forum iframe */
+/* Modal overlay for forum iframe 
 .modal {
     position: fixed;
     top: 0;
@@ -184,9 +184,9 @@ footer {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-}
+}*/
 
-/* Modal content container */
+/* Modal content container 
 .modal-content {
     background: rgba(255, 255, 255, 0.15);
     padding: 2rem;
@@ -196,7 +196,7 @@ footer {
     width: 80%;
     max-width: 900px;
     position: relative;
-}
+}*/
 
 /* Embedded forum iframe */
 iframe {
