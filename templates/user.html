@@ -205,6 +205,7 @@
         </h2>
 
         <p>Selected: {{ selected_id }}</p>
+        <p>Cocktail Count: {{ cocktails|length }}</p>
 
 
     
@@ -291,7 +292,7 @@
     
     </div>
 
-    <button class="focus-end" aria-hidden="true"></button>
+    
 
     </div>
 
@@ -324,15 +325,31 @@
 <script type="module" src="/static/js/admin/admin-core.js"></script>
     <!--script type="module" src="/static/js/admin/user.js"></script-->
 <script>
+    let lastFocusedElement = null;
 
-    function openChildModal(id) {
-            window.parent.postMessage({ type: "openChild", id: id }, "*");
-    }
+function openChildModal(id) {
 
+    lastFocusedElement = document.activeElement;
 
-    window.addEventListener("message", function (e) {
+    console.log(
+        "Saving focus:",
+        lastFocusedElement
+    );
+
+    window.parent.postMessage({
+        type: "openChild",
+        id: id
+    }, "*");
+}
+
+        window.addEventListener("message", function (e) {
 
         console.log("MESSAGE RECEIVED:", e.data);
+
+        console.log(
+"Saving focus:",
+lastFocusedElement
+);
 
         if (e.data.type === "openChild") {
 
@@ -347,12 +364,101 @@
                 document.getElementById("childContent").innerHTML = html;
 
         });
+                //document.getElementById("childModal")
+                //    .classList.remove("hidden");
+
                 document.getElementById("childModal")
-                    .classList.remove("hidden");
+.classList.remove("hidden");
+
+document.querySelector("#childModal .close")?.focus();
+
+                //openModal("childModal");
         }
     });
 
+    function trapFocus(modal) {
+    const focusable = modal.querySelectorAll(
+        "button, input, select, textarea, a[href]"
+    );
 
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    modal.addEventListener("keydown", (e) => {
+        if (e.key !== "Tab") return;
+
+        if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        }
+    });
+}
+
+
+
+    //function openChildModal(id) {
+    //        window.parent.postMessage({ type: "openChild", id: id }, "*");
+    //}
+
+
+    window.addEventListener("message", function (e) {
+
+        console.log("MESSAGE RECEIVED:", e.data);
+
+        
+
+        if (e.data.type === "openChild") {
+
+            console.log("OPEN CHILD REQUESTED");
+
+                
+
+        fetch("/user/lookup/cocktail/" + e.data.id + "/")
+            .then(response => response.text())
+            .then(html => {
+
+                document.getElementById("childContent").innerHTML = html;
+
+        });
+                //document.getElementById("childModal")
+                //    .classList.remove("hidden");
+
+                document.getElementById("childModal").classList.remove("hidden");
+
+                document.querySelector("#childModal .close")?.focus();
+
+                const modal = document.getElementById("childModal");
+                modal.classList.remove("hidden");
+                document.querySelector("#childModal .close")?.focus();
+
+
+                trapFocus(modal);
+
+                //openModal("childModal");
+        }
+    });
+
+document.addEventListener("modalClosed", (e) => {
+
+    if (e.detail.modalId === "childModal") {
+
+        console.log(
+            "Restoring focus:",
+            lastFocusedElement
+        );
+
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
+    }
+});
 </script>
 
     {% if selected_id %}

@@ -103,6 +103,19 @@ export function openModal(id) {
 export function closeModal(id) {
   const modal = document.getElementById(id);
 
+  console.log("admin-core.js click handler for closing modals");
+
+  if (id === "lookupModal") {
+
+    const grid = modal.querySelector(".cocktail-grid");
+
+    if (grid) {
+        grid.remove();
+    }
+
+    document.getElementById("ingredientSelect").value = "";
+  }
+
   window.history.replaceState(
     {},
     document.title,
