@@ -73,6 +73,7 @@
 - [Admin Workflow UI Validation](#admin)
 - [Cocktail Page UI Validation](#cocktail)
 - [User Area Workflow UI Validation](#user)
+- [Added 404.html](#404)
 - [Bug Report](#bugs)
 - [Post‑Fix Verification](#postfixes)
 
@@ -2019,6 +2020,13 @@ Expected Result:
 | 4 | View Thread|:<span class="tick">✔️</span>  ||:
 | 5 | Reply to a Thread|:<span class="tick">✔️</span>  ||:
 
+<a id="404"></a>
+
+
+
+To improve user experience and error handling, a custom 404 (Page Not Found) template was implemented within the Django application. Rather than displaying Django's default error page, users are presented with a branded page that remains visually consistent with the rest of the website. The custom page provides a clear explanation that the requested resource could not be found and includes navigation back to the main application. This ensures that invalid URLs are handled gracefully while maintaining a professional and user-friendly experience.
+
+<img src="screenshots/404page.png">
 
 ## Bug Report
 

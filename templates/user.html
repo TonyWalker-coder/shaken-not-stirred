@@ -4,16 +4,7 @@
 <html lang="en">
 
 <style>/*
-    .cocktail-card{
-        width: 200px;
-        height: auto;
-        
-    }
-    .cocktail-card img {
-max-width: 100%;
-height: auto;
-display: block;
-}*/
+    
 
     /* ============================================
        DROPDOWN FILTER
@@ -82,6 +73,12 @@ display: block;
     .cocktail-card img {
         width: 120px;
         height: 120px;
+        object-fit: contain; 
+        margin-bottom: 0.5rem;
+    }
+    .card img {
+        width: 200px;
+        height: 200px;
         object-fit: contain; 
         margin-bottom: 0.5rem;
     }
@@ -263,7 +260,7 @@ display: block;
         
                 {% for c in cocktails %}
         
-                <button type="button" class="cocktail-card" data-cocktail="{{ c.id }}" data-name="{{ c.name }}" data-image="{% if c.image_url %}{{ c.image_url }}{% endif %}">
+                <button type="button" class="cocktail-card" data-cocktail="{{ c.id }}" data-name="{{ c.name }}" data-image="{% if c.image_url %}{{ c.image_url }}{% endif %}" onclick="openChildModal({{ c.id }})">
 
                 
         
@@ -275,10 +272,6 @@ display: block;
                           alt="{% if c.image_url %}{{ c.name }} image{% else %}No image available for {{ c.name }}{% endif %}">
 
                     <h4 class="cocktail-name">{{ c.name }}</h4>
-
-                    <button type="button" onclick="openChildModal({{ c.id }})">
-                        Test Child
-                    </button>
         
                 </button>
         
@@ -328,51 +321,50 @@ display: block;
 
 
 
-    <script type="module" src="/static/js/admin/admin-core.js"></script>
+<script type="module" src="/static/js/admin/admin-core.js"></script>
     <!--script type="module" src="/static/js/admin/user.js"></script-->
-    <script>
+<script>
 
-        function openChildModal(id) {
+    function openChildModal(id) {
             window.parent.postMessage({ type: "openChild", id: id }, "*");
-        }
+    }
 
 
-        window.addEventListener("message", function (e) {
+    window.addEventListener("message", function (e) {
 
-            console.log("MESSAGE RECEIVED:", e.data);
+        console.log("MESSAGE RECEIVED:", e.data);
 
-            if (e.data.type === "openChild") {
+        if (e.data.type === "openChild") {
 
-                console.log("OPEN CHILD REQUESTED");
+            console.log("OPEN CHILD REQUESTED");
 
-                document.getElementById("childTitle").textContent =
-"Loading...";
+                
 
-fetch("/user/lookup/cocktail/" + e.data.id + "/")
-    .then(response => response.text())
-    .then(html => {
+        fetch("/user/lookup/cocktail/" + e.data.id + "/")
+            .then(response => response.text())
+            .then(html => {
 
-        document.getElementById("childContent").innerHTML = html;
+                document.getElementById("childContent").innerHTML = html;
 
-    });
+        });
                 document.getElementById("childModal")
                     .classList.remove("hidden");
-            }
-        });
+        }
+    });
 
 
-    </script>
+</script>
 
     {% if selected_id %}
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.querySelector('[data-open="lookupModal"]');
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector('[data-open="lookupModal"]');
 
-    if (btn) {
-        btn.click();
-    }
-});
-</script>
+        if (btn) {
+            btn.click();
+        }
+        });
+    </script>
 {% endif %}
 
 </body>
