@@ -2213,6 +2213,20 @@ This approach provides a far better user experience than allowing focus to escap
 
 `--------------------------------------------------------------`
 
+<span class="tick">🛠️</span><span class="fix">Feature006</span>
+
+### Admin access modal
+
+**Issue**
+
+Browser warning on index.html.
+
+**Solution**
+
+The admin access modal was designed to use a single password field because the project does not implement individual administrator accounts. However, modern browsers may flag password-only forms as incomplete. To improve compatibility and reduce browser warnings, a hidden username field was added and pre-populated with a generic administrator value. The login process remains unchanged while better aligning the form with recognised authentication patterns.
+
+
+
 <hr style="border: 1px solid #ccc;">
 
 ## Post‑Fix Verification

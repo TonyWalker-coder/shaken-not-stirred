@@ -83,12 +83,14 @@
             <form method="POST" action="{% url 'admin_login' %}">
                 {% csrf_token %}
                 <div>
+                    <label for="adminUsername" class="sr-only">Admin Username</label>
+                    <input type="text" name="username" value="admin" autocomplete="username" class="sr-only">
                     <label for="adminPassword" class="sr-only">Admin Password</label>
                     <input class="password-input" id="adminPassword" type="password" name="password" placeholder="Password" required
                         autocomplete="current-password">
                 </div>
-
-
+            
+            
                 <button type="submit" class="add-btn" style="margin-top:12px;">
                     Enter
                 </button>
