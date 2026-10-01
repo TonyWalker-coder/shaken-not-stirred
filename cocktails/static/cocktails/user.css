@@ -19,7 +19,7 @@ h2 {
 
 /* Full‑screen hero background with flex layout */
 .hero {
-    background-image: url("../cocktails/images/background/user.png");
+    background-image: url("../cocktails/images/background/user.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -132,7 +132,7 @@ footer {
     position: absolute;
     width: 180px;
     height: 180px;
-    background-image: url("../cocktails/images/background/palm.png");
+    background-image: url("../cocktails/images/background/palm.webp");
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.45;

@@ -5,9 +5,18 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description"
+        content="Discover cocktails, ingredients, recipes, and tropical drink history with Shaken!Stirred — a vibrant mixology experience.">
+    <meta name="author" content="Tony Walker">
+
+    <meta property="og:title" content="Shaken!Stirred – Tropical Cocktail Explorer">
+    <meta property="og:description" content="Discover cocktails, ingredients, recipes, and tropical drink history.">
+    <meta property="og:image" content="{% static 'images/social-preview.webp' %}">
+    <meta property="og:type" content="website">
     <title>Shaken!Stirred</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap">
     <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
     <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
     <link rel="stylesheet" href="{% static 'cocktails/forum.css' %}">
@@ -22,7 +31,7 @@
 
 
 body {
-    background: url('{% static 'cocktails/images/background/sunset.png' %}');
+    background: url('{% static 'cocktails/images/background/sunset.webp' %}');
     
 }
 

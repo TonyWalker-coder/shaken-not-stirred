@@ -3,8 +3,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 
 <!-- Page Header -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description"
+        content="Discover cocktails, ingredients, recipes, and tropical drink history with Shaken!Stirred — a vibrant mixology experience.">
+    <meta name="author" content="Tony Walker">
+
+    <meta property="og:title" content="Shaken!Stirred – Tropical Cocktail Explorer">
+    <meta property="og:description" content="Discover cocktails, ingredients, recipes, and tropical drink history.">
+    <meta property="og:image" content="{% static 'images/social-preview.webp' %}">
+    <meta property="og:type" content="website">
+ 
 <header class="hero">
     <h1 class="title sunset-overlay"><a href="/user/" aria-label="Go to User Forum homepage">User Forum</a></h1>
     <nav class="title-homepage sunset-overlay" aria-label="User area navigation"><a href="/user/">User

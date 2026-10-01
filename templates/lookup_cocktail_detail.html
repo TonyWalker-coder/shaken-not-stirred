@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap">
     <link rel="icon" type="image/png" href="{% static 'cocktails/images/favicon/faviconcocktail.png' %}">
 
 <style>
@@ -124,7 +124,7 @@
     src="{% if cocktail.image_url %}
             {% static cocktail.image_url %}
          {% else %}
-            {% static 'cocktails/buttons/no-image.png' %}
+            {% static 'cocktails/buttons/no-image.webp' %}
          {% endif %}"
     alt="{% if cocktail.image_url %}{{ cocktail.name }} image{% else %}No image available for {{ cocktail.name }}{% endif %}"
 >
