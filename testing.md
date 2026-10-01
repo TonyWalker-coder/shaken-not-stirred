@@ -202,9 +202,6 @@ The layout has been tested across different break points, with different break p
 | Visible keyboard focus indicator is not consistently displayed on some modal controls (for example, the close button). | Fixed Bug006. |
 | Nested modal ESC handling, When a child confirmation modal is open, pressing ESC closes the parent modal instead of the active child modal, leaving the child modal orphaned. | Fixed Bug007. |
 
-
-
-
 **Note:**
 
 - Keyboard focus trap tested across admin modals. Images modal initially exited the focus loop when no cocktail was selected because all Assign buttons were disabled and removed from the tab order. Once a cocktail was selected, focus trapping behaved as expected.
@@ -223,7 +220,7 @@ Images modal tab leak, workaround added Feature005
 
 | Test Area | Notes | Result |
 |-----------|-------|--------|
-| Tab navigation| All primary admin controls and modal controls can be reached using the keyboard. | Pass |
+| Tab navigation| All primary user controls and modal controls can be reached using the keyboard. | Pass |
 | Enter key activation| Buttons, links and modal actions can be activated using Enter. | Pass |
 | Ingredients lookup modal opening| Modal open correctly from keyboard interaction. | Pass |
 | User Forum| Forum page open correctly from keyboard interaction. | Pass |
@@ -235,6 +232,21 @@ Images modal tab leak, workaround added Feature005
 
 
 <img  width=300px height=100% src="./screenshots/accessibility4.png">
+
+## User Forum
+
+The user forum spans three pages so the testing followed that progression 
+
+### Keyboard Accessibility Testing
+
+| Test Area | Notes | Result |
+|-----------|-------|--------|
+| Tab navigation| All primary user controls can be reached using the keyboard. | Pass |
+| Enter key activation| Buttons, links can be activated using Enter. | Pass |
+| User Forum| Forum page open correctly from keyboard interaction. | Pass |
+| Tab navigation| All forum fields can be accessed via tab. | Pass |
+| Enter key activation| All post can be sent with the keyboard. | Pass |
+| Abort post| Any post can be aborted by navigating and pressing enter on the return button. | Pass |
 
 
 The project follows recognised accessibility best practices, using semantic markup, high‑contrast visuals, descriptive alt text, and fully keyboard‑accessible navigation to support an inclusive user experience. <span class="tick">✔️</span>
