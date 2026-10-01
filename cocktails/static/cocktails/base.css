@@ -1,0 +1,58 @@
+    /* ============================================
+       HEADINGS
+       Tropical brand font + orange colour
+       ============================================ */
+    h1,
+    h2 {
+        font-family: 'Henny Penny', cursive;
+        color: var(--brand-orange);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    /* ============================================
+       RETURN BUTTON
+       Used inside thread detail pages
+       ============================================ */
+    .return-btn {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 10px 18px;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 10px;
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.25s ease;
+    }
+
+    /* Hover lift for return button */
+    .return-btn:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: translateY(-2px);
+    }
+
+    /* ============================================
+       FOOTER
+       Shared footer styling across forum pages
+       ============================================ */
+    footer {
+        text-align: center;
+        padding: 20px;
+        color: white;
+        opacity: 0.8;
+    }
+
+    body {
+    background: url(...) center/cover no-repeat;
+    font-family: 'Englebert', sans-serif;
+}
+
+@media (min-width: 1024px) {
+    body {
+        background-attachment: fixed;
+    }
+}
+
