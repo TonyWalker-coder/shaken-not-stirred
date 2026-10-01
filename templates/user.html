@@ -3,7 +3,7 @@
 {% load static %}
 <html lang="en">
 
-<style>/*
+<style>
     
 
     /* ============================================
@@ -59,15 +59,12 @@
         }
     }
 
-    /* Hover lift effect */
+    /* Hover lift and glow effect */
     .cocktail-card:hover {
         transform: scale(1.05);
-    }
-
-    /* Glow on hover */
-    .cocktail-card:hover {
         box-shadow: 0 0 12px rgba(247, 124, 36, 0.6);
     }
+
 
     /* Cocktail image inside card */
     .cocktail-card img {
@@ -75,16 +72,6 @@
         height: 120px;
         object-fit: contain; 
         margin-bottom: 0.5rem;
-    }
-    .card img {
-        width: 200px;
-        height: 200px;
-        object-fit: contain; 
-        margin-bottom: 0.5rem;
-    }
-
-    /* Image frame styling */
-    .cocktail-card img {
         border-radius: 10px;
         background: rgba(255,255,255,0.25);
         padding: 6px;
@@ -118,8 +105,8 @@
 
     <!-- Basic SEO -->
     <meta name="description"
-        content="Shaken!Stirred Testdata Suite – tools for resetting the database, testing image fallbacks, verifying thumbnails, and validating cocktail data.">
-    <meta name="keywords" content="cocktails, testdata, development tools, image fallback, thumbnails, ShakenStirred">
+        content="Shaken!Stirred User Area, Contains user  forum and Reverse lookup for ingredients.">
+    <meta name="keywords" content="cocktails, ShakenNotStirred">
     <meta name="author" content="Tony Walker">
     <meta name="theme-color" content="#f77c24">
 
@@ -216,7 +203,7 @@
                     Select Ingredient
                 </label>
         
-                <select id="ingredientSelect" name="ingredient" class="modal-input">
+                <select id="ingredientSelect" name="ingredient" class="modal-input .dropdown" aria-label="Select an ingredient to find matching cocktails">
                 
                     <option value="">
                         -- Choose Ingredient --
@@ -322,141 +309,137 @@
 
 
 <script type="module" src="/static/js/admin/admin-core.js"></script>
-    <!--script type="module" src="/static/js/admin/user.js"></script-->
+
 <script>
     let lastFocusedElement = null;
 
-function openChildModal(id) {
+    function openChildModal(id) {
 
-    lastFocusedElement = document.activeElement;
+        lastFocusedElement = document.activeElement;
 
-    
 
-    window.parent.postMessage({
-        type: "openChild",
-        id: id
-    }, "*");
-}
 
-        window.addEventListener("message", function (e) {
+        window.parent.postMessage({
+            type: "openChild",
+            id: id
+        }, "*");
+    }
 
-        
+    window.addEventListener("message", function (e) {
+
+
 
         if (e.data.type === "openChild") {
 
-            
 
-                
 
-        fetch("/user/lookup/cocktail/" + e.data.id + "/")
-            .then(response => response.text())
-            .then(html => {
 
-                document.getElementById("childContent").innerHTML = html;
 
-        });
-                //document.getElementById("childModal")
-                //    .classList.remove("hidden");
+            fetch("/user/lookup/cocktail/" + e.data.id + "/")
+                .then(response => response.text())
+                .then(html => {
 
-                document.getElementById("childModal")
-.classList.remove("hidden");
+                    document.getElementById("childContent").innerHTML = html;
 
-document.querySelector("#childModal .close")?.focus();
+                });
 
-                //openModal("childModal");
+
+            document.getElementById("childModal")
+                .classList.remove("hidden");
+
+            document.querySelector("#childModal .close")?.focus();
+
+
         }
     });
+
 
     function trapFocus(modal) {
-    const focusable = modal.querySelectorAll(
-        "button, input, select, textarea, a[href]"
-    );
+        const focusable = modal.querySelectorAll(
+            "button, input, select, textarea, a[href]"
+        );
 
-    if (!focusable.length) return;
+        if (!focusable.length) return;
 
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
 
-    modal.addEventListener("keydown", (e) => {
-        if (e.key !== "Tab") return;
+        modal.addEventListener("keydown", (e) => {
+            if (e.key !== "Tab") return;
 
-        if (!e.shiftKey && document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-        }
+            if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
 
-        if (e.shiftKey && document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-        }
-    });
-}
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            }
+        });
+    }
 
-
-
-    //function openChildModal(id) {
-    //        window.parent.postMessage({ type: "openChild", id: id }, "*");
-    //}
 
 
     window.addEventListener("message", function (e) {
 
-        
 
-        
+
+
 
         if (e.data.type === "openChild") {
 
-            
-
-                
-
-        fetch("/user/lookup/cocktail/" + e.data.id + "/")
-            .then(response => response.text())
-            .then(html => {
-
-                document.getElementById("childContent").innerHTML = html;
-
-        });
-                //document.getElementById("childModal")
-                //    .classList.remove("hidden");
-
-                document.getElementById("childModal").classList.remove("hidden");
-
-                document.querySelector("#childModal .close")?.focus();
-
-                const modal = document.getElementById("childModal");
-                modal.classList.remove("hidden");
-                document.querySelector("#childModal .close")?.focus();
 
 
-                trapFocus(modal);
 
-                //openModal("childModal");
+
+            fetch("/user/lookup/cocktail/" + e.data.id + "/")
+                .then(response => response.text())
+                .then(html => {
+
+                    document.getElementById("childContent").innerHTML = html;
+
+                });
+
+
+            document.getElementById("childModal").classList.remove("hidden");
+
+            document.querySelector("#childModal .close")?.focus();
+
+            const modal = document.getElementById("childModal");
+            modal.classList.remove("hidden");
+            document.querySelector("#childModal .close")?.focus();
+
+
+            trapFocus(modal);
+
+
         }
     });
 
-document.addEventListener("modalClosed", (e) => {
 
-    if (e.detail.modalId === "childModal") {
+
+    document.addEventListener("modalClosed", (e) => {
+
+        if (e.detail.modalId === "childModal") {
 
         
 
-        if (lastFocusedElement) {
-            lastFocusedElement.focus();
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
-    }
-});
+    });
 </script>
 
-    {% if selected_id %}
+{% if selected_id %}
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-        const btn = document.querySelector('[data-open="lookupModal"]');
+            const btn = document.querySelector('[data-open="lookupModal"]');
 
-        if (btn) {
-            btn.click();
-        }
+            if (btn) {
+                btn.click();
+            }
         });
     </script>
 {% endif %}
