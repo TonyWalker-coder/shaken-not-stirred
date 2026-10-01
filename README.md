@@ -13,6 +13,7 @@ Table of Contents
 - [Colour Theme](#colourtheme)
 - [Typography](#typography)
 - [Deployment](#deployment)
+- [Comments in pages](#comments)
 
 ## Project Overview
 Shaken!Stirred is a modern, visually‑driven cocktail discovery platform designed to combine style, usability, and scalable architecture. The project aims to deliver an engaging user experience through clean design, intuitive navigation, and a structured database capable of supporting future growth.
@@ -450,4 +451,25 @@ Configure all required environment variables, including any secret keys and data
 Ensure DEBUG is set to False in the deployed environment.
 
 use **pip install -r requirements.txt** to install any dependencies.
+
+<a id="comments"></a>
+
+## Comments in pages
+
+The size of the project has meant it has been necessary to use certain commenting styles throughout the code as a personal reminders.
+
+- ⭐ stars are used to draw attention to something quite important
+
+  - *example*
+  - `<!--⭐ do not auto format page contains template variables  ⭐  -->`
+
+- Dates  are used to remind me that something has happened at the time
+
+    - *example*
+    - `<!-- Page complete – Tony, 2/09/2026 cocktail lookup -->` Used as a point of reference in validator screenshots
+
+- Bugxxx or Featurexxx is used to remind that this piece of code has been amended to fix something normally documented in testing.md
+
+    - *example*
+    - `// ⭐ BUG FIX: Clear stray inline ingredient data bug004`
 	
