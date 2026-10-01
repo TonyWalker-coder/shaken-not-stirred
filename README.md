@@ -112,8 +112,8 @@ I want to be able to add my own cocktail so I can contribute to the collection a
 ### Description
 Users should be able to submit their own cocktails through a dedicated user form.
 ### Acceptance Criteria
-- A user form exists that allows users to add a new cocktail
-- Submission of user cocktails is done via admin access to protect the integrity of teh site.
+- A user forum exists that allows users to add a new cocktail
+- Submission of user cocktails is done via admin access to protect the integrity of the site.
 
 ## Administration — Manage User Cocktails
 
@@ -127,12 +127,12 @@ The site must include a secure administration area where authorised users can ma
 - A modal based system exists that allows administrators to edit cocktail details
 - Administrators can delete cocktails from the database
 
-## Search Form — Find Cocktails by Ingredient
+## Search Ingredients — Find Cocktails by Ingredient
 
 ### As a user _(Could Have)_
 I want to be able to search the cocktails so I can quickly find drinks that match the ingredients I have or prefer.
 ### Description
-The site should include a search form that allows users to filter cocktails based on a selected ingredient. Ingredient options should be validated and presented in a clear, structured way to support accurate and efficient searching.
+The site should include a search modal that allows users to filter cocktails based on a selected ingredient. Ingredient options should be validated and presented in a clear, structured way to support accurate and efficient searching.
 ### Acceptance Criteria
 - A search modal is available for users to search cocktails by ingredient
 - Ingredient options are provided through validated dropdown selections
@@ -164,6 +164,17 @@ The site should include a simple and accessible way for users to leave feedback.
 - The modal includes validated fields to ensure meaningful submissions
 - Forum entries are stored in the database for review by users or admin
 
+## Contact Information
+
+### As a site owner _(Should Have)_
+I want users to be able to contact me and respond in a safe secure way.
+
+### Description
+Users should be able to leave messages for the admin.
+
+### Acceptance Criteria
+- A user forum should exist to allow users to post comments
+- The admin should have access to the forum and be able to delete threads
 
 ## Image Buttons — Open Cocktail Details
 

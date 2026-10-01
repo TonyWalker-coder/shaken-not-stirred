@@ -248,36 +248,95 @@ The user forum spans three pages so the testing followed that progression
 | Enter key activation| All post can be sent with the keyboard. | Pass |
 | Abort post| Any post can be aborted by navigating and pressing enter on the return button. | Pass |
 
+<img  width=300px height=100% src="./screenshots/accessibility5.png"><img  width=300px height=100% src="./screenshots/accessibility6.png"><img  width=300px height=100% src="./screenshots/accessibility7.png">
+
+**conclusion**
 
 The project follows recognised accessibility best practices, using semantic markup, high‑contrast visuals, descriptive alt text, and fully keyboard‑accessible navigation to support an inclusive user experience. <span class="tick">✔️</span>
 
-### POST — Add a Cocktail
+## POST — Add a Cocktail
 
-To protect the integrity and consistency of the site’s content, users are encouraged to share their cocktail creations through the forum. This allows the admin to review submissions and decide which cocktails are formally added to the main database. <span class="tick">✔️</span>
+### Acceptance Criteria
+- A user forum exists that allows users to add a new cocktail
+- Submission of user cocktails is done via admin access to protect the integrity of the site.
 
-### Administration — Manage User Cocktails
+The project has a forum to allow users to post freely and the admin has access to the forum post and a full crud system documented CRUD usage is fully covered in this document and screenshots of forums and admin already exist in several topic . <span class="tick">✔️</span>
+
+## Administration — Manage User Cocktails
+
+### Acceptance Criteria
+- A password‑protected administration page is available only to authorised users
+- Administrators can view all user‑submitted cocktails
+- A modal based system exists that allows administrators to edit cocktail details
+- Administrators can delete cocktails from the database
+
+The admin area is password protected and the admin has full CRUD control of the site. There is a comprehensive CRUD walk through with screenshots in this document.
+
+<img  width=500px height=100% src="./screenshots/passwordcontrol.png">
 
 A full and comprehensive admin system has been implemented to manage all cocktail data, including validation, error checking, and controlled publishing. This ensures the site remains accurate, consistent, and protected from incorrect or duplicate submissions. <span class="tick">✔️</span>
 
+
 ### Search Form — Find Cocktails by Ingredient
 
-The reverse‑lookup system allows users to choose a single ingredient and instantly see every cocktail that uses it. This provides a quick and intuitive way to explore drinks based on what the user already has available. <span class="tick">✔️</span>
+## Search Ingredients — Find Cocktails by Ingredient
 
-### Cocktail Information — View Full Cocktail Details 
+### Acceptance Criteria
+- A search modal is available for users to search cocktails by ingredient
+- Ingredient options are provided through validated dropdown selections
+- The search returns cocktails that match the selected ingredient(s)
+- Only ingredients used in cocktails can be searched
 
-The cocktail page displays full drink details using bold, eye‑catching imagery and a well‑structured cocktail card, making it easy for users to explore each drink in depth. <span class="tick">✔️</span>
+The reverse‑lookup system allows users to choose a single ingredient and instantly see every cocktail that uses it. This provides a quick and intuitive way to explore drinks based on what the user already has available. Screen shots and walk through already exist in the document.<span class="tick">✔️</span>
 
-### Feedback — Collect User Feedback
+## Cocktail Information — View Full Cocktail Details
 
-User feedback is gathered through the integrated forum, allowing visitors to share thoughts, ideas, and cocktail submissions in an open and structured space. This provides a simple and effective way for users to communicate with the site while keeping all feedback organised and easy to review. <span class="tick">✔️</span>
+### Acceptance Criteria
+- A database table exists to store cocktail ingredients
+- A database table exists to store optional cocktail history or background information
+- Selecting a cocktail displays its full details in a modal or similar component
+- The modal includes ingredients, method, and any available history
+- The layout is clear, readable, and consistent across all cocktails
 
-### Contact Information
+<img  width=300px height=100% src="./screenshots/acocktailcard.png">
+
+The cocktail page displays full drink details using bold, eye‑catching imagery and a well‑structured cocktail card, making it easy for users to explore each drink in depth. This documentation contains a full walkthrough with screenshots of this process. <span class="tick">✔️</span>
+
+## Feedback — Collect User Feedback
+
+### Acceptance Criteria
+- A user forum is available in the user area
+- Clicking the forum button opens a modal where users can submit feedback
+- The modal includes validated fields to ensure meaningful submissions
+- Forum entries are stored in the database for review by users or admin
+
+The site contains a user forum and is tested with screenshots throughout this document already. <span class="tick">✔️</span>
+
+## Contact Information
+
+### As a site owner _(Should Have)_
+I want users to be able to contact me and respond in a safe secure way.
+
+### Description
+Users should be able to leave messages for the admin.
+
+### Acceptance Criteria
+- A user forum should exist to allow users to post comments
+- The admin should have access to the forum and be able to delete threads
 
 As a “should‑have” requirement, contact functionality is addressed through the user forum. This provides a central, moderated space where users can post questions, share ideas, and communicate with the site, without exposing direct contact details or compromising the integrity of the platform. <span class="tick">✔️</span>
 
-### Image Buttons — Open Cocktail Details
+## Image Buttons — Open Cocktail Details
 
-The bespoke cocktail images act as interactive buttons, giving users a visually engaging way to explore each drink. These image‑driven controls make full use of responsive grids and modal windows, ensuring the experience feels smooth, modern, and intuitive across all devices. <span class="tick">✔️</span>
+### Acceptance Criteria
+- Each cocktail image functions as a clickable button
+- Clicking the image opens a modal containing the cocktail’s full details
+- The modal includes ingredients, method, and optional history
+- Images have appropriate hover/focus states for accessibility
+- The interaction works consistently on mobile and desktop
+- Cocktails should have a missing image to avoid broken links
+
+The bespoke cocktail images act as interactive buttons, giving users a visually engaging way to explore each drink. These image‑driven controls make full use of responsive grids and modal windows, ensuring the experience feels smooth, modern, and intuitive across all devices. This procedure is documented with screenshots in the CRUD walk through.<span class="tick">✔️</span>
 
 ### Testing Summary  
 
