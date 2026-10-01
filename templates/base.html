@@ -141,17 +141,37 @@
         color: white;
         opacity: 0.8;
     }
+
+    body {
+    background: url(...) center/cover no-repeat;
+    font-family: 'Englebert', sans-serif;
+}
+
+@media (min-width: 1024px) {
+    body {
+        background-attachment: fixed;
+    }
+}
+
+body {
+    background: url('{% static 'cocktails/images/background/sunset.png' %}');
     
+}
+
 </style>
 
 </head>
 
-<body style="
-    background: url('{% static 'cocktails/images/background/sunset.png' %}') center/cover fixed no-repeat;
-    font-family: 'Englebert', sans-serif;">
+<!--body style="
+    background: url('{% static 'cocktails/images/background/sunset.png' %}') center/cover no-repeat;
+    font-family: 'Englebert', sans-serif;"-->
+<body>
 
-    {% block content %}
-    {% endblock %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
 
     <footer>
         Shaken!Stirred © 2026 — Crafted with 🍸 & Code
