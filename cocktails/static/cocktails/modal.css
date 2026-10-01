@@ -543,7 +543,7 @@ outline-offset: 3px;
 .modal-header {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding-bottom: 10px;
 }
 
