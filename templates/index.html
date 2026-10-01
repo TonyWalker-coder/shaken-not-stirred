@@ -10,12 +10,12 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
-    
+
     <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
     <link rel="stylesheet" href="{% static 'cocktails/index.css' %}">
     <meta charset="UTF-8">
     <title>Shaken!Stirred – Tropical Cocktail Explorer</title>
-    
+
     <meta name="description"
         content="Discover cocktails, ingredients, recipes, and tropical drink history with Shaken!Stirred — a vibrant mixology experience.">
     <meta name="author" content="Tony Walker">
@@ -26,9 +26,8 @@
     <meta property="og:type" content="website">
 
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
-
+    <!-- Google Fonts-->
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap">
 
     <link rel="icon" type="image/png" href="{% static 'cocktails/images/favicon/faviconcocktail.png' %}">
 
@@ -75,7 +74,7 @@
             </button>
 
             <!-- Tropical admin artwork -->
-            <img src="{% static 'cocktails/admin/admin.png' %}" alt="Tropical admin icon" class="modal-image">
+            <img src="{% static 'cocktails/admin/admin.webp' %}" alt="Tropical admin icon" class="modal-image">
 
             <h2 id="adminLoginTitle" class="modal-title">Admin Access</h2>
             <p>Enter the admin password to continue.</p>
