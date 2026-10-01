@@ -46,7 +46,7 @@ def admin_page(request):
     images = sorted(
         (
             f for f in os.listdir(buttons_dir)
-            if f.lower().endswith((".png", ".jpg", ".jpeg"))
+            if f.lower().endswith((".png", ".jpg", ".jpeg", ".webp"))
         ),
         key=str.lower
     )

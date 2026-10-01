@@ -399,8 +399,8 @@ def upload_image(request):
         return JsonResponse({"error": True, "message": "No file uploaded."})
 
     ext = os.path.splitext(file.name)[1].lower()
-    if ext not in [".png", ".jpg", ".jpeg"]:
-        return JsonResponse({"error": True, "message": "Only PNG/JPG images allowed."})
+    if ext not in [".png", ".jpg", ".webp" ]:
+        return JsonResponse({"error": True, "message": "Only PNG/JPG/Webp images allowed."})
 
     save_dir = os.path.join(settings.BASE_DIR, "cocktails", "static", "cocktails", "buttons")
     os.makedirs(save_dir, exist_ok=True)

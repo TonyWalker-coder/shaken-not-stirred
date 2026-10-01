@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{% static 'cocktails/cocktailgrid.css' %}?v=5">
   <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}?v=5">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap">
   <link rel="icon" type="image/png" href="{% static 'cocktails/images/favicon/faviconcocktail.png' %}">
 </head>
 
@@ -42,11 +42,11 @@
   
   
   
-        <img class="cocktail-image" src="{% if cocktail.image_url %}
+        <img class="cocktail-image" width="300" height="300" src="{% if cocktail.image_url %}
                {% static cocktail.image_url %}
             {% else %}
-               {% static 'cocktails/buttons/no-image.png' %}
-            {% endif %}" alt="{{ cocktail.name }}" onerror="this.src='{% static 'cocktails/buttons/no-image.png' %}'">
+               {% static 'cocktails/buttons/no-image.webp' %}
+            {% endif %}" alt="{{ cocktail.name }}" onerror="this.src='{% static 'cocktails/buttons/no-image.webp' %}'">
   
   
       </div>
@@ -68,7 +68,7 @@
       </button>
 
 
-      <img id="modal-image" class="modal-image" src="{% static 'cocktails/buttons/no-image.png' %}" alt=""
+      <img id="modal-image" width="300" height="300" class="modal-image" src="{% static 'cocktails/buttons/no-image.png' %}" alt=""
         onerror="this.src='{% static 'cocktails/buttons/no-image.png' %}'">
 
       <h2 id="modal-name" aria-live="polite"></h2>

@@ -368,7 +368,7 @@
     "pk": 14,
     "fields": {
         "name": "Blue Lagoon",
-        "image_url": "cocktails/buttons/blue-lagoon.jpg",
+        "image_url": "cocktails/buttons/blue-lagoon.webp",
         "ingredients": [
             29,
             35,
@@ -382,7 +382,7 @@
     "pk": 15,
     "fields": {
         "name": "Blue Tahoe",
-        "image_url": "cocktails/buttons/blue-tahoe.jpg",
+        "image_url": "cocktails/buttons/blue-tahoe.webp",
         "ingredients": [
             25,
             26,
@@ -398,7 +398,7 @@
     "pk": 16,
     "fields": {
         "name": "Caipirinha",
-        "image_url": "cocktails/buttons/caipirinha.jpg",
+        "image_url": "cocktails/buttons/caipirinha.webp",
         "ingredients": [
             38,
             40,
@@ -412,7 +412,7 @@
     "pk": 17,
     "fields": {
         "name": "Cosmopolitan",
-        "image_url": "cocktails/buttons/cosmopolitan.jpg",
+        "image_url": "cocktails/buttons/cosmopolitan.webp",
         "ingredients": [
             38,
             43,
@@ -428,7 +428,7 @@
     "pk": 18,
     "fields": {
         "name": "Cuba Libre",
-        "image_url": "cocktails/buttons/cuba-libre.jpg",
+        "image_url": "cocktails/buttons/cuba-libre.webp",
         "ingredients": [
             34,
             38,
@@ -443,7 +443,7 @@
     "pk": 19,
     "fields": {
         "name": "Dirty Martini",
-        "image_url": "cocktails/buttons/dirty-martini.jpg",
+        "image_url": "cocktails/buttons/dirty-martini.webp",
         "ingredients": [
             29,
             50,
@@ -457,7 +457,7 @@
     "pk": 20,
     "fields": {
         "name": "Hiroshima",
-        "image_url": "cocktails/buttons/hiroshima.jpg",
+        "image_url": "cocktails/buttons/hiroshima.webp",
         "ingredients": [
             27,
             53,
@@ -471,7 +471,7 @@
     "pk": 21,
     "fields": {
         "name": "Kamikaze",
-        "image_url": "cocktails/buttons/kamikaze.jpg",
+        "image_url": "cocktails/buttons/kamikaze.webp",
         "ingredients": [
             29,
             46,
@@ -484,7 +484,7 @@
     "pk": 22,
     "fields": {
         "name": "Long Island Iced Tea",
-        "image_url": "cocktails/buttons/long-island-iced-tea.jpg",
+        "image_url": "cocktails/buttons/long-island-iced-tea.webp",
         "ingredients": [
             29,
             31,
@@ -503,7 +503,7 @@
     "pk": 23,
     "fields": {
         "name": "Mai Tai",
-        "image_url": "cocktails/buttons/mai-tai.jpg",
+        "image_url": "cocktails/buttons/mai-tai.webp",
         "ingredients": [
             24,
             28,
@@ -522,7 +522,7 @@
     "pk": 24,
     "fields": {
         "name": "Margarita",
-        "image_url": "cocktails/buttons/margarita.jpg",
+        "image_url": "cocktails/buttons/margarita.webp",
         "ingredients": [
             38,
             46,
@@ -539,7 +539,7 @@
     "pk": 25,
     "fields": {
         "name": "Mint Julep",
-        "image_url": "cocktails/buttons/mint-julep.jpg",
+        "image_url": "cocktails/buttons/mint-julep.webp",
         "ingredients": [
             28,
             59,
@@ -553,7 +553,7 @@
     "pk": 26,
     "fields": {
         "name": "Mojito",
-        "image_url": "cocktails/buttons/mojito.jpg",
+        "image_url": "cocktails/buttons/mojito.webp",
         "ingredients": [
             28,
             34,
@@ -569,7 +569,7 @@
     "pk": 27,
     "fields": {
         "name": "Pina Colada",
-        "image_url": "cocktails/buttons/pina-colada.jpg",
+        "image_url": "cocktails/buttons/pina-colada.webp",
         "ingredients": [
             26,
             34,
@@ -583,7 +583,7 @@
     "pk": 28,
     "fields": {
         "name": "Pisco Sour",
-        "image_url": "cocktails/buttons/pisco-sour.jpg",
+        "image_url": "cocktails/buttons/pisco-sour.webp",
         "ingredients": [
             38,
             46,
@@ -598,7 +598,7 @@
     "pk": 29,
     "fields": {
         "name": "Salty Dog",
-        "image_url": "cocktails/buttons/salty-dog.jpg",
+        "image_url": "cocktails/buttons/salty-dog.webp",
         "ingredients": [
             29,
             38,
@@ -613,7 +613,7 @@
     "pk": 30,
     "fields": {
         "name": "Screwdriver",
-        "image_url": "cocktails/buttons/screwdriver.jpg",
+        "image_url": "cocktails/buttons/screwdriver.webp",
         "ingredients": [
             25,
             29,
@@ -626,7 +626,7 @@
     "pk": 31,
     "fields": {
         "name": "Strawberry Daiquiri",
-        "image_url": "cocktails/buttons/strawberry-daiquiri.jpg",
+        "image_url": "cocktails/buttons/strawberry-daiquiri.webp",
         "ingredients": [
             34,
             38,
@@ -641,7 +641,7 @@
     "pk": 32,
     "fields": {
         "name": "Strawberry Mojito",
-        "image_url": "cocktails/buttons/strawberry-mojito.jpg",
+        "image_url": "cocktails/buttons/strawberry-mojito.webp",
         "ingredients": [
             34,
             38,
@@ -658,7 +658,7 @@
     "pk": 33,
     "fields": {
         "name": "Tequila Sunrise",
-        "image_url": "cocktails/buttons/tequila-sunrise.jpg",
+        "image_url": "cocktails/buttons/tequila-sunrise.webp",
         "ingredients": [
             25,
             27,
@@ -672,7 +672,7 @@
     "pk": 34,
     "fields": {
         "name": "Whiskey Sour",
-        "image_url": "cocktails/buttons/whiskey-sour.jpg",
+        "image_url": "cocktails/buttons/whiskey-sour.webp",
         "ingredients": [
             31,
             59,
@@ -687,7 +687,7 @@
     "pk": 36,
     "fields": {
         "name": "Bahama Mama",
-        "image_url": "cocktails/buttons/bahama-mom.jpg",
+        "image_url": "cocktails/buttons/bahama-mom.webp",
         "ingredients": [
             23,
             24,
@@ -703,7 +703,7 @@
     "pk": 38,
     "fields": {
         "name": "Bloody Mary",
-        "image_url": "cocktails/buttons/bloody-mary.jpg",
+        "image_url": "cocktails/buttons/bloody-mary.webp",
         "ingredients": [
             29,
             30,
@@ -718,7 +718,7 @@
     "pk": 39,
     "fields": {
         "name": "Blue Hawaii",
-        "image_url": "cocktails/buttons/blue-hawaii.jpg",
+        "image_url": "cocktails/buttons/blue-hawaii.webp",
         "ingredients": [
             26,
             28,
