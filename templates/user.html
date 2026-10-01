@@ -204,8 +204,7 @@
             Ingredient Lookup
         </h2>
 
-        <p>Selected: {{ selected_id }}</p>
-        <p>Cocktail Count: {{ cocktails|length }}</p>
+        
 
 
     
@@ -232,14 +231,14 @@
                 </select>
 
         
-                <button type="submit" class="add-btn" onclick="console.log('submit button clicked')">
+                <button type="submit" class="add-btn" aria-label="Find cocktails with selected ingredient">
                     Find Cocktails
                 </button>
 
 
         
             </form>
-            <p>Selected: {{ selected_id }}</p>
+            
 
 
         
@@ -331,10 +330,7 @@ function openChildModal(id) {
 
     lastFocusedElement = document.activeElement;
 
-    console.log(
-        "Saving focus:",
-        lastFocusedElement
-    );
+    
 
     window.parent.postMessage({
         type: "openChild",
@@ -344,16 +340,11 @@ function openChildModal(id) {
 
         window.addEventListener("message", function (e) {
 
-        console.log("MESSAGE RECEIVED:", e.data);
-
-        console.log(
-"Saving focus:",
-lastFocusedElement
-);
+        
 
         if (e.data.type === "openChild") {
 
-            console.log("OPEN CHILD REQUESTED");
+            
 
                 
 
@@ -410,13 +401,13 @@ document.querySelector("#childModal .close")?.focus();
 
     window.addEventListener("message", function (e) {
 
-        console.log("MESSAGE RECEIVED:", e.data);
+        
 
         
 
         if (e.data.type === "openChild") {
 
-            console.log("OPEN CHILD REQUESTED");
+            
 
                 
 
@@ -449,10 +440,7 @@ document.addEventListener("modalClosed", (e) => {
 
     if (e.detail.modalId === "childModal") {
 
-        console.log(
-            "Restoring focus:",
-            lastFocusedElement
-        );
+        
 
         if (lastFocusedElement) {
             lastFocusedElement.focus();
