@@ -312,6 +312,7 @@
 
 <script>
     let lastFocusedElement = null;
+    // ⭐ Called from inline onclick handlers in the template
 
     function openChildModal(id) {
 
@@ -324,34 +325,6 @@
             id: id
         }, "*");
     }
-
-    window.addEventListener("message", function (e) {
-
-
-
-        if (e.data.type === "openChild") {
-
-
-
-
-
-            fetch("/user/lookup/cocktail/" + e.data.id + "/")
-                .then(response => response.text())
-                .then(html => {
-
-                    document.getElementById("childContent").innerHTML = html;
-
-                });
-
-
-            document.getElementById("childModal")
-                .classList.remove("hidden");
-
-            document.querySelector("#childModal .close")?.focus();
-
-
-        }
-    });
 
 
     function trapFocus(modal) {
@@ -431,7 +404,6 @@
         }
     });
 </script>
-
 {% if selected_id %}
     <script>
         document.addEventListener("DOMContentLoaded", () => {

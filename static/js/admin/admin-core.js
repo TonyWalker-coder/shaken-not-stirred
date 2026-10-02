@@ -1,9 +1,15 @@
+// ===============================
+// COCKTAIL TILE LOADING SPINNER
+// Page complete – Tony, 2/10/2026
+// ===============================
 import { refreshHistoryModal } from "./history.js";
 import { refreshRecipesModal } from "./recipes.js";
 import { resetAddCocktailFields } from "./add.js";
 import { refreshCocktailList } from "./delete.js";
 
-
+//This function traps focus within a modal when it's open, preventing users from tabbing out of it. was written by Microsoft Copilot and 
+// modified by me to fit my needs. It ensures that when a modal is open, the focus cycles through the focusable elements inside the modal, 
+// enhancing accessibility.
 function trapFocus(modal) {
     const focusable = modal.querySelectorAll(
       "button, input, select, textarea, a[href]"
@@ -62,9 +68,9 @@ document.addEventListener("keydown", (e) => {
     }
 
 });
-/* ============================================================
-   UNIVERSAL MODAL ENGINE (NO INLINE JS)
-   ============================================================ */
+/* ---------------------------
+   UNIVERSAL MODAL ENGINE
+--------------------------- */
 let lastFocusedElement = null;
 
 export function openModal(id) {
@@ -159,7 +165,7 @@ document.addEventListener("click", async (e) => {
 
 /* ---------------------------
    OPEN MODAL
-   --------------------------- */
+--------------------------- */
 if (openTarget) {
 
 
@@ -205,7 +211,7 @@ if (openTarget) {
 }
 
 
-  /* ---------------------------
+/* ---------------------------
      CLOSE MODAL
      --------------------------- */
   if (closeTarget) {
@@ -230,10 +236,9 @@ export function resetImageCocktailSelect() {
     });
 }
 
-
-/* ============================================================
-   NEW MESSAGE SYSTEM
-   ============================================================ */
+/* ---------------------------
+   MESSAGE SYSTEM
+--------------------------- */
 
 function smoothScrollToTop(element) {
   const start = element.scrollTop;
@@ -279,18 +284,18 @@ export function modalMessage(modalId, type, text) {
   }, 3000);
 }
 
-/* ============================================================
+/* ---------------------------
    CSRF TOKEN
-   ============================================================ */
+--------------------------- */
 
 export function getCSRFToken() {
   const token = document.querySelector("[name=csrfmiddlewaretoken]");
   return token ? token.value : "";
 }
 
-/* ============================================================
+/* ---------------------------
    UNIVERSAL — REFRESH ANY COCKTAIL DROPDOWN
-   ============================================================ */
+--------------------------- */
 
 export async function refreshCocktailDropdown(selectEl) {
   if (!selectEl) return;
@@ -313,10 +318,10 @@ export async function refreshCocktailDropdown(selectEl) {
     });
 }
 
-// ===============================
+//* ---------------------------
 // Load a dashboard section via AJAX
 // Inserts the returned HTML into #dashboard-content
-// ===============================
+//* ---------------------------
 export async function loadDashboardSection(url) {
   const res = await fetch(url, {
     headers: { "X-Requested-With": "XMLHttpRequest" } // tells Django it's an AJAX request
@@ -332,9 +337,9 @@ export async function loadDashboardSection(url) {
 window.loadDashboardSection = loadDashboardSection;
 
 
-// ===============================
+//* ---------------------------
 // Open the forum modal and load the forum list
-// ===============================
+//* ---------------------------
 export async function openForum() {
   const res = await fetch("/dashboard/forum/", {
     headers: { "X-Requested-With": "XMLHttpRequest" }
@@ -350,9 +355,9 @@ export async function openForum() {
 window.openForum = openForum;
 
 
-// ===============================
+//* ---------------------------
 // Load a specific thread into the modal
-// ===============================
+//* ---------------------------
 export async function loadThread(threadId) {
   const res = await fetch(`/admin/forum/thread/${threadId}/`, {
     headers: { "X-Requested-With": "XMLHttpRequest" }
@@ -365,9 +370,9 @@ export async function loadThread(threadId) {
 window.loadThread = loadThread;
 
 
-// ===============================
+//* ---------------------------
 // Admin reply prompt (quick reply)
-// ===============================
+//* ---------------------------
 function adminReply(threadId) {
     const message = prompt("Enter your reply:");
     if (!message) return; // cancelled or empty
@@ -376,7 +381,7 @@ function adminReply(threadId) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken") // Django CSRF protection
+            "X-CSRFToken": getCookie("csrftoken")
         },
         body: JSON.stringify({ message })
     })
@@ -389,9 +394,9 @@ function adminReply(threadId) {
 window.adminReply = adminReply;
 
 
-// ===============================
+//* ---------------------------
 // Delete an entire thread (with confirmation)
-// ===============================
+//* ---------------------------
 function deleteThread(threadId) {
     if (!confirm("Delete this thread and all replies?")) return;
 
@@ -402,16 +407,16 @@ function deleteThread(threadId) {
         }
     })
     .then(() => {
-        closeForumModal(); // hide modal
-        location.reload(); // refresh admin page to update thread list
+        closeForumModal();
+        location.reload(); 
     });
 }
 window.deleteThread = deleteThread;
 
 
-// ===============================
+//* ---------------------------
 // Utility: Get a cookie value (used for CSRF)
-// ===============================
+//* ---------------------------
 function getCookie(name) {
     let cookieValue = null;
 
@@ -431,14 +436,13 @@ function getCookie(name) {
 window.getCookie = getCookie;
 
 
-// ===============================
+//* ---------------------------
 // UI Toggles for reply/delete forms
-// ===============================
+//* ---------------------------
 function showReplyForm() {
     document.getElementById("replyForm").style.display = "block";
     document.getElementById("deleteConfirm").style.display = "none";
 
-    // Scroll the actual scrollable modal container
     const modal = document.querySelector("#forumModal .modal-content");
 
     if (modal) {
@@ -454,7 +458,6 @@ function showDeleteConfirm() {
     document.getElementById("deleteConfirm").style.display = "block";
     document.getElementById("replyForm").style.display = "none";
 
-    // Scroll the actual scrollable modal container
     const modal = document.querySelector("#forumModal .modal-content");
 
     if (modal) {
@@ -473,9 +476,9 @@ function hideDeleteConfirm() {
 window.hideDeleteConfirm = hideDeleteConfirm;
 
 
-// ===============================
+//* ---------------------------
 // Submit a reply from the modal reply form
-// ===============================
+//* ---------------------------
 function submitReply(threadId) {
     const message = document.getElementById("replyMessage").value.trim();
     if (!message) return;
@@ -491,15 +494,16 @@ function submitReply(threadId) {
     .then(res => res.text())
     .then(html => {
         // reload thread with new reply included
+        // keep list live and just update the content
         document.getElementById("forumModalContent").innerHTML = html;
     });
 }
 window.submitReply = submitReply;
 
 
-// ===============================
+//* ---------------------------
 // Confirm delete inside modal
-// ===============================
+//* ---------------------------
 function confirmDelete(threadId) {
     fetch(`/admin/forum/delete-thread/${threadId}/`, {
         method: "POST",
@@ -515,9 +519,9 @@ function confirmDelete(threadId) {
 window.confirmDelete = confirmDelete;
 
 
-// ===============================
+//* ---------------------------
 // Close the forum modal
-// ===============================
+//* ---------------------------
 function closeForumModal() {
     const modal = document.getElementById("forumModal");
     if (modal) {
@@ -530,7 +534,7 @@ document.querySelectorAll('.admin-card').forEach(card => {
     card.addEventListener('keydown', e => {
 
         if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();   // stops spacebar scrolling
+            e.preventDefault();
             card.click();
         }
     });

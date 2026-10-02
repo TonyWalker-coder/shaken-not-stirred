@@ -1,3 +1,7 @@
+// ===============================
+// COCKTAIL TILE LOADING SPINNER
+// Page complete – Tony, 2/10/2026
+// =============================== 
 import {
   modalMessage,
   closeModal,
@@ -15,6 +19,7 @@ import {
    - Sends FormData via AJAX
    - Shows success/error messages
    - Refreshes the live image list
+   - Don't hide buttons, just disable them until a cocktail is selected accessibility requirement
 */
 
 document.addEventListener("submit", async (e) => {

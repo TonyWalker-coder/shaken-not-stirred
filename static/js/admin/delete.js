@@ -1,3 +1,7 @@
+// ===============================
+// COCKTAIL TILE LOADING SPINNER
+// Page complete – Tony, 2/10/2026
+// ===============================
 import {
   modalMessage,
   closeModal,
@@ -98,7 +102,7 @@ document.addEventListener("submit", async (e) => {
    - Recipes modal list
    - DeleteCocktailModal list
 
-   This ensures all modals stay in sync after a deletion.
+   *Fix This ensures all modals stay in sync after a deletion.
 */
 
 export function refreshCocktailList(cocktails) {
@@ -171,7 +175,7 @@ export function refreshCocktailList(cocktails) {
 /*
    When the user opens the deleteCocktailModal:
    - Fetch fresh cocktail list
-   - Refresh modal list
+   - Added refresh modal list
    - Open modal
 */
 

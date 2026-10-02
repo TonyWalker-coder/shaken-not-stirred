@@ -1,6 +1,6 @@
 // ===============================
 // COCKTAIL TILE LOADING SPINNER
-// Page complete – Tony, 28/08/2026
+// Page complete – Tony, 2/10/2026
 // ===============================
 document.getElementById("cocktailTile").addEventListener("click", function () {
   this.querySelector(".tile-text").style.display = "none";
@@ -59,7 +59,8 @@ document.querySelector("#adminLoginModal .modal-content")
   });
 
 
-// ===============================
+// ==================
+// =============
 // ESC KEY CLOSE BEHAVIOUR
 // ===============================
 // Allows users to press ESC to close the modal.

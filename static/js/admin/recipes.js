@@ -1,3 +1,7 @@
+// ===============================
+// COCKTAIL TILE LOADING SPINNER
+// Page complete – Tony, 2/10/2026
+// ===============================
 import {
   modalMessage,
   closeModal,

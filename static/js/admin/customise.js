@@ -1,3 +1,7 @@
+// ===============================
+// COCKTAIL TILE LOADING SPINNER
+// Page complete – Tony, 2/10/2026
+// ===============================
 import {
   modalMessage,
   openModal,
@@ -136,6 +140,7 @@ document.addEventListener("click", async (e) => {
   }
 
   // Force refresh of ingredient list
+  //Important: This will trigger the change event on the select, which will rebuild the list
   const select = document.getElementById("customiseCocktailSelect");
   if (select) {
     select.dispatchEvent(new Event("change", { bubbles: true }));

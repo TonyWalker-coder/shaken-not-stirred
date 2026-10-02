@@ -1,11 +1,15 @@
+// ===============================
+// COCKTAIL TILE LOADING SPINNER
+// Page complete – Tony, 2/10/2026
+// ===============================
 import {
   modalMessage,
   getCSRFToken
 } from "./admin-core.js";
 
-/* ============================================================
+  /* ---------------------------
    ADD COCKTAIL — NAME VALIDATION
-   ============================================================ */
+  --------------------------- */
 
 const cocktailNameInput = document.getElementById("newCocktailName");
 const nameMsg = document.getElementById("nameValidationMsg");
@@ -40,9 +44,9 @@ cocktailNameInput?.addEventListener("input", async () => {
   }
 });
 
-/* ============================================================
-   ADD COCKTAIL — SUBMIT HANDLER (FIXED)
-   ============================================================ */
+  /* ---------------------------
+   ADD COCKTAIL — SUBMIT HANDLER
+  --------------------------- */
 
 document.getElementById("addCocktailForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -57,15 +61,15 @@ document.getElementById("addCocktailForm")?.addEventListener("submit", async (e)
 
   /* ---------------------------
      PREVENT DOUBLE SUBMISSION
-     --------------------------- */
+--------------------------- */
   if (form.dataset.locked === "1") return;
   form.dataset.locked = "1";
 
   const formData = new FormData(form);
 
   /* ---------------------------
-     MANUAL WORKING MESSAGE (KEEPING THIS)
-     --------------------------- */
+     MANUAL WORKING MESSAGE
+--------------------------- */
   const msgBox = document.querySelector("#addCocktailModal .modal-message.success");
   msgBox.textContent = "Working...";
   msgBox.classList.remove("hidden");
@@ -76,7 +80,7 @@ document.getElementById("addCocktailForm")?.addEventListener("submit", async (e)
 
   /* ---------------------------
      POST COCKTAIL
-     --------------------------- */
+--------------------------- */
   const res = await fetch(form.action, {
     method: "POST",
     headers: { "X-Requested-With": "XMLHttpRequest" },
@@ -96,7 +100,7 @@ document.getElementById("addCocktailForm")?.addEventListener("submit", async (e)
 
   /* ---------------------------
      REFRESH INGREDIENT CHECKBOX LIST
-     --------------------------- */
+--------------------------- */
   const ingRes = await fetch("/refresh-all/", {
     headers: { "X-Requested-With": "XMLHttpRequest" }
   });
@@ -106,7 +110,7 @@ document.getElementById("addCocktailForm")?.addEventListener("submit", async (e)
 
   /* ---------------------------
      RESET FIELDS
-     --------------------------- */
+--------------------------- */
   const historyField = document.getElementById("newCocktailHistory");
   const recipeField = document.getElementById("newCocktailRecipe");
 
@@ -124,18 +128,18 @@ document.getElementById("addCocktailForm")?.addEventListener("submit", async (e)
 
   /* ---------------------------
      UNIFIED SUCCESS MESSAGE
-     --------------------------- */
+--------------------------- */
   modalMessage("addCocktailModal", "success", "Cocktail added!");
 
   /* ---------------------------
      UNLOCK FORM
-     --------------------------- */
+--------------------------- */
   form.dataset.locked = "";
 });
 
-/* ============================================================
+  /* ---------------------------
    INLINE INGREDIENT ADD
-   ============================================================ */
+  --------------------------- */
 
 const inlineInput = document.getElementById("newIngredientName");
 const inlineBtn = document.getElementById("addIngredientInlineBtn");
@@ -176,9 +180,9 @@ inlineBtn?.addEventListener("click", async () => {
   refreshIngredientCheckboxList(data.ingredients);
 });
 
-/* ============================================================
+  /* ---------------------------
    REBUILD INGREDIENT CHECKBOX LIST
-   ============================================================ */
+  --------------------------- */
 
 function refreshIngredientCheckboxList(ingredients) {
   const list = document.querySelector("#addCocktailModal .modal-list");
@@ -203,9 +207,9 @@ function refreshIngredientCheckboxList(ingredients) {
     list.appendChild(div);
   });
 }
-/* ============================================================
+  /* ---------------------------
    CLEAR ALL FIELDS ON LOAD bug001
-   ============================================================ */
+  --------------------------- */
 
 export function resetAddCocktailFields() {
   const form = document.getElementById("addCocktailForm");
@@ -236,9 +240,9 @@ export function resetAddCocktailFields() {
 
 }
 
-/* ============================================================
+  /* ---------------------------
    DISPLAY DESTRUCTIVE MESSAGE  bug002
-   ============================================================ */
+  --------------------------- */
 inlineInput?.addEventListener("input", () => {
   const value = inlineInput.value.trim();
 
