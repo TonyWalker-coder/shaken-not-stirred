@@ -77,6 +77,9 @@
 - [Bug Report](#bugs)
 - [Post‑Fix Verification](#postfixes)
 - [ESLint vs Online Validator](#onlinevalidator)
+- [Observation](#observation)
+
+
 
 
 
@@ -2398,3 +2401,24 @@ Status: ✔️ Pass
 
 <img  width=300px height=100% src="./screenshots/finaleslint.png"><img  width=300px height=100% src="./screenshots/finaleslint2.png">
 
+### Final post submit lighthouse screenshots
+
+<img  width=300px height=100% src="./screenshots/final-index-lighthouse.png"><img  width=300px height=100% src="./screenshots/final-cocktail_list-lighthouse.png"><img  width=300px height=100% src="./screenshots/final-admin-lighthouse.png">
+
+<img  width=300px height=100% src="./screenshots/final-userarea-lighthouse.png"><img  width=300px height=100% src="./screenshots/final-ingredients_lookup-lighthouse.png"><img  width=300px height=100% src="./screenshots/final-userforum-lighthouse.png">
+
+<img  width=300px height=100% src="./screenshots/final-userthread-lighthouse.png">
+
+
+
+
+
+
+
+
+
+<a id="observation"></a>
+
+## observation
+
+Chrome DevTools occasionally reported forced reflow warnings during JavaScript execution. Investigation confirmed normal application behaviour with no visible performance degradation. As the warning did not impact functionality or user experience, it was documented as a future optimisation opportunity rather than a defect.

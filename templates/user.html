@@ -4,8 +4,6 @@
 <html lang="en">
 
 <style>
-    
-
     /* ============================================
        DROPDOWN FILTER
        Used to select an ingredient category
@@ -24,7 +22,8 @@
         margin-top: 1.5rem;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 1.5rem; /* spacing between cards */
+        gap: 1.5rem;
+        /* spacing between cards */
     }
 
     /* ============================================
@@ -37,7 +36,8 @@
         border-radius: 14px;
         text-align: center;
         backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px); /* Safari support */
+        -webkit-backdrop-filter: blur(6px);
+        /* Safari support */
         cursor: pointer;
         transition: transform 0.15s ease;
         display: flex;
@@ -70,10 +70,10 @@
     .cocktail-card img {
         width: 120px;
         height: 120px;
-        object-fit: contain; 
+        object-fit: contain;
         margin-bottom: 0.5rem;
         border-radius: 10px;
-        background: rgba(255,255,255,0.25);
+        background: rgba(255, 255, 255, 0.25);
         padding: 6px;
     }
 
@@ -93,6 +93,28 @@
     /* Section headings */
     h3 {
         color: white;
+    }
+
+
+    /*accessibility styles*/
+
+    .modal-add-block button {
+        background: #fff8e6;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        color: darkslategray;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.2s ease;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .add-modal-add-block button:hover {
+        background: var(--brand-orange-hover);
+    }
+    .modal-add-block h3{
+        color: darkred;
     }
 </style>
 

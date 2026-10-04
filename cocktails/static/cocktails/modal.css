@@ -193,7 +193,7 @@
    ADD INGREDIENT BLOCK
    ============================================ */
 .modal-add-block {
-    background: #ffe0b3;
+    background: #eeb969;
     padding: 14px;
     border-radius: 10px;
     margin-bottom: 1.2rem;
@@ -202,8 +202,15 @@
 
 .modal-add-block h3 {
     font-family: 'Henny Penny', cursive;
-    color: #d46b00;
+    color: #611A00;
     margin-bottom: 0.6rem;
+}
+
+.modal-add-block label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #5a3b00;
 }
 
 /* Input fields */
