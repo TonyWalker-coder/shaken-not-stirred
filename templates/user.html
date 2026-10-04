@@ -6,133 +6,13 @@ user.html
 {% load static %}
 <html lang="en">
 
-<style>
-    /* ============================================
-       DROPDOWN FILTER
-       Used to select an ingredient category
-       ============================================ */
-    .dropdown {
-        padding: 0.6rem;
-        border-radius: 10px;
-        font-size: 1.1rem;
-    }
 
-    /* ============================================
-       COCKTAIL GRID
-       Responsive grid layout for lookup results
-       ============================================ */
-    .cocktail-grid {
-        margin-top: 1.5rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 1.5rem;
-        /* spacing between cards */
-    }
-
-    /* ============================================
-       COCKTAIL CARD
-       Frosted‑glass tile with hover animation
-       ============================================ */
-    .cocktail-card {
-        background: rgba(255, 255, 255, 0.18);
-        padding: 1rem;
-        border-radius: 14px;
-        text-align: center;
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        /* Safari support */
-        cursor: pointer;
-        transition: transform 0.15s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* Fade‑in animation for each card */
-    .cocktail-card {
-        opacity: 0;
-        transform: translateY(10px);
-        animation: fadeIn 0.4s ease forwards;
-    }
-
-    @keyframes fadeIn {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Hover lift and glow effect */
-    .cocktail-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 12px rgba(247, 124, 36, 0.6);
-    }
-
-
-    /* Cocktail image inside card */
-    .cocktail-card img {
-        width: 120px;
-        height: 120px;
-        object-fit: contain;
-        margin-bottom: 0.5rem;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.25);
-        padding: 6px;
-    }
-
-    /* Cocktail name text */
-    .cocktail-name {
-        color: #f77c24;
-        font-family: 'Henny Penny', cursive;
-        margin-top: 0.5rem;
-        font-size: 1.1rem;
-    }
-
-    /* Form labels */
-    label {
-        color: white;
-    }
-
-    /* Section headings */
-    h3 {
-        color: white;
-    }
-
-
-    /*accessibility styles*/
-
-    .modal-add-block button {
-        background: #fff8e6;
-        border: none;
-        padding: 8px 14px;
-        border-radius: 6px;
-        color: darkslategray;
-        cursor: pointer;
-        font-weight: bold;
-        transition: 0.2s ease;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-    }
-
-    .add-modal-add-block button:hover {
-        background: var(--brand-orange-hover);
-    }
-    .modal-add-block h3{
-        color: darkred;
-    }
-</style>
 
 <head>
     <meta charset="UTF-8">
     <title>Shaken!Stirred – User Area</title>
 
-    <!-- Mobile + Responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-    <meta name="description"
-        content="Shaken!Stirred User Area, Contains user  forum and Reverse lookup for ingredients.">
-    <meta name="keywords" content="cocktails, ShakenNotStirred">
-    <meta name="author" content="Tony Walker">
     <meta name="theme-color" content="#f77c24">
 
     <link rel="canonical" href="https://tonywalker.pythonanywhere.com/user-area">
@@ -140,16 +20,133 @@ user.html
     <!-- Performance: Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+        href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap">
 
     <link rel="stylesheet" href="{% static 'cocktails/user.css' %}">
     <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}">
 
     <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}">
-    
-    
+
+
     <link rel="icon" type="image/png" href="{% static 'cocktails/images/favicon/faviconcocktail.png' %}">
 
+
+    <style>
+        /* ============================================
+       DROPDOWN FILTER
+       Used to select an ingredient category
+       ============================================ */
+        .dropdown {
+            padding: 0.6rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* ============================================
+       COCKTAIL GRID
+       Responsive grid layout for lookup results
+       ============================================ */
+        .cocktail-grid {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+            /* spacing between cards */
+        }
+
+        /* ============================================
+       COCKTAIL CARD
+       Frosted‑glass tile with hover animation
+       ============================================ */
+        .cocktail-card {
+            background: rgba(255, 255, 255, 0.18);
+            padding: 1rem;
+            border-radius: 14px;
+            text-align: center;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            /* Safari support */
+            cursor: pointer;
+            transition: transform 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Fade‑in animation for each card */
+        .cocktail-card {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hover lift and glow effect */
+        .cocktail-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 12px rgba(247, 124, 36, 0.6);
+        }
+
+
+        /* Cocktail image inside card */
+        .cocktail-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 6px;
+        }
+
+        /* Cocktail name text */
+        .cocktail-name {
+            color: #f77c24;
+            font-family: 'Henny Penny', cursive;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Form labels */
+        label {
+            color: white;
+        }
+
+        /* Section headings */
+        h3 {
+            color: white;
+        }
+
+
+        /*accessibility styles*/
+
+        .modal-add-block button {
+            background: #fff8e6;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            color: darkslategray;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s ease;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-modal-add-block button:hover {
+            background: var(--brand-orange-hover);
+        }
+
+        .modal-add-block h3 {
+            color: darkred;
+        }
+    </style>
 </head>
 
 <body>
@@ -159,7 +156,7 @@ user.html
             <h1 class="title title-overlay"><a href="/">User Area</a></h1>
             <nav class="title-homepage title-overlay" aria-label="Main navigation"><a href="/">Home</a></nav>
         </header>
-        <main id="main-content">
+
 
             <div class="palm-frame">
                 <section aria-labelledby="userAreaWelcome">
@@ -196,7 +193,6 @@ user.html
             </div>
 
 
-        </main>
         <footer aria-hidden="true">
             Footer
         </footer>
