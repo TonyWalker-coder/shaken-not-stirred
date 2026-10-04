@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<!-- Page complete – Tony, 3/09/2026 admin.html -->
+<!---===============================
+Page complete – Tony, 4/10/2026
+admin.html
+===============================-->
 {% load static %}
 <html lang="en">
 <!--⭐ do not auto format page contains template variables  ⭐  -->
@@ -550,8 +553,8 @@
         <button type="button" class="close" data-close="confirmDeleteCocktailModal"
           aria-label="Close Confirm Delete Cocktail Modal">&times;</button>
   
-        <!-- Dino Warning Icon -->
-        <img src="{% static 'cocktails/icons/dino-warning.png' %}" class="modal-image  dynamite"
+        <!-- Dynamite Warning Icon -->
+        <img src="{% static 'cocktails/icons/dynamite-warning.png' %}" class="modal-image  dynamite"
           alt="Danger Dynamite  Icon">
   
         <h2 class="modal-title">Delete Cocktail?</h2>
@@ -735,7 +738,7 @@
 IMPORTANT:
 Do NOT auto‑format this <script> block.
 
-Formatters (Prettier, VS Code, Beautify, etc.) will break Django template tags
+Formatters will break Django template tags
 by changing {{ c.id }} into { { c.id } }, which causes a fatal JS syntax error.
 
 Leave spacing and braces EXACTLY as written.
