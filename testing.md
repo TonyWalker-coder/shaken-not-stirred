@@ -2409,9 +2409,25 @@ Status: ✔️ Pass
 
 <img  width=300px height=100% src="./screenshots/final-userthread-lighthouse.png">
 
+### Final markup validation screenshots
 
+<img  width=500px height=100% src="./screenshots/v-index.png">
 
+<img  width=500px height=100% src="./screenshots/v-cocktail_list.png">
 
+**<p style="color:red;"><span class="tick">⚠️</span> Warning</p>**
+
+The modal heading (`<h2 id="modal-name">`) is intentionally empty in the static HTML because its content is injected dynamically. This follows standard accessible modal patterns: the heading acts as a placeholder and is updated at runtime, with aria-live="polite" ensuring screen readers announce the change. 
+
+**<p style="color:green;"><span class="tick">📌</span> Conclusion</p>**
+
+Since the heading is populated immediately upon modal activation, it does not create any accessibility issues, and the validator warning can be safely ignored.
+
+<img  width=500px height=100% src="./screenshots/v-admin.png">
+
+<img  width=500px height=100% src="./screenshots/v-testdata.png">
+
+<img  width=500px height=100% src="./screenshots/v-user.png">
 
 
 
