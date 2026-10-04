@@ -31,7 +31,7 @@ admin.html
   <link rel="icon" type="image/png" href="{% static 'cocktails/images/favicon/faviconcocktail.png' %}">
 
   <style>
-    /* moved inline styles */
+    /* moved inline styles for accessibility */
     .empty-text-red {
       color: red;
       display: none;
@@ -100,6 +100,7 @@ admin.html
         </button>
   
       </div>
+    </div>
   
       <!--
         Admin Modals
@@ -665,8 +666,7 @@ admin.html
   
   
               <button type="button" class="add-btn disabled-btn" data-open="assignImageConfirmModal"
-                data-image="{{ img }}" aria-label="Assign image {{ img }} to selected cocktail" disabled
-                aria-disabled="true">
+                data-image="{{ img }}" aria-label="Assign image {{ img }} to selected cocktail" disabled>
                 Assign
               </button>
             </li>
