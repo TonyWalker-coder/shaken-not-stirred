@@ -2443,7 +2443,9 @@ Since the heading is populated immediately upon modal activation, it does not cr
  
 A temporary syntax error was deliberately added to `views.py` to confirm Ruff was functioning correctly and detecting invalid code. The test produced linting errors as expected, demonstrating that Ruff was actively checking the project source code. Once the test was completed, the temporary code was removed and Ruff was executed again. The final check returned:
 
+### CSS validation
 
+CSS validated successfully with no errors. Validator warnings relate primarily to CSS custom properties and vendor-prefixed properties used for browser compatibility. One deprecated clip property was identified and can be reviewed for future maintenance.
 
 
 
