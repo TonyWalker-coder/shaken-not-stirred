@@ -2429,6 +2429,20 @@ Since the heading is populated immediately upon modal activation, it does not cr
 
 <img  width=500px height=100% src="./screenshots/v-user.png">
 
+<img  width=500px height=100% src="./screenshots/v-forum.png">
+
+<img  width=500px height=100% src="./screenshots/v-thread_detail.png">
+
+<img  width=500px height=100% src="./screenshots/4-404.png">
+
+## Ruff validation
+
+<img  width=300px height=100% src="./screenshots/rufferror.png"><img  width=300px height=100% src="./screenshots/ruffclear.png">
+
+### Ruff Linting Validation
+ 
+A temporary syntax error was deliberately added to `views.py` to confirm Ruff was functioning correctly and detecting invalid code. The test produced linting errors as expected, demonstrating that Ruff was actively checking the project source code. Once the test was completed, the temporary code was removed and Ruff was executed again. The final check returned:
+
 
 
 
