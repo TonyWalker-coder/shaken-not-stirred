@@ -76,10 +76,8 @@
 - [Added 404.html](#404)
 - [Bug Report](#bugs)
 - [Post‑Fix Verification](#postfixes)
-- [ESLint vs Online Validator](#onlinevalidator)
+- [Post Completion Review](#postsubmission)
 - [Observation](#observation)
-
-
 
 
 
@@ -2322,27 +2320,7 @@ Backend changes were checked again using Ruff to confirm that the Django views, 
 
 Each fix was followed by targeted re‑testing of the affected feature, ensuring the behaviour was correct, the UI remained synchronised, and no regressions were introduced elsewhere. This post‑fix cycle demonstrates that testing was treated as an ongoing quality process rather than a simple top‑down checklist.
 
-## ESLint vs Online Validator
-
-Further statement to the use of Inline JS validator over Online validator
-
-### ESLint
-
-- Integrated into the development workflow.
-- Catches issues while coding.
-- Configurable to project standards.
-- Supports modern JavaScript.
-- Reduces context switching.
-
-### Online Validator
-
-- Independent source of validation.
-- Easy to capture screenshots for evidence.
-- Useful for demonstrating testing activities.
-- Can provide a second opinion.
-- May use older parsing engines and therefore produce false positives on modern JavaScript.
-
-ESLint was chosen as the primary validation tool because it is integrated into the development environment and supports modern JavaScript features used throughout the project. Online validation tools were used as supplementary evidence during testing, allowing validation results to be recorded and included as screenshots within project documentation.
+<a id="postsubmission"></a>
 
 ## Post Completion Review
 
@@ -2382,7 +2360,7 @@ During post-completion testing several minor issues were identified, including r
 
 ### Evidence and screenshots
 
-Despite extensive testing of multiple online JavaScript validators, no suitable solution was found that could consistently validate the project's modern JavaScript codebase without generating false-positive errors. Several validators were unable to correctly process ES modules and asynchronous functionality, resulting in misleading validation results. Consequently, project validation relied primarily on ESLint, which provided accurate analysis within the development environment and aligned with the technologies used by the application.
+### ESLint
 
 A custom ESLint configuration was implemented to prevent third-party libraries, framework files and development dependencies from generating false-positive results. Validation was therefore focused exclusively on project-owned JavaScript files.
 
@@ -2445,7 +2423,11 @@ A temporary syntax error was deliberately added to `views.py` to confirm Ruff wa
 
 ### CSS validation
 
-CSS validated successfully with no errors. Validator warnings relate primarily to CSS custom properties and vendor-prefixed properties used for browser compatibility. One deprecated clip property was identified and can be reviewed for future maintenance.
+<img  width=500px height=100% src="./screenshots/final-css.png">
+
+CSS validated successfully with no errors. Validator warnings relate primarily to CSS custom properties and vendor-prefixed properties used for browser compatibility.
+
+
 
 
 
@@ -2453,4 +2435,4 @@ CSS validated successfully with no errors. Validator warnings relate primarily t
 
 ## observation
 
-Chrome DevTools occasionally reported forced reflow warnings during JavaScript execution. Investigation confirmed normal application behaviour with no visible performance degradation. As the warning did not impact functionality or user experience, it was documented as a future optimisation opportunity rather than a defect.
+Chrome DevTools occasionally reported **forced reflow warnings** during JavaScript execution. Investigation confirmed normal application behaviour with no visible performance degradation. As the warning did not impact functionality or user experience, it was documented as a future optimisation opportunity rather than a defect.
