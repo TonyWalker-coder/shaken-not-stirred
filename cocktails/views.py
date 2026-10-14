@@ -13,9 +13,25 @@ from cocktails.models import Cocktail, History, Ingredient, Recipe
 from .forms import ReplyForm, ThreadForm
 from .models import Reply, Thread
 
+
+from functools import wraps
+from django.shortcuts import redirect
+from django.views.decorators.http import require_POST
+
 # ============================================================
 # HELPER FUNCTIONS
 # ============================================================
+def admin_required(view_func):
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+
+        if not request.session.get("is_admin"):
+            return redirect("admin_login")
+
+        return view_func(request, *args, **kwargs)
+
+    return wrapper
+
 
 def is_ajax(request):
     """Consistent AJAX detection."""
@@ -716,11 +732,14 @@ def delete_reply(request, reply_id):
     reply.delete()
     return redirect('admin_forum_thread', thread_id)
 
+@admin_required
 def dashboard_forum(request):
     threads = Thread.objects.all().order_by('-created_at')
     return render(request, 'dashboard_forum_section.html', {
         'threads': threads
     })
+
+@admin_required
 def dashboard_forum_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     replies = Reply.objects.filter(thread=thread)
@@ -728,6 +747,9 @@ def dashboard_forum_thread(request, thread_id):
         'thread': thread,
         'replies': replies
     })
+
+@admin_required
+@require_POST
 def dashboard_delete_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     thread.delete()
@@ -781,3 +803,8 @@ def ingredient_lookup(request):
 def lookup_cocktail_detail(request, pk):
     cocktail = get_object_or_404(Cocktail, pk=pk)
     return render(request, "lookup_cocktail_detail.html", {"cocktail": cocktail})
+
+
+
+
+
