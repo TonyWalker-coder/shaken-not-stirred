@@ -2503,6 +2503,8 @@ At this point the user is intentionally treated as an authenticated administrato
 
 This is expected behaviour and is not considered a security issue.
 
+Unauthenticated users are redirected away from protected administration routes and cannot access dashboard functionality.
+
 Reference material for this process was gained from https://docs.djangoproject.com/en/6.1/topics/http/decorators/#module-django.views.decorators.http
 
 | Test                                      | Expected                | Actual                    | Result |
