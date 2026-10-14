@@ -78,6 +78,7 @@
 - [Post‑Fix Verification](#postfixes)
 - [Post Completion Review](#postsubmission)
 - [Observation](#observation)
+- [Security Review](#security)
 
 
 
@@ -2436,3 +2437,77 @@ CSS validated successfully with no errors. Validator warnings relate primarily t
 ## observation
 
 Chrome DevTools occasionally reported **forced reflow warnings** during JavaScript execution. Investigation confirmed normal application behaviour with no visible performance degradation. As the warning did not impact functionality or user experience, it was documented as a future optimisation opportunity rather than a defect.
+
+<a id="security"></a>
+
+## Security Review
+
+### Protecting Data-Changing Views
+
+### Issue Identified
+
+The assessment highlighted that while the custom admin dashboard required an admin password, many of the underlying create, update and delete endpoints were not consistently protected by server-side permission checks.
+
+This meant that if a user discovered a direct URL to an administration endpoint, they could potentially access functionality without first passing through the dashboard. The dashboard itself was acting as the control point, but the individual views responsible for changing database records did not always verify that an authenticated admin session existed.
+
+The review specifically identified concerns around:
+
+- Create operations
+- Update operations
+- Delete operations
+- AJAX endpoints used by the dashboard
+- Development tools such as database reset and image modification utilities
+
+The application uses a custom admin login system based on a password stored in environment variables rather than Django's built-in superuser authentication.
+
+Testing was performed using a browser session with no existing cookies or session data. Direct access attempts were made against dashboard and administration URLs.
+
+This investigation confirmed that several administration views relied on dashboard navigation rather than performing their own permission checks.
+
+A reusable custom protector was introduced:
+
+def admin_required(view_func):
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+      if not request.session.get("is_admin"):
+           `return redirect("admin_login")
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
+This protector was applied to admin views throughout the project.
+
+Examples include:
+
+- Ingredient management
+- Cocktail management
+- Recipe management
+
+In addition, data-changing endpoints were updated to require POST requests using
+
+This prevents records being modified through simple URL access and ensures that operations are performed through valid form submission
+
+### Testing Result
+
+Testing after deployment confirmed that:
+
+- Unauthenticated visitors can no longer access dashboard routes.
+- Direct URL access to administration endpoints redirects to the login page.
+- Database modification endpoints require a valid admin session.
+- Delete operations cannot be performed through direct GET requests.
+- Administrative tools such as database reset and image utilities are restricted to authenticated admin sessions.
+
+### Notes on Session Authentication
+
+Once an administrator successfully enters the correct password, a session variable is created:
+At this point the user is intentionally treated as an authenticated administrator and can access protected administration functions.
+
+This is expected behaviour and is not considered a security issue.
+
+Reference material for this process was gained from https://docs.djangoproject.com/en/6.1/topics/http/decorators/#module-django.views.decorators.http
+
+| Test                                      | Expected                | Actual                    | Result |
+| ----------------------------------------- | ----------------------- | ------------------------- | ------ |
+| Unauthenticated access to dashboard       | Redirect to admin login | Redirected to admin login | Pass   |
+| Unauthenticated access to admin forum     | Redirect to admin login | Redirected to admin login | Pass   |
+| Unauthenticated access to delete endpoint | Access denied           | Access denied             | Pass   |
+| Authenticated admin access                | Dashboard displayed     | Dashboard displayed       | Pass   |

@@ -67,7 +67,8 @@ def cocktail_list(request):
 # ============================================================
 # INGREDIENT CRUD
 # ============================================================
-
+@admin_required
+@require_POST
 def add_ingredient(request):
     if request.method != "POST":
         return redirect("admin_page")
@@ -90,7 +91,8 @@ def add_ingredient(request):
     messages.success(request, f"Ingredient '{raw_name.strip()}' added.")
     return redirect("admin_page")
 
-
+@admin_required
+@require_POST
 def delete_ingredient(request, ingredient_id):
     ingredient = get_object_or_404(Ingredient, id=ingredient_id)
 
@@ -110,7 +112,8 @@ def delete_ingredient(request, ingredient_id):
     messages.success(request, "Ingredient deleted.")
     return redirect("admin_page")
 
-
+@admin_required
+@require_POST
 def edit_ingredient(request, id):
     ingredient = get_object_or_404(Ingredient, id=id)
 
@@ -148,7 +151,8 @@ def ingredient_list(request):
 # ============================================================
 # HISTORY CRUD
 # ============================================================
-
+@admin_required
+@require_POST
 def history_add(request, cocktail_id):
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
@@ -174,7 +178,8 @@ def history_add(request, cocktail_id):
     messages.success(request, "History added!")
     return redirect("admin_page")
 
-
+@admin_required
+@require_POST
 def history_edit(request, history_id):
     history = get_object_or_404(History, id=history_id)
 
@@ -190,7 +195,8 @@ def history_edit(request, history_id):
     messages.success(request, "History updated.")
     return redirect("admin_page")
 
-
+@admin_required
+@require_POST
 def history_delete(request, history_id):
     history = get_object_or_404(History, id=history_id)
 
@@ -205,7 +211,7 @@ def history_delete(request, history_id):
     messages.success(request, "History deleted.")
     return redirect("admin_page")
 
-
+@admin_required
 def history_list_json(request):
     """Return all cocktails + history for modal refresh."""
     data = []
@@ -227,7 +233,8 @@ def history_list_json(request):
 # ============================================================
 # RECIPE CRUD
 # ============================================================
-
+@admin_required
+@require_POST
 def add_recipe(request, cocktail_id):
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
@@ -248,7 +255,8 @@ def add_recipe(request, cocktail_id):
 
     return redirect("admin_page")
 
-
+@admin_required
+@require_POST
 def edit_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
@@ -263,7 +271,8 @@ def edit_recipe(request, recipe_id):
 
     return redirect("admin_page")
 
-
+@admin_required
+@require_POST
 def delete_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
@@ -277,7 +286,7 @@ def delete_recipe(request, recipe_id):
 
     return redirect("admin_page")
 
-
+@admin_required
 def recipes_list_json(request):
     """Return all cocktails + recipe info."""
     data = []
@@ -304,6 +313,8 @@ def check_cocktail_name(request):
     exists = Cocktail.objects.filter(name__iexact=name).exists()
     return JsonResponse({"exists": exists})
 
+@admin_required
+@require_POST
 def add_cocktail(request):
     if request.method != "POST":
         return JsonResponse({"error": True, "message": "Invalid request"})
@@ -329,7 +340,8 @@ def add_cocktail(request):
 
     return JsonResponse({"error": False, "message": "Cocktail created", "cocktail_id": cocktail.id})
 
-
+@admin_required
+@require_POST
 def delete_cocktail(request, cocktail_id):
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
@@ -356,11 +368,11 @@ def delete_cocktail(request, cocktail_id):
         }, status=500)
 
 
-
+@admin_required
 def cocktails_list_json(request):
     return JsonResponse({"cocktails": list(cocktail_queryset())})
 
-
+@admin_required
 def cocktail_json(request, cocktail_id):
     c = get_object_or_404(Cocktail, id=cocktail_id)
     return JsonResponse({
@@ -369,7 +381,7 @@ def cocktail_json(request, cocktail_id):
         "image_url": c.image_url or "",
     })
 
-
+@admin_required
 def cocktail_ingredients_json(request, cocktail_id):
     cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
@@ -378,7 +390,8 @@ def cocktail_ingredients_json(request, cocktail_id):
         "cocktail_ingredients": list(cocktail.ingredients.values_list("id", flat=True))
     })
 
-
+@admin_required
+@require_POST
 def cocktail_add_ingredient(request, cocktail_id, ingredient_id):
     if request.method != "POST":
         return JsonResponse({"error": True, "message": "Invalid request method."})
@@ -389,7 +402,8 @@ def cocktail_add_ingredient(request, cocktail_id, ingredient_id):
     cocktail.ingredients.add(ingredient)
     return JsonResponse({"error": False})
 
-
+@admin_required
+@require_POST
 def cocktail_remove_ingredient(request, cocktail_id, ingredient_id):
     if request.method != "POST":
         return JsonResponse({"error": True, "message": "Invalid request method."})
@@ -404,7 +418,8 @@ def cocktail_remove_ingredient(request, cocktail_id, ingredient_id):
 # ============================================================
 # IMAGE HANDLING
 # ============================================================
-
+@admin_required
+@require_POST
 def upload_image(request):
     if request.method != "POST":
         return JsonResponse({"error": True, "message": "Invalid request method."})
@@ -433,7 +448,7 @@ def upload_image(request):
         "url": f"/static/cocktails/buttons/{file.name}",
     })
 
-
+@admin_required
 def image_list(request):
     folder = os.path.join(settings.BASE_DIR, "cocktails", "static", "cocktails", "buttons")
 
@@ -446,7 +461,8 @@ def image_list(request):
 
     return JsonResponse({"images": images})
 
-
+@admin_required
+@require_POST
 def assign_image(request, cocktail_id, filename):
     if request.method != "POST":
         return JsonResponse({"error": True, "message": "Invalid request"}, status=400)
@@ -464,7 +480,7 @@ def assign_image(request, cocktail_id, filename):
 # ============================================================
 # FULL REFRESH (ADMIN PANEL)
 # ============================================================
-
+@admin_required
 def refresh_all(request):
     """Return everything for full admin panel refresh."""
     return JsonResponse({
@@ -483,11 +499,13 @@ def refresh_all(request):
             for c in Cocktail.objects.order_by(Lower("name"))
         ]
     })
-
+@admin_required
+@require_POST
 def test_data_page(request):
     return render(request, "testdata.html")
 
-
+@admin_required
+@require_POST
 def break_bloody_mary(request):
     base = os.path.join(settings.BASE_DIR, "cocktails", "static", "cocktails", "buttons")
     original = os.path.join(base, "bloody-mary.jpg")
@@ -499,7 +517,8 @@ def break_bloody_mary(request):
 
     return JsonResponse({"status": "ok", "message": "Bloody Mary image broken (or already broken)."})
 
-
+@admin_required
+@require_POST
 def fix_bloody_mary(request):
     base = os.path.join(settings.BASE_DIR, "cocktails", "static", "cocktails", "buttons")
     original = os.path.join(base, "bloody-mary.jpg")
@@ -511,7 +530,8 @@ def fix_bloody_mary(request):
 
     return JsonResponse({"status": "ok", "message": "Bloody Mary image fixed (or already fixed)."})
 
-
+@admin_required
+@require_POST
 def reset_db(request):
     json_path = os.path.join(
         settings.BASE_DIR,
@@ -620,7 +640,6 @@ def user_area(request):
     selected_id = request.GET.get("ingredient")
     cocktails = None
 
-    print("GET:", request.GET)
 
     if selected_id:
         ingredient = get_object_or_404(
@@ -632,8 +651,6 @@ def user_area(request):
             ingredients=ingredient
         )
 
-        print("Ingredient:", ingredient.name)
-        print("Cocktails found:", cocktails.count())
 
     return render(
         request,
@@ -701,15 +718,18 @@ def thread_detail(request, thread_id):
         'replies': replies,
         'form': form
     })
+
 def forum(request):
     threads = Thread.objects.all().order_by('-created_at')
     return render(request, 'user/forum.html', {'threads': threads})
 
+@admin_required
 def admin_forum(request):
 
     threads = Thread.objects.all().order_by('-created_at')
     return render(request, 'admin_forum.html', {'threads': threads})
 
+@admin_required
 def admin_forum_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     replies = Reply.objects.filter(thread=thread)
@@ -720,12 +740,14 @@ def admin_forum_thread(request, thread_id):
 
 
 
-
+@admin_required
+@require_POST
 def delete_thread(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     thread.delete()
     return HttpResponse(status=204)
-
+@admin_required
+@require_POST
 def delete_reply(request, reply_id):
     reply = get_object_or_404(Reply, id=reply_id)
     thread_id = reply.thread.id
@@ -755,7 +777,8 @@ def dashboard_delete_thread(request, thread_id):
     thread.delete()
     return redirect("dashboard_forum")
 
-
+@admin_required
+@require_POST
 def admin_reply(request, thread_id):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -803,8 +826,3 @@ def ingredient_lookup(request):
 def lookup_cocktail_detail(request, pk):
     cocktail = get_object_or_404(Cocktail, pk=pk)
     return render(request, "lookup_cocktail_detail.html", {"cocktail": cocktail})
-
-
-
-
-
