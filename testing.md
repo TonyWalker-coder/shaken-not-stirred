@@ -79,10 +79,7 @@
 - [Post Completion Review](#postsubmission)
 - [Observation](#observation)
 - [Security Review](#security)
-
-
-
-
+- [Accessibility Review Addendum](#addendum1)
 
 
 
@@ -2641,5 +2638,28 @@ The ERD and database documentation reflect the models currently implemented with
 ## Future Development
 
 At the time of writing there are no planned database extensions. Any future features or models will be documented separately and are not represented in the current ERD.
+
+<a id="addendum1"></a>
+
+
+## Accessibility Review Addendum
+
+### Admin login
+
+During keyboard accessibility testing, the Admin Login modal contained a visually hidden username field used for autocomplete purposes. The field remained in the keyboard tab order, creating an unexpected focus stop before the password field. This was resolved by adding tabindex="-1" to the hidden username input, removing it from sequential keyboard navigation while preserving its functionality for browser autocomplete. The modal was then retested to confirm a logical tab order:
+
+Close button
+Password field
+Submit button
+
+This improved the keyboard navigation experience and removed an unnecessary focus point for keyboard users.
+
+### Child modals
+
+During keyboard accessibility testing, a focus management issue was identified with nested modals. When a child modal was closed, keyboard focus could leave the active dialog and return to the browser interface. The modal management logic was updated so that focus is restored to the parent modal when a child modal closes, including when closed via Save, Close, or Escape actions. This ensures keyboard users remain within the active workflow and do not lose context.
+
+
+
+
 
 <a id="erdreview"></a>

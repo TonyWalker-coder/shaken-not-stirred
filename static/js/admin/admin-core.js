@@ -10,61 +10,49 @@ import { refreshCocktailList } from "./delete.js";
 // modified by me to fit my needs. It ensures that when a modal is open, the focus cycles through the focusable elements inside the modal, 
 // enhancing accessibility.
 function trapFocus(modal) {
-    const focusable = modal.querySelectorAll(
-      "button, input, select, textarea, a[href]"
-    );
 
+    if (modal.dataset.focusTrapAttached) {
+        return;
+    }
+
+    modal.dataset.focusTrapAttached = "true";
+
+    const focusable = modal.querySelectorAll(
+        "button, input, select, textarea, a[href]"
+    );
 
     if (!focusable.length) return;
 
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
 
-
     modal.addEventListener("keydown", (e) => {
 
-
-
         if (e.key !== "Tab") return;
-
-        modal.addEventListener("keydown", (e) => {
-
-    if (e.key !== "Tab") return;
-
-    if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-    }
-
-    if (e.shiftKey && document.activeElement === first) {
-
-        e.preventDefault();
-        last.focus();
-    }
-});
-
-        if (e.shiftKey && document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-        }
 
         if (!e.shiftKey && document.activeElement === last) {
             e.preventDefault();
             first.focus();
+        }
+
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
         }
     });
 }
 document.addEventListener("keydown", (e) => {
 
 
-    if (e.key !== "Escape") return;
+  if (e.key !== "Escape") return;
 
-    const modals = document.querySelectorAll(".modal:not(.hidden)");
-    const topModal = modals[modals.length - 1];
+  const modals = document.querySelectorAll(".modal:not(.hidden)");
 
-    if (topModal) {
-        closeModal(topModal.id);
-    }
+  const topModal = modals[modals.length - 1];
+
+  if (topModal) {
+    closeModal(topModal.id);
+  }
 
 });
 /* ---------------------------
@@ -72,16 +60,17 @@ document.addEventListener("keydown", (e) => {
 --------------------------- */
 let lastFocusedElement = null;
 
-export function openModal(id) {
-  lastFocusedElement = document.activeElement;
 
+export function openModal(id) {
+
+  console.log("openmodal");
+  lastFocusedElement = document.activeElement;
 
 
   const modal = document.getElementById(id);
 
 
 
-  
   if (modal) modal.classList.remove("hidden");
 
   const firstFocusable = modal.querySelector(
@@ -110,12 +99,14 @@ export function closeModal(id) {
 
 
 
+
+
   if (id === "lookupModal") {
 
     const grid = modal.querySelector(".cocktail-grid");
 
     if (grid) {
-        grid.remove();
+      grid.remove();
     }
 
     document.getElementById("ingredientSelect").value = "";
@@ -130,6 +121,23 @@ export function closeModal(id) {
   if (modal) {
     modal.classList.add("hidden");
 
+    const openModals = document.querySelectorAll(".modal:not(.hidden)");
+    const parentModal = openModals[openModals.length - 1];
+
+    if (parentModal) {
+      const closeBtn = parentModal.querySelector(".close");
+
+      if (closeBtn) {
+        console.log("got ya");
+        closeBtn.focus();
+        trapFocus(parentModal);
+        return;
+      }
+
+
+    }
+
+
     if (lastFocusedElement) {
       lastFocusedElement.focus();
     }
@@ -140,6 +148,8 @@ export function closeModal(id) {
       })
     );
   }
+
+  
 }
 
 /* Backdrop click closes modal */
@@ -162,57 +172,62 @@ document.addEventListener("click", async (e) => {
   const openTarget = e.target.closest("[data-open]");
   const closeTarget = e.target.closest("[data-close]");
 
-/* ---------------------------
-   OPEN MODAL
---------------------------- */
-if (openTarget) {
+  /* ---------------------------
+     OPEN MODAL
+  --------------------------- */
+  if (openTarget) {
 
 
-  const id = openTarget.dataset.open;
+    const id = openTarget.dataset.open;
 
-  if (openTarget.dataset.child === "true") {
+    if (openTarget.dataset.child === "true") {
+      openModal(id);
+      return;
+    }
+
+    if (id === "ingredientsModal") return;
+
+    if (id === "imagesModal") {
+      const select = document.getElementById("imageCocktailSelect");
+      select.value = "";
+      refreshCocktailDropdown(select);
+    }
+
+    if (id === "historyModal") {
+      await refreshHistoryModal();
+
+
+      console.log("refresh")
+
+    }
+
+    if (id === "recipesModal") {
+      await refreshRecipesModal();
+
+    }
+
+    // ⭐ FIX: Reset fields when opening Add Cocktail modal
+    if (id === "addCocktailModal") {
+      resetAddCocktailFields();
+    }
+
+    // ⭐ FIX: Refresh delete modal on open
+    if (id === "deleteCocktailModal") {
+      const res = await fetch("/cocktails/list/json/", {
+        headers: { "X-Requested-With": "XMLHttpRequest" }
+      });
+
+      const data = await res.json();
+      refreshCocktailList(data.cocktails);
+    }
+
     openModal(id);
-    return;
   }
 
-  if (id === "ingredientsModal") return;
 
-  if (id === "imagesModal") {
-    const select = document.getElementById("imageCocktailSelect");
-    select.value = "";
-    refreshCocktailDropdown(select);
-  }
-
-  if (id === "historyModal") {
-    await refreshHistoryModal();   
-  }
-
-  if (id === "recipesModal") {
-    await refreshRecipesModal();
-  }
-
-  // ⭐ FIX: Reset fields when opening Add Cocktail modal
-  if (id === "addCocktailModal") {
-    resetAddCocktailFields();
-  }
-
-  // ⭐ FIX: Refresh delete modal on open
-  if (id === "deleteCocktailModal") {
-    const res = await fetch("/cocktails/list/json/", {
-      headers: { "X-Requested-With": "XMLHttpRequest" }
-    });
-
-    const data = await res.json();
-    refreshCocktailList(data.cocktails);
-  }
-
-  openModal(id);
-}
-
-
-/* ---------------------------
-     CLOSE MODAL
-     --------------------------- */
+  /* ---------------------------
+       CLOSE MODAL
+       --------------------------- */
   if (closeTarget) {
     const id = closeTarget.dataset.close;
     closeModal(id);
@@ -240,6 +255,8 @@ export function resetImageCocktailSelect() {
 --------------------------- */
 
 function smoothScrollToTop(element) {
+
+  console.log("smothscroll");
   const start = element.scrollTop;
   const duration = 200;
   const startTime = performance.now();
@@ -257,7 +274,13 @@ function smoothScrollToTop(element) {
 }
 
 export function modalMessage(modalId, type, text) {
+  console.log("modalmessage");
   const modal = document.getElementById(modalId);
+
+
+trapFocus(modal);
+
+
   if (!modal) return;
 
   const successBox = modal.querySelector(".modal-message.success");
@@ -288,6 +311,7 @@ export function modalMessage(modalId, type, text) {
 --------------------------- */
 
 export function getCSRFToken() {
+  console.log("getCSRT");
   const token = document.querySelector("[name=csrfmiddlewaretoken]");
   return token ? token.value : "";
 }
@@ -297,6 +321,7 @@ export function getCSRFToken() {
 --------------------------- */
 
 export async function refreshCocktailDropdown(selectEl) {
+  console.log("refresh dropdown");
   if (!selectEl) return;
 
   const res = await fetch("/cocktails/list/simple/", {
@@ -322,6 +347,7 @@ export async function refreshCocktailDropdown(selectEl) {
 // Inserts the returned HTML into #dashboard-content
 //* ---------------------------
 export async function loadDashboardSection(url) {
+  console.log("loaddashboard");
   const res = await fetch(url, {
     headers: { "X-Requested-With": "XMLHttpRequest" } // tells Django it's an AJAX request
   });
@@ -373,21 +399,21 @@ window.loadThread = loadThread;
 // Admin reply prompt (quick reply)
 //* ---------------------------
 function adminReply(threadId) {
-    const message = prompt("Enter your reply:");
-    if (!message) return; // cancelled or empty
+  const message = prompt("Enter your reply:");
+  if (!message) return; // cancelled or empty
 
-    fetch(`/admin/forum/reply/${threadId}/`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken")
-        },
-        body: JSON.stringify({ message })
-    })
+  fetch(`/admin/forum/reply/${threadId}/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCookie("csrftoken")
+    },
+    body: JSON.stringify({ message })
+  })
     .then(res => res.text())
     .then(html => {
-        // refresh thread view with updated replies
-        document.getElementById("forumModalContent").innerHTML = html;
+      // refresh thread view with updated replies
+      document.getElementById("forumModalContent").innerHTML = html;
     });
 }
 window.adminReply = adminReply;
@@ -397,17 +423,17 @@ window.adminReply = adminReply;
 // Delete an entire thread (with confirmation)
 //* ---------------------------
 function deleteThread(threadId) {
-    if (!confirm("Delete this thread and all replies?")) return;
+  if (!confirm("Delete this thread and all replies?")) return;
 
-    fetch(`/admin/forum/delete-thread/${threadId}/`, {
-        method: "POST",
-        headers: {
-            "X-CSRFToken": getCookie("csrftoken")
-        }
-    })
+  fetch(`/admin/forum/delete-thread/${threadId}/`, {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken")
+    }
+  })
     .then(() => {
-        closeForumModal();
-        location.reload(); 
+      closeForumModal();
+      location.reload();
     });
 }
 window.deleteThread = deleteThread;
@@ -417,20 +443,21 @@ window.deleteThread = deleteThread;
 // Utility: Get a cookie value (used for CSRF)
 //* ---------------------------
 function getCookie(name) {
-    let cookieValue = null;
+  console.log("get cookie");
+  let cookieValue = null;
 
-    if (document.cookie && document.cookie !== "") {
-        const cookies = document.cookie.split(";");
-        for (let cookie of cookies) {
-            cookie = cookie.trim();
-            if (cookie.startsWith(name + "=")) {
-                cookieValue = cookie.substring(name.length + 1);
-                break;
-            }
-        }
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let cookie of cookies) {
+      cookie = cookie.trim();
+      if (cookie.startsWith(name + "=")) {
+        cookieValue = cookie.substring(name.length + 1);
+        break;
+      }
     }
+  }
 
-    return cookieValue;
+  return cookieValue;
 }
 window.getCookie = getCookie;
 
@@ -439,38 +466,38 @@ window.getCookie = getCookie;
 // UI Toggles for reply/delete forms
 //* ---------------------------
 function showReplyForm() {
-    document.getElementById("replyForm").style.display = "block";
-    document.getElementById("deleteConfirm").style.display = "none";
+  document.getElementById("replyForm").style.display = "block";
+  document.getElementById("deleteConfirm").style.display = "none";
 
-    const modal = document.querySelector("#forumModal .modal-content");
+  const modal = document.querySelector("#forumModal .modal-content");
 
-    if (modal) {
-        setTimeout(() => {
-            modal.scrollTop = modal.scrollHeight;
-        }, 50);
-    }
+  if (modal) {
+    setTimeout(() => {
+      modal.scrollTop = modal.scrollHeight;
+    }, 50);
+  }
 }
 
 window.showReplyForm = showReplyForm;
 
 function showDeleteConfirm() {
-    document.getElementById("deleteConfirm").style.display = "block";
-    document.getElementById("replyForm").style.display = "none";
+  document.getElementById("deleteConfirm").style.display = "block";
+  document.getElementById("replyForm").style.display = "none";
 
-    const modal = document.querySelector("#forumModal .modal-content");
+  const modal = document.querySelector("#forumModal .modal-content");
 
-    if (modal) {
-        setTimeout(() => {
-            modal.scrollTop = modal.scrollHeight;
-        }, 50);
-    }
+  if (modal) {
+    setTimeout(() => {
+      modal.scrollTop = modal.scrollHeight;
+    }, 50);
+  }
 }
 
 window.showDeleteConfirm = showDeleteConfirm;
 
 
 function hideDeleteConfirm() {
-    document.getElementById("deleteConfirm").style.display = "none";
+  document.getElementById("deleteConfirm").style.display = "none";
 }
 window.hideDeleteConfirm = hideDeleteConfirm;
 
@@ -479,22 +506,22 @@ window.hideDeleteConfirm = hideDeleteConfirm;
 // Submit a reply from the modal reply form
 //* ---------------------------
 function submitReply(threadId) {
-    const message = document.getElementById("replyMessage").value.trim();
-    if (!message) return;
+  const message = document.getElementById("replyMessage").value.trim();
+  if (!message) return;
 
-    fetch(`/admin/forum/reply/${threadId}/`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken")
-        },
-        body: JSON.stringify({ message })
-    })
+  fetch(`/admin/forum/reply/${threadId}/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCookie("csrftoken")
+    },
+    body: JSON.stringify({ message })
+  })
     .then(res => res.text())
     .then(html => {
-        // reload thread with new reply included
-        // keep list live and just update the content
-        document.getElementById("forumModalContent").innerHTML = html;
+      // reload thread with new reply included
+      // keep list live and just update the content
+      document.getElementById("forumModalContent").innerHTML = html;
     });
 }
 window.submitReply = submitReply;
@@ -504,15 +531,15 @@ window.submitReply = submitReply;
 // Confirm delete inside modal
 //* ---------------------------
 function confirmDelete(threadId) {
-    fetch(`/admin/forum/delete-thread/${threadId}/`, {
-        method: "POST",
-        headers: {
-            "X-CSRFToken": getCookie("csrftoken")
-        }
-    })
+  fetch(`/admin/forum/delete-thread/${threadId}/`, {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken")
+    }
+  })
     .then(() => {
-        closeForumModal();
-        location.reload();
+      closeForumModal();
+      location.reload();
     });
 }
 window.confirmDelete = confirmDelete;
@@ -522,19 +549,19 @@ window.confirmDelete = confirmDelete;
 // Close the forum modal
 //* ---------------------------
 function closeForumModal() {
-    const modal = document.getElementById("forumModal");
-    if (modal) {
-        modal.style.display = "none";
-    }
+  const modal = document.getElementById("forumModal");
+  if (modal) {
+    modal.style.display = "none";
+  }
 }
 window.closeForumModal = closeForumModal;
 
 document.querySelectorAll('.admin-card').forEach(card => {
-    card.addEventListener('keydown', e => {
+  card.addEventListener('keydown', e => {
 
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            card.click();
-        }
-    });
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      card.click();
+    }
+  });
 });
