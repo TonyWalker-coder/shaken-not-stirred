@@ -1,0 +1,34 @@
+<!--===============================
+Page complete – Tony, 4/10/2026
+dashboard_forum_section.html
+===============================-->
+<!--⭐ do not auto format page contains template variables ⭐  -->
+{% load static %}
+
+<!-- This template is for the forum section in the dashboard. It lists all threads and allows users to click on a thread to view its details. -->
+
+<div>
+
+    <div class="modal-header">
+        <div>
+            <img width="348" height="232" src="{% static 'cocktails/admin/userpost.webp' %}" alt="typewriter surrounded by user letters"
+                class="modal-image">
+        </div>
+        <div>
+            <h2 class="modal-title ">User Forum</h2>
+        </div>
+    </div>
+
+    <div class="forum-list">
+        {% for thread in threads %}
+            <a class="forum-link" href="#" onclick="loadThread({{ thread.id }})">
+                <div class="thread-row">
+                    <span class="thread-title">{{ thread.title }}</span>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+</div>
+
+<script type="module" src="{% static 'cocktails/js/admin-core.js' %}"></script>

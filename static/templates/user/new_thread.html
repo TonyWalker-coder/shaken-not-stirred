@@ -1,0 +1,23 @@
+<!---===============================
+Page complete – Tony, 4/10/2026
+new_thread.html
+===============================-->
+ {% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="glass-panel">
+    <a href="{% url 'forum' %}" class="return-btn">
+        ← Back to Message Board
+    </a>
+    
+    <h1>Create a New Thread</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-btn">Post Thread</button>
+    </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,212 @@
+// ===============================
+// Page complete – Tony, 2/10/2026
+// =============================== 
+import {
+  modalMessage,
+  closeModal,
+  openModal,
+  getCSRFToken,
+  resetImageCocktailSelect
+} from "./admin-core.js";
+
+/* ============================================================
+   IMAGE UPLOAD — DELEGATED SUBMIT HANDLER
+   ============================================================ */
+/*
+   Handles image uploads inside imagesModal:
+   - Prevents default form submission
+   - Sends FormData via AJAX
+   - Shows success/error messages
+   - Refreshes the live image list
+   - Don't hide buttons, just disable them until a cocktail is selected accessibility requirement
+*/
+
+document.addEventListener("submit", async (e) => {
+  const form = e.target;
+  if (!form.matches("#imageUploadForm")) return;
+
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  const res = await fetch(form.action, {
+    method: "POST",
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+    body: formData
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    modalMessage("imagesModal", "error", data.error);
+    return;
+  }
+
+  modalMessage("imagesModal", "success", "Image uploaded!");
+  form.reset();
+
+  await refreshImageList();   // unified helper from admin-core.js
+});
+
+/* ============================================================
+   ASSIGN IMAGE — OPEN CONFIRM MODAL
+   ============================================================ */
+/*
+   When user clicks "Assign" on an image:
+   - Ensures a cocktail is selected
+   - Fetches live cocktail data
+   - Updates confirm modal previews
+   - Sets correct form action
+   - Opens confirm modal
+*/
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-open='assignImageConfirmModal']");
+  if (!btn) return;
+
+  const filename = btn.dataset.image;
+  if (!filename) {
+    modalMessage("imagesModal", "error", "Image filename missing.");
+    return;
+  }
+
+  const cocktailId = Number(document.getElementById("imageCocktailSelect").value);
+  if (!cocktailId) {
+    modalMessage("imagesModal", "error", "Please select a cocktail first.");
+    return;
+  }
+
+  // Fetch live cocktail data
+  const resCocktail = await fetch(`/cocktail/json/${cocktailId}/`, {
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  });
+  const cocktail = await resCocktail.json();
+
+  // Current cocktail image preview
+  const currentImg =
+    (cocktail.image_url
+      ? `/static/${cocktail.image_url}`
+      : "/static/cocktails/buttons/no-image.png") + `?v=${Date.now()}`;
+
+  document.getElementById("assignCocktailCurrentImage").src = currentImg;
+  document.getElementById("assignImageText").textContent =
+    `Assign this image to ${cocktail.name}?`;
+
+  // New image preview
+  document.getElementById("assignNewImageThumb").src =
+    `/static/cocktails/buttons/${filename}?v=${Date.now()}`;
+  document.getElementById("assignImageFilename").textContent = filename;
+
+  // Set form action
+  const form = document.getElementById("assignImageForm");
+  form.action = `/images/assign/${cocktailId}/${filename}/`;
+
+  openModal("assignImageConfirmModal");
+});
+
+/* ============================================================
+   ASSIGN IMAGE — AJAX SUBMIT
+   ============================================================ */
+/*
+   Handles assignment confirmation:
+   - Prevents default form submission
+   - Sends POST request
+   - Shows success/error messages
+   - Refreshes image list
+*/
+
+document.addEventListener("submit", async (e) => {
+  const form = e.target;
+  if (!form.matches("#assignImageForm")) return;
+
+  e.preventDefault();
+
+  const res = await fetch(form.action, {
+    method: "POST",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": getCSRFToken(),
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({})
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    modalMessage("assignImageConfirmModal", "error", data.message);
+    return;
+  }
+
+  closeModal("assignImageConfirmModal");
+  resetAssignState();
+  modalMessage("imagesModal", "success", "Image assigned!");
+
+  await refreshImageList();   // unified refresh
+});
+/* ============================================================
+   UNIVERSAL — REFRESH IMAGE LIST
+   ============================================================ */
+
+async function refreshImageList() {
+  const res = await fetch("/images/list/", {
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+  });
+  const data = await res.json();
+
+  const container = document.getElementById("imageList");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (!data.images || !data.images.length) {
+    container.innerHTML = `<p class="empty-text">No images found.</p>`;
+    return;
+  }
+
+  data.images.forEach((img) => {
+    const item = document.createElement("div");
+    item.className = "modal-item";
+
+    item.innerHTML = `
+      <img src="/static/cocktails/buttons/${img}?v=${Date.now()}" class="item-thumb" />
+      <p class="assign-image-filename">${img}</p>
+      <button class="add-btn disabled-btn" data-open="assignImageConfirmModal" data-image="${img}" disabled aria-disabled="true">
+        Assign
+      </button>
+    `;
+
+    container.appendChild(item);
+  });
+
+  const select = document.getElementById("imageCocktailSelect");
+  updateAssignButtons(select && select.value !== "");
+  ``
+}
+
+document.addEventListener("change", (e) => {
+  if (e.target.id !== "imageCocktailSelect") return;
+
+  updateAssignButtons(e.target.value !== "");
+});
+
+function updateAssignButtons(enabled) {
+  document
+    .querySelectorAll("[data-open='assignImageConfirmModal']")
+    .forEach(btn => {
+      btn.disabled = !enabled;
+      btn.setAttribute("aria-disabled", String(!enabled));
+      btn.classList.toggle("disabled-btn", !enabled);
+    });
+}
+function resetAssignState() {
+  resetImageCocktailSelect();
+  updateAssignButtons(false);
+}
+
+document.addEventListener("modalClosed", (e) => {
+  if (e.detail.modalId !== "assignImageConfirmModal") return;
+
+  resetImageCocktailSelect();
+  updateAssignButtons(false);
+});

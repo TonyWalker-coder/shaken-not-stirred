@@ -455,7 +455,6 @@ def image_list(request):
     try:
         images = sorted(os.listdir(folder))
 
-        print("SORTED IMAGES:", images)
     except Exception:
         images = []
 
@@ -725,6 +724,7 @@ def forum(request):
 
 @admin_required
 def admin_forum(request):
+    raise Exception("TEST")
 
     threads = Thread.objects.all().order_by('-created_at')
     return render(request, 'admin_forum.html', {'threads': threads})
@@ -763,6 +763,7 @@ def dashboard_forum(request):
 
 @admin_required
 def dashboard_forum_thread(request, thread_id):
+    raise Exception("TEST")
     thread = get_object_or_404(Thread, id=thread_id)
     replies = Reply.objects.filter(thread=thread)
     return render(request, 'dashboard_forum_thread_section.html', {
@@ -802,6 +803,7 @@ def admin_reply(request, thread_id):
 
 
 def ingredient_lookup(request):
+    raise Exception("TEST")
     ingredients = (
         Ingredient.objects
         .filter(cocktail__isnull=False)

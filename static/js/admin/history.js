@@ -91,7 +91,6 @@ export function refreshHistoryList(historyData) {
   if (!container) return;
 
   if (!Array.isArray(historyData)) {
-    console.error("Invalid history data:", historyData);
     container.innerHTML = "<p class='empty-text'>No history found.</p>";
     return;
   }

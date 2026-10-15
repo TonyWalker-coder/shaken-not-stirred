@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<!--===============================
+Page complete – Tony, 4/10/2026
+admin.html
+===============================-->
+{% load static %}
+<html lang="en">
+<!--⭐ do not auto format page contains template variables  ⭐  -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+        content="Discover cocktails, ingredients, recipes, and tropical drink history with Shaken!Stirred — a vibrant mixology experience.">
+    <meta name="author" content="Tony Walker">
+
+    <meta property="og:title" content="Shaken!Stirred – Tropical Cocktail Explorer">
+    <meta property="og:description" content="Discover cocktails, ingredients, recipes, and tropical drink history.">
+    <meta property="og:image" content="{% static 'images/social-preview.webp' %}">
+    <meta property="og:type" content="website">
+
+
+
+  <title>Shaken!Stirred - Admin Page</title>
+  <link rel="stylesheet" href="{% static 'cocktails/styles.css' %}?v=5">
+  <link rel="stylesheet" href="{% static 'cocktails/admingrid.css' %}?v=5">
+  <link rel="stylesheet" href="{% static 'cocktails/cocktailgrid.css' %}?v=5">
+  <link rel="stylesheet" href="{% static 'cocktails/modal.css' %}?v=5">
+  <!-- Google Fonts -->
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap">
+
+  <link rel="icon" type="image/png" href="{% static 'cocktails/images/favicon/faviconcocktail.png' %}">
+
+  <style>
+    /* moved inline styles for accessibility */
+    .empty-text-red {
+      color: red;
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body class="admin-body">
+  <main id="main-content">
+  
+  
+    <div class="admin-wrapper">
+      <div>
+        <!--
+        Page Header
+      -->
+        <header class="hero">
+          <h1 class="title sunset-overlay"><a href="/">Admin Page</a></h1>
+          <nav class="homepage sunset-overlay" ><a href="/" class="black">Home</a></nav>
+        </header>
+      </div>
+  
+      <!--
+        Admin grid of buttons
+      -->
+      <div class="admin-grid">
+        <!-- INGREDIENTS -->
+        <button type="button" class="admin-card" data-open="ingredientsModal" tabindex="0"
+          aria-label="Open Ingredients Manager">
+          <img width="348" height="232" src="{% static 'cocktails/admin/ingredients.webp' %}" alt="Ingredients used for a cocktail">
+        </button>
+        <!-- IMAGES -->
+        <button type="button" class="admin-card" data-open="imagesModal" tabindex="0" aria-label="Open Images Manager">
+          <img width="348" height="232" src="{% static 'cocktails/admin/images.webp' %}" alt="paintbrush and images">
+        </button>
+        <!-- HISTORY -->
+        <button type="button" class="admin-card" data-open="historyModal" tabindex="0" aria-label="Open History Manager">
+          <img width="348" height="232" src="{% static 'cocktails/admin/history.webp' %}" alt="Old wooden egg timer">
+        </button>
+        <!-- RECIPES -->
+        <button type="button" class="admin-card" data-open="recipesModal" tabindex="0" aria-label="Open Recipes Manager">
+          <img width="348" height="232" src="{% static 'cocktails/admin/recipes.webp' %}" alt="open book of recipes">
+        </button>
+        <!-- ADD -->
+        <button type="button" class="admin-card" data-open="addCocktailModal" tabindex="0" aria-label="Add New Cocktail">
+          <img width="348" height="232" src="{% static 'cocktails/admin/add.webp' %}" alt="cocktails next to a plus sign">
+        </button>
+        <!-- DELETE -->
+        <button type="button" class="admin-card" data-open="deleteCocktailModal" tabindex="0"
+          aria-label="Delete Cocktail">
+          <img width="348" height="232" src="{% static 'cocktails/admin/delete.webp' %}" alt="cocktails next to a minus sign">
+        </button>
+        <!-- CUSTOMISE -->
+        <button type="button" class="admin-card" data-open="customiseModal" tabindex="0" aria-label="Customise Cocktail">
+          <img width="348" height="232" src="{% static 'cocktails/admin/customise.webp' %}" alt="Big bowl of ingredients">
+        </button>
+        <!-- User Forum -->
+        <button type="button" class="admin-card" onclick="openForum()" tabindex="0" aria-label="Open User Forum">
+          <img width="348" height="232" src="{% static 'cocktails/admin/userdata.webp' %}" alt="Tropical character using a type writer">
+        </button>
+        <!-- TESTDATA -->
+        <button type="button" class="admin-card" aria-label="Open Test Data"
+          onclick="window.open('{% url 'test_data_page' %}', '_blank')">
+          <img width="348" height="232" src="{% static 'cocktails/admin/testdata.webp' %}" alt="Character holding a clipboard">
+        </button>
+  
+      </div>
+    </div>
+  
+      <!--
+        Admin Modals
+      -->
+  
+  
+      <!--
+        Forum Modal
+      -->
+  
+      <div id="forumModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="forumModalTitle">
+        <div class="modal-content">
+  
+          <button type="button" class="close" data-close="forumModal" aria-label="Close Forum Modal">&times;</button>
+  
+          <div id="forumModalContent">
+            <!-- Forum HTML will be injected here -->
+          </div>
+  
+        </div>
+      </div>
+  
+  
+      <!--
+        Ingredients Modal
+      -->
+      <div id="ingredientsModal" class="modal hidden" role="dialog" aria-modal="true"
+        aria-labelledby="ingredientsModalTitle">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="ingredientsModal"
+            aria-label="Close Ingredients Modal">&times;</button>
+  
+          <!-- Unified message blocks -->
+          <div class="modal-message success hidden"></div>
+          <div class="modal-message error hidden"></div>
+          <img width="348" height="232" src="{% static 'cocktails/admin/ingredients.webp' %}" class="modal-image"
+            alt="Ingredients used for a cocktail">
+          <h2 id="ingredientsModalTitle" class="modal-title">Ingredients</h2>
+  
+          <!-- Add Ingredient -->
+          <div class="modal-add-block" role="form" aria-label="Add a new ingredient">
+            <h3>Add Ingredient</h3>
+            <form method="POST" action="{% url 'add_ingredient' %}">
+              {% csrf_token %}
+              <label for="name" class="sr-only">Ingredient Name</label>
+              <input type="text" name="name" id="name" class="modal-input" placeholder="Ingredient name" required>
+              <button type="submit" class="modal-button">Add</button>
+            </form>
+          </div>
+  
+          <!-- Ingredient List -->
+          <ul class="modal-list" aria-label="List of ingredients">
+            {% for ingredient in ingredients %}
+            <li class="modal-item">
+              <span class="item-name">{{ ingredient.name }}</span>
+  
+              <div class="item-actions">
+                <button type="button" class="delete-btn" data-delete-ingredient="{{ ingredient.id }}" tabindex="0"
+                  aria-label="Delete ingredient">
+                  Delete
+                </button>
+              </div>
+  
+            </li>
+            {% empty %}
+            <p class="empty-text">No ingredients yet.</p>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+  
+      <!-- EDIT INGREDIENT MODAL -->
+      <div id="editIngredientModal" class="modal hidden">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="editIngredientModal"
+            aria-label="Close Edit Ingredient Modal">&times;</button>
+  
+          <img width="348" height="232" src="{% static 'cocktails/admin/ingredients.webp' %}" class="modal-image"
+            alt="Ingredients used for a cocktail">
+          <h2 id="editIngredientModalTitle" class="modal-title">Edit Ingredient</h2>
+  
+          <form method="POST" id="editIngredientForm">
+            {% csrf_token %}
+            <label for="editIngredientName" class="sr-only">Ingredient Name</label>
+            <input type="text" name="name" id="editIngredientName" class="modal-input" required>
+            <button type="submit" class="modal-button" aria-label="Save ingredient changes">Save</button>
+          </form>
+        </div>
+      </div>
+      <!--
+        History Modal
+      -->
+      <div id="historyModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="historyModal" aria-label="Close History Modal">&times;</button>
+          <div class="modal-message success hidden"></div>
+          <div class="modal-message error hidden"></div>
+  
+          <img width="348" height="232" src="{% static 'cocktails/admin/history.webp' %}" class="modal-image" alt="Old wooden egg timer">
+          <h2 id="historyModalTitle" class="modal-title">Cocktail History</h2>
+  
+          <div class="history-list">
+            {% for cocktail in cocktails %}
+            <div class="history-item">
+              <span class="history-name">{{ cocktail.name }}</span>
+  
+              <div class="history-actions">
+                {% with h=cocktail.history_obj %}
+                {% if h %}
+                <img src="{% static 'cocktails/icons/history-ok.png' %}" class="history-icon" alt="Open scroll">
+  
+                <button type="button" class="edit-btn" data-open="editHistoryModal" data-id="{{ h.id }}"
+                  data-text="{{ h.text|escapejs }}" data-child="true" aria-label="{{ h.text|escapejs }}">
+                  Edit
+                </button>
+  
+                <button type="button" class="delete-btn" data-open="deleteHistoryModal" data-id="{{ h.id }}"
+                  data-child="true" aria-label="Delete history">
+                  Delete
+                </button>
+  
+                {% else %}
+                <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" alt="Large red X">
+  
+                <button type="button" class="add-btn" data-open="addHistoryModal" data-id="{{ cocktail.id }}"
+                  data-child="true" aria-label="Add history">
+                  Add
+                </button>
+  
+                <button type="button" class="delete-btn" data-open="noHistoryTrap" data-child="true"
+                  aria-label="Delete history">
+                  Delete
+                </button>
+                {% endif %}
+                {% endwith %}
+              </div>
+            </div>
+            {% empty %}
+            <p>No cocktails found.</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+  
+      <!-- EDIT HISTORY MODAL -->
+      <div id="editHistoryModal" class="modal hidden">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="editHistoryModal"
+            aria-label="Close Edit History Modal">&times;</button>
+  
+          <img width="348" height="232" src="{% static 'cocktails/admin/history.webp' %}" class="modal-image" alt="Old wooden egg timer">
+          <h2 id="editHistoryModalTitle" class="modal-title">Edit History</h2>
+  
+          <form method="POST" id="editHistoryForm">
+            {% csrf_token %}
+            <label for="editHistoryText" class="sr-only">History Text</label>
+            <textarea name="text" id="editHistoryText" rows="6" required></textarea>
+            <button type="submit" class="add-btn" aria-label="Save history changes">Save</button>
+          </form>
+        </div>
+      </div>
+  
+      <!-- ADD HISTORY MODAL -->
+      <div id="addHistoryModal" class="modal hidden">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="addHistoryModal"
+            aria-label="Close Add History Modal">&times;</button>
+  
+          <img width="348" height="232" src="{% static 'cocktails/admin/history.webp' %}" class="modal-image" alt="Old wooden egg timer">
+          <h2 id="addHistoryModalTitle" class="modal-title">Add History</h2>
+  
+          <form method="POST" id="addHistoryForm">
+            {% csrf_token %}
+            <label for="addHistoryText" class="sr-only">History Text</label>
+            <textarea name="text" id="addHistoryText" rows="6" required></textarea>
+            <button type="submit" class="add-btn" aria-label="Save history changes">Add</button>
+          </form>
+        </div>
+      </div>
+  
+      <!-- DELETE HISTORY MODAL -->
+      <div id="deleteHistoryModal" class="modal hidden">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="deleteHistoryModal"
+            aria-label="Close Delete History Modal">&times;</button>
+  
+          <h2 id="deleteHistoryModalTitle" class="modal-title">Delete History?</h2>
+          <p>Are you sure you want to delete this history entry?</p>
+  
+          <form method="POST" id="deleteHistoryForm">
+            {% csrf_token %}
+            <button type="submit" class="delete-btn" aria-label="Yes, delete">Yes, delete</button>
+          </form>
+        </div>
+      </div>
+      <!--
+        Recipes Modal
+      -->
+      <div id="recipesModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="recipesModalTitle">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="recipesModal" aria-label="Close Recipes Modal">&times;</button>
+          <div class="modal-message success hidden"></div>
+          <div class="modal-message error hidden"></div>
+  
+          <img width="348" height="232" src="{% static 'cocktails/admin/recipes.webp' %}" class="modal-image" alt="open book of recipes">
+          <h2 id="recipesModalTitle" class="modal-title">Cocktail Recipes</h2>
+  
+          <div class="history-list">
+            {% for cocktail in cocktails %}
+            <div class="history-item">
+              <span class="history-name">{{ cocktail.name }}</span>
+  
+              <div class="history-actions">
+                {% with r=cocktail.recipe_obj %}
+                {% if r %}
+                <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon" alt="Open book">
+  
+                <button type="button" class="edit-btn" data-open="editRecipeModal" data-id="{{ r.id }}"
+                  data-text="{{ r.text|escapejs }}" data-child="true" aria-label="{{ r.text|escapejs }}">
+                  Edit
+                </button>
+  
+                <button type="button" class="delete-btn" data-open="deleteRecipeModal" data-id="{{ r.id }}"
+                  data-child="true" aria-label="Delete recipe">
+                  Delete
+                </button>
+  
+                {% else %}
+                <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" alt="Large red X">
+  
+                <button type="button" class="add-btn" data-open="addRecipeModal" data-id="{{ cocktail.id }}" data-child="true"
+                  aria-label="Add recipe">
+                  Add
+                </button>
+  
+                <button type="button" class="delete-btn" data-open="noRecipeTrap" data-child="true"
+                  aria-label="Delete recipe">
+                  Delete
+                </button>
+                {% endif %}
+                {% endwith %}
+              </div>
+            </div>
+            {% empty %}
+            <p>No cocktails found.</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+  
+      <!-- EDIT RECIPE MODAL -->
+      <div id="editRecipeModal" class="modal hidden">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="editRecipeModal"
+            aria-label="Close Edit Recipe Modal">&times;</button>
+  
+          <img width="348" height="232" src="{% static 'cocktails/admin/recipes.webp' %}" class="modal-image" alt="open book of recipes">
+          <h2 id="editRecipeModalTitle" class="modal-title">Edit Recipe</h2>
+  
+          <form method="POST" id="editRecipeForm">
+            {% csrf_token %}
+            <label for="editRecipeText" class="sr-only">Recipe Text</label>
+            <textarea name="text" id="editRecipeText" rows="6" required></textarea>
+            <button type="submit" class="add-btn" aria-label="Save recipe changes">Save</button>
+          </form>
+        </div>
+      </div>
+  
+      <!-- ADD RECIPE MODAL -->
+      <div id="addRecipeModal" class="modal hidden">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="addRecipeModal"
+            aria-label="Close Add Recipe Modal">&times;</button>
+  
+          <img width="348" height="232" src="{% static 'cocktails/admin/recipes.webp' %}" class="modal-image" alt="open book of recipes">
+          <h2 id="addRecipeModalTitle" class="modal-title">Add Recipe</h2>
+  
+          <form method="POST" id="addRecipeForm">
+            {% csrf_token %}
+            <label for="addRecipeText" class="sr-only">Recipe Text</label>
+            <textarea name="text" id="addRecipeText" rows="6" required></textarea>
+            <button type="submit" class="add-btn" aria-label="Add recipe">Add</button>
+          </form>
+        </div>
+      </div>
+  
+      <!-- DELETE RECIPE MODAL -->
+      <div id="deleteRecipeModal" class="modal hidden">
+        <div class="modal-content">
+          <button type="button" class="close" data-close="deleteRecipeModal"
+            aria-label="Close Delete Recipe Modal">&times;</button>
+  
+          <h2 id="deleteRecipeModalTitle" class="modal-title">Delete Recipe?</h2>
+          <p>Are you sure you want to delete this recipe?</p>
+  
+          <form method="POST" id="deleteRecipeForm">
+            {% csrf_token %}
+            <button type="submit" class="delete-btn" aria-label="Yes, delete">Yes, delete</button>
+          </form>
+        </div>
+      </div>
+      <!--
+        Add Cocktail Modal
+      -->
+      <div id="addCocktailModal" class="modal hidden" role="dialog" aria-modal="true"
+        aria-labelledby="addCocktailModalTitle">
+  
+  
+        <div class="modal-content">
+          <button type="button" class="close" data-close="addCocktailModal"
+            aria-label="Close Add Cocktail Modal">&times;</button>
+          <div class="modal-message success hidden"></div>
+          <div class="modal-message error hidden"></div>
+  
+          <img width="348" height="232" src="{% static 'cocktails/admin/add.webp' %}" class="modal-image" alt="cocktails next to a plus sign">
+          <h2 id="addCocktailModalTitle" class="modal-title">Add Cocktail</h2>
+  
+          <form method="POST" action="{% url 'add_cocktail' %}" id="addCocktailForm">
+            {% csrf_token %}
+  
+            <!-- Cocktail Name -->
+            <div class="modal-add-block">
+              <h3>Cocktail Name</h3>
+              <label for="newCocktailName" class="sr-only">Cocktail Name</label>
+              <input type="text" name="name" id="newCocktailName" class="modal-input" placeholder="Enter cocktail name"
+                required>
+  
+              <p id="nameValidationMsg">
+                Name already exists.
+              </p>
+            </div>
+  
+  
+            <!-- Optional History -->
+            <div class="modal-add-block">
+              <h3>History (optional)</h3>
+              <label for="newCocktailHistory" class="sr-only">History</label>
+              <textarea name="history" id="newCocktailHistory" rows="4" class="modal-input"></textarea>
+            </div>
+  
+            <!-- Optional Recipe -->
+            <div class="modal-add-block">
+              <h3>Recipe (optional)</h3>
+              <label for="newCocktailRecipe" class="sr-only">Recipe</label>
+              <textarea name="recipe" id="newCocktailRecipe" rows="4" class="modal-input"></textarea>
+            </div>
+  
+            <!-- Ingredient Selection -->
+            <div class="modal-add-block">
+              <h3>Select Ingredients</h3>
+  
+              <ul class="modal-list">
+                {% for ingredient in ingredients %}
+                <li class="modal-item">
+                  <label class="ingredient-select">
+                    <input type="checkbox" name="ingredients" value="{{ ingredient.id }}">
+                    <span>{{ ingredient.name }}</span>
+                  </label>
+                </li>
+                {% empty %}
+                <p class="empty-text">No ingredients available.</p>
+                {% endfor %}
+              </ul>
+  
+              <div class="modal-add-block">
+                <h3>Add New Ingredient</h3>
+  
+  
+                <label for="newIngredientName" class="sr-only">Ingredient Name</label>
+                <input type="text" id="newIngredientName" class="modal-input" placeholder="Enter ingredient name">
+  
+                <button type="button" id="addIngredientInlineBtn" class="modal-button" aria-label="Add new ingredient">
+                  Add Ingredient
+                </button>
+  
+                <p id="inlineIngredientMsg" class="empty-text  empty-text-red"></p>
+  
+              </div>
+  
+            </div>
+  
+            <!-- Final Create Button -->
+            <button type="submit" id="createCocktailBtn" class="modal-button" disabled aria-label="Create cocktail">
+              Create Cocktail
+            </button>
+  
+          </form>
+        </div>
+      <button class="focus-end" aria-hidden="true"></button>
+    </div>
+  
+    <!-- IMAGE REMINDER MODAL -->
+    <div id="imageReminderModal" class="modal hidden">
+      <div class="modal-content small-modal">
+  
+        <h3>Cocktail Created</h3>
+  
+        <!-- Big paint brush icon -->
+        <img src="{% static 'cocktails/icons/paintbrush.png' %}" class="reminder-icon" alt="Paint Brush Icon">
+  
+  
+        <p>Please add an image manually.</p>
+  
+        <button class="modal-button" data-close="imageReminderModal">
+          OK
+        </button>
+      </div>
+    </div>
+    <!--
+        Delete Cocktail Modal
+      -->
+    <div id="deleteCocktailModal" class="modal hidden" role="dialog" aria-modal="true"
+      aria-labelledby="deleteCocktailModalTitle">
+      <div class="modal-content">
+        <button type="button" class="close" data-close="deleteCocktailModal"
+          aria-label="Close Delete Cocktail Modal">&times;</button>
+        <div class="modal-message success hidden"></div>
+        <div class="modal-message error hidden"></div>
+  
+        <img width="348" height="232" src="{% static 'cocktails/admin/delete.webp' %}" class="modal-image" alt="cocktails next to a minus sign">
+        <h2 id="deleteCocktailModalTitle" class="modal-title">Delete Cocktail</h2>
+  
+        <p>Select a cocktail to delete. This will remove its history, recipe, and image assignment.</p>
+  
+        <ul class="modal-list">
+          {% for cocktail in cocktails %}
+          <li class="modal-item">
+            <span class="item-name">{{ cocktail.name }}</span>
+  
+            <div class="item-actions">
+              <button type="button" class="delete-btn" data-delete="cocktail" data-id="{{ cocktail.id }}"
+                data-name="{{ cocktail.name|escapejs }}" data-child="true"
+                aria-label="Delete cocktail {{ cocktail.name|escapejs }}">
+                Delete
+              </button>
+  
+            </div>
+  
+          </li>
+          {% empty %}
+          <p class="empty-text">No cocktails found.</p>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  
+    <!-- CONFIRM DELETE COCKTAIL MODAL -->
+    <div id="confirmDeleteCocktailModal" class="modal hidden">
+      <div class="modal-content">
+  
+        <button type="button" class="close" data-close="confirmDeleteCocktailModal"
+          aria-label="Close Confirm Delete Cocktail Modal">&times;</button>
+  
+        <!-- Dynamite Warning Icon -->
+        <img src="{% static 'cocktails/icons/dino-warning.png' %}" class="modal-image  dynamite"
+          alt="Danger Dynamite  Icon">
+  
+        <h2 class="modal-title">Delete Cocktail?</h2>
+  
+        <p id="confirmDeleteCocktailText" style="font-size:1.1rem; margin-bottom:10px;">
+          Are you sure you want to delete this cocktail?
+        </p>
+  
+        <p class="warning">
+          ⚠ This action is permanent and cannot be undone.
+        </p>
+  
+        <form method="POST" id="deleteCocktailForm">
+          {% csrf_token %}
+          <button type="submit" class="delete-btn" aria-label="Yes, delete forever">
+            Yes, delete forever
+          </button>
+        </form>
+  
+      </div>
+    </div>
+  
+    <!--
+        Customise Cocktail Modal
+      -->
+    <div id="customiseModal" class="modal hidden">
+      <div class="modal-content">
+        <button type="button" class="close" data-close="customiseModal"
+          aria-label="Close Customise Cocktail Modal">&times;</button>
+        <div class="modal-message success hidden"></div>
+        <div class="modal-message error hidden"></div>
+  
+        <img width="348" height="232" src="{% static 'cocktails/admin/customise.webp' %}" class="modal-image" alt="Big bowl of ingredients">
+        <h2 class="modal-title">Customise Cocktail</h2>
+  
+        <!-- Cocktail Selector -->
+        <div class="modal-add-block">
+          <h3>Select Cocktail</h3>
+          <label for="customiseCocktailSelect" class="sr-only">Select Cocktail</label>
+          <select id="customiseCocktailSelect" class="modal-input">
+            <option value="">-- choose cocktail --</option>
+            {% for cocktail in cocktails %}
+            <option value="{{ cocktail.id }}">{{ cocktail.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+  
+        <!-- Ingredient Status List -->
+        <ul id="customiseIngredientList" class="modal-list">
+          <li class="empty-text">Choose a cocktail to view ingredients.</li>
+        </ul>
+      </div>
+    </div>
+    <!--
+        Images Modal
+      -->
+    <div id="imagesModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="imagesModalTitle">
+      <div class="modal-content">
+        <button type="button" class="close" data-close="imagesModal"
+          aria-label="Close Manage Images Modal">&times;</button>
+        <div class="modal-message success hidden"></div>
+        <div class="modal-message error hidden"></div>
+  
+        <img width="348" height="232" src="{% static 'cocktails/admin/images.webp' %}" class="modal-image" alt="paintbrush and images">
+        <h2 id="imagesModalTitle" class="modal-title">Manage Images</h2>
+  
+        <!-- Upload Block -->
+        <div class="modal-add-block">
+          <h3>Upload New Image</h3>
+  
+          <form id="imageUploadForm" method="POST" action="{% url 'upload_image' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="image" class="sr-only">Upload Image</label>
+            <input type="file" name="image" id="image" accept=".png,.jpg,.webp" class="modal-input" required>
+            <button type="submit" class="modal-button" aria-label="Upload image">Upload</button>
+          </form>
+  
+  
+          <p class="empty-text">
+            ⭐ Best results: 1024 × 1024
+          </p>
+        </div>
+  
+        <!-- Select Cocktail -->
+        <div class="modal-add-block">
+          <h3>Select Cocktail</h3>
+          <label for="imageCocktailSelect" class="sr-only">Select Cocktail</label>
+          <select id="imageCocktailSelect" class="modal-input">
+            <option value="">-- choose cocktail --</option>
+            {% for cocktail in cocktails %}
+            <option value="{{ cocktail.id }}">{{ cocktail.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+  
+        <!-- Image List -->
+        <div class="modal-add-block">
+          <h3>Available Images</h3>
+  
+          <ul id="imageList" class="modal-list">
+            {% for img in images %}
+            <li class="modal-item">
+  
+  
+              <img src="{% static 'cocktails/buttons/' %}{{ img }}" class="item-thumb" alt="cocktail image">
+  
+              <p class="assign-image-filename">{{ img }}</p>
+  
+  
+              <button type="button" class="add-btn disabled-btn" data-open="assignImageConfirmModal"
+                data-image="{{ img }}" aria-label="Assign image {{ img }} to selected cocktail" disabled>
+                Assign
+              </button>
+            </li>
+            {% empty %}
+            <p class="empty-text">No images found.</p>
+            {% endfor %}
+          </ul>
+        </div>
+  
+      </div>
+      <button class="focus-end" aria-hidden="true"></button>
+    </div>
+  
+    <!-- CONFIRM ASSIGN IMAGE MODAL -->
+    <div id="assignImageConfirmModal" class="modal hidden">
+      <div class="modal-content small-modal">
+  
+        <button type="button" class="close" data-close="assignImageConfirmModal"
+          aria-label="Close Assign Image Modal">&times;</button>
+  
+        <h3 class="modal-title">Assign Image</h3>
+  
+  
+        <div class="assign-preview">
+  
+          <div class="preview-block">
+            <h4>Selected Cocktail</h4>
+  
+            <img id="assignCocktailCurrentImage" class="assign-thumb" src="{% static 'cocktails/icons/placeholder.png' %}"
+              alt="cocktail image">
+            <p>Current Image</p>
+          </div>
+  
+          <div class="preview-block">
+            <h3>New Image</h3>
+  
+            <p id="assignImageFilename" class="assign-filename"></p>
+  
+            <img id="assignNewImageThumb" class="assign-thumb" src="{% static 'cocktails/icons/placeholder.png' %}"
+              alt="">
+          </div>
+  
+        </div>
+  
+        <p id="assignImageText" class="assign-text"></p>
+  
+        <form method="POST" id="assignImageForm">
+          {% csrf_token %}
+          <button type="submit" class="modal-button" aria-label="Assign image">Assign Image</button>
+        </form>
+  
+      </div>
+  
+    </div>
+  
+  
+  </main>
+
+  <script type="module" src="/static/js/admin/ingredients.js"></script>
+  <script type="module" src="/static/js/admin/history.js"></script>
+  <script type="module" src="/static/js/admin/recipes.js"></script>
+  <script type="module" src="/static/js/admin/add.js"></script>
+  <script type="module" src="/static/js/admin/delete.js"></script>
+  <script type="module" src="/static/js/admin/customise.js"></script>
+  <script type="module" src="/static/js/admin/image.js"></script>
+  <script type="module" src="/static/js/admin/admin-core.js"></script>
+
+  <!--
+IMPORTANT:
+Do NOT auto‑format this <script> block.
+
+Formatters will break Django template tags
+by changing {{ c.id }} into { { c.id } }, which causes a fatal JS syntax error.
+
+Leave spacing and braces EXACTLY as written.
+-->
+
+  <script>
+
+
+    window.cocktails = [
+      {% for c in cocktails %}
+    {
+      id: {{ c.id }},
+      name: "{{ c.name|escapejs }}",
+        image_url: "{{ c.image_url|default:'' }}"
+    },
+    {% endfor %}
+    ];
+
+
+
+  </script>
+
+</body>
+
+</html>

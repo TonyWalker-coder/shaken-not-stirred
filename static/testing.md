@@ -1,0 +1,2645 @@
+<style>
+ h1,h2 {
+  color:skyblue;
+  font-weight:bold;
+ }
+  h3 {
+  color:white;
+ }
+ .tick{
+  font-size:1.5rem;
+ }
+    .screenshot-s {
+    width: 600px;
+    transition: width 0.3s ease;
+    cursor: zoom-in;
+  }
+  .screenshot-w50 {
+    max-width: 50px;
+    transition: width 0.3s ease;
+    cursor: zoom-in;
+  }
+   .screenshot {
+    width: 600px;
+    transition: width 0.3s ease;
+    cursor: zoom-in;
+  }
+  .screenshot:hover {
+    width: 100%;
+    cursor: zoom-out;
+  }
+
+  .error{
+    color:red;
+    font-weight:bold;
+  }
+    .fix{
+    color:green;
+    font-weight:bold;
+  }
+  .icon{
+    height:24px;
+  }
+  .button{
+    padding:5px 10px; 
+    border:1px solid #555; 
+    border-radius:4px; 
+    font-weight:500
+  }
+ hr{
+  border: 1px solid #ccc;
+ }
+
+
+
+</style>
+
+
+# Testing Document
+
+## Table of Contents
+
+- [User Story Acceptance](#user-story-acceptance)
+- [Navigation](#navigation)
+- [Browser Support](#browsersupport)
+- [Mobile Support](#mobilesupport)
+- [Use of Validators in a Django Project](#validators)
+- [MarkUp Validator](#validator)
+- [ESLint](#eslint)
+- [Ruff](#ruff)
+- [CSS Validator](#css)
+- [UI Validation](#ui)
+- [Homepage Workflow UI Validation](#index)
+- [Admin Workflow UI Validation](#admin)
+- [Cocktail Page UI Validation](#cocktail)
+- [User Area Workflow UI Validation](#user)
+- [Added 404.html](#404)
+- [Bug Report](#bugs)
+- [Post‑Fix Verification](#postfixes)
+- [Post Completion Review](#postsubmission)
+- [Observation](#observation)
+- [Security Review](#security)
+
+
+
+
+
+
+
+## User Story Acceptance
+
+## Navigation bar
+
+### Acceptance Criteria
+- Navigation is from the home page which can be reached by clicking the logo
+- The main sections can all be accessed from the homepage
+
+<img  width=500px height=100% src="./screenshots/nav1.png"><img  width=200px height=100% src="./screenshots/mobile-homepage.jpg">
+
+
+
+As the site is only 1 page deep all pages point back to the index.html via the clickable logo, apart from the forum which is a contained suit<span class="tick"><span class="tick">✔️</span></span>
+
+## Logo and Hero
+
+### Acceptance Criteria
+- The site logo is the text **Shaken!Stirred**
+- The logo is displayed on the index and cocktail pages.
+- The landing page includes a hero section with a visually relevant image
+- The hero image loads correctly on mobile and desktop
+- The hero section contributes to a strong first impression and clear brand identity
+
+<img  width=500px height=100% src="./screenshots/nav2.png">
+
+While the logo appears in the form of the site name on the index and cocktail pages the theme has been maintained through out and the index page has a full cover hero image<span class="tick">✔️</span>
+
+## Responsive layout
+
+### Acceptance Criteria
+- A responsive CSS grid layout is implemented across all pages
+- Grid columns adjust through breakpoints at 6 → 4 → 2 → 1
+- CSS  is used where appropriate to maintain scalable spacing, typography, and layout
+- The layout remains visually consistent and functional on mobile, tablet, and desktop
+
+The layout has been tested across different break points, with different break points for different screen, and on various devices <span class="tick">✔️</span>
+
+*example screen shoots*
+
+<img src="screenshots/responsive-index.png" class="screenshot-s">
+
+<img src="screenshots/responsive-cocktail.png" class="screenshot-s">
+
+<img src="screenshots/responsive-admin.png" class="screenshot-s">
+
+
+## Accessibility
+
+### Acceptance Criteria
+- A consistent colour theme is used across all pages
+- Colour palette meets WCAG 2.1 AA contrast ratios:
+- Minimum 4.5:1 for normal text
+- Minimum 3:1 for large text
+- All interactive elements (links, buttons, menus, cards) are fully operable using keyboard input alone
+- Screen reader support is ensured through:
+- Semantic HTML structure
+- Meaningful alt text for images
+- ARIA labels where appropriate
+- Focus states are visible, clear, and consistent
+- Navigation remains predictable and consistent across the site
+- No content flashes more than three times per second (to avoid seizure risk)
+
+## Index 
+
+| Feature                      | Test                                                               | Result |
+| ---------------------------- | ------------------------------------------------------------------ | ------ |
+| Keyboard navigation          | Navigated page using Tab and Shift+Tab                             | Pass   |
+| Admin modal focus            | Opened modal and verified keyboard focus remained within the modal | Pass   |
+| Modal close button           | Activated close button using keyboard                              | Pass   |
+| Escape key                   | Pressed Escape to close modal                                      | Pass   |
+| Password field accessibility | Screen-reader label associated with password input                 | Pass   |
+
+<img  width=300px height=100% src="./screenshots/accessibility1.png">
+
+## cocktail_list
+
+### Keyboard Navigation Testing
+ 
+| Feature | Test Performed | Result |
+|----------|----------|----------|
+| Home navigation link | Navigated to the Home link using the Tab key and activated it using Enter | Pass |
+| Cocktail cards | Navigated to cocktail cards using the Tab key | Pass |
+| Open modal | Opened cocktail detail modal using Enter on a selected cocktail card | Pass |
+| Focus management | Keyboard focus remained within modal controls while the modal was open | Pass |
+| Close modal (Escape) | Pressed Escape key to close the modal | Pass |
+| Close modal (Enter) | Pressed Enter on the close control to close the modal | Pass |
+| Close modal (Space) | Pressed Space on the close control to close the modal | Pass |
+| Return to page | After closing the modal, keyboard navigation returned to the page content | Pass |
+ 
+**Bug found and fixed:** During testing, the modal allowed keyboard navigation to move to elements behind the modal while it was open. Focus management was updated so keyboard users remain within the modal interface until it is closed.
+
+<img  width=300px height=100% src="./screenshots/accessibility2.png">
+
+## Admin
+
+### Keyboard Accessibility Testing
+
+| Test Area | Notes | Result |
+|-----------|-------|--------|
+| Tab navigation| All primary admin controls and modal controls can be reached using the keyboard. | Pass |
+| Enter key activation| Buttons, links and modal actions can be activated using Enter. | Pass |
+| Modal opening| Modals open correctly from keyboard interaction. | Pass |
+| Modal closing (Close button)| Modals can be closed using the keyboard. | Pass |
+| ESC key close| Open modals close when ESC is pressed. | Pass |
+| Focus on modal open| Focus moves into the modal when opened. | Pass |
+| Focus return on modal close| Focus returns to the originating control after the modal is closed. | Pass |
+| CRUD operations| Create, Read, Update and Delete actions were successfully completed using keyboard navigation. | Pass |
+| Images modal | When no cocktail is selected, Assign buttons remain disabled and focus may leave the modal after the final available control. This is expected behaviour. | Pass* |
+| Add Cocktail modal | When used only for ingredient creation and no cocktail name is entered, the Create Cocktail button remains disabled and focus may leave the modal after the final available control. This is expected behaviour. | Pass* |
+| Customise Cocktail modal | Ingredient buttons are generated dynamically after the modal opens. Focus trapping currently initialises before these controls exist. | Known limitation |
+| User Forum modal | Forum content is dynamically replaced when loading a thread, which can disrupt the existing focus map. | Known limitation |
+
+### Bug Identified
+
+| Issue | Status |
+|---------|---------|
+| Visible keyboard focus indicator is not consistently displayed on some modal controls (for example, the close button). | Fixed Bug006. |
+| Nested modal ESC handling, When a child confirmation modal is open, pressing ESC closes the parent modal instead of the active child modal, leaving the child modal orphaned. | Fixed Bug007. |
+
+**Note:**
+
+- Keyboard focus trap tested across admin modals. Images modal initially exited the focus loop when no cocktail was selected because all Assign buttons were disabled and removed from the tab order. Once a cocktail was selected, focus trapping behaved as expected.
+
+- Known behaviour: When the Add Cocktail modal is used only for ingredient creation and no cocktail name is entered, focus is released after the final available control because the Create Cocktail action remains disabled.
+
+- Keyboard focus trapping was successfully implemented across administrative modals. Testing identified two dynamic-content edge cases. The Customise Cocktail modal generates additional controls after initialisation, and the User Forum replaces modal content when loading threads. Both cases would require dynamic regeneration of the focus map and have been recorded as future accessibility enhancements.
+
+Images modal tab leak, workaround added Feature005
+
+<img  width=300px height=100% src="./screenshots/accessibility3.png">
+
+## User Area
+
+### Keyboard Accessibility Testing
+
+| Test Area | Notes | Result |
+|-----------|-------|--------|
+| Tab navigation| All primary user controls and modal controls can be reached using the keyboard. | Pass |
+| Enter key activation| Buttons, links and modal actions can be activated using Enter. | Pass |
+| Ingredients lookup modal opening| Modal open correctly from keyboard interaction. | Pass |
+| User Forum| Forum page open correctly from keyboard interaction. | Pass |
+| ESC key close| Open modal close when ESC is pressed. | Fail |
+| Focus on modal open| Focus moves into the modal when opened. | Pass |
+| Modal retains focus| Focus moves around the modal buttons. | Fail |
+| Focus return on modal close| Focus returns to the originating control after the modal is closed. | Pass |
+| Search operations| Search and select action was successfully completed using keyboard navigation. | Pass |
+
+
+<img  width=300px height=100% src="./screenshots/accessibility4.png">
+
+## User Forum
+
+The user forum spans three pages so the testing followed that progression 
+
+### Keyboard Accessibility Testing
+
+| Test Area | Notes | Result |
+|-----------|-------|--------|
+| Tab navigation| All primary user controls can be reached using the keyboard. | Pass |
+| Enter key activation| Buttons, links can be activated using Enter. | Pass |
+| User Forum| Forum page open correctly from keyboard interaction. | Pass |
+| Tab navigation| All forum fields can be accessed via tab. | Pass |
+| Enter key activation| All post can be sent with the keyboard. | Pass |
+| Abort post| Any post can be aborted by navigating and pressing enter on the return button. | Pass |
+
+<img  width=300px height=100% src="./screenshots/accessibility5.png"><img  width=300px height=100% src="./screenshots/accessibility6.png"><img  width=300px height=100% src="./screenshots/accessibility7.png">
+
+**conclusion**
+
+The project follows recognised accessibility best practices, using semantic markup, high‑contrast visuals, descriptive alt text, and fully keyboard‑accessible navigation to support an inclusive user experience. <span class="tick">✔️</span>
+
+## POST — Add a Cocktail
+
+### Acceptance Criteria
+- A user forum exists that allows users to add a new cocktail
+- Submission of user cocktails is done via admin access to protect the integrity of the site.
+
+The project has a forum to allow users to post freely and the admin has access to the forum post and a full crud system documented CRUD usage is fully covered in this document and screenshots of forums and admin already exist in several topic . <span class="tick">✔️</span>
+
+## Administration — Manage User Cocktails
+
+### Acceptance Criteria
+- A password‑protected administration page is available only to authorised users
+- Administrators can view all user‑submitted cocktails
+- A modal based system exists that allows administrators to edit cocktail details
+- Administrators can delete cocktails from the database
+
+The admin area is password protected and the admin has full CRUD control of the site. There is a comprehensive CRUD walk through with screenshots in this document.
+
+<img  width=500px height=100% src="./screenshots/passwordcontrol.png">
+
+A full and comprehensive admin system has been implemented to manage all cocktail data, including validation, error checking, and controlled publishing. This ensures the site remains accurate, consistent, and protected from incorrect or duplicate submissions. <span class="tick">✔️</span>
+
+
+### Search Form — Find Cocktails by Ingredient
+
+## Search Ingredients — Find Cocktails by Ingredient
+
+### Acceptance Criteria
+- A search modal is available for users to search cocktails by ingredient
+- Ingredient options are provided through validated dropdown selections
+- The search returns cocktails that match the selected ingredient(s)
+- Only ingredients used in cocktails can be searched
+
+The reverse‑lookup system allows users to choose a single ingredient and instantly see every cocktail that uses it. This provides a quick and intuitive way to explore drinks based on what the user already has available. Screen shots and walk through already exist in the document.<span class="tick">✔️</span>
+
+## Cocktail Information — View Full Cocktail Details
+
+### Acceptance Criteria
+- A database table exists to store cocktail ingredients
+- A database table exists to store optional cocktail history or background information
+- Selecting a cocktail displays its full details in a modal or similar component
+- The modal includes ingredients, method, and any available history
+- The layout is clear, readable, and consistent across all cocktails
+
+<img  width=300px height=100% src="./screenshots/acocktailcard.png">
+
+The cocktail page displays full drink details using bold, eye‑catching imagery and a well‑structured cocktail card, making it easy for users to explore each drink in depth. This documentation contains a full walkthrough with screenshots of this process. <span class="tick">✔️</span>
+
+## Feedback — Collect User Feedback
+
+### Acceptance Criteria
+- A user forum is available in the user area
+- Clicking the forum button opens a modal where users can submit feedback
+- The modal includes validated fields to ensure meaningful submissions
+- Forum entries are stored in the database for review by users or admin
+
+The site contains a user forum and is tested with screenshots throughout this document already. <span class="tick">✔️</span>
+
+## Contact Information
+
+### As a site owner _(Should Have)_
+I want users to be able to contact me and respond in a safe secure way.
+
+### Description
+Users should be able to leave messages for the admin.
+
+### Acceptance Criteria
+- A user forum should exist to allow users to post comments
+- The admin should have access to the forum and be able to delete threads
+
+As a “should‑have” requirement, contact functionality is addressed through the user forum. This provides a central, moderated space where users can post questions, share ideas, and communicate with the site, without exposing direct contact details or compromising the integrity of the platform. <span class="tick">✔️</span>
+
+## Image Buttons — Open Cocktail Details
+
+### Acceptance Criteria
+- Each cocktail image functions as a clickable button
+- Clicking the image opens a modal containing the cocktail’s full details
+- The modal includes ingredients, method, and optional history
+- Images have appropriate hover/focus states for accessibility
+- The interaction works consistently on mobile and desktop
+- Cocktails should have a missing image to avoid broken links
+
+The bespoke cocktail images act as interactive buttons, giving users a visually engaging way to explore each drink. These image‑driven controls make full use of responsive grids and modal windows, ensuring the experience feels smooth, modern, and intuitive across all devices. This procedure is documented with screenshots in the CRUD walk through.<span class="tick">✔️</span>
+
+### Testing Summary  
+
+All user stories have been fully reviewed and tested to confirm that each requirement has been successfully addressed. Every feature — from cocktail management to search, feedback, and responsive design — has been validated to ensure the site behaves as intended across all devices.
+
+## Navigation
+
+### Index Page
+- <span class="tick">➡️</span> Cocktails.html <span class="tick">✔️</span>
+- <span class="tick">➡️</span> Admin.html <span class="tick">✔️</span>
+- <span class="tick">➡️</span> User.Html <span class="tick">✔️</span>
+
+### Cocktail Page
+- <span class="tick">➡️</span> Index.html <span class="tick">✔️</span>
+
+### Admin Page
+- <span class="tick">➡️</span> Index.html <span class="tick">✔️</span>
+- <span class="tick">➡️</span> ( New Tab ) Testdata.html <span class="tick">✔️</span>
+
+### User Page
+- <span class="tick">➡️</span> Index.html <span class="tick">✔️</span>
+- <span class="tick">➡️</span> User Forum.html <span class="tick">✔️</span>
+
+### User Forum Page
+- <span class="tick">➡️</span> User.html <span class="tick">✔️</span>
+
+<a id="browsersupport"></a>
+
+## Browser Compatibility
+ 
+Shaken!Stirred has been tested across modern desktop browsers to ensure a consistent user experience.
+ 
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+
+<img src="screenshots/browsersupport.png" class="screenshot">
+
+<a id="mobilesupport"></a>
+
+## Mobile Responsiveness Testing
+
+The application was tested on a Samsung mobile device using Microsoft Edge. The screenshots below demonstrate successful rendering and operation of key application areas including the homepage, cocktail catalogue, administration dashboard, and user area.
+
+### *Homepage*
+
+<img src="screenshots/mobile-homepage.jpg" style="max-width:400px">
+
+### *Cocktail List*
+
+<img src="screenshots/mobil-cocktaillist.jpg" style="max-width:400px">
+
+### *Cocktail*
+
+<img src="screenshots/mobile-cocktail.jpg" style="max-width:400px">
+
+### *Admin*
+
+<img src="screenshots/mobil-admin.jpg" style="max-width:400px">
+
+### *CRUD*
+
+<img src="screenshots/mobile-crud.jpg" style="max-width:400px">
+
+### *UserArea*
+
+<img src="screenshots/mobil-userarea.jpg" style="max-width:400px">
+
+
+
+<a id="validators"></a>
+
+## Use of Validators in a Django Project
+
+### Overview
+During development I used HTML, CSS, and JavaScript validators to check the quality and correctness of my code. However, Django templates contain server‑side syntax such as:
+
+{% load static %}
+
+{% if %} ... {% endif %}
+
+{{ variable }}
+
+Template inheritance blocks
+
+These are not valid HTML or JavaScript until Django renders them. Because of this, online validators often report errors that are not genuine issues.
+
+### <span class="tick">⚠️</span> Why Validators Misinterpret Django Templates
+
+When a validator encounters Django template syntax, it attempts to parse it as raw HTML or JavaScript. This leads to false errors such as:
+
+- “Illegal character { in attribute”
+
+- “Stray start tag html”
+
+- “Missing `<title>` element”
+
+- “Unexpected token”
+
+- “Duplicate IDs”
+
+- “Cannot recover after last error”
+
+These errors occur because the validator is reading template code, not the final rendered HTML.
+
+### <span class="tick">🔍</span> Correct Validation Method
+To validate Django pages properly, I validated the rendered output, not the template source.
+
+Steps taken:
+- Opened the page in the browser.
+
+- Used View Page Source to capture the fully rendered HTML.
+
+- Submitted that HTML to the validator.
+
+- Confirmed that all genuine HTML issues were resolved.
+
+This method ensures the validator sees the actual HTML that the browser receives — without Django syntax.
+
+### <span class="tick">🛠️</span> Genuine Issues Identified & Fixed
+Any real issues flagged by validators or browser dev tools were corrected, including:
+
+*Some real examples*
+- Adding `<!DOCTYPE html>`
+
+- Adding `<html lang="en">`
+
+- Removing trailing slashes from void elements
+
+- Correcting heading hierarchy
+
+- Improving ARIA labels and modal accessibility
+
+- Ensuring unique IDs
+
+- Moving `<script>` inside <body>
+
+- Ensuring keyboard accessibility for interactive elements
+
+All legitimate warnings were addressed.
+
+### <span class="tick">🧪</span> Final Testing
+After validation, pages are tested thoroughly using:
+
+- Chrome DevTools
+
+- Firefox Developer Edition
+
+- Responsive/mobile view
+
+- Keyboard‑only navigation
+
+- Screen reader checks (NVDA / VoiceOver)
+
+Ensuring all functionality work as expected:
+- Modal opens and closes correctly
+
+- Keyboard navigation triggers modal correctly
+
+- ARIA labels announce content properly
+
+- Images load with fallbacks
+
+- No console errors
+
+- No accessibility blockers
+
+### <span class="tick">📌</span> Conclusion
+HTML/JS validators and Django templates do not mix, because validators cannot interpret Django’s server‑side syntax. By validating the rendered HTML and addressing all genuine issues, the final pages are:
+
+- structurally correct
+
+- accessible
+
+- standards‑compliant
+
+- fully functional after testing
+
+This demonstrates responsible use of validation tools within a Django development workflow and where ever possible due to size limitations screenshots are provided.
+
+
+## Validator
+
+### index.html
+
+<img src="screenshots/validate-index.html.png" class="screenshot">
+
+**<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
+
+### cocktail_list.html
+
+<img src="screenshots/validate-cocktail_list.html.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warning</p>**
+
+The modal heading (`<h2 id="modal-name">`) is intentionally empty in the static HTML because its content is injected dynamically. This follows standard accessible modal patterns: the heading acts as a placeholder and is updated at runtime, with aria-live="polite" ensuring screen readers announce the change. 
+
+**<p style="color:green;"><span class="tick">📌</span> Conclusion</p>**
+
+Since the heading is populated immediately upon modal activation, it does not create any accessibility issues, and the validator warning can be safely ignored.
+
+### iframe ingredients lookup
+
+<img src="screenshots/validate-iframe-ingredients-lookup.html.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warning</p>**
+
+Some HTML validator warnings were intentionally ignored because the pages are rendered inside an iframe and are not standalone documents. The iframe content acts as a UI component rather than a full webpage, so requirements such as a `<title>` element or top‑level `<h1>` heading do not apply.
+
+<p style="color:green;"><span class="tick">📌</span> Conclusion</p>
+These warnings do not affect functionality or accessibility, as the parent document provides the overall page structure.
+
+### iframe cocktail lookup
+
+<img src="screenshots/validate-iframe-cocktail-lookup.html.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warning</p>**
+
+Validator Warnings (Iframe Child Page)
+The HTML validator reports missing `<title>` and missing `<h1>` heading for the iframe child page. These warnings were intentionally ignored because the iframe content is not a standalone webpage. It is embedded inside the parent document, which already provides the required page‑level metadata and heading structure.
+
+**<p style="color:green;"><span class="tick">📌</span> Conclusion</p>**
+
+The iframe acts only as a UI component, so document‑level requirements do not apply and the warnings have no impact on functionality or accessibility.
+
+### forum.html
+
+<img src="screenshots/validate-forum.html.png" class="screenshot">
+
+**<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
+
+### thread_detail.html
+
+<img src="screenshots/validate-thread_detail.html.png" class="screenshot">
+
+**<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
+
+### new_thread.html
+
+<img src="screenshots/validate-new_thread.html.png" class="screenshot">
+
+**<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
+
+### user.html
+
+<img src="screenshots/validate-user.html.png" class="screenshot">
+
+**<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
+
+### testdata.html
+
+<img src="screenshots/validate-testdata.html.png" class="screenshot">
+
+**<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
+
+### admin.html
+
+<img src="screenshots/validate-admin.html.png" class="screenshot">
+
+**<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
+
+<a id="eslint"></a>
+
+## JavaScript Validation (ESLint v9+)
+
+- Installed and configured ESLint using the new eslint.config.js format
+
+- Added ignore rules for Django admin JS, vendor scripts, jQuery, and virtual environment
+
+- Enabled ES2021 syntax and browser globals
+
+- Ran ESLint across all project JavaScript files
+
+- Result: 0 errors, 6 warnings
+
+- Warnings related only to unused imports and unused variables
+
+- No functional issues detected
+
+- Confirms that the JavaScript codebase is clean, modern, and stable
+
+### ESLint output
+
+C:\projects\shaken-not-stirred\static\js\admin\add.js
+  3:3  warning  'closeModal' is defined but never used  no-unused-vars
+  4:3  warning  'openModal' is defined but never used   no-unused-vars
+
+C:\projects\shaken-not-stirred\static\js\admin\customise.js
+  3:3  warning  'closeModal' is defined but never used  no-unused-vars
+
+C:\projects\shaken-not-stirred\static\js\admin\history.js
+  5:3  warning  'getCSRFToken' is defined but never used  no-unused-vars
+
+C:\projects\shaken-not-stirred\static\js\admin\recipes.js
+    5:3   warning  'getCSRFToken' is defined but never used       no-unused-vars
+  171:11  warning  'fullList' is assigned a value but never used  no-unused-vars
+
+Ô£û 6 problems (0 errors, 6 warnings)
+
+**<p style="color:green;"><span class="tick">📌</span> Conclusion</p>**
+
+ I reviewed each warning, removed the redundant code, and re‑ran the validator. ESLint now reports no errors and no warnings, confirming that the JavaScript codebase is clean, modern, and fully compliant with ES2021 standards.
+
+**<p style="color:green;"><span class="tick">✔️</span> No warnings</p>**
+
+
+
+<a id="ruff"></a>
+
+## <span class="tick">🐍</span> Python Validation (Ruff)
+
+To ensure the Python codebase met modern linting and formatting standards, I validated the entire Django project using Ruff, a fast, all‑in‑one Python linter and formatter. Ruff combines checks from tools such as Pyflakes, pycodestyle, isort, and Flake8, making it ideal for maintaining a clean and consistent codebase.
+
+### Installation
+
+Ruff was installed inside the project’s virtual environment:
+
+`pip install ruff`
+
+### Configuration
+
+I added a ruff.toml configuration file at the project root to define the linting rules and exclusions:
+
+Line length set to 88 (matching Black and PEP8)
+
+Target version set to Python 3.11
+
+Enabled recommended rule sets: `E, F, W, B, I`
+
+Excluded Django migration files
+
+Added per‑file ignores for long‑line warnings (E501) in files where Django naturally produces long expressions (e.g., `urls.py, views.py, settings.py`)
+
+This allowed Ruff to focus on meaningful issues without generating noise from unavoidable long lines.
+
+### Fixes Applied
+
+Running Ruff across the project identified several genuine issues, all of which were corrected:
+
+Duplicate imports (e.g., models imported twice in `views.py`)
+
+Unused imports (e.g., `timezone in models.py`)
+
+Mid‑file imports moved to the top of the file (E402)
+
+Unused variables renamed or removed (e.g., `_pk` in a loop)
+
+Old development scripts removed (e.g., `static/testdata/del-views.py`)
+
+Import blocks sorted and cleaned across the project
+
+`ruff check . --fix`
+
+For issues requiring manual intervention (such as removing duplicate functions or cleaning dev-only files), I updated the code directly.
+
+## Result
+
+After applying fixes and configuring exceptions, Ruff reports:
+
+(.venv) PS C:\projects\shaken-not-stirred> ruff check .                   
+All checks passed!
+
+**<p style="color:green;"><span class="tick">✔️</span> All checks passed!</p>**
+
+<a id="css"></a>
+
+## CSS Validator
+
+### index.css
+
+<img src="screenshots/validate-index.css.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
+
+<img src="screenshots/validate-index1.css.png" class="screenshot">
+
+
+
+<a id="webkit"></a>
+
+### Use of `-webkit-backdrop-filter`
+The CSS validator flags `-webkit-backdrop-filter` as an error because vendor‑prefixed properties fall outside the formal CSS grammar it checks against. This does not mean the property is invalid or unsafe. The prefix exists because Safari’s rendering engine (WebKit) requires its own implementation of backdrop filtering, and without the prefixed version, the effect will not render on macOS or iOS devices.
+
+Modern browsers that support the unprefixed `backdrop-filter` simply ignore the prefixed declaration, while Safari relies on it for full functionality. Because vendor extensions degrade gracefully—being ignored by engines that do not need them—they are considered a safe, standards‑compliant way to provide cross‑browser support for newer visual effects.
+
+**<p style="color:green;"><span class="tick">📌</span> Conclusion</p>**
+
+This is not an error. It is a necessary vendor extension to ensure consistent behaviour across browsers, particularly Safari.
+
+### testdata.css
+
+<img src="screenshots/validate-testdata.css.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
+
+<img src="screenshots/validate-testdata1.css.png" class="screenshot">
+
+
+
+<a id="variables"></a>
+### CSS Variables Not Statically Checked
+
+The CSS validator reports multiple notices stating that CSS variables (custom properties) are “not statically checked.” This is expected behaviour and not an error. CSS variables are resolved at runtime by the browser, not at validation time, which means the validator cannot fully analyse or verify their values. Because custom properties can change based on inheritance, media queries, JavaScript updates, or component scope, they fall outside the static grammar rules the validator uses. Browsers, however, handle them correctly and consistently.
+
+**<p style="color:green;"><span class="tick">📌</span> Conclusion</p>**
+
+These notices simply indicate that the validator is acknowledging the dynamic nature of CSS variables rather than flagging a problem with the code.
+
+### styles.css
+
+<img src="screenshots/validate-styles.css.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
+
+<img src="screenshots/validate-styles1.css.png" class="screenshot">
+
+
+
+### Use of the Deprecated clip Property
+
+The CSS validator flags the `clip` property as deprecated because modern CSS now prefers `clip-path` for defining clipping regions. However, the specific pattern used here—`clip: rect(0,0,0,0);`—is part of a long‑established accessibility technique known as the sr‑only pattern, designed to visually hide content while keeping it fully available to screen readers. Although `clip` is deprecated in general use, this pattern remains widely supported across browsers and is still recommended by major accessibility frameworks (including older versions of Bootstrap) for ensuring non‑visual users can access important content. The
+
+Use of `-webkit-backdrop-filter`
+[Previously explained here](#webkit)
+
+**<p style="color:green;"><span class="tick">📌</span> Conclusion</p>**
+
+validator warning is therefore expected and does not indicate a functional or accessibility issue.
+
+
+### modal.css
+
+<img src="screenshots/validate-modal.css.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
+
+<img src="screenshots/validate-modal1.css.png" class="screenshot">
+
+Use of `-webkit-backdrop-filter`
+[Previously explained here](#webkit)
+
+CSS Variables
+[Previously explained here](#variables)
+
+### user.css
+
+<img src="screenshots/validate-user.css.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
+
+<img src="screenshots/validate-user1.css.png" class="screenshot">
+
+Use of `-webkit-backdrop-filter`
+[Previously explained here](#webkit)
+
+### base.css
+
+<img src="screenshots/validate-base.css.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
+
+<img src="screenshots/validate-base1.css.png" class="screenshot">
+
+Use of `-webkit-backdrop-filter`
+[Previously explained here](#webkit)
+
+### ingredients_lookup.css
+
+<img src="screenshots/validate-ingredients_lookup.css.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
+
+<img src="screenshots/validate-ingredients_lookup1.css.png" class="screenshot">
+
+Use of `-webkit-backdrop-filter`
+[Previously explained here](#webkit)
+
+### lookup_cocktail_detail.css
+
+<img src="screenshots/validate-lookup_cocktail_detail.css.png" class="screenshot">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warnings</p>**
+
+<img src="screenshots/validate-lookup_cocktail_detail1.css.png" class="screenshot">
+
+Use of `-webkit-backdrop-filter`
+[Previously explained here](#webkit)
+
+<a id="ui"></a>
+
+## UI Validation
+
+User Interface (UI) validation was carried out on the live application deployed to PythonAnywhere to ensure the production version accurately reflected the final user experience. Testing included page layout, responsiveness, navigation, forms, CRUD functionality, styling, and overall usability across different screen sizes and browsers. Any issues identified during testing were corrected within the local development environment, where changes could be safely implemented and verified. Once fixes had been completed and tested locally, the updated code was deployed to PythonAnywhere and the affected functionality was retested on the live site. This process was repeated throughout development to ensure that all corrections were successfully deployed and that the live application remained stable, consistent, and fully functional.
+
+<a id="index"></a>
+
+## Homepage Workflow UI Validation
+
+### Introduction
+
+The Homepage is the landing page for this project and is the portal to the different areas of the site, the UI ensures that sensitive areas are password protected.
+
+### Test Overview
+This test ensures the admin page is password protected and that the whole entry process is enclosed in the site UI.
+
+### Test Steps & Expected Results
+
+### 1. Click on **Admin**
+
+Expected Results
+
+- The password modal will open and request a *password*.
+
+### 2. Closing the password modal
+
+Clicking on <span class="button">X</span> or outside the modal.
+
+Expected Results
+
+- The password modal will close.
+
+- The user will remain on the Homepage
+
+
+### 3. Enter an invalid password
+
+Enter a wrong password followed by <span class="button">Enter</span>.
+
+Expected Results
+
+- The password modal will close.
+
+- The user will remain on the Homepage
+
+### 4. Enter a valid password
+
+Enter the correct password followed by <span class="button">Enter</span>.
+
+Expected Results
+
+- The password modal will close.
+
+- The Admin page will become the current open page.
+
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Click on **Admin**|:<span class="tick">✔️</span>  ||:
+| 2 | Closing the password modal|:<span class="tick">✔️</span>  ||:
+| 3 | Enter an invalid password|:<span class="tick">✔️</span>  ||:
+| 4 | Enter a valid password|:<span class="tick">✔️</span>  ||:
+
+
+
+
+
+
+<a id="admin"></a>
+
+## Admin Workflow UI Validation
+
+### Introduction
+The admin suite for this project has been built with the same level of care, polish, and user‑experience focus as the public‑facing UI. Rather than relying on a basic, functional back‑office, the goal was to create an admin environment that feels modern, consistent, and genuinely pleasant to use. This meant designing tables, modals, forms, and feedback messages that behave predictably, update live, and present data clearly at every stage of the workflow.
+
+- A significant amount of work has gone into ensuring the admin UI meets a high standard:
+
+- Live data rendering across tables, lists, and modal content
+
+- Accurate state updates after every CRUD action
+
+- Full validation and error‑checking throughout all admin interactions
+
+- Consistent visual behaviour (no flicker, no stale data, no broken layouts)
+
+- Unified message system for success, error, and working states
+
+- Responsive, clean, and intuitive modals that match the design system used across the site
+
+Because of this, the expectations for the admin suite are intentionally high. Each test in this section is designed not only to confirm functionality, but to verify that the UI behaves exactly as intended — clean, stable, and reflective of real‑time data. The admin is treated as a first‑class user interface, and the testing reflects that standard.
+
+## Add Cocktail
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Add Cocktail** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Add Cocktail” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- All fields are empty.
+
+- Ingredient list shows current ingredients.
+
+- UI displays informational messages explaining the workflow.
+
+### 2. Attempt to Create a Cocktail With a Null Name
+Action: Leave the name field empty and click <span class="button">Create Cocktail</span>.
+
+Expected Result:
+
+- Modal remains open.
+
+- No cocktail is created.
+
+- No error message is shown — the UI stays silent and simply waits for valid input.
+
+- All other fields remain unchanged.
+
+- No ingredients are affected.
+
+- User is expected to enter a valid name before the action can proceed.
+
+### 3. Attempt to Create a Cocktail With a Duplicate Name
+Action: Enter a cocktail name that already exists.
+
+Expected Result:
+
+- Modal remains open.
+
+- Clear validation message: “Name already exists.”
+
+- No data is saved.
+
+- No ingredients are affected.
+
+- User is expected to enter a valid name before the action can proceed.
+
+### 4. Enter a Valid Cocktail Name
+Action: Enter a unique name (e.g., “Fall Guy”).
+
+Expected Result:
+
+- Name field accepts the value.
+
+- No validation errors appear.
+
+### 5. Add Optional History
+Action: Enter any text into the `History field`.
+
+Expected Result:
+
+- Field accepts text.
+
+- No validation message is shown.
+
+- UI behaves silently because the field is optional.
+
+- If text is entered, the cocktail history should be created with the entered history.
+
+### 6. Add Optional Recipe
+Action: Enter any text into the `Recipe field`.
+
+Expected Result:
+
+- Field accepts text.
+
+- No validation message is shown.
+
+- UI behaves silently because the field is optional.
+
+- If text is entered, the cocktail recipe should be created with the entered history.
+
+### 7. Add Ingredients (Optional)
+Action: Select any number of existing ingredients.
+
+Expected Result:
+
+- All available ingredients should appear in the modal’s ingredients list.
+
+- If any ingredients are selected, the cocktail should later show them in the cocktails ingredients list.
+
+### 8. Add a New Ingredient (Optional)
+Action: Use the `Add Ingredient` option to create a new ingredient.
+
+Expected Result:
+
+- New ingredient are added to the Ingredients table immediately (live update).
+
+- New ingredient are added to the modals available ingredients immediately (live update).
+
+- Ingredient may or may not be selected for this cocktail.
+
+- UI displays a message explaining that adding a new ingredient clears previously selected ingredients (destructive behaviour).
+
+### 9. Create the Cocktail
+Action: Click <span class="button">Create Cocktail</span> with valid data.
+
+Expected Result:
+
+A modal message appears: “Working”
+
+A success modal message appears: “Cocktail added”
+
+Modal remains open.
+
+All fields are cleared.
+
+Ingredient list remains populated with all ingredients, including any newly added ones.
+
+### 10. Close the Modal
+Action:  
+Close the modal using the <span class="button">close button</span> or `clicking outside the modal` at any time before creating a cocktail.
+
+Expected Result:
+
+Modal closes cleanly.
+
+No cocktail is created.
+
+No partial data is saved.
+
+No ingredients are added or removed.
+
+No layout shift or stale data remains.
+
+The admin suite returns to its previous state exactly as it was before the modal was opened.
+
+### 11. Post testing
+The following modals should be updated without the need for a page refresh.
+
+1. History, cocktail list should be up to date with the new cocktail and an icon showing the state of the new cocktail history.
+
+1. Recipe, cocktail list should be up to date with the new cocktail and an icon showing the state of the new cocktail recipe.
+
+1. Customise cocktail, the cocktail list should be up to date with the new cocktail.
+
+1. Delete cocktail, the cocktail list should be up to date with the new cocktail.
+
+1. Add image, the cocktail list should be up to date with the new cocktail.
+
+1. Ingredients, the ingredients list should contain any new ingredients added and ingredients used should display the right icon.
+
+1. Cocktail page, should display any new cocktail and associated data.
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open Add Cocktail modal |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug001 Close with data fails; All data fields remain stale.| :<span class="tick">⛑️</span> Fixed
+| 2 | Attempt to create with empty name |:<span class="tick">✔️</span> ||
+| 3 | Attempt to Create a Cocktail With a Duplicate Name |:<span class="tick">✔️</span>  ||
+| 4 | Enter a Valid Cocktail Name |:<span class="tick">✔️</span>|
+| 5 | Add Optional History |:<span class="tick">✔️</span> | |
+| 6 | Add Optional Recipe |:<span class="tick">✔️</span>  ||
+| 7 | Add Ingredients (Optional) |:<span class="tick">✔️</span>  ||
+| 8 | Add a New Ingredient (Optional) |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug002 No message showing (destructive behaviour).| :<span class="tick">⛑️</span> Fixed
+| 9 | Create the Cocktail |:<span class="tick">✔️</span>  |
+| 10 | Close the Modal |:<span class="tick">✔️</span>  |
+| 11 | Post testing |:  |
+| 11-1 | History |:<span class="tick">✔️</span>  |
+| 11-2 | Recipe |:<span class="tick">✔️</span>  |
+| 11-3 | Customize |:<span class="tick">✔️</span>  |
+| 11-4 | Delete cocktail |:<span class="tick">❌</span>  |<span class="tick">🐞</span>Bug003 live data needs a page refresh.| :<span class="tick">⛑️</span> Fixed
+| 11-5 | Add Image |:<span class="tick">✔️</span>  |
+| 11-6 | Ingredients |:<span class="tick">✔️</span>  |
+| 11-7 | Cocktail page |:<span class="tick">✔️</span>  |
+
+## History
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **History** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “History” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- All cocktails are listed.
+
+- Icons show the current state for each cocktail.
+
+- UI displays informational messages explaining the workflow.
+
+- Each cocktail will have one of the following icons
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> when there is no history associated with the cocktail.
+  - <img src="cocktails/static/cocktails/icons/history-ok.png" class="icon"> when the cocktail has a history.
+
+Missing icons will have an associated action of <span class="button">Add</span> or where there is a history icon then an option of <span class="button">Edit</span> both actions are followed by a <span class="button">Delete</span> option.
+
+<img src="screenshots/history.png">
+
+### 2. Attempt to Delete a missing history
+Action: Click the delete button when there is an <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> for the selected cocktail.
+
+Expected Result:
+
+- Modal remains open.
+
+- The UI will sit silent with no error or action.
+
+- The modal will wait for a valid action.
+
+- All cocktails will remain unchanged.
+
+### 3. Add a history to a cocktail
+Action: Add a history to a cocktail that has no history.
+
+Expected Result:
+
+- A child modal will open with a blank textarea.
+
+- The textarea will except text and keyboard icons.
+
+### 4. Aborting an add action
+Action: To abort or cancel a history during editing click the close button.
+
+Expected Result:
+
+- The child modal will close and the history modal will remain open.
+
+- The cocktail list and associated icons will remain unchanged.
+
+- There will be no error.
+
+
+### 5. Saving an add action
+Action: To save a new history click the save button.
+
+Expected Result:
+
+- The child modal will close.
+
+- The main modal will remain open.
+
+- The modal message system will display **"Working"**.
+
+- The modal message system will display **"History added"**.
+
+- The cocktail icon will update to reflect the cocktail now has a history.
+
+### 6. Edit a cocktail history
+Action: Edit an existing cocktail history.
+
+Expected Result:
+
+- A child modal will open with a textarea containing the current history.
+
+- The textarea will except text edits and keyboard icons.
+
+### 7. Aborting an edit action
+Action: To abort or cancel an edited history session, click the close button.
+
+Expected Result:
+
+- The child modal will close and the history modal will remain open.
+
+- The cocktail list and associated icons will remain unchanged.
+
+- The history will not be saved.
+
+- There will be no error.
+
+
+### 8. Saving an edit action
+Action: To save an edited history click the save button.
+
+Expected Result:
+
+- The child modal will close.
+
+
+- The main modal will remain open.
+
+- The modal message system will display **"Working"**.
+
+- The modal message system will display **"History updated"**.
+
+- The cocktail icon will remain unchanged showing the cocktail to have a history.
+
+### 9. Delete a history
+Action: Delete an existing history.
+
+Expected Result:
+
+- The confirmation modal will open.
+
+- To cancel click the close button.
+  - This will close the confirmation modal.
+  - The main modal will remain open.
+  - There will be no change to the cocktail list.
+
+- The delete is completed by clicking the <span class="button">Yes delete</span>
+  - This will close the confirmation modal.
+  - The main modal will remain open.
+  - The modal message system will display **"Working"**.
+  - The modal message system will display **"History deleted"**.
+
+### 10. After a successful Add or Delete action 
+Action: Modal action after an Add or Delete.
+
+Expected Result:
+
+- Cocktail list will update to reflect the action. 
+
+- An <span class="button">add</span> action will change the associated <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to a <img src="cocktails/static/cocktails/icons/history-ok.png" class="icon"> 
+
+- The reverse for a confirmed <span class="button">delete</span>. 
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “History” Modal |:<span class="tick">✔️</span>   || :
+| 2 | Attempt to Delete a missing history |:<span class="tick">✔️</span> || :
+| 3 | Add a history to a cocktail |:<span class="tick">✔️</span>  || :
+| 4 | Aborting an add action |:<span class="tick">✔️</span>|| :
+| 5 | Saving an add action |:<span class="tick">✔️</span>|| :
+| 6 | Edit a cocktail history |:<span class="tick">✔️</span>|| :
+| 7 | Aborting an edit action |:<span class="tick">✔️</span>|| :
+| 8 | Saving an edit action |:<span class="tick">✔️</span>|| :
+| 9 | Delete a history |:<span class="tick">✔️</span>|| :
+| 10 | After a successful Add or Delete action |:<span class="tick">✔️</span>|| :
+
+
+## Recipe
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Recipe** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Recipe” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- All cocktails are listed.
+
+- Icons show the current state for each cocktail.
+
+- UI displays informational messages explaining the workflow.
+
+- Each cocktail will have one of the following icons
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> when there is no recipe associated with the cocktail.
+  - <img src="cocktails/static/cocktails/icons/recipe-ok.png" class="icon"> when the cocktail has a recipe.
+
+Missing icons will have an associated action of <span class="button">Add</span> or where there is a recipe icon then an option of <span class="button">Edit</span> both actions are followed by a <span class="button">Delete</span> option.
+
+<img src="screenshots/recipe.png">
+
+### 2. Attempt to Delete a missing recipe
+Action: Click the <span class="button">delete button</span> when there is an <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> for the selected cocktail.
+
+Expected Result:
+
+- Modal remains open.
+
+- The UI will sit silent with no error or action.
+
+- The modal will wait for a valid action.
+
+- All cocktails will remain unchanged.
+
+### 3. Add a recipe to a cocktail
+Action: Add a recipe to a cocktail that has no recipe.
+
+Expected Result:
+
+- A child modal will open with a blank textarea.
+
+- The textarea will except text and keyboard icons.
+
+### 4. Aborting an add action
+Action: To abort or cancel a recipe during editing click the close button.
+
+Expected Result:
+
+- The child modal will close and the recipe modal will remain open.
+
+- The cocktail list and associated icons will remain unchanged.
+
+- There will be no error.
+
+
+### 5. Saving an add action
+Action: To save a new recipe click the save button.
+
+Expected Result:
+
+- The child modal will close.
+
+- The modal message system will display **"Working"**.
+
+- The modal message system will display **"Recipe added"**.
+
+- The main modal will remain open.
+
+- The cocktail icon will update to reflect the cocktail now has a recipe.
+
+### 6. Edit a cocktail recipe
+Action: Edit an existing cocktail recipe.
+
+Expected Result:
+
+- A child modal will open with a textarea containing the current recipe.
+
+- The textarea will except text edits and keyboard icons.
+
+### 7. Aborting an edit action
+Action: To abort or cancel an edited recipe session, click the close button.
+
+Expected Result:
+
+- The child modal will close and the recipe modal will remain open.
+
+- The cocktail list and associated icons will remain unchanged.
+
+- The recipe will not be saved.
+
+- There will be no error.
+
+
+### 8. Saving an edit action
+Action: To save an edited recipe click the save button.
+
+Expected Result:
+
+- The child modal will close.
+
+- The modal message system will display **"Working"**.
+
+- The modal message system will display **"Recipe updated"**.
+
+- The main modal will remain open.
+
+- The cocktail icon will remain unchanged showing the cocktail to have a recipe.
+
+### 9. Delete a recipe
+Action: Delete an existing recipe.
+
+Expected Result:
+
+- The confirmation modal will open.
+
+- To cancel click the close button.
+  - This will close the confirmation modal.
+  - The main modal will remain open.
+  - There will be no change to the cocktail list.
+
+- The delete is completed by clicking the <span class="button">Yes delete</span>
+  - This will close the confirmation modal.
+  - The main modal will remain open.
+  - The modal message system will display **"Working"**.
+  - The modal message system will display **"Recipe deleted"**.
+
+### 10. After a successful Add or Delete action 
+Action: Modal action after an Add or Delete.
+
+Expected Result:
+
+- Cocktail list will update to reflect the action. 
+
+- An <span class="button">add</span> action will change the associated <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to a <img src="cocktails/static/cocktails/icons/recipe-ok.png" class="icon"> 
+
+- The reverse for a confirmed <span class="button">delete</span>. 
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the recipe Modal |:<span class="tick">✔️</span>   || :
+| 2 | Attempt to delete a missing recipe |:<span class="tick">✔️</span> || :
+| 3 | Add a history to a cocktail |:<span class="tick">✔️</span>  || :
+| 4 | Aborting an add action |:<span class="tick">✔️</span>|| :
+| 5 | Saving an add action |:<span class="tick">✔️</span>|| :
+| 6 | Edit a cocktail recipe |:<span class="tick">✔️</span>|| :
+| 7 | Aborting an edit action |:<span class="tick">✔️</span>|| :
+| 8 | Saving an edit action |:<span class="tick">✔️</span>|| :
+| 9 | Delete a recipe |:<span class="tick">✔️</span>|| :
+| 10 | After a successful Add or Delete action |:<span class="tick">✔️</span>|| :
+
+## Customise Cocktail
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Customise Cocktail** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Customise Cocktail” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- The dropdown menu will list all available cocktails and ingredients.
+
+- UI displays informational messages explaining the workflow.
+
+### 2. Select a cocktail
+Select a cocktail from the drop down menu.
+
+Expected Result:
+
+- Modal messaging system will display "Working".
+
+- The modal will expand to show the list of ingredients.
+
+- The ingredient list will indicate via an icon which ingredient are used in the selected cocktail.
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> Indicates that ingredient is not used in the selected cocktail.
+  - <img src="cocktails/static/cocktails/icons/ingredient-ok.png" class="icon"> Indicates that ingredient **is used** in the selected cocktail.
+- Depending on whether the ingredient is being used by the cocktail or not, the user will have the option to <span class="button">Add</span> or <span class="button">Remove</span> an ingredient.
+
+<img src="screenshots/customise.png">
+
+### 3. Select the **Add** option
+Click the <span class="button">Add</span> button next to any ingredient.
+
+Expected Result:
+
+- The <span class="button">Add</span> or <span class="button">Remove</span> options while destructive are also a toggle action so no warning or confirmation messages are displayed, This is the expected behaviour.
+
+- Modal messaging system will display "Working".
+
+- The ingredient list will update to show new status.
+
+- The ingredient state will change to present in the cocktail.
+  - <img src="cocktails/static/cocktails/icons/ingredient-ok.png" class="icon"> icon.
+  - and a <span class="button">Remove</span> button.
+
+### 4. Select the **Remove** option
+Click the <span class="button">Remove</span> button next to any ingredient.
+
+Expected Result:
+
+- The <span class="button">Add</span> or <span class="button">Remove</span> options while destructive are also a toggle action so no warning or confirmation messages are displayed, This is the expected behaviour.
+
+- Modal messaging system will display "Working".
+
+- The ingredient list will update to show new status.
+
+- The ingredient state will change to present in the cocktail.
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> icon.
+  - and a <span class="button">Add</span> button.
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “Customise Cocktail” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Select a cocktail|:<span class="tick">✔️</span>  ||:
+| 3 | Select the **Add** option|:<span class="tick">✔️</span>  ||:
+| 4 | Select the **Remove** option|:<span class="tick">✔️</span>  ||:
+
+## Ingredients
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Ingredients** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Ingredients” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- Live data: The list of ingredients will include any ingredients added via **add cocktail** in this session.
+
+- UI displays informational messages and buttons explaining the workflow.
+
+### 2. Modal view
+
+Expected Result:
+
+- Modal show the full list of ingredients available.
+
+- The list will include any newly created ingredients.
+
+- This modal will allow you add a new ingredient via the add option.
+
+- This modal will also allow you edit/delete existing ingredient.
+
+- Ingredients will have 1 of 2 icons.
+  - <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> to show the ingredient has not been used in a cocktail yet.
+  - <img src="cocktails/static/cocktails/icons/ingredient-ok.png" class="icon"> to show the ingredient is used in 1 or more cocktails.
+
+
+### 3. Add a duplicate ingredient in any case
+
+Expected Result:
+
+- Modal message system will display a warning <span class="error">"Ingredient '?' already exists"</span>.
+
+- No new ingredient will be added.
+
+- The modal will remain open.
+
+### 4. Add a new ingredient
+
+Expected Result:
+
+- Modal message system will display a **"Ingredient added!"**.
+
+- The ingredients list will update to include the new ingredient.
+
+- The new ingredient will have a <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> icon as it will not yet be used in a cocktail.
+
+### 5. Delete an unused ingredient
+
+Expected Result:
+
+- If the ingredient has a <img src="cocktails/static/cocktails/icons/missing.png" class="icon"> icon it is unused and can be deleted.
+
+- The modal message system will display **"Ingredient deleted!"**
+  
+- The ingredient will be removed from the List and the list updated live.
+  
+- The modal will remain open
+
+### 6. Delete an ingredient that is being used
+
+Expected Result:
+
+- If the ingredient has a <img src="cocktails/static/cocktails/icons/ingredient-ok.png" class="icon"> icon it is in used and can not be deleted.
+
+- The modal message system will display <span class="error">Cannot delete: ingredient is used.<span>
+  
+- No ingredient will be deleted.
+  
+- The modal will remain open
+
+### 7. Edit an ingredient
+
+Ingredient names can be edited via the <span class="button">Edit</span>
+
+Expected Result:
+
+- A child edit modal will open displaying the ingredient name in an edit field.
+
+- The edit is actioned via the <span class="button">Save</span> button.
+
+- The child modal will close.
+
+- The modal message system will display **"Ingredient updated!"**.
+
+- The ingredients list will be updated with the newly named ingredient.
+
+- **NOTE:** Case‑only edits do not change the displayed value because ingredient names are normalised to lowercase by design. The modal will still show "Ingredient updated!", which is the expected behaviour.
+
+- The modal will remain open.
+
+### 8. Aborting an edit or add
+
+Closing a child add/edit modal before committing
+
+Expected Result:
+
+- The child modal will close with no error.
+
+- No data will be changed and the ingredients list remains the same.
+
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “Ingredients” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Modal view|:<span class="tick">✔️</span>  ||:
+| 3 | Add a duplicate ingredient in any case|:<span class="tick">✔️</span>  ||:
+| 4 | Add a new ingredient|:<span class="tick">✔️</span>  ||:
+| 5 | Delete an unused ingredient|:<span class="tick">✔️</span>  ||:
+| 6 | Delete an ingredient that is being used|:<span class="tick">✔️</span>  ||:
+| 7 | Edit an ingredient|:<span class="tick">✔️</span>  ||:
+| 8 | Aborting an edit or add|:<span class="tick">✔️</span>  ||:
+
+
+## Images
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Images** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Images” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- UI displays informational messages and buttons explaining the workflow.
+
+- the <span class="button">Assign</span> Buttons remain under an opaque filler while inactive.
+
+
+
+### 2. Upload a new image
+
+The option will allow a use to upload new cocktail images vis the OS file manger
+
+Expected Result:
+
+- Clicking <span class="button">Choose File</span> will open the OS file manger.
+
+- After file selection the edit area will contain the selected filename.
+
+- Clicking <span class="button">Upload</span> will copy the selected file to the cocktail images area.
+
+- The modal message system will display **Image uploaded!**
+
+- Live data the list of available images will be refreshed to include the new image.
+
+- Errors are handled by the browser.
+
+- The file selection will be cleared.
+
+### 3. Aborting the Upload of a new image
+
+The user can back out of the file upload at any time before clicking <span class="button">Upload</span>
+
+Expected Result:
+
+- The file selection area may keep the selected filename depending on when the operation was aborted, this is an unavoidable consequence of aborting before the upload.
+
+- The modal will remain open waiting for the next attempt or any other valid action.
+
+### 4. Uploading an image that has already been uploaded
+
+Uploading the same file more then once
+
+Expected Result:
+
+- The modal message system will display **Image uploaded!**
+
+- The file system treats each file selection and upload as a new file silently.
+
+- The upload function treats each upload as a new file action silently.
+
+- No errors are displayed
+
+- The original file will be overwritten.
+
+- the modal will remain open waiting for the next valid option.
+
+
+### 5. Select a cocktail
+
+Select a cocktail from the drop down menu of available cocktails.
+
+Expected Result:
+
+- The <span class="button">Assign</span> buttons will be made available to click
+
+### 6. Assigning an image
+
+Click the <span class="button">Assign Image</span> next to any image.
+
+Expected Result:
+
+- The child confirmation modal will open.
+
+- The modal will display the current image and the newly selected image.
+
+- The process is completed by clicking <span class="button">Assign Image"</span>
+
+- The child modal will close.
+
+- The modal message system will display **Image assigned!**
+
+- The file selection area will clear.
+
+- The <span class="button">Assign"</span> buttons will become unavailable once again.
+
+### 7. Aborting the image assignment
+
+Closing the child modal before clicking <span class="button">Assign Image</span>.
+
+Expected Result:
+
+- The child modal will close.
+
+- The main modal will remain open.
+
+- No data is saved.
+
+- No error message is displayed.
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “Images” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Upload a new image|:<span class="tick">✔️</span>  ||:
+| 3 | Aborting the Upload of a new image|:<span class="tick">✔️</span>  ||:
+| 4 | Uploading an image that has already been uploaded|:<span class="tick">✔️</span>  ||:
+| 5 | Select a cocktail|:<span class="tick">✔️</span>  ||:
+| 6 | Assigning an image|:<span class="tick">✔️</span>  ||:
+| 7 | Aborting the image assignment|:<span class="tick">✔️</span>  ||:
+
+
+## Delete Cocktail
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Images** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “Delete Cocktail” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- UI displays informational messages and buttons explaining the workflow.
+
+- The list will show all cocktails, including any cocktails created in this session.
+
+- The modal will display the destructive nature of of this modal.
+
+### 2. Delete a cocktail
+
+Clicking on <span class="button">Delete</span> button next to any cocktail.
+
+Expected Result:
+
+- The child warning modal will open.
+
+
+### 3. Aborting the delete cocktail cocktail action
+
+Clicking the <span class="button">X</span> or outside the modal.
+
+Expected Result:
+
+- The child warning modal will close.
+
+- The delete modal will remain open waiting for a valid command.
+
+- No data will be deleted.
+
+- No messages will be displayed.
+
+### 4. Deleting a selected cocktail
+
+Clicking the <span class="button">Yes, delete forever</span> button.
+
+Expected Result:
+
+- The child modal will close.
+
+- the modal message system will display **Working** then **Cocktail deleted!**.
+
+- The cocktail list will refresh to show the new list of available cocktails.
+
+- No ingredients will be deleted as they have their own CRUD
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “Delete Cocktail” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Delete a cocktail|:<span class="tick">✔️</span>  ||:
+| 3 | Aborting the delete cocktail cocktail action|:<span class="tick">✔️</span>  ||:
+| 4 | Deleting a selected cocktail|:<span class="tick">✔️</span>  ||:
+
+
+## User Post
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **User Post** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Open the “User Post” Modal
+
+Expected Result:
+
+- Modal opens cleanly with no layout shift.
+
+- UI displays informational messages and buttons explaining the workflow.
+
+- The list will show all threads from the user forum.
+
+### 2. Clicking on any post **heading**.
+
+Expected Result:
+
+- The modal contents will change to show the thread and any *replies* related to that thread.
+
+### 3. Deleting the thread.
+
+Clinking on <span class="button">Delete</span>
+
+Expected Result:
+
+- The modal will explain *"This will delete the thread and all replies."*.
+
+- Two new buttons will be made available <span class="button">Yes, Delete</span> and <span class="button">Cancel</span>
+
+- Clicking <span class="button">Yes, Delete</span> will delete the thread and the modal will close
+
+### 4. Aborting the delete action.
+
+Clinking on <span class="button">Cancel</span>
+
+Expected Result:
+
+- The users can abort by clicking <span class="button">Cancel</span>.
+  - The modal and thread will remain open.
+  - No data will be deleted.
+
+- The users can abort by clicking <span class="button">X</span> or outside the modal.
+  - The modal will close.
+  - No data will be deleted.
+
+### 5. Replying to a thread.
+
+Clicking on <span class="button">Reply</span>
+
+Expected Result:
+
+- The modal will expand to display a text area for the reply.
+
+- After editing Click <span class="button">Send Reply</span> to save the replay.
+  - the modal will stay open revealing the thread, previous replies and the new reply.
+
+### 6. Aborting a reply.
+
+Aborting a reply.
+
+Expected Result:
+
+- Clicking on <span class="button">X</span> or outside the modal before selecting <span class="button">Send Reply</span>
+
+- The modal will close.
+
+- No data will be saved.
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Open the “User Post” Modal|:<span class="tick">✔️</span>  ||:
+| 2 | Clicking on any post **heading**|:<span class="tick">✔️</span>  ||:
+| 3 | Deleting the thread|:<span class="tick">✔️</span>  ||:
+| 4 | Aborting the delete action|:<span class="tick">✔️</span>  ||:
+| 5 | Replying to a thread|:<span class="tick">✔️</span>  ||:
+| 6 | Aborting a reply|:<span class="tick">✔️</span>  ||:
+
+## Test Data
+
+### Test Overview
+This test ensures the admin UI behaves consistently and cleanly throughout the **Test Data** workflow. The admin interface is expected to enforce strict validation, present clear informational messages, update live data tables, and maintain a polished modal experience.
+
+### Test Steps & Expected Results
+
+### 1. Clicking on **Test Data**
+
+Expected Result:
+
+- The browser will open the **Test Data** page in a separate tab.
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Clicking on **Test Data**|:<span class="tick">✔️</span>  ||:
+
+<a id="cocktail"></a>
+
+## Cocktail Page Workflow UI Validation
+
+### Introduction
+The cocktail page is designed to present the user with visually appealing cocktail images that act as buttons for the cocktail modal.
+
+### Test Overview
+This test ensures cocktail page behaves consistently and cleanly throughout the workflow.
+
+### 1 Cocktail page load
+
+Expected Result:
+
+- The page shall display all the current cocktails
+
+- Clicking on any cocktail shall display that cocktail and its related data
+
+### 2 Broken or missing images
+
+If the cocktail image is missing or damaged
+
+Expected Result:
+
+- If any image is broken the cocktail image will fall back to the default missing image
+
+<img src="screenshots/cocktails.png">
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | Cocktail page load|:<span class="tick">✔️</span>  ||:
+| 1 | Broken or missing images|:<span class="tick">✔️</span>  ||:
+
+<a id="user"></a>
+
+## User Area Workflow UI Validation
+
+### Introduction
+The user area is designed to present the user access to the user forum and a reverse lookup for cocktail ingredients.
+
+### Test Overview
+This test ensures user area page behaves consistently and cleanly throughout the workflow.
+
+### 1 User Area page load
+
+The page will open cleanly and responsively dependent on screen size.
+
+Expected Result:
+
+- The User Area will have two options.
+  - <span class="button">Enter the forum"</span>.
+  - <span class="button">Ingredient Lookup</span>.
+
+### 2 Ingredients Lookup
+
+Clicking on the <span class="button">Ingredient Lookup</span> button.
+
+Expected Result:
+
+- The ingredients lookup modal will open cleanly with no layout shift.
+
+- The drop down menu will list all available ingredients that are currently being used in a cocktail.
+
+### 3 Selecting an Ingredient
+
+Clicking on any listed ingredient.
+
+Expected Result:
+
+- The modal will display a graphic button for any cocktail using the selected ingredient.
+
+
+### 4 Selecting another Ingredient
+
+Clicking on another ingredient while cocktails are being displayed.
+
+Expected Result:
+
+- The modal will display a fresh set of graphic button for any cocktail using the newly selected ingredient.
+
+
+### 5 Selecting a cocktail
+
+Clicking on one of the graphic cocktail buttons.
+
+Expected Result:
+
+- The cocktail modal will open allowing that cocktail to be inspected.
+
+### 6 Closing the modal
+
+Expected Result:
+
+- Each modal can be closed by clicking the <span class="button">X</span>
+  - The modal will close cleaning returning to the previous state.
+
+- Clicking outside any modal will close the whole modal chain, this is the expected result.
+
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | User Area page load|:<span class="tick">✔️</span>  ||:
+| 2 | Ingredients Lookup|:<span class="tick">✔️</span>  ||:
+| 3 | Selecting an Ingredient|:<span class="tick">✔️</span>  ||:
+| 4 | Selecting another Ingredient|:<span class="tick">✔️</span>  ||:
+| 5 | Selecting a cocktail|:<span class="tick">✔️</span>  ||:
+| 6 | Closing the modal|:<span class="tick">✔️</span>  ||:
+
+
+### 1 User Area page load *cont...*
+
+### 2 Enter the forum
+
+Clicking the <span class="button">Enter the forum</span> button.
+
+Expected Result:
+
+- The user forum will open a new page in the same tab.
+
+- A list of all current threads titles will be displayed.
+
+- The page will present two options.
+
+  - <span class="button">Start new thread</span> button
+  - <span class="button">View thread</span> option next to any visible threads.
+
+### 3 Creating a new thread
+
+Clicking <span class="button">Start new thread</span> button
+
+Expected Result:
+
+- The page will change to a *Create new thread form*
+
+- All fields are required.
+
+- On completion the <span class="button">Post Thread</span> button is used to save the thread.
+  - Posting the thread will return the user to the previous menu.
+
+- Attempting to leave a field blank will result in an error message and the process halted.
+
+- The user can abort the process at any time by clicking <span class="button">Back to message board</span> button.
+  - If the user aborts no data will be saved
+  - The screen will return to the previous menu.
+
+### 4 View Thread
+
+Clicking <span class="button">View thread</span> button
+
+Expected Result:
+
+- The screen will change to display all replies associated to the selected thread.
+
+- The user may add the own reply to the thread or return to the previous menu by clicking <span class="button">Back to message board</span> button.
+
+### 5 Reply to a Thread
+
+Users my post a reply by filling in the text fields
+
+Expected Result:
+
+- All fields are required to *Post Reply*.
+  - If ant fields are left blank the system will display an error message.
+  - The process will halt waiting for relevant data.
+
+- When complete the reply is posted by clicking the <span class="button">Post Reply</span> button.
+  - The data will be saved and the screen return to the previous menu.
+
+- The user can abort the process at any time by clicking <span class="button">Back to message board</span> button.
+  - If the user aborts no data will be saved
+  - The screen will return to the previous menu.
+
+
+### Testing Table
+
+| Test Step | Action | Pass/Fail | Comments | Current State |
+|-----------|--------|-----------|-----------------|--------|
+| 1 | User Area page load *cont...*|:<span class="tick">✔️</span>  ||:
+| 2 | Enter the forum|:<span class="tick">✔️</span>  ||:
+| 3 | Creating a new thread|:<span class="tick">✔️</span>  ||:
+| 4 | View Thread|:<span class="tick">✔️</span>  ||:
+| 5 | Reply to a Thread|:<span class="tick">✔️</span>  ||:
+
+<a id="404"></a>
+
+
+
+A custom Django 404 error page was implemented and tested in both the local development environment and the live deployment. The page provides a user-friendly message when an invalid URL is requested and maintains consistency with the website's design and branding. A navigation link was also provided to allow users to quickly return to the application's home page. Testing confirmed that invalid URLs are handled correctly and that users are not presented with Django's default error page.
+
+<img src="screenshots/404page.png">
+
+## Bug Report
+
+<span class="tick">🐞</span>Bug001
+
+<p class="error">Stale data</p>
+Closing the add cocktail modal while there is data in the fields, leaves stale data on the next open
+
+<span class="tick">🛠️</span>FIX
+
+<span class="fix">Added a proper reset function and hooked it into the modal engine.</span>
+
+`--------------------------------------------------------------`
+
+<span class="tick">🐞</span>Bug002
+
+<p class="error">No message</p>
+Add an ingredient should display destructive behaviour
+
+<span class="tick">🛠️</span>FIX
+
+<span class="fix">Added a reactive UX message.</span>
+
+`--------------------------------------------------------------`
+
+<span class="tick">🐞</span>Bug003
+
+<p class="error">Data not live</p>
+Delete cocktail data needs a page refresh to show live data
+
+<span class="tick">🛠️</span>FIX
+
+<span class="fix">Added a refresh hook into the universal modal engine.</span>
+
+`--------------------------------------------------------------`
+
+<span class="tick">🐞</span>Bug004
+
+<p class="error">Abnormal behaviour</p>
+Add cocktail creates an invalid JSON file, believe this is created by not clearing down an invalid ingredient before create cocktail
+
+<span class="tick">🛠️</span>FIX
+
+<span class="fix">Added a clean pre‑submit sanitiser.</span>
+
+<a id="postfixes"></a>
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature001</span>
+
+### Database Normalisation Update (Ingredients)
+
+As part of preparing the new JSON dataset, I performed a one‑time database normalisation step to ensure all ingredient names were stored in lowercase. This was done to maintain consistency across the UI, prevent duplicate entries caused by case variations (e.g., “Mint” vs “mint”), and align with the system’s existing behaviour where ingredient names are normalised to lowercase on save. A batch update was executed to convert all existing ingredient records to lowercase, and this change is reflected in the commit history.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature002</span>
+
+### Bug Fix / UX Improvement – Image Assignment Modal State
+
+ 
+**Issue**
+
+The Assign Image workflow allowed users to select a cocktail, assign an image, and return to the Images modal with the previously selected cocktail still active in the dropdown. This could lead to accidental assignments to the same cocktail without explicitly making a new selection.
+ 
+Additionally, Assign buttons remained visually enabled even when no cocktail was selected, providing limited feedback regarding the required workflow.
+
+ 
+**Solution**
+
+ 
+Implemented a complete reset and button-state management process for image assignment.
+
+ 
+Changes made:
+ 
+- Added a default empty value (`""`) to the image assignment cocktail dropdown.
+- Introduced a reusable `resetImageCocktailSelect()` helper in `admin-core.js`.
+- Reset the cocktail dropdown back to its default state after a successful image assignment.
+- Added automatic enabling/disabling of all Assign buttons based on dropdown selection.
+- Added `disabled` and `aria-disabled` attributes for accessibility.
+- Added `.disabled-btn` CSS class to provide visual feedback when buttons are unavailable.
+- Synced button state whenever:
+- A cocktail is selected.
+- A cocktail selection is cleared.
+- The image list is refreshed.
+- An image assignment is successfully completed.
+
+ 
+**Result**
+ 
+- Assign buttons are disabled until a cocktail is selected.
+- Users receive immediate visual feedback that a cocktail must be chosen first.
+- Successful image assignments reset the workflow to a clean state.
+- Prevents accidental repeated assignments to the previously selected cocktail.
+- Improves accessibility and overall user experience.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature003</span>
+
+### Ingredients lookup list is nonalphabetical
+
+ 
+**Issue**
+
+Finding an ingredient is quite challenging in the ingredients lookup list as it is not in alphabetic order.
+ 
+
+**Solution**
+
+ 
+Added a sort order to the django view.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature004</span>
+
+### Stale modal scroll state
+
+**Issue**
+
+after opening a modal if the user scrolled down and closed the modal, the focus remained where the user left it, in all most all case this ment scrolling back to the top every time.
+
+**Solution**
+
+ 
+On open of a modal scroll back to the top.
+
+Changes made:
+
+Added a `content.scrollTo` in the open modal function.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🐞</span>Bug005
+
+**Issue**
+
+Lighthouse reported insufficient colour contrast on page title and home navigation linksText colour was darkened while preserving the site theme. Lighthouse accessibility check subsequently passed.
+
+**Solution**
+
+Text colour was darkened while preserving the site theme. Lighthouse accessibility check subsequently passed.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🐞</span>Bug006
+
+**Issue:**  
+Certain buttons in the admin modals lacked visible focus.
+
+**Fix:**  
+Accessibility styles added to the modal style sheet.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🐞</span>Bug007
+
+**Issue:**  
+Pressing the `ESC` key while a child confirmation modal was open closed the parent modal instead, leaving the child modal visible and orphaned on screen.
+
+**Fix:**  
+The ESC handler was updated to identify and close the most recently opened visible modal, ensuring child confirmation modals close before their parent modal.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature005</span>
+
+### Modal leaking `Tab key`
+
+**Issue**
+
+Image modal and some others that require a user input allow the tab to escape if there is no input.
+
+**Solution**
+
+Image Modal Focus Guard Enhancement
+
+A focus guard was added to the image modal to prevent keyboard users from accidentally tabbing out of the modal when no dropdown option has been selected. Previously, opening the modal and tabbing through the available controls could result in focus escaping the modal and moving into the browser's native tab order, creating a confusing user experience. The focus guard keeps keyboard focus within the modal.
+
+This approach provides a far better user experience than allowing focus to escape into browser. While the user may briefly cycle back to an existing control, they remain within the application's context rather than becoming lost outside the interface. An additional benefit is that once valid data is entered and Django generates the updated content, the modal's focus correctly refreshes and returns users to the newly available elements. This results in **Focus remains within the application context instead of escaping to the browser's tab sequence, reducing the risk of keyboard users becoming disoriented**.
+
+`--------------------------------------------------------------`
+
+<span class="tick">🛠️</span><span class="fix">Feature006</span>
+
+### Admin access modal
+
+**Issue**
+
+Browser warning on index.html.
+
+**Solution**
+
+The admin access modal was designed to use a single password field because the project does not implement individual administrator accounts. However, modern browsers may flag password-only forms as incomplete. To improve compatibility and reduce browser warnings, a hidden username field was added and pre-populated with a generic administrator value. The login process remains unchanged while better aligning the form with recognised authentication patterns.
+
+
+
+<hr style="border: 1px solid #ccc;">
+
+## Post‑Fix Verification
+
+Following each bug fix or code change, I carried out a full post‑update validation pass to ensure the entire project remained stable, standards‑compliant, and free from regressions. This included re‑running all four validators used throughout development:
+
+### HTML Validation  
+All templates were re‑checked using the W3C HTML Validator to confirm that structural integrity, accessibility attributes, and semantic correctness were maintained after the fixes.
+
+### CSS Validation  
+Stylesheets were re‑validated using the W3C CSS Validator to ensure no new warnings or errors were introduced and that modern CSS features continued to behave as expected across browsers.
+
+### JavaScript Validation (ESLint)  
+After updating or refactoring any JavaScript modules, I re‑ran ESLint (`npx eslint .`) to verify that the codebase remained clean, consistent, and free from syntax issues, unused variables, or structural problems.
+
+### Python Validation (Ruff)  
+Backend changes were checked again using Ruff to confirm that the Django views, utilities, and JSON endpoints continued to meet linting standards and remained error‑free.
+
+Each fix was followed by targeted re‑testing of the affected feature, ensuring the behaviour was correct, the UI remained synchronised, and no regressions were introduced elsewhere. This post‑fix cycle demonstrates that testing was treated as an ongoing quality process rather than a simple top‑down checklist.
+
+<a id="postsubmission"></a>
+
+## Post Completion Review
+
+- Final code review of all templates, CSS, JavaScript and Python files.
+- Removal of commented code.
+- Removal of debugging statements.
+- Verification of consistent naming conventions.
+- Verification of accessibility attributes.
+
+### Validation Evidence
+
+- HTML validation screenshots.
+- CSS validation screenshots.
+- JavaScript validation/linting screenshots.
+- Notes on any validator limitations (such as older validators not supporting modern JavaScript syntax).
+
+### Lighthouse Audit
+
+- Desktop results.
+- Mobile results.
+- Performance observations.
+- Accessibility observations.
+- Best Practices observations.
+- SEO observations.
+
+### Final User Testing
+
+- Keyboard navigation.
+- Modal accessibility.
+- Responsive layouts.
+- Different screen widths using your screen-size utility.
+- Cross-device testing where available.
+
+### Reflection
+
+During post-completion testing several minor issues were identified, including redundant code, debugging statements and accessibility refinements. These were resolved before final deployment. The extensive testing process increased confidence that the application functions correctly across different devices, screen sizes and input methods.
+
+### Evidence and screenshots
+
+### ESLint
+
+A custom ESLint configuration was implemented to prevent third-party libraries, framework files and development dependencies from generating false-positive results. Validation was therefore focused exclusively on project-owned JavaScript files.
+
+
+To verify that ESLint was correctly configured, a temporary unused variable was deliberately introduced into a project JavaScript file. Running npx eslint . successfully identified the unused variable and reported a no-unused-vars error. The test variable was subsequently removed and validation was repeated to confirm no remaining issues existed.
+- `const eslintTestVariable = "This is unused";`
+Expected Result:
+
+ESLint reports an unused variable.
+
+Actual Result:
+
+ESLint correctly identified the unused variable at line 59 of static/js/admin/index.js.
+
+Status: ✔️ Pass
+
+<img  width=300px height=100% src="./screenshots/finaleslint.png"><img  width=300px height=100% src="./screenshots/finaleslint2.png">
+
+### Final post submit lighthouse screenshots
+
+<img  width=300px height=100% src="./screenshots/final-index-lighthouse.png"><img  width=300px height=100% src="./screenshots/final-cocktail_list-lighthouse.png"><img  width=300px height=100% src="./screenshots/final-admin-lighthouse.png">
+
+<img  width=300px height=100% src="./screenshots/final-userarea-lighthouse.png"><img  width=300px height=100% src="./screenshots/final-ingredients_lookup-lighthouse.png"><img  width=300px height=100% src="./screenshots/final-userforum-lighthouse.png">
+
+<img  width=300px height=100% src="./screenshots/final-userthread-lighthouse.png">
+
+### Final markup validation screenshots
+
+<img  width=500px height=100% src="./screenshots/v-index.png">
+
+<img  width=500px height=100% src="./screenshots/v-cocktail_list.png">
+
+**<p style="color:red;"><span class="tick">⚠️</span> Warning</p>**
+
+The modal heading (`<h2 id="modal-name">`) is intentionally empty in the static HTML because its content is injected dynamically. This follows standard accessible modal patterns: the heading acts as a placeholder and is updated at runtime, with aria-live="polite" ensuring screen readers announce the change. 
+
+**<p style="color:green;"><span class="tick">📌</span> Conclusion</p>**
+
+Since the heading is populated immediately upon modal activation, it does not create any accessibility issues, and the validator warning can be safely ignored.
+
+<img  width=500px height=100% src="./screenshots/v-admin.png">
+
+<img  width=500px height=100% src="./screenshots/v-testdata.png">
+
+<img  width=500px height=100% src="./screenshots/v-user.png">
+
+<img  width=500px height=100% src="./screenshots/v-forum.png">
+
+<img  width=500px height=100% src="./screenshots/v-thread_detail.png">
+
+<img  width=500px height=100% src="./screenshots/4-404.png">
+
+## Ruff validation
+
+<img  width=300px height=100% src="./screenshots/rufferror.png"><img  width=300px height=100% src="./screenshots/ruffclear.png">
+
+### Ruff Linting Validation
+ 
+A temporary syntax error was deliberately added to `views.py` to confirm Ruff was functioning correctly and detecting invalid code. The test produced linting errors as expected, demonstrating that Ruff was actively checking the project source code. Once the test was completed, the temporary code was removed and Ruff was executed again. The final check returned:
+
+### CSS validation
+
+<img  width=500px height=100% src="./screenshots/final-css.png">
+
+CSS validated successfully with no errors. Validator warnings relate primarily to CSS custom properties and vendor-prefixed properties used for browser compatibility.
+
+
+
+
+
+<a id="observation"></a>
+
+## observation
+
+Chrome DevTools occasionally reported **forced reflow warnings** during JavaScript execution. Investigation confirmed normal application behaviour with no visible performance degradation. As the warning did not impact functionality or user experience, it was documented as a future optimisation opportunity rather than a defect.
+
+<a id="security"></a>
+
+## Security Review
+
+### Protecting Data-Changing Views
+
+### Issue Identified
+
+The assessment highlighted that while the custom admin dashboard required an admin password, many of the underlying create, update and delete endpoints were not consistently protected by server-side permission checks.
+
+This meant that if a user discovered a direct URL to an administration endpoint, they could potentially access functionality without first passing through the dashboard. The dashboard itself was acting as the control point, but the individual views responsible for changing database records did not always verify that an authenticated admin session existed.
+
+The review specifically identified concerns around:
+
+- Create operations
+- Update operations
+- Delete operations
+- AJAX endpoints used by the dashboard
+- Development tools such as database reset and image modification utilities
+
+The application uses a custom admin login system based on a password stored in environment variables rather than Django's built-in superuser authentication.
+
+Testing was performed using a browser session with no existing cookies or session data. Direct access attempts were made against dashboard and administration URLs.
+
+This investigation confirmed that several administration views relied on dashboard navigation rather than performing their own permission checks.
+
+A reusable custom protector was introduced:
+
+def admin_required(view_func):
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+      if not request.session.get("is_admin"):
+           `return redirect("admin_login")
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
+This protector was applied to admin views throughout the project.
+
+Examples include:
+
+- Ingredient management
+- Cocktail management
+- Recipe management
+
+In addition, data-changing endpoints were updated to require POST requests using
+
+This prevents records being modified through simple URL access and ensures that operations are performed through valid form submission
+
+### Testing Result
+
+Testing after deployment confirmed that:
+
+- Unauthenticated visitors can no longer access dashboard routes.
+- Direct URL access to administration endpoints redirects to the login page.
+- Database modification endpoints require a valid admin session.
+- Delete operations cannot be performed through direct GET requests.
+- Administrative tools such as database reset and image utilities are restricted to authenticated admin sessions.
+
+### Notes on Session Authentication
+
+Once an administrator successfully enters the correct password, a session variable is created:
+At this point the user is intentionally treated as an authenticated administrator and can access protected administration functions.
+
+This is expected behaviour and is not considered a security issue.
+
+Unauthenticated users are redirected away from protected administration routes and cannot access dashboard functionality.
+
+Reference material for this process was gained from https://docs.djangoproject.com/en/6.1/topics/http/decorators/#module-django.views.decorators.http
+
+| Test                                      | Expected                | Actual                    | Result |
+| ----------------------------------------- | ----------------------- | ------------------------- | ------ |
+| Unauthenticated access to dashboard       | Redirect to admin login | Redirected to admin login | Pass   |
+| Unauthenticated access to admin forum     | Redirect to admin login | Redirected to admin login | Pass   |
+| Unauthenticated access to delete endpoint | Access denied           | Access denied             | Pass   |
+| Authenticated admin access                | Dashboard displayed     | Dashboard displayed       | Pass   |
+
+
+
+<a id="erdreview"></a>
+
+## Database Design
+
+The database consists of two independent systems:
+
+### Cocktail Database
+
+#### Cocktail
+
+Stores the core cocktail information.
+
+| Field      | Type           | Constraints           |
+| ---------- | -------------- | --------------------- |
+| id         | AutoField      | Primary Key           |
+| name       | CharField(100) | Unique                |
+| image\_url | CharField(255) | null=True, blank=True |
+
+Relationships
+
+- Many-to-many relationship with Ingredient.
+- One-to-one relationship with Recipe.
+- One-to-one relationship with History.
+
+#### Ingredient
+
+| Field | Type           | Constraints |
+| ----- | -------------- | ----------- |
+| id    | AutoField      | Primary Key |
+| name  | CharField(100) | Unique      |
+
+Relationships
+
+- Ingredients are linked to Cocktails through a many-to-many relationship.
+- Deleting a Cocktail removes the relationship records but does not delete the Ingredient records themselves.
+
+
+#### Recipe
+
+| Field    | Type          |
+| -------- | ------------- |
+| id       | AutoField     |
+| cocktail | OneToOneField |
+| text     | TextField     |
+
+Deletion Behaviour
+
+Uses on_delete=models.CASCADE.
+If a Cocktail is deleted, the associated Recipe record is also deleted.
+
+### History
+
+| Field    | Type          |
+| -------- | ------------- |
+| id       | AutoField     |
+| cocktail | OneToOneField |
+| text     | TextField     |
+
+Deletion Behaviour
+
+Uses on_delete=models.CASCADE.
+If a Cocktail is deleted, the associated History record is also deleted.
+
+### CocktailIngredient
+
+Django automatically creates a junction table to support the many-to-many relationship between Cocktail and Ingredient.
+
+
+<img  width=500px height=100% src="./screenshots/erd-update.png">
+
+## Forum Database
+
+### Thread
+
+| Field        | Type           |
+| ------------ | -------------- |
+| id           | AutoField      |
+| title        | CharField(200) |
+| author\_name | CharField(100) |
+| created\_at  | DateTimeField  |
+
+Relationships
+
+- One Thread can contain many Replies.
+
+### Reply
+
+| Field        | Type           |
+| ------------ | -------------- |
+| id           | AutoField      |
+| thread       | ForeignKey     |
+| author\_name | CharField(100) |
+| message      | TextField      |
+| created\_at  | DateTimeField  |
+
+Relationships
+
+Each Reply belongs to one Thread.
+
+Deletion Behaviour
+
+Uses on_delete=models.CASCADE.
+If a Thread is deleted, all associated Replies are automatically deleted.
+
+
+<img  width=500px height=100% src="./screenshots/erdthread.png">
+
+## Data Integrity
+
+To prevent duplicate cocktail entries, the Cocktail.name field is configured with unique=True. Existing records were checked before applying this constraint and no duplicate cocktail names were found.
+
+## Implemented Functionality
+
+The ERD and database documentation reflect the models currently implemented within the project:
+
+- Cocktail
+- Ingredient
+- Recipe
+- History
+- Thread
+- Reply
+
+## Future Development
+
+At the time of writing there are no planned database extensions. Any future features or models will be documented separately and are not represented in the current ERD.
+
+<a id="erdreview"></a>

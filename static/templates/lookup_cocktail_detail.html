@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--===============================
+Page complete – Tony, 4/10/2026
+lookup_cocktail_detail.html
+===============================-->
+<!--⭐ do not auto format page contains template variables  ⭐  -->
+{% load static %}
+<html lang="en">
+
+<head>
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap">
+    <link rel="icon" type="image/png" href="{% static 'cocktails/images/favicon/faviconcocktail.png' %}">
+
+<style>
+
+    /* ============================================
+       BASE IMAGE STYLE
+       Full‑width image with rounded corners
+       ============================================ */
+    img {
+        width: 100%;
+        border-radius: 14px;
+    }
+
+    /* ============================================
+       CARD CONTAINER
+       Frosted‑glass panel for cocktail details
+       ============================================ */
+    .card {
+        background: rgba(255, 255, 255, 0.18); 
+        padding: 2rem;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px); 
+        color: rgb(196, 182, 182);
+        max-width: 420px; 
+        margin: auto; 
+        text-align: center;
+        animation: fadeIn 0.3s ease; 
+    }
+
+    /* Cocktail image inside card */
+    .card img {
+        width: 100%;
+        height: auto;
+        object-fit: contain; 
+        background: rgba(255, 255, 255, 0.25);
+        padding: 10px;
+        margin-bottom: 1rem;
+    }
+
+    /* Cocktail name */
+    .card h2 {
+        font-family: 'Henny Penny', cursive;
+        color: #f77c24;
+        margin-bottom: 1rem;
+    }
+
+    /* Paragraph text (recipe + history) */
+    .card p {
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+        color: darkslategrey;
+    }
+
+    /* Ingredient list container */
+    .card ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1rem;
+    }
+
+    /* Ingredient list items */
+    .card ul li {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 6px 10px;
+        border-radius: 10px;
+        margin-bottom: 6px;
+        color: darkslategrey;
+    }
+
+    /* Dedicated ingredients list (same styling, different spacing) */
+    .ingredients-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .ingredients-list li {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 8px 12px;
+        border-radius: 10px;
+        margin-bottom: 6px;
+        color: white;
+        font-size: 1rem;
+    }
+
+    /* Section headings (Ingredients / Recipe / History) */
+    .card h3 {
+        color: #f77c24;
+        font-family: 'Henny Penny', cursive;
+        margin-top: 1.5rem;
+    }
+
+    /* ============================================
+       FADE-IN ANIMATION
+       Used for the entire card
+       ============================================ */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+</head>
+
+<body>
+    <div class="card">
+        <img 
+    src="{% if cocktail.image_url %}
+            {% static cocktail.image_url %}
+         {% else %}
+            {% static 'cocktails/buttons/no-image.webp' %}
+         {% endif %}"
+    alt="{% if cocktail.image_url %}{{ cocktail.name }} image{% else %}No image available for {{ cocktail.name }}{% endif %}"
+>
+
+
+        <h2>{{ cocktail.name }}</h2>
+
+        <h3>Ingredients</h3>
+        <ul>
+            {% for ing in cocktail.ingredients.all %}
+            <li>{{ ing.name }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Recipe</h3>
+        <p>{{ cocktail.recipe_obj.text }}</p>
+
+        <h3>History</h3>
+        <p>{{ cocktail.history_obj.text }}</p>
+    </div>
+
+</body>
+
+</html>

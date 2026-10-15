@@ -1,0 +1,106 @@
+/*
+Page complete – Tony, 5/10/2026
+cocktailgrid.css
+*/
+/* ============================================
+   COCKTAIL GRID LAYOUT
+   5-column responsive grid for cocktail cards
+   ============================================ */
+.cocktail-grid {
+    display: grid;                         
+    gap: 1.5rem;                          
+    padding: 1rem;                        
+    grid-template-columns: repeat(5, 1fr); 
+}
+
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   Large screens → 4 columns
+   ============================================ */
+@media (max-width: 1730px) {
+    .cocktail-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+/* ============================================
+   Medium screens → 3 columns
+   ============================================ */
+@media (max-width: 1400px) {
+    .cocktail-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* ============================================
+   Small screens → 2 columns
+   ============================================ */
+@media (max-width: 900px) {
+    .cocktail-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* ============================================
+   Extra small screens → 1 column
+   Full-width stacked cards
+   ============================================ */
+@media (max-width: 600px) {
+    .cocktail-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+/* ============================================
+   COCKTAIL CARD COMPONENT
+   Clickable block with tropical styling
+   ============================================ */
+.cocktail-card {
+    cursor: pointer;                       
+    width: 100%;                          
+    box-sizing: border-box;               
+    overflow: hidden;                     
+    display: flex;                      
+    flex-direction: column;
+
+    /* Visual styling */
+    background: #dd9b0c;                
+    border-radius: 18px;              
+    padding: 1rem;
+}
+
+
+/* ============================================
+   CARD TITLE
+   Pushed to bottom of card
+   ============================================ */
+.cocktail-card h2 {
+    margin-top: auto;                   
+}
+
+
+/* ============================================
+   COCKTAIL IMAGE
+   Responsive image with soft shadow
+   ============================================ */
+.cocktail-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;                  
+    display: block;                      
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ============================================
+   IMAGE HOVER ANIMATION
+   Fun shake effect for personality
+   ============================================ */
+.cocktail-image:hover {
+    animation: shake 0.4s ease-in-out;
+}

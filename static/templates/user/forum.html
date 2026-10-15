@@ -1,0 +1,50 @@
+<!---===============================
+Page complete – Tony, 4/10/2026
+forum.html
+===============================-->
+ <!--⭐ do not auto format page contains template variables ⭐  -->
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<!-- Page Header -->
+
+ 
+<header class="hero">
+    <h1 class="title sunset-overlay"><a href="/user/" aria-label="Go to User Forum homepage">User Forum</a></h1>
+    <nav class="title-homepage sunset-overlay" aria-label="User area navigation"><a href="/user/">User
+            Area</a></nav>
+</header>
+
+    <div class="glass-panel">
+        <h2 class="forum-title" aria-label="Forum message board">Message Board</h2>
+
+
+        <div class="forum-headerblock">
+            <a class="btn" href="{% url 'new_thread' %}" aria-label="Create a new discussion thread">Start New
+                Thread</a>
+        </div>
+
+
+        <ul class="thread-list">
+            {% for thread in threads %}
+            <li class="thread-card" aria-labelledby="thread-{{ thread.id }}">
+                <article>
+                    <h3 id="thread-{{ thread.id }}">{{ thread.title }}</h3>
+                    <p>Started by <strong>{{ thread.author_name }}</strong></p>
+                    <p class="date">{{ thread.created_at|date:"d M Y H:i" }}</p>
+
+                    <a class="btn" href="{% url 'thread_detail' thread.id %}"
+                        aria-label="View thread titled {{ thread.title }}">
+                        View Thread
+                    </a>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+
+
+    </div>
+
+{% endblock %}

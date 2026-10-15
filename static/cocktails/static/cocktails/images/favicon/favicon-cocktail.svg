@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="white"/>
+
+  <!-- Cocktail glass outline -->
+  <path d="M20 14 H44 L34 30 V46 H30 V30 Z"
+        fill="none"
+        stroke="#cc2a02"
+        stroke-width="4"
+        stroke-linejoin="round"/>
+
+  <!-- Orange liquid -->
+  <path d="M30 30 H34 V40 H30 Z"
+        fill="#f77c24"/>
+
+  <!-- Straw -->
+  <rect x="36" y="10" width="4" height="18" rx="2" fill="#e16222"/>
+
+  <!-- Garnish (lime dot) -->
+  <circle cx="26" cy="12" r="5" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+</svg>

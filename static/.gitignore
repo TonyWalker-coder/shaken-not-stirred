@@ -1,0 +1,17 @@
+node_modules/
+.venv/
+venv/
+env.py
+__pycache__/
+READ
+.env
+staticfiles/
+db.sqlite3
+*.json
+# ESLint
+eslint-output.txt
+.eslintcache
+ruff-output.txt
+testdata
+templates/testdata.html
+extract.py
