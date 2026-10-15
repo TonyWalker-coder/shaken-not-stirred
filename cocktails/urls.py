@@ -135,18 +135,18 @@ urlpatterns = [
     path('user/forum/<int:thread_id>/', views.thread_detail, name='thread_detail'),
     path('forum/', cocktails_views.forum, name='forum'),
 
-    path("admin/forum/", cocktails_views.admin_forum, name="admin_forum"),
+   
     path("admin/forum/thread/<int:thread_id>/", cocktails_views.admin_forum_thread, name="admin_forum_thread"),
     path("admin/forum/delete-thread/<int:thread_id>/", cocktails_views.delete_thread, name="delete_thread"),
     path("admin/forum/delete-reply/<int:reply_id>/", cocktails_views.delete_reply, name="delete_reply"),
 
     path("dashboard/forum/", views.dashboard_forum, name="dashboard_forum"),
-    path("dashboard/forum/thread/<int:thread_id>/", views.dashboard_forum_thread, name="dashboard_forum_thread"),
+   
     path("dashboard/forum/delete-thread/<int:thread_id>/", views.dashboard_delete_thread, name="dashboard_delete_thread"),
 
     path("admin/forum/reply/<int:thread_id>/", cocktails_views.admin_reply, name="admin_reply"),
 
-    path('user/lookup/', views.ingredient_lookup, name='ingredient_lookup'),
+    
     path('user/lookup/cocktail/<int:pk>/', views.lookup_cocktail_detail, name='lookup_cocktail_detail'),
 
 

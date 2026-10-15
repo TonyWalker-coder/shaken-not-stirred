@@ -722,12 +722,7 @@ def forum(request):
     threads = Thread.objects.all().order_by('-created_at')
     return render(request, 'user/forum.html', {'threads': threads})
 
-@admin_required
-def admin_forum(request):
-    raise Exception("TEST")
 
-    threads = Thread.objects.all().order_by('-created_at')
-    return render(request, 'admin_forum.html', {'threads': threads})
 
 @admin_required
 def admin_forum_thread(request, thread_id):
@@ -761,15 +756,7 @@ def dashboard_forum(request):
         'threads': threads
     })
 
-@admin_required
-def dashboard_forum_thread(request, thread_id):
-    raise Exception("TEST")
-    thread = get_object_or_404(Thread, id=thread_id)
-    replies = Reply.objects.filter(thread=thread)
-    return render(request, 'dashboard_forum_thread_section.html', {
-        'thread': thread,
-        'replies': replies
-    })
+
 
 @admin_required
 @require_POST
@@ -802,27 +789,7 @@ def admin_reply(request, thread_id):
 
 
 
-def ingredient_lookup(request):
-    raise Exception("TEST")
-    ingredients = (
-        Ingredient.objects
-        .filter(cocktail__isnull=False)
-        .distinct()
-        .order_by(Lower('name'))
-    )
 
-    selected_id = request.GET.get("ingredient")
-    cocktails = None
-
-    if selected_id:
-        ingredient = get_object_or_404(Ingredient, id=selected_id)
-        cocktails = Cocktail.objects.filter(ingredients=ingredient)
-
-    return render(request, "ingredient_lookup.html", {
-        "ingredients": ingredients,
-        "cocktails": cocktails,
-        "selected_id": selected_id,
-    })
 
 
 def lookup_cocktail_detail(request, pk):
