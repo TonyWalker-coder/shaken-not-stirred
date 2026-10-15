@@ -9,7 +9,7 @@ class Ingredient(models.Model):
 
 
 class Cocktail(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     image_url = models.CharField(max_length=255, null=True, blank=True)
 
     ingredients = models.ManyToManyField(Ingredient, blank=True)
@@ -21,9 +21,7 @@ class Cocktail(models.Model):
 class Recipe(models.Model):
     cocktail = models.OneToOneField(
         "Cocktail",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
+        on_delete=models.CASCADE,
         related_name="recipe_obj"
     )
     text = models.TextField()
@@ -43,9 +41,6 @@ class History(models.Model):
 
     def __str__(self):
         return f"History for {self.cocktail.name}"
-
-
-
 
 
 class Thread(models.Model):

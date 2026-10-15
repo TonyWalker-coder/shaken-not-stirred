@@ -2513,3 +2513,133 @@ Reference material for this process was gained from https://docs.djangoproject.c
 | Unauthenticated access to admin forum     | Redirect to admin login | Redirected to admin login | Pass   |
 | Unauthenticated access to delete endpoint | Access denied           | Access denied             | Pass   |
 | Authenticated admin access                | Dashboard displayed     | Dashboard displayed       | Pass   |
+
+
+
+<a id="erdreview"></a>
+
+## Database Design
+
+The database consists of two independent systems:
+
+### Cocktail Database
+
+#### Cocktail
+
+Stores the core cocktail information.
+
+| Field      | Type           | Constraints           |
+| ---------- | -------------- | --------------------- |
+| id         | AutoField      | Primary Key           |
+| name       | CharField(100) | Unique                |
+| image\_url | CharField(255) | null=True, blank=True |
+
+Relationships
+
+- Many-to-many relationship with Ingredient.
+- One-to-one relationship with Recipe.
+- One-to-one relationship with History.
+
+#### Ingredient
+
+| Field | Type           | Constraints |
+| ----- | -------------- | ----------- |
+| id    | AutoField      | Primary Key |
+| name  | CharField(100) | Unique      |
+
+Relationships
+
+- Ingredients are linked to Cocktails through a many-to-many relationship.
+- Deleting a Cocktail removes the relationship records but does not delete the Ingredient records themselves.
+
+
+#### Recipe
+
+| Field    | Type          |
+| -------- | ------------- |
+| id       | AutoField     |
+| cocktail | OneToOneField |
+| text     | TextField     |
+
+Deletion Behaviour
+
+Uses on_delete=models.CASCADE.
+If a Cocktail is deleted, the associated Recipe record is also deleted.
+
+### History
+
+| Field    | Type          |
+| -------- | ------------- |
+| id       | AutoField     |
+| cocktail | OneToOneField |
+| text     | TextField     |
+
+Deletion Behaviour
+
+Uses on_delete=models.CASCADE.
+If a Cocktail is deleted, the associated History record is also deleted.
+
+### CocktailIngredient
+
+Django automatically creates a junction table to support the many-to-many relationship between Cocktail and Ingredient.
+
+
+<img  width=500px height=100% src="./screenshots/erd-update.png">
+
+## Forum Database
+
+### Thread
+
+| Field        | Type           |
+| ------------ | -------------- |
+| id           | AutoField      |
+| title        | CharField(200) |
+| author\_name | CharField(100) |
+| created\_at  | DateTimeField  |
+
+Relationships
+
+- One Thread can contain many Replies.
+
+### Reply
+
+| Field        | Type           |
+| ------------ | -------------- |
+| id           | AutoField      |
+| thread       | ForeignKey     |
+| author\_name | CharField(100) |
+| message      | TextField      |
+| created\_at  | DateTimeField  |
+
+Relationships
+
+Each Reply belongs to one Thread.
+
+Deletion Behaviour
+
+Uses on_delete=models.CASCADE.
+If a Thread is deleted, all associated Replies are automatically deleted.
+
+
+<img  width=500px height=100% src="./screenshots/erdthread.png">
+
+## Data Integrity
+
+To prevent duplicate cocktail entries, the Cocktail.name field is configured with unique=True. Existing records were checked before applying this constraint and no duplicate cocktail names were found.
+
+## Implemented Functionality
+
+The ERD and database documentation reflect the models currently implemented within the project:
+
+- Cocktail
+- Ingredient
+- Recipe
+- History
+- Thread
+- Reply
+
+## Future Development
+
+At the time of writing there are no planned database extensions. Any future features or models will be documented separately and are not represented in the current ERD.
+
+<a id="erdreview"></a>
