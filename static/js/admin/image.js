@@ -169,7 +169,7 @@ async function refreshImageList() {
     item.className = "modal-item";
 
     item.innerHTML = `
-      <img src="/static/cocktails/buttons/${img}?v=${Date.now()}" class="item-thumb" />
+      <img src="/static/cocktails/buttons/${img}?v=${Date.now()}" class="item-thumb" alt="" />
       <p class="assign-image-filename">${img}</p>
       <button class="add-btn disabled-btn" data-open="assignImageConfirmModal" data-image="${img}" disabled aria-disabled="true">
         Assign

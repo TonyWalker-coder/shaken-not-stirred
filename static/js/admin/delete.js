@@ -114,7 +114,7 @@ export function refreshCocktailList(cocktails) {
         <div class="history-item">
           <span class="history-name">${c.name}</span>
           <div class="history-actions">
-            <img src="/static/cocktails/icons/missing.png" class="history-icon">
+            <img src="/static/cocktails/icons/missing.png" class="history-icon" alt="History missing">
             <button class="add-btn" data-open="addHistoryModal" data-id="${c.id}" data-child="true">Add</button>
             <button class="delete-btn" data-open="noHistoryTrap" data-child="true">Delete</button>
           </div>
@@ -132,7 +132,7 @@ export function refreshCocktailList(cocktails) {
         <div class="history-item">
           <span class="history-name">${c.name}</span>
           <div class="history-actions">
-            <img src="/static/cocktails/icons/missing.png" class="history-icon">
+            <img src="/static/cocktails/icons/missing.png" class="history-icon" alt="History missing">
             <button class="add-btn" data-open="addRecipeModal" data-id="${c.id}" data-child="true">Add</button>
             <button class="delete-btn" data-open="noRecipeTrap" data-child="true">Delete</button>
           </div>

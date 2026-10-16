@@ -87,7 +87,6 @@ import {
 */
 
 export function refreshHistoryList(historyData) {
-  console.log("history.js");
   const container = document.querySelector("#historyModal .history-list");
   if (!container) return;
 

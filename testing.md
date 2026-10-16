@@ -2296,7 +2296,20 @@ Browser warning on index.html.
 
 The admin access modal was designed to use a single password field because the project does not implement individual administrator accounts. However, modern browsers may flag password-only forms as incomplete. To improve compatibility and reduce browser warnings, a hidden username field was added and pre-populated with a generic administrator value. The login process remains unchanged while better aligning the form with recognised authentication patterns.
 
+`--------------------------------------------------------------`
 
+<span class="tick">🐞</span>Bug008
+
+**Issue:**  
+Child modals refresh is changing the DOM meaning the focus trap is stale and lost.
+
+ ### Child modals
+
+During keyboard accessibility testing, a focus management issue was identified with nested modals. When a child modal was closed, keyboard focus could leave the active dialog and return to the browser interface.
+
+**Fix:**
+
+The modal management logic was updated so that focus is restored to the parent modal when a child modal closes, including when closed via Save, Close, or Escape actions. This ensures keyboard users remain within the active workflow and do not lose context.
 
 <hr style="border: 1px solid #ccc;">
 
@@ -2439,6 +2452,9 @@ Chrome DevTools occasionally reported **forced reflow warnings** during JavaScri
 
 ## Security Review
 
+### assessor comment
+Secure all data-changing views.
+
 ### Protecting Data-Changing Views
 
 ### Issue Identified
@@ -2514,6 +2530,9 @@ Reference material for this process was gained from https://docs.djangoproject.c
 
 
 <a id="erdreview"></a>
+
+### assessor comment
+Correct the database documentation. Update the README and ERD to match the actual Cocktail, Ingredient, Recipe, History, Thread and Reply models. Explain field types, constraints, relationships and deletion behaviour. Clearly distinguish future features from implemented functionality.
 
 ## Database Design
 
@@ -2641,6 +2660,8 @@ At the time of writing there are no planned database extensions. Any future feat
 
 <a id="addendum1"></a>
 
+Repair incomplete routes and accessibility. Add the missing templates or remove their routes. Check every internal link, remove diagnostic output, and ensure all interactive cards and modals work using a keyboard with clear focus and appropriate labels.
+
 
 ## Accessibility Review Addendum
 
@@ -2658,6 +2679,22 @@ This improved the keyboard navigation experience and removed an unnecessary focu
 
 During keyboard accessibility testing, a focus management issue was identified with nested modals. When a child modal was closed, keyboard focus could leave the active dialog and return to the browser interface. The modal management logic was updated so that focus is restored to the parent modal when a child modal closes, including when closed via Save, Close, or Escape actions. This ensures keyboard users remain within the active workflow and do not lose context.
 
+As this became quite major I have moved it also to the bug section Bug008
+
+### Repair incomplete routes and accessibility
+
+- Reviewed all internal routes and removed or corrected incomplete links.
+- Removed diagnostic output and development debugging code once testing was complete.
+- Tested all admin and user-area modals using keyboard navigation.
+- Added missing form labels to inputs, selects and textareas where required.
+- Added or reviewed aria-label attributes on modal controls and action buttons.
+- Verified visible keyboard focus indicators across interactive controls.
+- Implemented focus trapping for parent and child modals using Tab and Shift+Tab navigation.
+- Verified focus returns correctly to the triggering control when child modals are closed.
+- Tested interactive cards, forms and modal dialogs for keyboard accessibility.
+
+
+<img  width=500px height=100% src="./screenshots/kybfocus.png">
 
 
 

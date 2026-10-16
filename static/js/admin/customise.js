@@ -89,7 +89,8 @@ document.addEventListener("change", async (e) => {
           <button class="${inCocktail ? "delete-btn" : "add-btn"}"
                   data-customise-action="${inCocktail ? "remove" : "add"}"
                   data-ingredient-id="${ing.id}"
-                  data-cocktail-id="${cocktailId}">
+                  data-cocktail-id="${cocktailId}"
+                  aria-label="${inCocktail ? `Remove ${ing.name} from cocktail` : `Add ${ing.name} to cocktail`}">
             ${inCocktail ? "Remove" : "Add"}
           </button>
         </div>

@@ -124,8 +124,8 @@ function refreshIngredientList(ingredients) {
       div.innerHTML = `
         <span class="item-name">${ingredient.name}</span>
         <div class="item-actions" style="display:flex; align-items:center; gap:10px;">
-          <img src="/static/cocktails/icons/${ingredient.used ? "ingredient-ok.png" : "missing.png"}"
-               class="ingredient-status-icon">
+          <img src="/static/cocktails/icons/${ingredient.used ? "ingredient-ok.png" : "missing.png" }"
+               class="ingredient-status-icon" alt="ingredient missing icon">
 
           <button class="edit-btn"
                   data-open="editIngredientModal"

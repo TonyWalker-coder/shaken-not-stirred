@@ -12,44 +12,37 @@ import { refreshCocktailList } from "./delete.js";
 
 function trapFocus(modal) {
 
-  const focusable = modal.querySelectorAll(
-    "button, input, select, textarea, a[href]"
-  );
-
-  if (!focusable.length) return;
-
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
-
-
-
-  if (modal.dataset.focusTrapAttached) {
-
-
-    modal.addEventListener("keydown", (e) => {
-
-      console.log("EventListner");
-
-      if (e.key !== "Tab") return;
-
-      if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      }
-    }
-    );
-    
+  if (modal.dataset.focusTrapAttached === "true") {
     return;
   }
 
-  modal.dataset.focusTrapAttached = "false";
+  modal.addEventListener("keydown", (e) => {
 
+    const focusable = modal.querySelectorAll(
+      "button, input, select, textarea, a[href]"
+    );
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.key !== "Tab") return;
+
+    // Forward tab
+    if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+
+    // Backward tab
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    }
+  });
+
+  modal.dataset.focusTrapAttached = "true";
 }
+
 
 document.addEventListener("keydown", (e) => {
 
@@ -74,7 +67,6 @@ let lastFocusedElement = null;
 
 export function openModal(id) {
 
-  console.log("openmodal");
   lastFocusedElement = document.activeElement;
 
 
@@ -139,7 +131,6 @@ export function closeModal(id) {
       const closeBtn = parentModal.querySelector(".close");
 
       if (closeBtn) {
-        console.log("got ya");
         closeBtn.focus();
         trapFocus(parentModal);
         return;
@@ -208,7 +199,7 @@ document.addEventListener("click", async (e) => {
       await refreshHistoryModal();
 
 
-      console.log("refresh")
+
 
     }
 
@@ -267,7 +258,7 @@ export function resetImageCocktailSelect() {
 
 function smoothScrollToTop(element) {
 
-  console.log("smothscroll");
+
   const start = element.scrollTop;
   const duration = 200;
   const startTime = performance.now();
@@ -285,7 +276,7 @@ function smoothScrollToTop(element) {
 }
 
 export function modalMessage(modalId, type, text) {
-  console.log("modalmessage");
+
   const modal = document.getElementById(modalId);
 
 
@@ -322,7 +313,7 @@ export function modalMessage(modalId, type, text) {
 --------------------------- */
 
 export function getCSRFToken() {
-  console.log("getCSRT");
+
   const token = document.querySelector("[name=csrfmiddlewaretoken]");
   return token ? token.value : "";
 }
@@ -332,7 +323,7 @@ export function getCSRFToken() {
 --------------------------- */
 
 export async function refreshCocktailDropdown(selectEl) {
-  console.log("refresh dropdown");
+
   if (!selectEl) return;
 
   const res = await fetch("/cocktails/list/simple/", {
@@ -358,7 +349,7 @@ export async function refreshCocktailDropdown(selectEl) {
 // Inserts the returned HTML into #dashboard-content
 //* ---------------------------
 export async function loadDashboardSection(url) {
-  console.log("loaddashboard");
+
   const res = await fetch(url, {
     headers: { "X-Requested-With": "XMLHttpRequest" } // tells Django it's an AJAX request
   });
@@ -454,7 +445,7 @@ window.deleteThread = deleteThread;
 // Utility: Get a cookie value (used for CSRF)
 //* ---------------------------
 function getCookie(name) {
-  console.log("get cookie");
+
   let cookieValue = null;
 
   if (document.cookie && document.cookie !== "") {

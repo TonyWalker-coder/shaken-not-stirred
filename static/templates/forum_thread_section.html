@@ -33,6 +33,9 @@ forum_thread_section.html
 
 <div id="replyForm" style="display: none; margin-top:20px;">
     <h3>Admin Reply</h3>
+    <label for="replyMessage">
+    Reply Message
+    </label>
     <textarea  title="Reply Message" id="replyMessage" rows="4" style="width: 100%;"></textarea>
     <button type="button" class="btn" onclick="submitReply({{ thread.id }})">Send Reply</button>
 </div>

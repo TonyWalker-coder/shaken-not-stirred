@@ -213,7 +213,7 @@ admin.html
                 <img src="{% static 'cocktails/icons/history-ok.png' %}" class="history-icon" alt="Open scroll">
   
                 <button type="button" class="edit-btn" data-open="editHistoryModal" data-id="{{ h.id }}"
-                  data-text="{{ h.text|escapejs }}" data-child="true" aria-label="{{ h.text|escapejs }}">
+                  data-text="{{ h.text|escapejs }}" data-child="true"  aria-label="Edit history">
                   Edit
                 </button>
   
@@ -223,7 +223,7 @@ admin.html
                 </button>
   
                 {% else %}
-                <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" alt="Large red X">
+                <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" alt="History missing">
   
                 <button type="button" class="add-btn" data-open="addHistoryModal" data-id="{{ cocktail.id }}"
                   data-child="true" aria-label="Add history">
@@ -319,7 +319,7 @@ admin.html
                 <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon" alt="Open book">
   
                 <button type="button" class="edit-btn" data-open="editRecipeModal" data-id="{{ r.id }}"
-                  data-text="{{ r.text|escapejs }}" data-child="true" aria-label="{{ r.text|escapejs }}">
+                  data-text="{{ r.text|escapejs }}" data-child="true" aria-label="Edit recipe for {{ r.text|escapejs }}">
                   Edit
                 </button>
   
@@ -329,7 +329,7 @@ admin.html
                 </button>
   
                 {% else %}
-                <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" alt="Large red X">
+                <img src="{% static 'cocktails/icons/missing.png' %}" class="history-icon" alt="Recipe missing">
   
                 <button type="button" class="add-btn" data-open="addRecipeModal" data-id="{{ cocktail.id }}" data-child="true"
                   aria-label="Add recipe">
@@ -489,7 +489,7 @@ admin.html
   
           </form>
         </div>
-      <button class="focus-end" aria-hidden="true"></button>
+      <button class="focus-end" aria-hidden="true" tabindex="-1"></button>
     </div>
   
     <!-- IMAGE REMINDER MODAL -->
@@ -677,7 +677,7 @@ admin.html
         </div>
   
       </div>
-      <button class="focus-end" aria-hidden="true"></button>
+      <button class="focus-end" aria-hidden="true" tabindex="-1"></button>
     </div>
   
     <!-- CONFIRM ASSIGN IMAGE MODAL -->

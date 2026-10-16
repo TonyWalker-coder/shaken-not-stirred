@@ -35,7 +35,7 @@ export async function refreshRecipesModal() {
           ${
             c.recipe
               ? `
-            <img src="/static/cocktails/icons/recipe-ok.png" class="history-icon">
+            <img src="/static/cocktails/icons/recipe-ok.png" class="history-icon" alt="history ok icon">
 
             <button class="edit-btn"
                     data-open="editRecipeModal"
@@ -53,7 +53,7 @@ export async function refreshRecipesModal() {
             </button>
           `
               : `
-            <img src="/static/cocktails/icons/missing.png" class="history-icon">
+            <img src="/static/cocktails/icons/missing.png" class="history-icon" alt="history missing icon">
 
             <button class="add-btn"
                     data-open="addRecipeModal"
