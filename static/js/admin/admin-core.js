@@ -9,38 +9,48 @@ import { refreshCocktailList } from "./delete.js";
 //This function traps focus within a modal when it's open, preventing users from tabbing out of it. was written by Microsoft Copilot and 
 // modified by me to fit my needs. It ensures that when a modal is open, the focus cycles through the focusable elements inside the modal, 
 // enhancing accessibility.
+
 function trapFocus(modal) {
 
-    if (modal.dataset.focusTrapAttached) {
-        return;
-    }
+  const focusable = modal.querySelectorAll(
+    "button, input, select, textarea, a[href]"
+  );
 
-    modal.dataset.focusTrapAttached = "true";
+  if (!focusable.length) return;
 
-    const focusable = modal.querySelectorAll(
-        "button, input, select, textarea, a[href]"
-    );
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
 
-    if (!focusable.length) return;
 
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
+
+  if (modal.dataset.focusTrapAttached) {
+
 
     modal.addEventListener("keydown", (e) => {
 
-        if (e.key !== "Tab") return;
+      console.log("EventListner");
 
-        if (!e.shiftKey && document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-        }
+      if (e.key !== "Tab") return;
 
-        if (e.shiftKey && document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-        }
-    });
+      if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    }
+    );
+    
+    return;
+  }
+
+  modal.dataset.focusTrapAttached = "false";
+
 }
+
 document.addEventListener("keydown", (e) => {
 
 
@@ -54,7 +64,8 @@ document.addEventListener("keydown", (e) => {
     closeModal(topModal.id);
   }
 
-});
+}
+);
 /* ---------------------------
    UNIVERSAL MODAL ENGINE
 --------------------------- */
@@ -149,7 +160,7 @@ export function closeModal(id) {
     );
   }
 
-  
+
 }
 
 /* Backdrop click closes modal */
@@ -278,7 +289,7 @@ export function modalMessage(modalId, type, text) {
   const modal = document.getElementById(modalId);
 
 
-trapFocus(modal);
+  trapFocus(modal);
 
 
   if (!modal) return;
