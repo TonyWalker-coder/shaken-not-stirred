@@ -18,6 +18,8 @@ from functools import wraps
 from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
 
+from PIL import Image
+
 # ============================================================
 # HELPER FUNCTIONS
 # ============================================================
@@ -75,6 +77,12 @@ def add_ingredient(request):
 
     raw_name = request.POST.get("name", "")
     name = raw_name.strip().lower()
+    if not name:
+        return JsonResponse({
+            "error": True,
+            "message": "Ingredient name is required."
+        }, status=400)
+
 
     # Duplicate check
     if Ingredient.objects.filter(name=name).exists():
@@ -122,6 +130,12 @@ def edit_ingredient(request, id):
 
     raw_name = request.POST.get("name", "")
     name = raw_name.strip().lower()
+    if not name:
+        return JsonResponse({
+            "error": True,
+            "message": "Ingredient name is required."
+        }, status=400)
+
 
     # Duplicate check
     if Ingredient.objects.filter(name=name).exclude(id=id).exists():
@@ -320,6 +334,14 @@ def add_cocktail(request):
         return JsonResponse({"error": True, "message": "Invalid request"})
 
     name = request.POST.get("name", "").strip()
+
+    if not name:
+        return JsonResponse({
+            "error": True,
+            "message": "Cocktail name is required."
+    }, status=400)
+# History and recipe are optional fields.
+# Empty strings are valid and simply mean no history/recipe is created.
     history_text = request.POST.get("history", "").strip()
     recipe_text = request.POST.get("recipe", "").strip()
     ingredient_ids = [int(i) for i in request.POST.getlist("ingredients") if i.isdigit()]
@@ -421,16 +443,67 @@ def cocktail_remove_ingredient(request, cocktail_id, ingredient_id):
 @admin_required
 @require_POST
 def upload_image(request):
+
+
+    allowed_types = [
+        "image/png",
+        "image/jpeg",
+        "image/webp",
+    ]
+
     if request.method != "POST":
         return JsonResponse({"error": True, "message": "Invalid request method."})
 
     file = request.FILES.get("image")
+
     if not file:
-        return JsonResponse({"error": True, "message": "No file uploaded."})
+        return JsonResponse({
+            "error": True,
+            "message": "No file uploaded."
+        })
+
+    allowed_types = [
+        "image/png",
+        "image/jpeg",
+        "image/webp",
+    ]
+
+    if file.content_type not in allowed_types:
+        return JsonResponse({
+            "error": True,
+            "message": "Invalid image type."
+        }, status=400)
+
+    MAX_SIZE = 5 * 1024 * 1024
+
+    if file.size > MAX_SIZE:
+        return JsonResponse({
+            "error": True,
+            "message": "Image exceeds 5MB limit."
+        }, status=400)
+
+    ext = os.path.splitext(file.name)[1].lower()
+
+    if ext not in [".png", ".jpg", ".webp"]:
+        return JsonResponse({
+            "error": True,
+            "message": "Only PNG/JPG/WebP images allowed."
+        }, status=400)
+
+# Verify it is a real image
+    try:
+        Image.open(file).verify()
+    except Exception:
+        return JsonResponse({
+            "error": True,
+            "message": "Invalid image file."
+        }, status=400)
+    
 
     ext = os.path.splitext(file.name)[1].lower()
     if ext not in [".png", ".jpg", ".webp" ]:
         return JsonResponse({"error": True, "message": "Only PNG/JPG/Webp images allowed."})
+
 
     save_dir = os.path.join(settings.BASE_DIR, "cocktails", "static", "cocktails", "buttons")
     os.makedirs(save_dir, exist_ok=True)
@@ -769,7 +842,15 @@ def dashboard_delete_thread(request, thread_id):
 @require_POST
 def admin_reply(request, thread_id):
     if request.method == "POST":
-        data = json.loads(request.body)
+        try:
+            data = json.loads(request.body)
+
+        except json.JSONDecodeError:
+            return JsonResponse({
+                "success": False,
+                "message": "Invalid JSON."
+            }, status=400)
+        
         message = data.get("message")
 
         thread = Thread.objects.get(id=thread_id)

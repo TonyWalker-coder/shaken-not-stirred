@@ -38,7 +38,8 @@ document.addEventListener("submit", async (e) => {
   const data = await res.json();
 
   if (data.error) {
-    modalMessage("imagesModal", "error", data.error);
+    modalMessage("imagesModal", "error", data.message);
+
     return;
   }
 
@@ -134,7 +135,7 @@ document.addEventListener("submit", async (e) => {
   const data = await res.json();
 
   if (data.error) {
-    modalMessage("assignImageConfirmModal", "error", data.message);
+    modalMessage("assignImageConfirmModal", "error", "data.message");
     return;
   }
 

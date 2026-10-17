@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class Ingredient(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
@@ -28,7 +29,9 @@ class Recipe(models.Model):
 
 
     def __str__(self):
-        return f"Recipe for {self.cocktail.name}"
+        if self.cocktail:
+            return f"Recipe for {self.cocktail.name}"
+        return "Recipe for Unknown Cocktail"
 
 
 class History(models.Model):
@@ -40,7 +43,9 @@ class History(models.Model):
     text = models.TextField()
 
     def __str__(self):
-        return f"History for {self.cocktail.name}"
+        if self.cocktail:
+            return f"History for {self.cocktail.name}"
+        return "History for Unknown Cocktail"
 
 
 class Thread(models.Model):

@@ -55,11 +55,13 @@ def admin_page(request):
 
 def admin_login(request):
     if request.method == "POST":
-        password = request.POST.get("password")
+        password = request.POST.get("password", "").strip()
 
-        if password == settings.ADMIN_PASSWORD:
-            request.session["is_admin"] = True
-            return redirect("admin_page")
+    if not password:
+        messages.error(request, "Password is required.")
+        return redirect("index")
+
+    if password == settings.ADMIN_PASSWORD:
 
         messages.error(request, "Incorrect password.")
         return redirect("index")

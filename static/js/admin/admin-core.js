@@ -12,6 +12,8 @@ import { refreshCocktailList } from "./delete.js";
 
 function trapFocus(modal) {
 
+  if (!modal) return;
+
   if (modal.dataset.focusTrapAttached === "true") {
     return;
   }
@@ -279,25 +281,31 @@ export function modalMessage(modalId, type, text) {
 
   const modal = document.getElementById(modalId);
 
-
   trapFocus(modal);
-
 
   if (!modal) return;
 
   const successBox = modal.querySelector(".modal-message.success");
   const errorBox = modal.querySelector(".modal-message.error");
 
+
+
+
   successBox.classList.remove("show");
   errorBox.classList.remove("show");
 
+
   if (type === "success") {
     successBox.textContent = text;
+    
     successBox.classList.add("show");
+    
   } else {
     errorBox.textContent = text;
     errorBox.classList.add("show");
   }
+
+
 
   const modalContent = modal.querySelector(".modal-content");
   if (modalContent) smoothScrollToTop(modalContent);

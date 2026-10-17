@@ -20,11 +20,14 @@ cocktailNameInput?.addEventListener("input", async () => {
   const name = cocktailNameInput.value.trim();
 
   if (!name) {
-    nameMsg.style.display = "none";
+    nameMsg.textContent =  "Cocktail name is required and must be unique.";
+    nameMsg.style.display = "block";
+
     createBtn.disabled = true;
     nameIsValid = false;
     return;
-  }
+}
+
 
   const res = await fetch(`/cocktail/check-name/?name=${encodeURIComponent(name)}`, {
     headers: { "X-Requested-With": "XMLHttpRequest" }
@@ -33,14 +36,18 @@ cocktailNameInput?.addEventListener("input", async () => {
   const data = await res.json();
 
   if (data.exists) {
+    nameMsg.textContent =
+         "Cocktail name is required and must be unique.";
     nameMsg.style.display = "block";
-    nameIsValid = false;
+
     createBtn.disabled = true;
-  } else {
+    nameIsValid = false;
+} else {
     nameMsg.style.display = "none";
-    nameIsValid = true;
+
     createBtn.disabled = false;
-  }
+    nameIsValid = true;
+}
 });
 
   /* ---------------------------
@@ -48,6 +55,7 @@ cocktailNameInput?.addEventListener("input", async () => {
   --------------------------- */
 
 document.getElementById("addCocktailForm")?.addEventListener("submit", async (e) => {
+
   e.preventDefault();
   e.stopPropagation();
   if (!nameIsValid) return;
