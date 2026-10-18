@@ -2679,7 +2679,7 @@ This improved the keyboard navigation experience and removed an unnecessary focu
 
 During keyboard accessibility testing, a focus management issue was identified with nested modals. When a child modal was closed, keyboard focus could leave the active dialog and return to the browser interface. The modal management logic was updated so that focus is restored to the parent modal when a child modal closes, including when closed via Save, Close, or Escape actions. This ensures keyboard users remain within the active workflow and do not lose context.
 
-As this became quite major I have moved it also to the bug section Bug008
+As this became quite major so I have also included it to the bug section Bug008
 
 ### Repair incomplete routes and accessibility
 
@@ -2702,9 +2702,11 @@ Strengthen validation and error handling. Reject blank and invalid values on the
 and validate image uploads. Make Recipe.__str__ safe when its cocktail is missing. Use transactions where operations change several related records.
 
 
-<a id="erdreview"></a>
+<a id="rhmodoles"></a>
 
 ## Recipe and History Model Safety
+
+
 
 Change made
 
@@ -2755,6 +2757,12 @@ reference https://docs.djangoproject.com/en/6.1/search/?q=def+__str__%28self%29&
 
  The image upload functionality was strengthened to improve validation and error handling. Validation was added to check uploaded file types using MIME type verification and to enforce a maximum file size limit before files are saved. Additional file integrity checks were implemented to reject invalid image files, including files that had been renamed to use a valid image extension without actually being a valid image. Invalid uploads now return a HTTP 400 response and display a clear error message within the image management modal, while valid image files continue to upload successfully. Testing confirmed that oversized uploads, invalid image files and unsupported file types were correctly rejected, improving both security and data quality.
 
+
+<img  width=500px height=100% src="./screenshots/image-v2.png">
+
+<img  width=500px height=100% src="./screenshots/image-v2.png">
+
+
 ## Malformed JSON Error Handling
 
  Error handling was added to the forum administration reply feature to safely process incoming JSON data. Previously, a malformed request could cause a JSONDecodeError exception when attempting to parse the request body. A try/except block was introduced around json.loads(request.body) to catch invalid JSON and return a controlled HTTP 400 response with a descriptive error message. This prevents unhandled server exceptions, improves application stability, and provides a predictable response when invalid request data is received. 
@@ -2781,8 +2789,19 @@ Outcome
 - History and Recipe fields continue to support valid empty submissions without creating unnecessary records.
 - AJAX validation failures now display clear error messages to users without causing application errors.
 
+
+
 ## Database Integrity Improvements
 
 Implemented transaction.atomic() for cocktail create and delete workflows. These operations modify multiple related records, including cocktail details, recipe data, history records, and ingredient relationships. Using an atomic transaction ensures that all related changes succeed or fail together, preventing partial writes and maintaining database integrity.
 
-<a id="erdreview"></a>
+<img  width=400px height=100% src="./screenshots/db-1.png">
+
+<img  width=400px height=100% src="./screenshots/db-2.png">
+
+<img  width=400px height=100% src="./screenshots/db-3.png">
+
+<img  width=400px height=100% src="./screenshots/db-4.png">
+
+<img  width=400px height=100% src="./screenshots/db-5.png">
+
