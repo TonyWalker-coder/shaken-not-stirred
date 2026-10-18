@@ -18,6 +18,8 @@ from functools import wraps
 from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
 
+from django.db import transaction
+
 from PIL import Image
 
 # ============================================================
@@ -330,16 +332,19 @@ def check_cocktail_name(request):
 @admin_required
 @require_POST
 def add_cocktail(request):
-    if request.method != "POST":
-        return JsonResponse({"error": True, "message": "Invalid request"})
+
+    with transaction.atomic():
+
+        if request.method != "POST":
+            return JsonResponse({"error": True, "message": "Invalid request"})
 
     name = request.POST.get("name", "").strip()
 
     if not name:
-        return JsonResponse({
-            "error": True,
-            "message": "Cocktail name is required."
-    }, status=400)
+            return JsonResponse({
+                "error": True,
+                "message": "Cocktail name is required."
+        }, status=400)
 # History and recipe are optional fields.
 # Empty strings are valid and simply mean no history/recipe is created.
     history_text = request.POST.get("history", "").strip()
@@ -347,18 +352,18 @@ def add_cocktail(request):
     ingredient_ids = [int(i) for i in request.POST.getlist("ingredients") if i.isdigit()]
 
     if Cocktail.objects.filter(name__iexact=name).exists():
-        return JsonResponse({"error": True, "message": "Cocktail name already exists"})
+            return JsonResponse({"error": True, "message": "Cocktail name already exists"})
 
     cocktail = Cocktail.objects.create(name=name)
 
     if history_text:
-        History.objects.create(cocktail=cocktail, text=history_text)
+            History.objects.create(cocktail=cocktail, text=history_text)
 
     if recipe_text:
-        Recipe.objects.create(cocktail=cocktail, text=recipe_text)
+            Recipe.objects.create(cocktail=cocktail, text=recipe_text)
 
     if ingredient_ids:
-        cocktail.ingredients.set(Ingredient.objects.filter(id__in=ingredient_ids))
+            cocktail.ingredients.set(Ingredient.objects.filter(id__in=ingredient_ids))
 
     return JsonResponse({"error": False, "message": "Cocktail created", "cocktail_id": cocktail.id})
 
@@ -370,12 +375,12 @@ def delete_cocktail(request, cocktail_id):
     try:
         History.objects.filter(cocktail=cocktail).delete()
         Recipe.objects.filter(cocktail=cocktail).delete()
-        cocktail.ingredients.clear()
 
-        cocktail.image_url = None
-        cocktail.save()
-
-        cocktail.delete()
+        with transaction.atomic():
+            cocktail.ingredients.clear()
+            cocktail.image_url = None
+            cocktail.save()
+            cocktail.delete()
 
         return JsonResponse({
             "error": False,

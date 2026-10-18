@@ -2781,6 +2781,8 @@ Outcome
 - History and Recipe fields continue to support valid empty submissions without creating unnecessary records.
 - AJAX validation failures now display clear error messages to users without causing application errors.
 
+## Database Integrity Improvements
 
+Added transaction support to cocktail create and delete operations. These actions affect multiple related records including Cocktail, Recipe, History and ingredient relationships. Wrapping these operations in a transaction ensures that either all related changes succeed together or all changes are rolled back, preventing partial updates and maintaining database integrity.
 
 <a id="erdreview"></a>
