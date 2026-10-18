@@ -2783,6 +2783,6 @@ Outcome
 
 ## Database Integrity Improvements
 
-Added transaction support to cocktail create and delete operations. These actions affect multiple related records including Cocktail, Recipe, History and ingredient relationships. Wrapping these operations in a transaction ensures that either all related changes succeed together or all changes are rolled back, preventing partial updates and maintaining database integrity.
+Implemented transaction.atomic() for cocktail create and delete workflows. These operations modify multiple related records, including cocktail details, recipe data, history records, and ingredient relationships. Using an atomic transaction ensures that all related changes succeed or fail together, preventing partial writes and maintaining database integrity.
 
 <a id="erdreview"></a>
