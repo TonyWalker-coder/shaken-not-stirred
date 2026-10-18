@@ -2805,3 +2805,6 @@ Implemented transaction.atomic() for cocktail create and delete workflows. These
 
 <img  width=400px height=100% src="./screenshots/db-5.png">
 
+
+
+
