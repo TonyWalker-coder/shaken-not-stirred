@@ -2806,5 +2806,85 @@ Implemented transaction.atomic() for cocktail create and delete workflows. These
 <img  width=400px height=100% src="./screenshots/db-5.png">
 
 
+## Deployment on pythonanywhere.com (PA)
 
+This is an example of deploying to PA on one of their payment tiers.
 
+1 logon to PA `dashboard`
+2 start a bash console
+3 git clone https://github.com/TonyWalker-coder/shaken-not-stirred
+4 cd shaken-not-stirred
+5 mkvirtualenv --python=/usr/bin/python3.13 venv
+6 source ~/.virtualenvs/venv/bin/activate
+7 pip install -r requirements.txt
+8 open the web interface and either add or create a new `web app`
+9 select custom domain name I am calling this one `shaken-not-stirred-TonyWalker.pythonanywhere.com`
+  - the path for this project is `shaken-not-stirred` the full path name will depend on your login details
+10 select `next ` and `manual configuration`
+11 select your version of python for this project `3.13`
+12 the next screen is information only so select `next`
+13 you should now be back on the web interface
+
+<img  width=400px height=100% src="./screenshots/pa--1.png">
+
+14 change working directory to `/home/TonyWalker/shaken-not-stirred`
+15 change source code to `/home/TonyWalker/shaken-not-stirred`
+16 change virtualenv to `/home/TonyWalker/.virtualenvs/venv`
+  - Note: PythonAnywhere stores virtual environments in /home/<username>/.virtualenvs/ rather than in the current project directory.
+
+17 from the web interface edit the `wsgi` file
+  - replace the contents with this 
+
+import os
+import sys
+os.environ["ADMIN_PASSWORD"] = "<your-admin-password>"
+os.environ["SECRET_KEY"] = "<your-secret-key>"
+path = '/home/TonyWalker/shaken-not-stirred'
+if path not in sys.path:
+    sys.path.append(path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'shakenstirred.settings'
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+
+18 you will need to add your own password
+19 click `save` and `files` when you are done
+20 you will now need to edit the `settings` file so Open the project folder `shaken-not-stirred`, then open `shakenstirred/settings.py`
+21 you will need to add a new host `'shaken-not-stirred-tonywalker.pythonanywhere.com'` using your path
+22 click `save` and `web` to return to the web interface
+23 open a console
+24 `python manage.py migrate`
+25 `python manage.py collectstatic --clear`
+26 `python manage.py loaddata cocktails.json`
+27 return to the web interface
+28 click `reload shaken-not-stirred-TonyWalker.pythonanywhere.com`
+29 click `shaken-not-stirred-TonyWalker.pythonanywhere.com` to start the application
+
+the whole process is documented on PA help and blog pages
+
+https://help.pythonanywhere.com/pages/DeployExistingDjangoProject
+
+## Test Data Page
+
+The test data page was used during development and testing but was not included in the final release, as ongoing maintenance of this feature was beyond the project's scope.
+
+## CRUD Testing
+
+While I have taken on board the feedback regarding CRUD improvements and have addressed each of the points raised, I believe the existing `UI Validation` section already provides a comprehensive walkthrough of the application's functionality. In addition, the `Database Integrity Improvements` section includes further testing covering invalid and duplicate data scenarios.
+
+Given the extent of the testing and documentation already provided throughout this document, which now almost exceeds 2,900 lines, I believe further CRUD testing would be largely repetitive and add limited additional value. As a result, I have chosen to rename the section to `UI and CRUD Validation` to better reflect the breadth of testing already undertaken. For this reason, I consider the testing and documentation complete and am happy for the project to be assessed in its current state.
+
+## Pre-Submission Testing
+
+A project-wide search for `print()` and `console.log()` statements was completed. Only two intentional references within the documentation were identified.
+
+`ruff check .` completed with no errors.
+
+`npx eslint .` completed with no errors.
+
+CSS validation produced only the previously documented warnings relating to vendor-specific WebKit properties and design token usage.
+
+HTML validation of the rendered pages produced no errors.
+
+At the time of submission, no known linting, validation, or rendering errors remain within the application.

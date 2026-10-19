@@ -116,14 +116,7 @@ urlpatterns = [
     # Refresh all admin sections at once (ingredients, recipes, history, cocktails)
     path("refresh-all/", views.refresh_all, name="refresh_all"),
 
-    # ============================================================
-    # TEST DATA — DEVELOPMENT TOOLS
-    # ============================================================
 
-    path("testdata/", views.test_data_page, name="test_data_page"),
-    path("testdata/break-bloody-mary/", views.break_bloody_mary, name="break_bloody_mary"),
-    path("testdata/fix-bloody-mary/", views.fix_bloody_mary, name="fix_bloody_mary"),
-    path("testdata/reset-db/", views.reset_db, name="reset_db"),
 
     # ============================================================
     # USER AREA — DEVELOPMENT TOOLS
@@ -135,18 +128,18 @@ urlpatterns = [
     path('user/forum/<int:thread_id>/', views.thread_detail, name='thread_detail'),
     path('forum/', cocktails_views.forum, name='forum'),
 
-   
+
     path("admin/forum/thread/<int:thread_id>/", cocktails_views.admin_forum_thread, name="admin_forum_thread"),
     path("admin/forum/delete-thread/<int:thread_id>/", cocktails_views.delete_thread, name="delete_thread"),
     path("admin/forum/delete-reply/<int:reply_id>/", cocktails_views.delete_reply, name="delete_reply"),
 
     path("dashboard/forum/", views.dashboard_forum, name="dashboard_forum"),
-   
+
     path("dashboard/forum/delete-thread/<int:thread_id>/", views.dashboard_delete_thread, name="dashboard_delete_thread"),
 
     path("admin/forum/reply/<int:thread_id>/", cocktails_views.admin_reply, name="admin_reply"),
 
-    
+
     path('user/lookup/cocktail/<int:pk>/', views.lookup_cocktail_detail, name='lookup_cocktail_detail'),
 
 

@@ -1,26 +1,22 @@
 import json
 import os
+from functools import wraps
 
 from django.conf import settings
 from django.contrib import messages
+from django.db import transaction
 from django.db.models import Exists, OuterRef
 from django.db.models.functions import Lower
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
+from PIL import Image
 
 from cocktails.models import Cocktail, History, Ingredient, Recipe
 
 from .forms import ReplyForm, ThreadForm
 from .models import Reply, Thread
 
-
-from functools import wraps
-from django.shortcuts import redirect
-from django.views.decorators.http import require_POST
-
-from django.db import transaction
-
-from PIL import Image
 
 # ============================================================
 # HELPER FUNCTIONS
@@ -503,7 +499,7 @@ def upload_image(request):
             "error": True,
             "message": "Invalid image file."
         }, status=400)
-    
+
 
     ext = os.path.splitext(file.name)[1].lower()
     if ext not in [".png", ".jpg", ".webp" ]:
@@ -576,10 +572,7 @@ def refresh_all(request):
             for c in Cocktail.objects.order_by(Lower("name"))
         ]
     })
-@admin_required
-@require_POST
-def test_data_page(request):
-    return render(request, "testdata.html")
+
 
 @admin_required
 @require_POST
@@ -607,95 +600,6 @@ def fix_bloody_mary(request):
 
     return JsonResponse({"status": "ok", "message": "Bloody Mary image fixed (or already fixed)."})
 
-@admin_required
-@require_POST
-def reset_db(request):
-    json_path = os.path.join(
-        settings.BASE_DIR,
-        "static",
-        "testdata",
-        "cocktails.json"
-    )
-
-    with open(json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    # Wipe tables
-    Reply.objects.all().delete()
-    Thread.objects.all().delete()
-    History.objects.all().delete()
-    Recipe.objects.all().delete()
-    Ingredient.objects.all().delete()
-    Cocktail.objects.all().delete()
-
-    cocktail_objects = {}
-
-    for item in data:
-        model = item.get("model")
-        fields = item.get("fields", {})
-        pk = item.get("pk")
-
-        # INGREDIENT
-        if model == "cocktails.ingredient":
-            Ingredient.objects.create(
-                id=pk,
-                name=fields["name"]
-            )
-
-        # RECIPE
-        elif model == "cocktails.recipe":
-            Recipe.objects.create(
-                id=pk,
-                cocktail_id=fields["cocktail"],
-                text=fields["text"]
-            )
-
-        # HISTORY
-        elif model == "cocktails.history":
-            History.objects.create(
-                id=pk,
-                cocktail_id=fields["cocktail"],
-                text=fields["text"]
-            )
-
-        # COCKTAIL
-        elif model == "cocktails.cocktail":
-            c = Cocktail.objects.create(
-                id=pk,
-                name=fields["name"],
-                image_url=fields.get("image_url", "")
-            )
-            cocktail_objects[pk] = (c, fields.get("ingredients", []))
-
-        # THREAD (forum)
-        elif model == "cocktails.thread":
-            Thread.objects.create(
-                id=pk,
-                title=fields["title"],
-                author_name=fields.get("author_name", ""),
-                created_at=fields.get("created_at")
-            )
-
-        # REPLY (forum)
-        elif model == "cocktails.reply":
-            Reply.objects.create(
-                id=pk,
-                thread_id=fields["thread"],
-                author_name=fields.get("author_name", ""),
-                message=fields["message"],
-                created_at=fields.get("created_at")
-            )
-
-    # Attach ingredients
-    for _pk, (cocktail, ingredient_ids) in cocktail_objects.items():
-        for ing_id in ingredient_ids:
-            try:
-                ing = Ingredient.objects.get(id=ing_id)
-                cocktail.ingredients.add(ing)
-            except Ingredient.DoesNotExist:
-                pass
-
-    return JsonResponse({"status": "ok", "message": "Database reset and restored from JSON."})
 
 
 # ============================================================
@@ -855,7 +759,7 @@ def admin_reply(request, thread_id):
                 "success": False,
                 "message": "Invalid JSON."
             }, status=400)
-        
+
         message = data.get("message")
 
         thread = Thread.objects.get(id=thread_id)
