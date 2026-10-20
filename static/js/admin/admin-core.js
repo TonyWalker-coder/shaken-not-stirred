@@ -30,17 +30,13 @@ function trapFocus(modal) {
     const last = focusable[focusable.length - 1];
 
 
-      console.log(focusable);
-console.log(first);
-console.log(last);
 
     if (e.key !== "Tab") return;
 
     // Forward tab
     if (!e.shiftKey && document.activeElement === last) {
       e.preventDefault();
-      console.log("ACTIVE", document.activeElement);
-console.log("LAST", last);
+
       first.focus();
     }
 
@@ -542,7 +538,6 @@ function hideDeleteConfirm() {
     heading.focus();
 
     if (modal) {
-      console.log("trapping focus");
       trapFocus(modal);
     }
   }
