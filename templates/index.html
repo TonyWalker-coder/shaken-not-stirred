@@ -49,19 +49,19 @@ index.html
 
 
         <nav class="tile-row">
-            <a class="tile" id="cocktailTile" href="{% url 'cocktail_list' %}">
+            <a aria-label="view the cocktails, link" class="tile" id="cocktailTile" href="{% url 'cocktail_list' %}">
                 <span class="tile-text">🍸 Cocktails</span>
                 <span class="spinner">⏳</span>
             </a>
 
 
-            <button id="adminLoginBtn" class="tile">
+            <button aria-label="enter the admin area, button" id="adminLoginBtn" class="tile">
                 <span class="tile-text">🛠️ Admin</span>
             </button>
 
 
 
-            <a class="tile" href="{% url 'user_area' %}">
+            <a aria-label="user area, link" class="tile" href="{% url 'user_area' %}">
                 <span class="tile-text">👤 User Area</span>
             </a>
         </nav>
@@ -73,7 +73,7 @@ index.html
 
         <div class="modal-content">
 
-            <button class="close" id="adminLoginClose" aria-label="Close admin login modal">
+            <button  class="close" id="adminLoginClose" aria-label="Close admin login modal">
                 &times;
             </button>
 
@@ -94,7 +94,7 @@ index.html
                 </div>
             
             
-                <button type="submit" class="add-btn" style="margin-top:12px;">
+                <button aria-label="submit password, button"  type="submit" class="add-btn" style="margin-top:12px;">
                     Enter
                 </button>
             </form>

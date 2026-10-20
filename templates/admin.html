@@ -90,7 +90,7 @@ admin.html
           <img width="348" height="232" src="{% static 'cocktails/admin/customise.webp' %}" alt="Big bowl of ingredients">
         </button>
         <!-- User Forum -->
-        <button type="button" class="admin-card" onclick="openForum()" tabindex="0" aria-label="Open User Forum">
+        <button type="button" class="admin-card" onclick="openForum()"  aria-label="Open User Forum">
           <img width="348" height="232" src="{% static 'cocktails/admin/userdata.webp' %}" alt="Tropical character using a type writer">
         </button>
   
@@ -141,8 +141,8 @@ admin.html
             <form method="POST" action="{% url 'add_ingredient' %}">
               {% csrf_token %}
               <label for="name" class="sr-only">Ingredient Name</label>
-              <input type="text" name="name" id="name" class="modal-input" placeholder="Ingredient name" required>
-              <button type="submit" class="modal-button">Add</button>
+              <input type="text" name="name" id="ingredientName" class="modal-input" placeholder="Ingredient name" required>
+              <button aria-label="Submit Ingredient button" type="submit" class="modal-button">Add</button>
             </form>
           </div>
   
@@ -168,7 +168,7 @@ admin.html
       </div>
   
       <!-- EDIT INGREDIENT MODAL -->
-      <div id="editIngredientModal" class="modal hidden">
+      <div id="editIngredientModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="editIngredientModalTitle">
         <div class="modal-content">
           <button type="button" class="close" data-close="editIngredientModal"
             aria-label="Close Edit Ingredient Modal">&times;</button>
@@ -180,7 +180,7 @@ admin.html
           <form method="POST" id="editIngredientForm">
             {% csrf_token %}
             <label for="editIngredientName" class="sr-only">Ingredient Name</label>
-            <input type="text" name="name" id="editIngredientName" class="modal-input" required>
+            <input type="text" name="name" id="editIngredientName" placeholder="Enter an ingredient name" class="modal-input" required>
             <button type="submit" class="modal-button" aria-label="Save ingredient changes">Save</button>
           </form>
         </div>
@@ -208,7 +208,7 @@ admin.html
                 <img src="{% static 'cocktails/icons/history-ok.png' %}" class="history-icon" alt="Open scroll">
   
                 <button type="button" class="edit-btn" data-open="editHistoryModal" data-id="{{ h.id }}"
-                  data-text="{{ h.text|escapejs }}" data-child="true" aria-label="{{ h.text|escapejs }}">
+                  data-text="{{ h.text|escapejs }}" data-child="true" aria-label="Edit history">
                   Edit
                 </button>
   
@@ -241,7 +241,7 @@ admin.html
       </div>
   
       <!-- EDIT HISTORY MODAL -->
-      <div id="editHistoryModal" class="modal hidden">
+      <div id="editHistoryModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="editHistoryModalTitle">
         <div class="modal-content">
           <button type="button" class="close" data-close="editHistoryModal"
             aria-label="Close Edit History Modal">&times;</button>
@@ -259,7 +259,7 @@ admin.html
       </div>
   
       <!-- ADD HISTORY MODAL -->
-      <div id="addHistoryModal" class="modal hidden">
+      <div id="addHistoryModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="addHistoryTitle">
         <div class="modal-content">
           <button type="button" class="close" data-close="addHistoryModal"
             aria-label="Close Add History Modal">&times;</button>
@@ -277,7 +277,7 @@ admin.html
       </div>
   
       <!-- DELETE HISTORY MODAL -->
-      <div id="deleteHistoryModal" class="modal hidden">
+      <div id="deleteHistoryModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="deleteHistoryModalTitle">
         <div class="modal-content">
           <button type="button" class="close" data-close="deleteHistoryModal"
             aria-label="Close Delete History Modal">&times;</button>
@@ -314,7 +314,7 @@ admin.html
                 <img src="{% static 'cocktails/icons/recipe-ok.png' %}" class="history-icon" alt="Open book">
   
                 <button type="button" class="edit-btn" data-open="editRecipeModal" data-id="{{ r.id }}"
-                  data-text="{{ r.text|escapejs }}" data-child="true" aria-label="{{ r.text|escapejs }}">
+                  data-text="{{ r.text|escapejs }}" data-child="true" aria-label="Edit recipe">
                   Edit
                 </button>
   
@@ -347,7 +347,7 @@ admin.html
       </div>
   
       <!-- EDIT RECIPE MODAL -->
-      <div id="editRecipeModal" class="modal hidden">
+      <div id="editRecipeModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="editRecipeTitle">
         <div class="modal-content">
           <button type="button" class="close" data-close="editRecipeModal"
             aria-label="Close Edit Recipe Modal">&times;</button>
@@ -365,7 +365,7 @@ admin.html
       </div>
   
       <!-- ADD RECIPE MODAL -->
-      <div id="addRecipeModal" class="modal hidden">
+      <div id="addRecipeModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="addRecipeModalTitle">
         <div class="modal-content">
           <button type="button" class="close" data-close="addRecipeModal"
             aria-label="Close Add Recipe Modal">&times;</button>
@@ -383,7 +383,7 @@ admin.html
       </div>
   
       <!-- DELETE RECIPE MODAL -->
-      <div id="deleteRecipeModal" class="modal hidden">
+      <div id="deleteRecipeModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="deleteRecipeModalTitle">
         <div class="modal-content">
           <button type="button" class="close" data-close="deleteRecipeModal"
             aria-label="Close Delete Recipe Modal">&times;</button>
@@ -400,7 +400,7 @@ admin.html
       <!--
         Add Cocktail Modal
       -->
-      <div id="addCocktailModal" class="modal hidden" role="dialog" aria-modal="true"
+      <div id="addCocktailModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="addCocktailModalTitle""
         aria-labelledby="addCocktailModalTitle">
   
   
@@ -433,14 +433,14 @@ admin.html
             <div class="modal-add-block">
               <h3>History (optional)</h3>
               <label for="newCocktailHistory" class="sr-only">History</label>
-              <textarea name="history" id="newCocktailHistory" rows="4" class="modal-input"></textarea>
+              <textarea name="history" id="newCocktailHistory" rows="4" class="modal-input" placeholder="Enter a cocktails (optional) history"></textarea>
             </div>
   
             <!-- Optional Recipe -->
             <div class="modal-add-block">
               <h3>Recipe (optional)</h3>
               <label for="newCocktailRecipe" class="sr-only">Recipe</label>
-              <textarea name="recipe" id="newCocktailRecipe" rows="4" class="modal-input"></textarea>
+              <textarea name="recipe" id="newCocktailRecipe" rows="4" class="modal-input" placeholder="Enter a cocktails (optional) recipe"></textarea>
             </div>
   
             <!-- Ingredient Selection -->
@@ -456,7 +456,7 @@ admin.html
                   </label>
                 </li>
                 {% empty %}
-                <p class="empty-text">No ingredients available.</p>
+                <li class="empty-text">No ingredients available.</li>
                 {% endfor %}
               </ul>
   
@@ -465,7 +465,7 @@ admin.html
   
   
                 <label for="newIngredientName" class="sr-only">Ingredient Name</label>
-                <input type="text" id="newIngredientName" class="modal-input" placeholder="Enter ingredient name">
+                <input type="text" id="newIngredientName" class="modal-input" placeholder="Enter an ingredient name">
   
                 <button type="button" id="addIngredientInlineBtn" class="modal-button" aria-label="Add new ingredient">
                   Add Ingredient
@@ -488,7 +488,7 @@ admin.html
     </div>
   
     <!-- IMAGE REMINDER MODAL -->
-    <div id="imageReminderModal" class="modal hidden">
+    <div id="imageReminderModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="imageReminderModalTitle">
       <div class="modal-content small-modal">
   
         <h3>Cocktail Created</h3>
@@ -499,7 +499,7 @@ admin.html
   
         <p>Please add an image manually.</p>
   
-        <button class="modal-button" data-close="imageReminderModal">
+        <button class="modal-button" data-close="imageReminderModal" aria-label="Close Image reminder modal Modal">
           OK
         </button>
       </div>
@@ -507,8 +507,7 @@ admin.html
     <!--
         Delete Cocktail Modal
       -->
-    <div id="deleteCocktailModal" class="modal hidden" role="dialog" aria-modal="true"
-      aria-labelledby="deleteCocktailModalTitle">
+    <div id="deleteCocktailModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="deleteCocktailModalTitle">
       <div class="modal-content">
         <button type="button" class="close" data-close="deleteCocktailModal"
           aria-label="Close Delete Cocktail Modal">&times;</button>
@@ -536,14 +535,14 @@ admin.html
   
           </li>
           {% empty %}
-          <p class="empty-text">No cocktails found.</p>
+          <li class="empty-text">No cocktails found.</li>
           {% endfor %}
         </ul>
       </div>
     </div>
   
     <!-- CONFIRM DELETE COCKTAIL MODAL -->
-    <div id="confirmDeleteCocktailModal" class="modal hidden">
+    <div id="confirmDeleteCocktailModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="confirmDeleteCoctailModalTitle">
       <div class="modal-content">
   
         <button type="button" class="close" data-close="confirmDeleteCocktailModal"
@@ -576,7 +575,7 @@ admin.html
     <!--
         Customise Cocktail Modal
       -->
-    <div id="customiseModal" class="modal hidden">
+    <div id="customiseModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="customiseModalTitle">
       <div class="modal-content">
         <button type="button" class="close" data-close="customiseModal"
           aria-label="Close Customise Cocktail Modal">&times;</button>
@@ -623,15 +622,15 @@ admin.html
   
           <form id="imageUploadForm" method="POST" action="{% url 'upload_image' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <label for="image" class="sr-only">Upload Image</label>
+            <label for="image">Upload Image</label>
             <input type="file" name="image" id="image" accept=".png,.jpg,.webp" class="modal-input" required>
             <button type="submit" class="modal-button" aria-label="Upload image">Upload</button>
           </form>
   
   
-          <p class="empty-text">
+          <li class="empty-text">
             ⭐ Best results: 1024 × 1024
-          </p>
+          </li>
         </div>
   
         <!-- Select Cocktail -->
@@ -676,7 +675,7 @@ admin.html
     </div>
   
     <!-- CONFIRM ASSIGN IMAGE MODAL -->
-    <div id="assignImageConfirmModal" class="modal hidden">
+    <div id="assignImageConfirmModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="assignImageConfirmModalTitle">
       <div class="modal-content small-modal">
   
         <button type="button" class="close" data-close="assignImageConfirmModal"
@@ -701,7 +700,7 @@ admin.html
             <p id="assignImageFilename" class="assign-filename"></p>
   
             <img id="assignNewImageThumb" class="assign-thumb" src="{% static 'cocktails/icons/placeholder.png' %}"
-              alt="">
+              alt="Selected image preview">
           </div>
   
         </div>

@@ -1,5 +1,5 @@
 <!--===============================
-Page complete – Tony, 4/10/2026
+Page complete – Tony, 20/10/2026
 dashboard_forum_section.html
 ===============================-->
 <!--⭐ do not auto format page contains template variables ⭐  -->
@@ -19,15 +19,38 @@ dashboard_forum_section.html
         </div>
     </div>
 
-    <div class="forum-list">
+    <!--div class="forum-list">
         {% for thread in threads %}
-            <a class="forum-link" href="#" onclick="loadThread({{ thread.id }})">
+            <a
+    class="forum-link"
+    href="#"
+    onclick="loadThread({{ thread.id }})"
+    aria-label="Open thread {{ thread.title }}">
+
                 <div class="thread-row">
                     <span class="thread-title">{{ thread.title }}</span>
                 </div>
             </a>
         {% endfor %}
-    </div>
+    </div-->
+
+        <ul class="forum-list">
+        {% for thread in threads %}
+            <li>
+                <a
+    class="forum-link"
+    href="#"
+    onclick="loadThread({{ thread.id }})"
+    aria-label="Open thread {{ thread.title }}">
+
+                <div class="thread-row">
+                    <span class="thread-title">{{ thread.title }}</span>
+                </div>
+            </a>
+            </li>
+        {% endfor %}
+        </ul>
+
 
 </div>
 

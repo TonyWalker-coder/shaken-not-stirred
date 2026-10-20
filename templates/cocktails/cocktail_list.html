@@ -71,7 +71,7 @@ cocktail_list.html
       </button>
 
 
-      <img id="modal-image" width="300" height="300" class="modal-image" src="{% static 'cocktails/buttons/no-image.png' %}" alt=""
+      <img id="modal-image" width="300" height="300" class="modal-image" src="{% static 'cocktails/buttons/no-image.png' %}" alt="{{ cocktail.name }} image"
         onerror="this.src='{% static 'cocktails/buttons/no-image.png' %}'">
 
       <h2 id="modal-name" aria-live="polite"></h2>
@@ -95,6 +95,8 @@ cocktail_list.html
 // ===============================
 document.addEventListener('keydown', (e) => {
         const modal = document.getElementById('cocktail-modal');
+
+        
 
         if (!modal.classList.contains('hidden') && e.key === 'Tab') {
             e.preventDefault();
@@ -165,7 +167,10 @@ document.addEventListener('keydown', (e) => {
         if (e.target.id === 'cocktail-modal') {
           e.target.classList.add('hidden')
         }
+
       })
+
+
 
   </script>
     </main>

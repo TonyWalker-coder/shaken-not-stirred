@@ -386,6 +386,8 @@ export async function openForum() {
   container.innerHTML = html; // inject forum HTML into modal
 
   openModal("forumModal"); // show modal
+
+
 }
 window.openForum = openForum;
 
@@ -397,6 +399,7 @@ export async function loadThread(threadId) {
   const res = await fetch(`/admin/forum/thread/${threadId}/`, {
     headers: { "X-Requested-With": "XMLHttpRequest" }
   });
+
 
   const html = await res.text();
 
@@ -411,6 +414,7 @@ window.loadThread = loadThread;
 function adminReply(threadId) {
   const message = prompt("Enter your reply:");
   if (!message) return; // cancelled or empty
+
 
   fetch(`/admin/forum/reply/${threadId}/`, {
     method: "POST",
@@ -434,6 +438,7 @@ window.adminReply = adminReply;
 //* ---------------------------
 function deleteThread(threadId) {
   if (!confirm("Delete this thread and all replies?")) return;
+
 
   fetch(`/admin/forum/delete-thread/${threadId}/`, {
     method: "POST",

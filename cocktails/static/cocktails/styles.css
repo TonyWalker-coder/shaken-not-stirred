@@ -261,4 +261,7 @@ readability of title and navigation links. Bug005 */
     opacity: 0;
     pointer-events: none;
 }
+.forum-list li {
+    list-style: none;
+}
 

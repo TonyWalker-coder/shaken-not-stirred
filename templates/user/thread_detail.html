@@ -9,7 +9,7 @@ thread_detail.html
 {% block content %}
 <div class="glass-panel">
 
-    <a href="{% url 'forum' %}" class="return-btn">
+    <a href="{% url 'forum' %}" class="return-btn" aria-label="Link back to massage board">
         ← Back to Message Board
     </a>
 
@@ -34,7 +34,7 @@ thread_detail.html
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="submit-btn">Post Reply</button>
+        <button type="submit" class="submit-btn" aria-label="Post reply button">Post Reply</button>
     </form>
 
 </div>

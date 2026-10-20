@@ -7,16 +7,16 @@ new_thread.html
 
 {% block content %}
 <div class="glass-panel">
-    <a href="{% url 'forum' %}" class="return-btn">
+    <a href="{% url 'forum' %}" class="return-btn" aria-label="Back to Message Board">
         ← Back to Message Board
     </a>
     
-    <h1>Create a New Thread</h1>
+    <h1 id="newThreadTitle">Create a New Thread</h1>
 
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="submit-btn">Post Thread</button>
+        <button type="submit" class="submit-btn" aria-label="Post thread button">Post Thread</button>
     </form>
 
 </div>
