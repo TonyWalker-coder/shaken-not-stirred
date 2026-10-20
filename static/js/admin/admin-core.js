@@ -12,6 +12,7 @@ import { refreshCocktailList } from "./delete.js";
 
 function trapFocus(modal) {
 
+
   if (!modal) return;
 
   if (modal.dataset.focusTrapAttached === "true") {
@@ -20,18 +21,26 @@ function trapFocus(modal) {
 
   modal.addEventListener("keydown", (e) => {
 
-    const focusable = modal.querySelectorAll(
-      "button, input, select, textarea, a[href]"
-    );
+    const focusable = [...modal.querySelectorAll(
+  "button, input, select, textarea, a[href]"
+)].filter(el => el.offsetParent !== null);
+
 
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
+
+
+      console.log(focusable);
+console.log(first);
+console.log(last);
 
     if (e.key !== "Tab") return;
 
     // Forward tab
     if (!e.shiftKey && document.activeElement === last) {
       e.preventDefault();
+      console.log("ACTIVE", document.activeElement);
+console.log("LAST", last);
       first.focus();
     }
 
@@ -388,6 +397,7 @@ export async function openForum() {
   openModal("forumModal"); // show modal
 
 
+
 }
 window.openForum = openForum;
 
@@ -400,11 +410,22 @@ export async function loadThread(threadId) {
     headers: { "X-Requested-With": "XMLHttpRequest" }
   });
 
-
   const html = await res.text();
 
-  document.getElementById("forumModalContent").innerHTML = html; // replace modal content with thread view
+  document.getElementById("forumModalContent").innerHTML = html;
+const modal = document.getElementById("forumModal");
+  const heading = document.getElementById("threadTitle");
+
+
+  if (heading) {
+    heading.setAttribute("tabindex", "-1");
+    heading.focus();
+    if (modal) {
+    trapFocus(modal);
 }
+  }
+}
+
 window.loadThread = loadThread;
 
 
@@ -512,8 +533,23 @@ window.showDeleteConfirm = showDeleteConfirm;
 
 
 function hideDeleteConfirm() {
+
+  const modal = document.getElementById("forumModal");
+  const heading = document.getElementById("threadTitle");
+
+  if (heading) {
+    heading.setAttribute("tabindex", "-1");
+    heading.focus();
+
+    if (modal) {
+      console.log("trapping focus");
+      trapFocus(modal);
+    }
+  }
+
   document.getElementById("deleteConfirm").style.display = "none";
 }
+
 window.hideDeleteConfirm = hideDeleteConfirm;
 
 
@@ -542,41 +578,43 @@ function submitReply(threadId) {
 window.submitReply = submitReply;
 
 
-//* ---------------------------
-// Confirm delete inside modal
-//* ---------------------------
-function confirmDelete(threadId) {
-  fetch(`/admin/forum/delete-thread/${threadId}/`, {
-    method: "POST",
-    headers: {
-      "X-CSRFToken": getCookie("csrftoken")
-    }
-  })
-    .then(() => {
-      closeForumModal();
-      location.reload();
-    });
-}
-window.confirmDelete = confirmDelete;
-
-
-//* ---------------------------
-// Close the forum modal
-//* ---------------------------
-function closeForumModal() {
-  const modal = document.getElementById("forumModal");
-  if (modal) {
-    modal.style.display = "none";
+  //* ---------------------------
+  // Confirm delete inside modal
+  //* ---------------------------
+  function confirmDelete(threadId) {
+    fetch(`/admin/forum/delete-thread/${threadId}/`, {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": getCookie("csrftoken")
+      }
+    })
+      .then(() => {
+        closeForumModal();
+        location.reload();
+      });
   }
-}
-window.closeForumModal = closeForumModal;
+  window.confirmDelete = confirmDelete;
 
-document.querySelectorAll('.admin-card').forEach(card => {
-  card.addEventListener('keydown', e => {
 
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      card.click();
+  //* ---------------------------
+  // Close the forum modal
+  //* ---------------------------
+  function closeForumModal() {
+    const modal = document.getElementById("forumModal");
+    if (modal) {
+
+      modal.style.display = "none";
     }
+  }
+  window.closeForumModal = closeForumModal;
+
+
+  document.querySelectorAll('.admin-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
   });
-});

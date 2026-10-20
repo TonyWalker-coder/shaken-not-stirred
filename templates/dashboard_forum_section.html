@@ -19,20 +19,6 @@ dashboard_forum_section.html
         </div>
     </div>
 
-    <!--div class="forum-list">
-        {% for thread in threads %}
-            <a
-    class="forum-link"
-    href="#"
-    onclick="loadThread({{ thread.id }})"
-    aria-label="Open thread {{ thread.title }}">
-
-                <div class="thread-row">
-                    <span class="thread-title">{{ thread.title }}</span>
-                </div>
-            </a>
-        {% endfor %}
-    </div-->
 
         <ul class="forum-list">
         {% for thread in threads %}

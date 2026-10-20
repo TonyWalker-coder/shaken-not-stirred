@@ -2888,3 +2888,9 @@ CSS validation produced only the previously documented warnings relating to vend
 HTML validation of the rendered pages produced no errors.
 
 At the time of submission, no known linting, validation, or rendering errors remain within the application.
+
+
+
+Security Review
+
+During review, a historical hardcoded Django secret key was identified. The project has since been updated to use an environment variable for SECRET_KEY, and a new secret key has been generated and deployed. No hardcoded secret key is present in the submitted codebase.

@@ -10,6 +10,7 @@ lookup_cocktail_detail.html
 <head>
     <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Englebert&display=swap">
     <link rel="icon" type="image/png" href="{% static 'cocktails/images/favicon/faviconcocktail.png' %}">
+    <title>Shaken!Stirred | Ingredients lookup</title>
 
 <style>
 
@@ -129,7 +130,7 @@ lookup_cocktail_detail.html
          {% else %}
             {% static 'cocktails/buttons/no-image.webp' %}
          {% endif %}"
-    alt="{% if cocktail.image_url %}{{ cocktail.name }} image{% else %}No image available for {{ cocktail.name }}{% endif %}"
+    alt="cocktail image"
 >
 
 
@@ -143,11 +144,22 @@ lookup_cocktail_detail.html
         </ul>
 
         <h3>Recipe</h3>
-        <p>{{ cocktail.recipe_obj.text }}</p>
 
-        <h3>History</h3>
-        <p>{{ cocktail.history_obj.text }}</p>
-    </div>
+{% if cocktail.recipe_obj %}
+    <p>{{ cocktail.recipe_obj.text }}</p>
+{% else %}
+    <p>No recipe available.</p>
+{% endif %}
+
+
+<h3>History</h3>
+
+{% if cocktail.recipe_obj %}
+    <p>{{ history.history_obj.text }}</p>
+{% else %}
+    <p>No history available.</p>
+{% endif %}
+
 
 </body>
 
