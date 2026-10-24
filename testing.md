@@ -2816,6 +2816,7 @@ This is an example of deploying to PA on one of their payment tiers.
 4 cd shaken-not-stirred
 5 mkvirtualenv --python=/usr/bin/python3.13 venv
 6 source ~/.virtualenvs/venv/bin/activate
+6-1 git pull
 7 pip install -r requirements.txt
 8 open the web interface and either add or create a new `web app`
 9 select custom domain name I am calling this one `shaken-not-stirred-TonyWalker.pythonanywhere.com`
